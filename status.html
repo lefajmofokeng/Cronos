@@ -11,6 +11,8 @@
 <body class="light-theme">
 
     <header class="defcon-status-hero">
+        <span><img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" style="width: auto; height: 50px;"></span>
+
         <h1 class="status-main-title">Defcon System Health Ticker</h1>
         
         <div class="current-status-badge operational">
@@ -125,7 +127,7 @@ a {
 
 /* Status Colors (Highly Visible) */
 :root {
-    --color-operational: #28a745;   /* Green */
+    --color-operational: #1b95f2;   /* Green */
     --color-degraded: #ffc107;      /* Yellow */
     --color-major: #dc3545;         /* Red */
     --color-maintenance: #0091ff;   /* Defcon Blue */
@@ -134,7 +136,7 @@ a {
 
 /* --- HERO SECTION --- */
 .defcon-status-hero {
-    background-color: #f8f8f8;
+    background: #06273e;
     padding: 80px 40px 40px;
     text-align: center;
     border-bottom: 1px solid #eee;
@@ -142,9 +144,10 @@ a {
 
 .status-main-title {
     font-size: clamp(2.5rem, 4vw, 3rem);
-    font-weight: 800;
-    color: #000;
+    font-weight: 700;
+    color: #fff;
     margin-bottom: 25px;
+    letter-spacing: -0.04em;
 }
 
 /* Primary Status Badge (High Contrast) */
@@ -177,7 +180,7 @@ a {
 
 .status-update-time {
     font-size: 0.9rem;
-    color: #888;
+    color: #e8e8e8;
 }
 
 /* --- NEW FEATURE: GLOBAL TALLY --- */
