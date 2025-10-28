@@ -3757,7 +3757,7 @@ margin-bottom: 3rem;
 
         <div class="right-column" style="overflow: hidden;">
             <div class="frame-container" style="transform: translateX(-20%);"></div>
-            <img src="thumbnails/Screenshot 2025-10-27 195705.png" alt="CRM Dashboard Interface" class="screen-image" style="width: 140%;">
+            <img src="thumbnails/Screenshot 2025-10-27 195705.png" alt="CRM Dashboard Interface" class="screen-image" style="width: 140%; height: auto;">
             </div>
         </div>
     </div>
@@ -5167,7 +5167,6 @@ margin-bottom: 3rem;
 
   .footer-column ul li {
     margin-bottom: 12px;
-    min-width: fit-content;
   }
 
   .footer-column ul li a {
@@ -5175,6 +5174,7 @@ margin-bottom: 3rem;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
+    min-width: fit-content;
   }
 
   .footer-column ul li a:hover {
@@ -5285,10 +5285,9 @@ margin-bottom: 3rem;
       display: none;
     }
     
-    .pc-footer-bottom {
+    .pc-footer-bottom .footer-kv {
       justify-content: center;
-      text-align: center;
-      border-top: 1px solid #303c55;
+      text-align: center; 
       padding: 1rem 0;
     }
     
@@ -5394,9 +5393,6 @@ margin-bottom: 3rem;
     }
   }
 
-
-
-
   /* Add top padding for nested columns on desktop */
 @media (min-width: 769px) {
     .footer-content > div > .footer-column:not(:first-child) {
@@ -5491,9 +5487,11 @@ margin-bottom: 3rem;
         <div>
           <!-- Services Column -->
           <div class="footer-column">
-            <h3>Features</h3>
+            <h3>Solutions</h3>
             <ul>
-              <li><a href="#">Solutions</a></li>
+              <li><a href="#">Software Development</a></li>
+              <li><a href="#">IT Infrastructure</a></li>
+              <li><a href="#">Communicative Media</a></li>
             </ul>
           </div>
 
@@ -5501,7 +5499,15 @@ margin-bottom: 3rem;
             <h3>Developers</h3>
             <ul>
               <li><a href="#">C#</a></li>
-              <li><a href="#">Templates</a></li>
+              <li><a href="#">Github</a></li>
+              <li><a href="#">Objective C</a></li>
+              <li><a href="#">Android</a></li>
+              <li><a href="#">AI Agents</a></li>
+              <li><a href="#">Cryptography</a></li>
+              <li><a href="#">Markets Trends</a></li>
+              <li><a href="#">C++</a></li>
+            
+              
             </ul>
           </div>
         </div>
@@ -5516,7 +5522,6 @@ margin-bottom: 3rem;
             <li><a href="faqs.html">FAQs</a></li>
             <li><a href="community-forum.html">Community</a></li>
             <li><a href="feedback.html">Feedback</a></li>
-            <li><a href="status.html">Status</a></li>
           </ul>
         </div>
 
@@ -5543,7 +5548,7 @@ margin-bottom: 3rem;
             <li><a href="innovations.html">Innovations</a></li>
             <li><a href="careers.html">Careers</a></li>
             <li><a href="legal.html">Legal</a></li>
-            <li><a href="licenses-and-registrations.html">Registrations</a></li>
+            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
             <li><a href="#">Partners</a></li>
             <li><a href="affiliates.html">Affiliate</a></li>
             <li><a href="#">Security</a></li>
@@ -5571,12 +5576,16 @@ margin-bottom: 3rem;
 
       </div>
 
-      
-
       <hr class="pc-footer-line">
       
       <!-- *** COPYRIGHT SECTION *** -->
       <div class="pc-footer-bottom">
+
+        <div class="footer-kv" style="display: inline-flex; align-items: flex-start; justify-content: flex-start; flex-grow: 1; line-height: 0.9;">
+          <a href="#" style="border-right: 1px solid #7b849b; padding: 0 8px 0 0;">Privacy Notice</a>
+          <a href="status.html" style="padding: 0 0 0 8px;">Status</a>
+        </div>
+
         <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
       </div>
     </div>
