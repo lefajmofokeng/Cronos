@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon - Web Applications: Build Your Digital Core</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =================================================================================
+           1. Global Styles & Variables (Defcon Web App Page)
+           ================================================================================= */
+        :root {
+            --defcon-color-primary-dark: #0b1426;
+            --defcon-color-accent: #1199fA;
+            --defcon-color-light: #fff;
+            --defcon-color-secondary-light: #f4f4f4;
+            --defcon-font-family: 'Inter', sans-serif;
+            --defcon-max-width: 1200px;
+            --defcon-spacing-lg: 80px;
+            --defcon-spacing-md: 40px;
+            --defcon-spacing-sm: 20px;
+        }
+
+        body {
+            font-family: var(--defcon-font-family);
+            margin: 0;
+            padding: 0;
+            color: var(--defcon-color-primary-dark);
+            background-color: var(--defcon-color-light);
+            line-height: 1.6;
+        }
+
+        .defcon-web-app-container {
+            max-width: var(--defcon-max-width);
+            margin: 0 auto;
+            padding: 0 var(--defcon-spacing-sm);
+        }
+
+        .defcon-web-app-section {
+            padding: var(--defcon-spacing-lg) 0;
+            position: relative; /* For section specific effects */
+        }
+
+        .defcon-web-app-heading-lg {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            text-align: center;
+            margin-bottom: var(--defcon-spacing-md);
+            color: var(--defcon-color-primary-dark);
+        }
+
+        .defcon-web-app-heading-lg span {
+            color: var(--defcon-color-accent);
+        }
+
+        .defcon-web-app-heading-md {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: var(--defcon-spacing-sm);
+            color: var(--defcon-color-primary-dark);
+        }
+
+        .defcon-web-app-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--defcon-color-accent);
+            color: var(--defcon-color-light);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.2s;
+            border: 2px solid var(--defcon-color-accent);
+        }
+
+        .defcon-web-app-button:hover {
+            background-color: #0d7ecf; /* Slightly darker accent */
+            transform: translateY(-2px);
+        }
+        
+        /* Utility for Accent Text */
+        .defcon-text-accent {
+            color: var(--defcon-color-accent);
+        }
+        
+        /* Utility for Backgrounds */
+        .defcon-bg-dark {
+            background-color: var(--defcon-color-primary-dark);
+            color: var(--defcon-color-light);
+        }
+        
+        /* Utility for Subtle Backgrounds */
+        .defcon-bg-subtle {
+            background-color: var(--defcon-color-secondary-light);
+        }
+
+        /* =================================================================================
+           2. Hero Section (Impression & Glow)
+           ================================================================================= */
+        .defcon-web-app-hero {
+            position: relative;
+            height: 80vh; /* Viewport height for prominence */
+            min-height: 600px;
+            background-color: var(--defcon-color-primary-dark);
+            color: var(--defcon-color-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Contains glow effects */
+            text-align: center;
+            padding: var(--defcon-spacing-lg) 0;
+        }
+
+        /* Background Image Placeholder and Overlay */
+        .defcon-web-app-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Placeholder for an impressive tech background image */
+            background-image: url('thumbnails/background-4.jpg'); /* REPLACE WITH ACTUAL IMAGE */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; /* Subtle background image */
+            z-index: 1;
+        }
+
+        /* Glow Effect - New Feature Impression */
+        .defcon-web-app-hero-glow-1,
+        .defcon-web-app-hero-glow-2 {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--defcon-color-accent);
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.4;
+            z-index: 2;
+            pointer-events: none;
+            animation: pulse-glow 4s infinite alternate;
+        }
+
+        .defcon-web-app-hero-glow-1 {
+            top: 10%;
+            left: 5%;
+        }
+
+        .defcon-web-app-hero-glow-2 {
+            bottom: 10%;
+            right: 5%;
+            background: #ff55aa; /* Secondary glow color for contrast */
+        }
+        
+        @keyframes pulse-glow {
+            from { transform: scale(1); opacity: 0.4; }
+            to { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        .defcon-web-app-hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+        }
+
+        .defcon-web-app-hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            margin: 0 0 20px 0;
+            line-height: 1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .defcon-web-app-hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: var(--defcon-spacing-md);
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        .defcon-web-app-hero-cta {
+            margin-top: var(--defcon-spacing-md);
+        }
+
+        /* =================================================================================
+           3. Core Products (What We Offer)
+           ================================================================================= */
+        .defcon-web-app-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--defcon-spacing-md);
+            margin-top: var(--defcon-spacing-md);
+        }
+
+        .defcon-web-app-product-card {
+            background-color: var(--defcon-color-light);
+            border: 1px solid var(--defcon-color-secondary-light);
+            padding: var(--defcon-spacing-md);
+            border-radius: 4px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .defcon-web-app-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1), 0 0 20px rgba(17, 153, 250, 0.1);
+        }
+        
+        .defcon-web-app-product-card h3 {
+            color: var(--defcon-color-accent);
+            margin-top: 0;
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--defcon-color-secondary-light);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .defcon-web-app-product-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+        
+        .defcon-web-app-product-card li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        
+        .defcon-web-app-product-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--defcon-color-accent);
+            font-weight: 700;
+        }
+
+        /* =================================================================================
+           4. Pricing Packages & Deals (Immersive Dark Section)
+           ================================================================================= */
+        .defcon-web-app-pricing {
+            background-color: var(--defcon-color-primary-dark);
+            color: var(--defcon-color-light);
+            padding: var(--defcon-spacing-lg) 0;
+            background-image: linear-gradient(135deg, rgba(17, 153, 250, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+        
+        .defcon-web-app-pricing .defcon-web-app-heading-lg,
+        .defcon-web-app-pricing .defcon-web-app-heading-md {
+            color: var(--defcon-color-light);
+        }
+        
+        .defcon-web-app-packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--defcon-spacing-md);
+            margin-top: var(--defcon-spacing-md);
+            text-align: center;
+        }
+
+        .defcon-web-app-package-card {
+            background-color: var(--defcon-color-primary-dark);
+            border: 2px solid var(--defcon-color-accent);
+            padding: var(--defcon-spacing-md);
+            border-radius: 4px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-web-app-package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(17, 153, 250, 0.2);
+            background-color: #1a2233; /* Slightly lighter dark on hover */
+        }
+        
+        .defcon-web-app-package-card h3 {
+            font-size: 2rem;
+            color: var(--defcon-color-accent);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .defcon-web-app-package-card-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--defcon-color-light);
+            margin-bottom: 5px;
+        }
+        
+        .defcon-web-app-package-card-price small {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--defcon-color-secondary-light);
+        }
+        
+        .defcon-web-app-package-card ul {
+            text-align: left;
+            padding-left: 0;
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .defcon-web-app-package-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .defcon-web-app-package-card-deal {
+            background-color: #ffaa00; /* Deal highlight */
+            color: var(--defcon-color-primary-dark);
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* Highlighted Package (Enterprise) */
+        .defcon-web-app-package-highlight {
+            border-color: #ffaa00;
+            transform: scale(1.05);
+            background-color: #1a2233;
+        }
+
+        /* =================================================================================
+           5. How We Work (Agile & Transparent)
+           ================================================================================= */
+        .defcon-web-app-how-we-work-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: var(--defcon-spacing-md);
+            margin-top: var(--defcon-spacing-md);
+        }
+
+        .defcon-web-app-step-card {
+            flex: 1;
+            text-align: center;
+            padding: var(--defcon-spacing-sm);
+            border-radius: 4px;
+            background-color: var(--defcon-color-light);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--defcon-color-accent);
+        }
+        
+        .defcon-web-app-step-card-icon {
+            font-size: 3rem;
+            color: var(--defcon-color-accent);
+            margin-bottom: 10px;
+            font-weight: 900;
+        }
+
+        .defcon-web-app-step-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--defcon-color-primary-dark);
+            margin: 0 0 10px 0;
+        }
+
+        /* =================================================================================
+           6. Getting Started & Business Alignment (Split Layout)
+           ================================================================================= */
+        .defcon-web-app-split-container {
+            display: flex;
+            gap: var(--defcon-spacing-md);
+            align-items: flex-start;
+        }
+
+        .defcon-web-app-split-column {
+            flex: 1;
+            padding: var(--defcon-spacing-md);
+            border-radius: 12px;
+            background-color: var(--defcon-color-light);
+        }
+        
+        /* Alignment Section Styling */
+        .defcon-web-app-alignment-item {
+            margin-bottom: 25px;
+            padding-left: 10px;
+            border-left: 4px solid var(--defcon-color-accent);
+        }
+
+        .defcon-web-app-alignment-item h4 {
+            margin: 0 0 5px 0;
+            color: var(--defcon-color-accent);
+            font-size: 1.2rem;
+        }
+
+        /* Getting Started Section Styling */
+        .defcon-web-app-getting-started ol {
+            padding-left: 20px;
+        }
+
+        .defcon-web-app-getting-started li {
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .defcon-web-app-getting-started li strong {
+            color: var(--defcon-color-primary-dark);
+        }
+
+        /* =================================================================================
+           7. Technology Stack (Visual & Impressive)
+           ================================================================================= */
+        .defcon-web-app-tech-stack {
+            background-color: var(--defcon-color-secondary-light);
+        }
+        
+        .defcon-web-app-tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            text-align: center;
+            margin-top: var(--defcon-spacing-md);
+        }
+
+        .defcon-web-app-tech-item {
+            background: var(--defcon-color-light);
+            padding: 15px 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+        
+        .defcon-web-app-tech-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .defcon-web-app-tech-item-logo {
+            font-size: 2.5rem;
+            color: var(--defcon-color-primary-dark);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .defcon-web-app-tech-item p {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+
+        /* =================================================================================
+           8. Mobile Responsiveness (Media Queries)
+           ================================================================================= */
+        @media (max-width: 992px) {
+            .defcon-web-app-hero-title {
+                font-size: 3.5rem;
+            }
+            .defcon-web-app-split-container {
+                flex-direction: column;
+            }
+            .defcon-web-app-how-we-work-steps {
+                flex-direction: column;
+            }
+            .defcon-web-app-step-card {
+                margin-bottom: var(--defcon-spacing-sm);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .defcon-web-app-hero {
+                height: 70vh;
+            }
+            .defcon-web-app-hero-title {
+                font-size: 2.5rem;
+            }
+            .defcon-web-app-hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .defcon-web-app-heading-lg {
+                font-size: 2rem;
+            }
+            .defcon-web-app-section {
+                padding: var(--defcon-spacing-md) 0;
+            }
+            .defcon-web-app-products-grid,
+            .defcon-web-app-packages-grid,
+            .defcon-web-app-tech-grid {
+                 /* Allows single column flow for very small screens */
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section id="defcon-web-app-hero" class="defcon-web-app-hero">
+        <div class="defcon-web-app-hero-glow-1"></div>
+        <div class="defcon-web-app-hero-glow-2"></div>
+        
+        <div class="defcon-web-app-hero-content">
+            <h1 class="defcon-web-app-hero-title">
+                Code Your Future. <span class="defcon-text-accent">Launch Excellence.</span>
+            </h1>
+            <p class="defcon-web-app-hero-subtitle">
+                Defcon's bespoke Web Application services deliver scalable, secure, and intuitive platforms that define modern digital success.
+            </p>
+            <div class="defcon-web-app-hero-cta">
+                <a href="#defcon-web-app-get-started" class="defcon-web-app-button">Start Your Project Today</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="defcon-web-app-products" class="defcon-web-app-section defcon-bg-subtle">
+        <div class="defcon-web-app-container">
+            <h2 class="defcon-web-app-heading-lg">Our Comprehensive Web Application <span class="defcon-text-accent">Products</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                From complex enterprise solutions to cutting-edge consumer-facing tools, we build the digital foundation your business needs to thrive and scale globally.
+            </p>
+
+            <div class="defcon-web-app-products-grid">
+                
+                <div class="defcon-web-app-product-card">
+                    <h3>Enterprise Systems</h3>
+                    <p>Bespoke solutions for internal processes, resource planning, and large-scale data management.</p>
+                    <ul>
+                        <li><span class="defcon-text-accent">ERP</span> & CRM System Customization</li>
+                        <li>Intranet & Employee Portals</li>
+                        <li>Supply Chain Management (SCM) Tools</li>
+                        <li>Business Process Automation (BPA) Interfaces</li>
+                    </ul>
+                </div>
+
+                <div class="defcon-web-app-product-card">
+                    <h3>Progressive Web Apps (PWA)</h3>
+                    <p>Blends the best of web and mobile apps for high performance and offline capabilities.</p>
+                    <ul>
+                        <li>Cross-Platform User Experience</li>
+                        <li>Offline Content Caching</li>
+                        <li>Push Notifications & Geolocation</li>
+                        <li>App-Like Performance & Speed Optimization</li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-web-app-product-card">
+                    <h3>SaaS Development</h3>
+                    <p>Build your next recurring revenue platform with multi-tenant, secure, and scalable architecture.</p>
+                    <ul>
+                        <li>Subscription & Billing Integration</li>
+                        <li>Multi-Tenant Architecture Design</li>
+                        <li>High Security & Compliance Standards</li>
+                        <li>Scalable Database Infrastructure</li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-web-app-product-card">
+                    <h3>Marketplaces & Portals</h3>
+                    <p>Connect buyers, sellers, or partners with robust, feature-rich web portals and marketplaces.</p>
+                    <ul>
+                        <li>Vendor & User Management</li>
+                        <li>Payment Gateway Integration</li>
+                        <li>Advanced Search & Filtering</li>
+                        <li>Secure Communication Channels</li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-web-app-product-card">
+                    <h3>Real-Time Apps</h3>
+                    <p>Applications requiring instant data exchange, like chat, collaboration, or live dashboards.</p>
+                    <ul>
+                        <li>WebSockets Integration (Live Updates)</li>
+                        <li>Collaboration Tools (Whiteboards, Editors)</li>
+                        <li>Live Dashboards & Analytics</li>
+                        <li>Low-Latency Performance Engineering</li>
+                    </ul>
+                </div>
+                
+                <div class="defcon-web-app-product-card">
+                    <h3>Modernization & Replatforming</h3>
+                    <p>Update aging systems with modern frameworks for better security, speed, and maintainability.</p>
+                    <ul>
+                        <li>Frontend/Backend Re-engineering</li>
+                        <li>Cloud Migration Strategy</li>
+                        <li>API Gateway Implementation</li>
+                        <li>Data Integrity & Migration Strategy</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="defcon-web-app-how-we-work" class="defcon-web-app-section">
+        <div class="defcon-web-app-container">
+            <h2 class="defcon-web-app-heading-lg">Our Transparent <span class="defcon-text-accent">Development Process</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                We follow a rigorous, client-focused Agile methodology to ensure predictable delivery, quality, and complete transparency from concept to launch.
+            </p>
+
+            <div class="defcon-web-app-how-we-work-steps">
+                
+                <div class="defcon-web-app-step-card">
+                    <div class="defcon-web-app-step-card-icon">1</div>
+                    <h4>Discovery & Strategy</h4>
+                    <p>Detailed requirement gathering, wireframing, technical blueprint creation, and goal alignment.</p>
+                </div>
+                
+                <div class="defcon-web-app-step-card">
+                    <div class="defcon-web-app-step-card-icon">2</div>
+                    <h4>Design & Prototyping</h4>
+                    <p>UX/UI design, interactive prototypes, user testing, and visual branding integration.</p>
+                </div>
+                
+                <div class="defcon-web-app-step-card">
+                    <div class="defcon-web-app-step-card-icon">3</div>
+                    <h4>Development & Sprint</h4>
+                    <p>Agile sprints, continuous integration, frequent client demos, and clean code development.</p>
+                </div>
+                
+                <div class="defcon-web-app-step-card">
+                    <div class="defcon-web-app-step-card-icon">4</div>
+                    <h4>Testing & Quality Assurance</h4>
+                    <p>Unit, integration, security, and performance testing to ensure a flawless final product.</p>
+                </div>
+                
+                <div class="defcon-web-app-step-card">
+                    <div class="defcon-web-app-step-card-icon">5</div>
+                    <h4>Launch & Post-Launch</h4>
+                    <p>Seamless deployment, team training, ongoing maintenance, and post-launch feature scaling.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <section id="defcon-web-app-pricing" class="defcon-web-app-section defcon-web-app-pricing">
+        <div class="defcon-web-app-container">
+            <h2 class="defcon-web-app-heading-lg">Pricing Packages & <span style="color: #ffaa00;">Exclusive Deals</span></h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: rgba(255, 255, 255, 0.7);">
+                Find the right investment level for your project. All packages include a dedicated Project Manager and access to our DevOps pipeline.
+            </p>
+
+            <div class="defcon-web-app-packages-grid">
+                
+                <div class="defcon-web-app-package-card">
+                    <h3>Pilot Program</h3>
+                    <p class="defcon-web-app-package-card-deal">Ideal for MVPs & Startups</p>
+                    <div class="defcon-web-app-package-card-price">$4,500<small>/mo</small></div>
+                    <p>The essential path to validate your concept with a core functional application.</p>
+                    <ul>
+                        <li><span class="defcon-text-accent">✓</span> Fixed Scope MVP Development</li>
+                        <li><span class="defcon-text-accent">✓</span> Basic UI/UX Design</li>
+                        <li><span class="defcon-text-accent">✓</span> 1-Month Post-Launch Bug Support</li>
+                        <li><span class="defcon-text-accent">✓</span> Standard Cloud Deployment</li>
+                        <li><span class="defcon-text-accent">✓</span> Limited Technical Consulting (10 hrs)</li>
+                    </ul>
+                    <a href="#" class="defcon-web-app-button">Get Started</a>
+                </div>
+                
+                <div class="defcon-web-app-package-card defcon-web-app-package-highlight">
+                    <h3>Growth Accelerator</h3>
+                    <p class="defcon-web-app-package-card-deal" style="background-color: var(--defcon-color-accent); color: var(--defcon-color-light);">⭐ Most Popular Deal: 15% Off Total!</p>
+                    <div class="defcon-web-app-package-card-price">$9,000<small>/mo</small></div>
+                    <p>Full-featured application build, focusing on market fit and scaling potential.</p>
+                    <ul>
+                        <li><span style="color: #ffaa00;">✓</span> Full Custom Feature Development</li>
+                        <li><span style="color: #ffaa00;">✓</span> Advanced UX/UI with Prototyping</li>
+                        <li><span style="color: #ffaa00;">✓</span> 3-Months Premium Support & Maintenance</li>
+                        <li><span style="color: #ffaa00;">✓</span> CI/CD Pipeline Setup (DevOps)</li>
+                        <li><span style="color: #ffaa00;">✓</span> Extended Technical Consulting (30 hrs)</li>
+                    </ul>
+                    <a href="#" class="defcon-web-app-button" style="background-color: #ffaa00; border-color: #ffaa00;">Select Plan</a>
+                </div>
+                
+                <div class="defcon-web-app-package-card">
+                    <h3>Enterprise Solutions</h3>
+                    <p class="defcon-web-app-package-card-deal">For Complex Systems & Scale</p>
+                    <div class="defcon-web-app-package-card-price">Custom<small>/Quote</small></div>
+                    <p>Total control, unlimited features, and dedicated team for maximum reliability and integration.</p>
+                    <ul>
+                        <li><span class="defcon-text-accent">✓</span> Dedicated Squad (Devs, QA, Architect)</li>
+                        <li><span class="defcon-text-accent">✓</span> Deep System Integration (ERP, Legacy, etc.)</li>
+                        <li><span class="defcon-text-accent">✓</span> Advanced Security & Compliance Audit</li>
+                        <li><span class="defcon-text-accent">✓</span> Scalability & Load Testing</li>
+                        <li><span class="defcon-text-accent">✓</span> 24/7/365 Elite Support SLA</li>
+                    </ul>
+                    <a href="#" class="defcon-web-app-button">Request Quote</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="defcon-web-app-alignment-and-process" class="defcon-web-app-section">
+        <div class="defcon-web-app-container">
+            <h2 class="defcon-web-app-heading-lg">Aligning Web <span class="defcon-text-accent">Products</span> with Your Ambition</h2>
+            
+            <div class="defcon-web-app-split-container">
+                
+                <div class="defcon-web-app-split-column">
+                    <h3 class="defcon-web-app-heading-md">Targeted Solutions by Business Scale</h3>
+                    <p>We tailor our products and processes to your current size and future growth trajectory, ensuring maximum ROI.</p>
+
+                    <div class="defcon-web-app-alignment-item">
+                        <h4>Personal / Freelancer</h4>
+                        <p>Focus on **Portfolio Sites** and **Small Utility Tools** to establish a digital presence and manage small client bases efficiently.</p>
+                    </div>
+
+                    <div class="defcon-web-app-alignment-item">
+                        <h4>Startup / Small Business</h4>
+                        <p>Focus on **MVP Development** and **SaaS Pilot Programs** to validate a core business model and achieve product-market fit rapidly.</p>
+                    </div>
+
+                    <div class="defcon-web-app-alignment-item">
+                        <h4>Mid-Market / Growing Business</h4>
+                        <p>Focus on **B2B/B2C Portals**, **Advanced E-commerce**, and **Process Automation** to streamline operations and aggressively capture market share.</p>
+                    </div>
+
+                    <div class="defcon-web-app-alignment-item">
+                        <h4>Enterprise / Global Corp</h4>
+                        <p>Focus on **Custom ERP/CRM Systems**, **Legacy Modernization**, and **High-Volume Real-Time Applications** requiring maximum security and scalability.</p>
+                    </div>
+                </div>
+
+                <div class="defcon-web-app-split-column defcon-web-app-getting-started">
+                    <h3 class="defcon-web-app-heading-md">Your Path to <span class="defcon-text-accent">Launch</span></h3>
+                    <p>Our simplified process ensures your project moves smoothly from idea to deployment with clear milestones.</p>
+                    
+                    <ol>
+                        <li>
+                            <strong>Initial Consultation:</strong> Schedule a 30-minute discovery call to discuss your vision, budget, and timeline.
+                        </li>
+                        <li>
+                            <strong>Define Scope & Quote:</strong> We create a detailed Statement of Work (SOW) outlining features, tech stack, and a fixed-price or time & materials estimate.
+                        </li>
+                        <li>
+                            <strong>Contract & Team Onboarding:</strong> Sign off on the SOW, and we immediately assign your dedicated design and development team.
+                        </li>
+                        <li>
+                            <strong>Kick-off & First Sprint:</strong> The team begins the Discovery Phase, delivering wireframes and the first functional code in under two weeks.
+                        </li>
+                        <li>
+                            <strong>Continuous Delivery:</strong> Review weekly or bi-weekly demos, providing feedback until the product is ready for a successful launch.
+                        </li>
+                    </ol>
+                    <a href="#" class="defcon-web-app-button" style="background-color: #ffaa00; border-color: #ffaa00;">Book a Free Strategy Session</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="defcon-web-app-tech-stack" class="defcon-web-app-section defcon-web-app-tech-stack">
+        <div class="defcon-web-app-container">
+            <h2 class="defcon-web-app-heading-lg">Built on <span class="defcon-text-accent">Future-Proof</span> Technologies</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px;">
+                We utilize the modern, battle-tested technologies to ensure your application is fast, maintainable, and ready for tomorrow's challenges.
+            </p>
+            
+            <div class="defcon-web-app-tech-grid">
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">⚛️</span>
+                    <p>React / Next.js</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">📐</span>
+                    <p>Angular / Vue.js</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">🟢</span>
+                    <p>Node.js (Express)</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">🐍</span>
+                    <p>Python (Django)</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">☕</span>
+                    <p>Java / Spring</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">🐬</span>
+                    <p>PostgreSQL / MySQL</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">🍃</span>
+                    <p>MongoDB / Redis</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">☁️</span>
+                    <p>AWS / Azure / GCP</p>
+                </div>
+                
+                <div class="defcon-web-app-tech-item">
+                    <span class="defcon-web-app-tech-item-logo">🐳</span>
+                    <p>Docker / Kubernetes</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // LABEL: DEFCON_WEB_APP_PAGE_JS
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Defcon Web Applications Page Loaded.');
+            
+            // Example JS for smooth scrolling to CTA section
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Add any future interactivity here (e.g., pricing toggle, animation triggers)
+        });
+    </script>
+
+</body>
+</html>

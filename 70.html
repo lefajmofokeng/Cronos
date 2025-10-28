@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications | Defcon IT Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --defcon-primary: #1199fa;
+            --defcon-dark: #0b1426;
+            --defcon-white: #fff;
+            --defcon-light: #f4f4f4;
+            --defcon-shadow: rgba(17, 153, 250, 0.15);
+            --defcon-transition: all 0.3s ease;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--defcon-dark);
+            background-color: var(--defcon-white);
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .defcon-section {
+            padding: 80px 0;
+        }
+
+        .defcon-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--defcon-dark);
+            text-align: center;
+        }
+
+        .defcon-section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .defcon-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--defcon-dark) 0%, #1a2a42 100%);
+        }
+
+        .defcon-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2;
+            z-index: 1;
+        }
+
+        .defcon-hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--defcon-primary) 0%, transparent 70%);
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: 2;
+            animation: pulse 8s infinite alternate;
+        }
+
+        .defcon-hero-glow-1 {
+            top: -200px;
+            right: -200px;
+        }
+
+        .defcon-hero-glow-2 {
+            bottom: -150px;
+            left: -150px;
+            animation-delay: 2s;
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .defcon-hero-badge {
+            display: inline-block;
+            background-color: rgba(17, 153, 250, 0.1);
+            color: var(--defcon-primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--defcon-white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .defcon-hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .defcon-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--defcon-transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .defcon-btn-primary {
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+        }
+
+        .defcon-btn-primary:hover {
+            background-color: #0d8ae6;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--defcon-shadow);
+        }
+
+        .defcon-btn-secondary {
+            background-color: transparent;
+            color: var(--defcon-white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .defcon-btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .defcon-products {
+            background-color: var(--defcon-light);
+        }
+
+        .defcon-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-product-card {
+            background-color: var(--defcon-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--defcon-transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .defcon-product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-product-icon {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--defcon-primary) 0%, #0d8ae6 100%);
+            color: var(--defcon-white);
+            font-size: 2.5rem;
+        }
+
+        .defcon-product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .defcon-product-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-product-description {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .defcon-product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .defcon-product-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .defcon-product-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--defcon-primary);
+            font-weight: bold;
+        }
+
+        .defcon-product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 5px;
+        }
+
+        .defcon-product-price-note {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 20px;
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .defcon-pricing-plans {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .defcon-pricing-card {
+            background-color: var(--defcon-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--defcon-transition);
+            position: relative;
+        }
+
+        .defcon-pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--defcon-primary);
+        }
+
+        .defcon-pricing-card.featured .defcon-pricing-header {
+            background: linear-gradient(135deg, var(--defcon-primary) 0%, #0d8ae6 100%);
+        }
+
+        .defcon-pricing-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+            padding: 5px 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .defcon-pricing-header {
+            padding: 30px;
+            text-align: center;
+            background-color: var(--defcon-dark);
+            color: var(--defcon-white);
+        }
+
+        .defcon-pricing-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .defcon-pricing-price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .defcon-pricing-period {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .defcon-pricing-body {
+            padding: 30px;
+        }
+
+        .defcon-pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .defcon-pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .defcon-pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--defcon-primary);
+            font-weight: bold;
+        }
+
+        .defcon-pricing-features li.disabled {
+            color: #ccc;
+        }
+
+        .defcon-pricing-features li.disabled:before {
+            content: "✕";
+            color: #ccc;
+        }
+
+        /* ===== HOW WE WORK SECTION ===== */
+        .defcon-process {
+            background-color: var(--defcon-light);
+        }
+
+        .defcon-process-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .defcon-process-step {
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .defcon-process-step:not(:last-child):after {
+            content: "";
+            position: absolute;
+            top: 60px;
+            right: -30px;
+            width: 60px;
+            height: 2px;
+            background-color: var(--defcon-primary);
+            opacity: 0.3;
+        }
+
+        .defcon-process-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 25px;
+            background-color: var(--defcon-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--defcon-primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .defcon-process-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-process-description {
+            color: #666;
+        }
+
+        /* ===== BUSINESS ALIGNMENT SECTION ===== */
+        .defcon-business-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .defcon-business-card {
+            background-color: var(--defcon-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: var(--defcon-transition);
+        }
+
+        .defcon-business-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .defcon-business-header {
+            padding: 25px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--defcon-dark) 0%, #1a2a42 100%);
+            color: var(--defcon-white);
+        }
+
+        .defcon-business-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .defcon-business-description {
+            opacity: 0.8;
+        }
+
+        .defcon-business-body {
+            padding: 25px;
+        }
+
+        .defcon-business-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .defcon-business-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .defcon-business-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--defcon-primary);
+            font-weight: bold;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .defcon-cta {
+            background: linear-gradient(135deg, var(--defcon-dark) 0%, #1a2a42 100%);
+            color: var(--defcon-white);
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .defcon-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-cta-subtitle {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.9;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes pulse {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.4;
+                transform: scale(1.1);
+            }
+        }
+
+        .defcon-fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .defcon-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+            .defcon-hero-title {
+                font-size: 3rem;
+            }
+            
+            .defcon-section-title {
+                font-size: 2.2rem;
+            }
+            
+            .defcon-pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .defcon-process-step:not(:last-child):after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero {
+                height: auto;
+                min-height: auto;
+                padding: 120px 0 80px;
+            }
+            
+            .defcon-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .defcon-section {
+                padding: 60px 0;
+            }
+            
+            .defcon-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .defcon-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .defcon-hero-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-section-title {
+                font-size: 1.8rem;
+            }
+            
+            .defcon-pricing-price {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-process-step {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO SECTION -->
+    <section class="defcon-hero" id="defcon-hero">
+        <div class="defcon-hero-bg"></div>
+        <div class="defcon-hero-glow defcon-hero-glow-1"></div>
+        <div class="defcon-hero-glow defcon-hero-glow-2"></div>
+        <div class="defcon-container">
+            <div class="defcon-hero-content">
+                <span class="defcon-hero-badge">NEW: AI-Powered Development</span>
+                <h1 class="defcon-hero-title">Transform Your Business with Custom Web Applications</h1>
+                <p class="defcon-hero-subtitle">From responsive business websites to complex enterprise solutions, we build web applications that drive growth, efficiency, and digital transformation.</p>
+                <div class="defcon-hero-buttons">
+                    <a href="#defcon-pricing" class="defcon-btn defcon-btn-primary">View Pricing Plans</a>
+                    <a href="#defcon-cta" class="defcon-btn defcon-btn-secondary">Get Started Today</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="defcon-section defcon-products" id="defcon-products">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Web Application Solutions</h2>
+            <p class="defcon-section-subtitle">Comprehensive web development services tailored to your specific business needs and objectives.</p>
+            
+            <div class="defcon-products-grid">
+                <!-- Product 1 -->
+                <div class="defcon-product-card defcon-fade-in">
+                    <div class="defcon-product-icon">
+                        <i>💼</i>
+                    </div>
+                    <div class="defcon-product-content">
+                        <h3 class="defcon-product-title">Business Websites</h3>
+                        <p class="defcon-product-description">Professional, responsive websites that represent your brand and drive customer engagement.</p>
+                        <ul class="defcon-product-features">
+                            <li>Responsive Design</li>
+                            <li>SEO Optimization</li>
+                            <li>Content Management System</li>
+                            <li>Contact Forms & Integration</li>
+                            <li>Social Media Integration</li>
+                        </ul>
+                        <div class="defcon-product-price">From $2,499</div>
+                        <div class="defcon-product-price-note">One-time development fee</div>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="text-align: center;">Get Quote</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="defcon-product-card defcon-fade-in">
+                    <div class="defcon-product-icon">
+                        <i>🛒</i>
+                    </div>
+                    <div class="defcon-product-content">
+                        <h3 class="defcon-product-title">E-commerce Platforms</h3>
+                        <p class="defcon-product-description">Full-featured online stores with secure payment processing and inventory management.</p>
+                        <ul class="defcon-product-features">
+                            <li>Product Catalog Management</li>
+                            <li>Shopping Cart & Checkout</li>
+                            <li>Payment Gateway Integration</li>
+                            <li>Order & Inventory Management</li>
+                            <li>Customer Account System</li>
+                        </ul>
+                        <div class="defcon-product-price">From $4,999</div>
+                        <div class="defcon-product-price-note">One-time development fee</div>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="text-align: center;">Get Quote</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="defcon-product-card defcon-fade-in">
+                    <div class="defcon-product-icon">
+                        <i>📊</i>
+                    </div>
+                    <div class="defcon-product-content">
+                        <h3 class="defcon-product-title">Business Management Systems</h3>
+                        <p class="defcon-product-description">Custom applications to streamline your business operations and improve productivity.</p>
+                        <ul class="defcon-product-features">
+                            <li>CRM & Customer Management</li>
+                            <li>Project Management Tools</li>
+                            <li>Inventory & Supply Chain</li>
+                            <li>Reporting & Analytics Dashboard</li>
+                            <li>Employee Management</li>
+                        </ul>
+                        <div class="defcon-product-price">From $8,999</div>
+                        <div class="defcon-product-price-note">One-time development fee</div>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="text-align: center;">Get Quote</a>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="defcon-product-card defcon-fade-in">
+                    <div class="defcon-product-icon">
+                        <i>🔐</i>
+                    </div>
+                    <div class="defcon-product-content">
+                        <h3 class="defcon-product-title">Web Portals</h3>
+                        <p class="defcon-product-description">Secure portals for clients, employees, or partners with role-based access control.</p>
+                        <ul class="defcon-product-features">
+                            <li>User Authentication & Authorization</li>
+                            <li>Role-Based Access Control</li>
+                            <li>Document Management</li>
+                            <li>Communication Tools</li>
+                            <li>Custom Workflows</li>
+                        </ul>
+                        <div class="defcon-product-price">From $6,499</div>
+                        <div class="defcon-product-price-note">One-time development fee</div>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="text-align: center;">Get Quote</a>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="defcon-product-card defcon-fade-in">
+                    <div class="defcon-product-icon">
+                        <i>📱</i>
+                    </div>
+                    <div class="defcon-product-content">
+                        <h3 class="defcon-product-title">Progressive Web Apps (PWA)</h3>
+                        <p class="defcon-product-description">Fast, app-like experiences that work offline and can be installed on devices.</p>
+                        <ul class="defcon-product-features">
+                            <li>Offline Functionality</li>
+                            <li>Push Notifications</li>
+                            <li>App-Like Interface</li>
+                            <li>Fast Loading</li>
+                            <li>Cross-Platform Compatibility</li>
+                        </ul>
+                        <div class="defcon-product-price">From $5,499</div>
+                        <div class="defcon-product-price-note">One-time development fee</div>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="text-align: center;">Get Quote</a>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="defcon-product-card defcon-fade-in">
+                    <div class="defcon-product-icon">
+                        <i>🤖</i>
+                    </div>
+                    <div class="defcon-product-content">
+                        <h3 class="defcon-product-title">AI-Enhanced Applications</h3>
+                        <p class="defcon-product-description">Intelligent applications with machine learning, chatbots, and data analysis capabilities.</p>
+                        <ul class="defcon-product-features">
+                            <li>AI-Powered Chatbots</li>
+                            <li>Predictive Analytics</li>
+                            <li>Natural Language Processing</li>
+                            <li>Recommendation Engines</li>
+                            <li>Automated Workflows</li>
+                        </ul>
+                        <div class="defcon-product-price">From $12,999</div>
+                        <div class="defcon-product-price-note">One-time development fee</div>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="text-align: center;">Get Quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="defcon-section" id="defcon-pricing">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Flexible Pricing Plans</h2>
+            <p class="defcon-section-subtitle">Choose the plan that fits your budget and requirements. All plans include maintenance and support.</p>
+            
+            <div class="defcon-pricing-plans">
+                <!-- Plan 1 -->
+                <div class="defcon-pricing-card defcon-fade-in">
+                    <div class="defcon-pricing-header">
+                        <h3 class="defcon-pricing-name">Starter</h3>
+                        <div class="defcon-pricing-price">$2,499</div>
+                        <div class="defcon-pricing-period">one-time</div>
+                    </div>
+                    <div class="defcon-pricing-body">
+                        <ul class="defcon-pricing-features">
+                            <li>Up to 10 pages</li>
+                            <li>Responsive Design</li>
+                            <li>Basic CMS</li>
+                            <li>Contact Forms</li>
+                            <li>SEO Setup</li>
+                            <li class="disabled">E-commerce Functionality</li>
+                            <li class="disabled">Custom Applications</li>
+                            <li class="disabled">API Integration</li>
+                        </ul>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Plan 2 -->
+                <div class="defcon-pricing-card defcon-fade-in featured">
+                    <div class="defcon-pricing-badge">Most Popular</div>
+                    <div class="defcon-pricing-header">
+                        <h3 class="defcon-pricing-name">Professional</h3>
+                        <div class="defcon-pricing-price">$5,999</div>
+                        <div class="defcon-pricing-period">one-time</div>
+                    </div>
+                    <div class="defcon-pricing-body">
+                        <ul class="defcon-pricing-features">
+                            <li>Up to 25 pages</li>
+                            <li>Advanced CMS</li>
+                            <li>E-commerce Ready</li>
+                            <li>API Integration</li>
+                            <li>Advanced SEO</li>
+                            <li>User Authentication</li>
+                            <li class="disabled">Custom Applications</li>
+                            <li class="disabled">AI Features</li>
+                        </ul>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                    </div>
+                </div>
+                
+                <!-- Plan 3 -->
+                <div class="defcon-pricing-card defcon-fade-in">
+                    <div class="defcon-pricing-header">
+                        <h3 class="defcon-pricing-name">Enterprise</h3>
+                        <div class="defcon-pricing-price">$12,999</div>
+                        <div class="defcon-pricing-period">one-time</div>
+                    </div>
+                    <div class="defcon-pricing-body">
+                        <ul class="defcon-pricing-features">
+                            <li>Unlimited Pages</li>
+                            <li>Custom Applications</li>
+                            <li>Advanced E-commerce</li>
+                            <li>Multiple API Integrations</li>
+                            <li>AI & Machine Learning</li>
+                            <li>Advanced Security</li>
+                            <li>Custom Workflows</li>
+                            <li>Priority Support</li>
+                        </ul>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW WE WORK SECTION -->
+    <section class="defcon-section defcon-process" id="defcon-process">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Development Process</h2>
+            <p class="defcon-section-subtitle">A structured approach to ensure your project's success from concept to deployment.</p>
+            
+            <div class="defcon-process-steps">
+                <!-- Step 1 -->
+                <div class="defcon-process-step defcon-fade-in">
+                    <div class="defcon-process-icon">
+                        <i>01</i>
+                    </div>
+                    <h3 class="defcon-process-title">Discovery & Planning</h3>
+                    <p class="defcon-process-description">We analyze your requirements, define project scope, and create a detailed development plan.</p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="defcon-process-step defcon-fade-in">
+                    <div class="defcon-process-icon">
+                        <i>02</i>
+                    </div>
+                    <h3 class="defcon-process-title">UI/UX Design</h3>
+                    <p class="defcon-process-description">Our designers create intuitive, user-friendly interfaces that align with your brand identity.</p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="defcon-process-step defcon-fade-in">
+                    <div class="defcon-process-icon">
+                        <i>03</i>
+                    </div>
+                    <h3 class="defcon-process-title">Development</h3>
+                    <p class="defcon-process-description">Our developers build your application using the latest technologies and best practices.</p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="defcon-process-step defcon-fade-in">
+                    <div class="defcon-process-icon">
+                        <i>04</i>
+                    </div>
+                    <h3 class="defcon-process-title">Testing & Quality Assurance</h3>
+                    <p class="defcon-process-description">We rigorously test your application to ensure it's bug-free and performs optimally.</p>
+                </div>
+                
+                <!-- Step 5 -->
+                <div class="defcon-process-step defcon-fade-in">
+                    <div class="defcon-process-icon">
+                        <i>05</i>
+                    </div>
+                    <h3 class="defcon-process-title">Deployment & Support</h3>
+                    <p class="defcon-process-description">We deploy your application and provide ongoing maintenance and support services.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BUSINESS ALIGNMENT SECTION -->
+    <section class="defcon-section" id="defcon-business">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Solutions for Every Business Size</h2>
+            <p class="defcon-section-subtitle">From personal projects to enterprise solutions, we have the right fit for your needs.</p>
+            
+            <div class="defcon-business-tiers">
+                <!-- Tier 1 -->
+                <div class="defcon-business-card defcon-fade-in">
+                    <div class="defcon-business-header">
+                        <h3 class="defcon-business-name">Personal & Small Business</h3>
+                        <p class="defcon-business-description">Perfect for individuals and small teams</p>
+                    </div>
+                    <div class="defcon-business-body">
+                        <ul class="defcon-business-features">
+                            <li>Portfolio Websites</li>
+                            <li>Small Business Sites</li>
+                            <li>Blog Platforms</li>
+                            <li>Basic E-commerce</li>
+                            <li>Contact Management</li>
+                        </ul>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="width: 100%; text-align: center;">Explore Solutions</a>
+                    </div>
+                </div>
+                
+                <!-- Tier 2 -->
+                <div class="defcon-business-card defcon-fade-in">
+                    <div class="defcon-business-header">
+                        <h3 class="defcon-business-name">Medium Business</h3>
+                        <p class="defcon-business-description">For growing companies with complex needs</p>
+                    </div>
+                    <div class="defcon-business-body">
+                        <ul class="defcon-business-features">
+                            <li>Advanced E-commerce</li>
+                            <li>Business Management Systems</li>
+                            <li>Customer Portals</li>
+                            <li>Inventory Management</li>
+                            <li>Multi-user Applications</li>
+                        </ul>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="width: 100%; text-align: center;">Explore Solutions</a>
+                    </div>
+                </div>
+                
+                <!-- Tier 3 -->
+                <div class="defcon-business-card defcon-fade-in">
+                    <div class="defcon-business-header">
+                        <h3 class="defcon-business-name">Enterprise</h3>
+                        <p class="defcon-business-description">For large organizations with specific requirements</p>
+                    </div>
+                    <div class="defcon-business-body">
+                        <ul class="defcon-business-features">
+                            <li>Custom Enterprise Software</li>
+                            <li>Complex Workflow Automation</li>
+                            <li>AI & Machine Learning</li>
+                            <li>Multi-system Integration</li>
+                            <li>Advanced Security & Compliance</li>
+                        </ul>
+                        <a href="#defcon-cta" class="defcon-btn defcon-btn-primary" style="width: 100%; text-align: center;">Explore Solutions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="defcon-section defcon-cta" id="defcon-cta">
+        <div class="defcon-container">
+            <h2 class="defcon-cta-title">Ready to Transform Your Business?</h2>
+            <p class="defcon-cta-subtitle">Contact us today for a free consultation and project estimate. Let's build something amazing together.</p>
+            <a href="#" class="defcon-btn defcon-btn-primary">Schedule a Free Consultation</a>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for fade-in animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.defcon-fade-in');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            fadeElements.forEach(element => {
+                fadeObserver.observe(element);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

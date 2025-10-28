@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Resource Vault | Free eBooks</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Root Variables & Base Styles --- */
+        :root {
+            --primary-blue: #0091ff;
+            --dark-navy: #06273e;
+            --pure-white: #fff;
+            --pure-black: #000;
+            --light-gray: #f4f4f4;
+            --font-main: 'Inter', sans-serif;
+            --max-page-width: 1200px; /* New: Max content width */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            overflow-x: hidden;
+        }
+
+        /* --- Global Custom Styles --- */
+        .rsrc-ebook-page-container {
+            width: 100%;
+            overflow: hidden;
+            /* Center the main content */
+            max-width: var(--max-page-width); 
+            margin: 0 auto; 
+        }
+
+        .rsrc-ebook-section {
+            width: 100%;
+            padding: 110px 8%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        /* Class to trigger animation */
+        .rsrc-ebook-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .rsrc-ebook-accent-button {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            width: fit-content;
+            font-size: 16px;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rsrc-ebook-accent-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 145, 255, 0.25);
+        }
+
+        /* --- Section 1: Hero Banner --- */
+        .rsrc-hero-banner {
+            min-height: 80vh;
+            background-image: linear-gradient(45deg, rgba(6, 39, 62, 0.95), rgba(6, 39, 62, 0.7)), url('thumbnails/background-4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            justify-content: flex-start;
+        }
+
+        .rsrc-hero-content {
+            max-width: 650px;
+            color: var(--pure-white);
+            width: 100%; /* Changed from 1200px to 100% to respect max-page-width */
+        }
+
+        .rsrc-hero-content .subheading {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .rsrc-hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .rsrc-hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+
+        /* --- Section 2: Featured eBook --- */
+        .rsrc-featured-spotlight {
+            background-color: var(--light-gray);
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .rsrc-featured-image-zone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .rsrc-featured-image-zone::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background-image: radial-gradient(circle, rgba(0, 145, 255, 0.05) 0%, rgba(0, 145, 255, 0) 60%);
+            z-index: 0;
+        }
+
+        .rsrc-featured-image-zone img {
+            max-width: 350px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: rotate(-5deg);
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .rsrc-featured-text-zone {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .rsrc-featured-text-zone .subtitle {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+        
+        .rsrc-featured-text-zone h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .rsrc-featured-text-zone p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        /* --- Section: Resource Explanation --- */
+        .rsrc-explanation-section {
+            background-color: var(--dark-navy);
+            color: var(--pure-white);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .rsrc-explanation-header h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .rsrc-explanation-header .highlight {
+            color: var(--primary-blue);
+        }
+
+        .rsrc-explanation-header p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .rsrc-explanation-details .detail-item {
+            margin-bottom: 30px;
+        }
+
+        .rsrc-explanation-details h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .rsrc-explanation-details p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* --- Section 3: eBook Gallery (Original class names kept) --- */
+        .ebook-gallery {
+            background-color: var(--pure-white);
+            padding-top: 120px;
+            padding-bottom: 120px;
+            flex-direction: column;
+        }
+
+        .gallery-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px auto;
+        }
+
+        .gallery-intro h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--dark-navy);
+            margin-bottom: 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            width: 100%;
+        }
+
+        /* Hidden class for pagination */
+        .book-card.hidden {
+            display: none;
+        }
+
+        .book-card {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(6, 39, 62, 0.2);
+        }
+
+        .book-card-image {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .book-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(6, 39, 62, 1), rgba(6, 39, 62, 0));
+            color: var(--pure-white);
+            padding: 100px 20px 20px 20px;
+            transform: translateY(60%);
+            transition: transform 0.5s ease;
+        }
+
+        .book-card:hover .book-card-overlay {
+            transform: translateY(0);
+        }
+
+        .book-card-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .book-card-overlay .author {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .book-card-overlay .download-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* --- Pagination Styles --- */
+        .rsrc-pagination-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            gap: 15px;
+        }
+
+        .rsrc-pagination-button {
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .rsrc-pagination-button:hover:not(:disabled) {
+            background-color: var(--dark-navy);
+        }
+
+        .rsrc-pagination-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .rsrc-page-info {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--dark-navy);
+        }
+
+        /* --- Section 4: Author Wisdom --- */
+        .rsrc-author-wisdom {
+            background-color: var(--light-gray);
+            min-height: 60vh;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .rsrc-wisdom-quote {
+            max-width: 800px;
+        }
+        
+        .rsrc-wisdom-quote p {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            position: relative;
+            color: var(--dark-navy);
+        }
+        
+        .rsrc-wisdom-quote p::before, .rsrc-wisdom-quote p::after {
+            content: '“';
+            font-size: 6rem;
+            color: var(--primary-blue);
+            position: absolute;
+            opacity: 0.5;
+        }
+        
+        .rsrc-wisdom-quote p::before {
+            content: '“';
+            top: -40px;
+            left: -60px;
+        }
+        
+        .rsrc-wisdom-quote p::after {
+            content: '”';
+            bottom: -60px;
+            right: -60px;
+        }
+        
+        .rsrc-wisdom-quote .author-name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1200px) {
+            /* Adjust content padding when on screens smaller than max-page-width */
+            .rsrc-ebook-page-container {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 900px) {
+            .rsrc-hero-content h1 { font-size: 3rem; }
+            .rsrc-featured-spotlight {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .rsrc-featured-image-zone {
+                grid-row: 1; 
+                padding-top: 50px;
+            }
+            .rsrc-explanation-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .rsrc-explanation-details .detail-item {
+                text-align: left; /* Keep detail points readable on mobile */
+            }
+            .rsrc-explanation-header {
+                padding-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .rsrc-ebook-section { padding: 80px 5%; }
+            .rsrc-hero-content h1 { font-size: 2.5rem; }
+            .rsrc-featured-text-zone h2, .gallery-intro h2, .rsrc-explanation-header h2 { font-size: 2.2rem; }
+            .rsrc-wisdom-quote p { font-size: 1.8rem; }
+            .rsrc-wisdom-quote p::before, .rsrc-wisdom-quote p::after { font-size: 4rem; }
+            .rsrc-wisdom-quote p::before { top: -20px; left: -20px; }
+            .rsrc-wisdom-quote p::after { bottom: -40px; right: -20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="rsrc-ebook-page-container">
+
+        <section class="rsrc-ebook-section rsrc-hero-banner">
+            <div class="rsrc-hero-content">
+                <p class="subheading">The Digital Resource Vault</p>
+                <h1>Unlock Worlds of Knowledge, For Free.</h1>
+                <p>Dive into our curated collection of free eBooks. Discover new ideas, learn valuable skills, and explore fascinating stories, all at your fingertips. Start your journey with our professional, calm, and insightful resources.</p>
+                <a href="#ebook-gallery-anchor" class="rsrc-ebook-accent-button">Browse Resources</a>
+            </div>
+        </section>
+
+        <section class="rsrc-ebook-section rsrc-featured-spotlight">
+            <div class="rsrc-featured-image-zone">
+                <img src="thumbnails/Screenshot 2025-10-20 131322.png" alt="Featured eBook Cover: The Art of Innovation">
+            </div>
+            <div class="rsrc-featured-text-zone">
+                <span class="subtitle">Editor's Pick</span>
+                <h2>The Art of Innovation: A Structured Approach</h2>
+                <p>Learn the secrets behind groundbreaking ideas. This essential guide breaks down the creative process of the world's leading innovators, providing actionable, structured steps to spark sustainable creativity in your professional and personal life.</p>
+                <a href="/documents/the-art-of-innovation.pdf" class="rsrc-ebook-accent-button" download>Download Featured Resource</a>
+            </div>
+        </section>
+
+        <section class="rsrc-ebook-section rsrc-explanation-section">
+            <div class="rsrc-explanation-header">
+                <h2>Embrace the Power of <span class="highlight">Accessible Learning</span></h2>
+                <p>Our resources are curated to facilitate seamless, flexible, and high-quality digital reading. We empower you to learn and grow on your schedule.</p>
+            </div>
+            <div class="rsrc-explanation-details">
+                <div class="detail-item">
+                    <h3>Unmatched Convenience</h3>
+                    <p>Digital books are instantly accessible, portable, and environmentally conscious. Carry an entire, extensive library on any device—computer, tablet, or smartphone—and begin reading immediately after download.</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Simple Download Process</h3>
+                    <p>To access any resource, simply click the **"Download"** link on the book card. The file (most commonly **PDF format**) will save directly to your device. Any standard PDF or ePub reader will allow you to access the content.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="ebook-section ebook-gallery" id="ebook-gallery-anchor">
+            <div class="gallery-intro">
+                <h2>Our Curated Collection</h2>
+                <p>Explore our full library of professional resources, organized by topic. From strategic business insights to personal growth frameworks, find the knowledge you need.</p>
+            </div>
+            <div class="gallery-grid" id="ebook-grid">
+                <article class="book-card" data-category="Business">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 131322.png" alt="Book Cover: Digital Marketing Mastery">
+                    <div class="book-card-overlay">
+                        <h3>Digital Marketing Mastery</h3>
+                        <p class="author">By Jane Doe</p>
+                        <a href="/documents/digital-marketing-mastery.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Productivity">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 133026.png" alt="Book Cover: Mindful Productivity">
+                    <div class="book-card-overlay">
+                        <h3>Mindful Productivity</h3>
+                        <p class="author">By John Smith</p>
+                        <a href="/documents/mindful-productivity.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Business">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 133112.png" alt="Book Cover: The Startup Playbook">
+                    <div class="book-card-overlay">
+                        <h3>The Startup Playbook</h3>
+                        <p class="author">By Alex Johnson</p>
+                        <a href="/documents/startup-playbook.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+                
+                <article class="book-card" data-category="Creativity">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 133146.png" alt="Book Cover: Creative Thinking">
+                    <div class="book-card-overlay">
+                        <h3>Creative Thinking Frameworks</h3>
+                        <p class="author">By Emily White</p>
+                        <a href="/documents/creative-thinking.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Productivity">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 133215.png" alt="Book Cover: Time Management Blueprint">
+                    <div class="book-card-overlay">
+                        <h3>Time Management Blueprint</h3>
+                        <p class="author">By Mark Stevens</p>
+                        <a href="/documents/time-management.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Technology">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-22 134428.png" alt="Book Cover: Mastering AI Ethics">
+                    <div class="book-card-overlay">
+                        <h3>Mastering AI Ethics</h3>
+                        <p class="author">By Dr. Lena Chen</p>
+                        <a href="/documents/ai-ethics.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Personal Growth">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-23 102705.png" alt="Book Cover: The Power of Habits">
+                    <div class="book-card-overlay">
+                        <h3>The Power of Atomic Habits</h3>
+                        <p class="author">By Sarah Miller</p>
+                        <a href="/documents/atomic-habits.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Business">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 133112.png" alt="Book Cover: Financial Freedom">
+                    <div class="book-card-overlay">
+                        <h3>Financial Freedom Roadmap</h3>
+                        <p class="author">By David Chung</p>
+                        <a href="/documents/financial-freedom.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+                <article class="book-card" data-category="Technology">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-22 134428.png" alt="Book Cover: Cloud Computing Essentials">
+                    <div class="book-card-overlay">
+                        <h3>Cloud Computing Essentials</h3>
+                        <p class="author">By Alan Bixby</p>
+                        <a href="/documents/cloud-computing.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+                <article class="book-card" data-category="Creativity">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 133146.png" alt="Book Cover: Visual Design Principles">
+                    <div class="book-card-overlay">
+                        <h3>Visual Design Principles</h3>
+                        <p class="author">By Chloe Davis</p>
+                        <a href="/documents/visual-design.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+                <article class="book-card" data-category="Personal Growth">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-23 102705.png" alt="Book Cover: Emotional Intelligence">
+                    <div class="book-card-overlay">
+                        <h3>Emotional Intelligence</h3>
+                        <p class="author">By Samuel Rivas</p>
+                        <a href="/documents/emotional-intelligence.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+                <article class="book-card" data-category="Business">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-20 131322.png" alt="Book Cover: Leadership Strategy">
+                    <div class="book-card-overlay">
+                        <h3>Modern Leadership Strategy</h3>
+                        <p class="author">By Robert Green</p>
+                        <a href="/documents/leadership-strategy.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="book-card" data-category="Technology">
+                    <img class="book-card-image" src="thumbnails/Screenshot 2025-10-22 134428.png" alt="Book Cover: Blockchain Basics">
+                    <div class="book-card-overlay">
+                        <h3>Blockchain Basics</h3>
+                        <p class="author">By Vera Wang</p>
+                        <a href="/documents/blockchain-basics.pdf" class="download-link" download>Download &rarr;</a>
+                    </div>
+                </article>
+                
+                </div>
+            
+            <div class="rsrc-pagination-controls">
+                <button id="rsrc-prev-button" class="rsrc-pagination-button" disabled>Previous</button>
+                <span id="rsrc-page-info" class="rsrc-page-info">Page 1 of 1</span>
+                <button id="rsrc-next-button" class="rsrc-pagination-button">Next</button>
+            </div>
+        </section>
+        
+        <section class="rsrc-ebook-section rsrc-author-wisdom">
+            <div class="rsrc-wisdom-quote">
+                <p>A reader lives a thousand lives before he dies . . . The man who never reads lives only one.</p>
+                <span class="author-name">- George R.R. Martin</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- Initialization and Scroll-Triggered Fade-In ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.rsrc-ebook-section, .ebook-section');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            }, {
+                threshold: 0.1 
+            });
+
+            sections.forEach(section => {
+                // The hero banner can be shown immediately for a better initial load experience
+                if (!section.classList.contains('rsrc-hero-banner')) {
+                    observer.observe(section);
+                } else {
+                     section.classList.add('is-visible');
+                }
+            });
+            
+            // --- Pagination Logic ---
+            const cards = document.querySelectorAll('.book-card');
+            const cardsPerPage = 12;
+            let currentPage = 1;
+            const totalPages = Math.ceil(cards.length / cardsPerPage);
+
+            const prevButton = document.getElementById('rsrc-prev-button');
+            const nextButton = document.getElementById('rsrc-next-button');
+            const pageInfo = document.getElementById('rsrc-page-info');
+
+            /**
+             * Renders the cards for the current page and updates controls.
+             */
+            function renderPage(page) {
+                currentPage = page;
+                const start = (currentPage - 1) * cardsPerPage;
+                const end = start + cardsPerPage;
+
+                cards.forEach((card, index) => {
+                    if (index >= start && index < end) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+
+                // Update Controls
+                pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+                prevButton.disabled = currentPage === 1;
+                nextButton.disabled = currentPage === totalPages;
+            }
+
+            // Event Listeners for Pagination
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    renderPage(currentPage - 1);
+                    document.getElementById('ebook-gallery-anchor').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    renderPage(currentPage + 1);
+                    document.getElementById('ebook-gallery-anchor').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            // Initial render
+            renderPage(1);
+
+            // Hide pagination if only one page exists
+            if (totalPages <= 1) {
+                document.querySelector('.rsrc-pagination-controls').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

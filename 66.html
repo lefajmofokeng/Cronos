@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free eBooks | Resources</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Root Variables & Base Styles --- */
+        :root {
+            --primary-blue: #0091ff;
+            --dark-navy: #06273e;
+            --pure-white: #fff;
+            --pure-black: #000;
+            --light-gray: #f4f4f4;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            overflow-x: hidden;
+        }
+
+        /* --- Global Styles --- */
+        .eb-container {
+            width: 100%;
+            
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .eb-section {
+            width: 100%;
+            padding: 110px 8%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        /* Class to trigger animation */
+        .eb-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .eb-accent-button {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            padding: 15px 35px;
+            text-decoration: none;
+            font-weight: 700;
+            width: fit-content;
+            font-size: 16px;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .eb-accent-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 145, 255, 0.25);
+        }
+
+        /* --- Section 1: Hero Banner --- */
+        .eb-hero-banner {
+            min-height: 80vh;
+            background-image: linear-gradient(45deg, rgba(6, 39, 62, 0.95), rgba(6, 39, 62, 0.7)), url('thumbnails/background-4.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            justify-content: flex-start;
+        }
+
+        .eb-hero-content {
+            max-width: 650px;
+            color: var(--pure-white);
+        }
+
+        .eb-hero-content .eb-subheading {
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .eb-hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .eb-hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 550px;
+        }
+
+        /* --- Section 2: Featured eBook --- */
+        .eb-featured-spotlight {
+            background-color: var(--light-gray);
+            min-height: 90vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .eb-featured-image-zone {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .eb-featured-image-zone::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background-image: radial-gradient(circle, rgba(0, 145, 255, 0.05) 0%, rgba(0, 145, 255, 0) 60%);
+            z-index: 0;
+        }
+
+        .eb-featured-image-zone img {
+            max-width: 350px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: rotate(-5deg);
+            transition: transform 0.5s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .eb-featured-text-zone {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .eb-featured-text-zone .eb-subtitle {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 15px;
+        }
+        
+        .eb-featured-text-zone h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--dark-navy);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .eb-featured-text-zone p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        /* --- NEW Section: Why eBooks --- */
+        .eb-explanation {
+            background-color: var(--dark-navy);
+            color: var(--pure-white);
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .eb-explanation-header h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .eb-explanation-header .eb-highlight {
+            color: var(--primary-blue);
+        }
+
+        .eb-explanation-header p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .eb-explanation-details .eb-detail-item {
+            margin-bottom: 30px;
+        }
+
+        .eb-explanation-details h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .eb-explanation-details p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        /* --- Section 3: eBook Gallery --- */
+        .eb-gallery {
+            background-color: var(--pure-white);
+            padding-top: 120px;
+            padding-bottom: 120px;
+            flex-direction: column;
+        }
+
+        .eb-gallery-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px auto;
+        }
+
+        .eb-gallery-intro h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--dark-navy);
+            margin-bottom: 15px;
+        }
+
+        .eb-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .eb-book-card {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .eb-book-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(6, 39, 62, 0.2);
+        }
+
+        .eb-book-card-image {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .eb-book-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(6, 39, 62, 1), rgba(6, 39, 62, 0));
+            color: var(--pure-white);
+            padding: 100px 20px 20px 20px;
+            transform: translateY(60%);
+            transition: transform 0.5s ease;
+        }
+
+        .eb-book-card:hover .eb-book-card-overlay {
+            transform: translateY(0);
+        }
+
+        .eb-book-card-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .eb-book-card-overlay .eb-author {
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .eb-book-card-overlay .eb-download-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .eb-book-card-overlay .eb-download-link:hover {
+            transform: translateX(5px);
+        }
+
+        /* --- Pagination Styles --- */
+        .eb-pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .eb-page-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark-navy);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .eb-page-btn:hover {
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .eb-page-btn.active {
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+        }
+
+        .eb-page-btn.eb-prev-next {
+            width: auto;
+            padding: 0 20px;
+            border-radius: 20px;
+        }
+
+        /* --- Section 4: Author Wisdom --- */
+        .eb-author-wisdom {
+            background-color: var(--light-gray);
+            min-height: 60vh;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .eb-wisdom-quote {
+            max-width: 800px;
+        }
+        
+        .eb-wisdom-quote p {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            position: relative;
+            color: var(--dark-navy);
+        }
+        
+        .eb-wisdom-quote p::before, .eb-wisdom-quote p::after {
+            content: '“';
+            font-size: 6rem;
+            color: var(--primary-blue);
+            position: absolute;
+            opacity: 0.5;
+        }
+        
+        .eb-wisdom-quote p::before {
+            content: '“';
+            top: -40px;
+            left: -60px;
+        }
+        
+        .eb-wisdom-quote p::after {
+            content: '”';
+            bottom: -60px;
+            right: -60px;
+        }
+        
+        .eb-wisdom-quote .eb-author-name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #333;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1250px) {
+            .eb-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .eb-hero-content h1 { font-size: 3rem; }
+            .eb-featured-spotlight {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .eb-featured-image-zone {
+                grid-row: 1;
+                padding-top: 50px;
+            }
+            .eb-explanation {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .eb-section { padding: 80px 5%; }
+            .eb-hero-content h1 { font-size: 2.5rem; }
+            .eb-featured-text-zone h2, .eb-gallery-intro h2, .eb-explanation-header h2 { font-size: 2.2rem; }
+            .eb-wisdom-quote p { font-size: 1.8rem; }
+            .eb-wisdom-quote p::before, .eb-wisdom-quote p::after { font-size: 4rem; }
+            .eb-wisdom-quote p::before { top: -20px; left: -20px; }
+            .eb-wisdom-quote p::after { bottom: -40px; right: -20px; }
+            .eb-gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="eb-container">
+
+        <section class="eb-section eb-hero-banner">
+            <div class="eb-hero-content" style="width: 1200px;">
+                <p class="eb-subheading">Your Digital Library Awaits</p>
+                <h1>Unlock Worlds of Knowledge, For Free.</h1>
+                <p>Dive into our curated collection of free eBooks. Discover new ideas, learn valuable skills, and explore fascinating stories, all at your fingertips.</p>
+                <a href="#eb-gallery-anchor" class="eb-accent-button">Explore Collection</a>
+            </div>
+        </section>
+
+        <section class="eb-section eb-featured-spotlight">
+            <div class="eb-featured-image-zone">
+                <img src="thumbnails/Screenshot 2025-10-20 131322.png" alt="Featured eBook Cover: The Art of Innovation">
+            </div>
+            <div class="eb-featured-text-zone">
+                <span class="eb-subtitle">Featured Download</span>
+                <h2>The Art of Innovation</h2>
+                <p>Learn the secrets behind groundbreaking ideas. This eBook breaks down the creative process of the world's leading innovators, providing actionable steps to spark creativity in your own work and life.</p>
+                <a href="ebooks/art-of-innovation.pdf" class="eb-accent-button" download>Download Now</a>
+            </div>
+        </section>
+
+        <section class="eb-section eb-explanation">
+            <div class="eb-explanation-header">
+                <h2>The Power of <span class="eb-highlight">Digital Reading</span></h2>
+                <p>Embrace the convenience and accessibility of eBooks. Our library is designed to help you learn and grow, anytime, anywhere.</p>
+            </div>
+            <div class="eb-explanation-details">
+                <div class="eb-detail-item">
+                    <h3>Why Choose eBooks?</h3>
+                    <p>eBooks are instantly accessible, portable, and environmentally friendly. Carry an entire library on your device without the weight of physical books, and start reading immediately after download.</p>
+                </div>
+                <div class="eb-detail-item">
+                    <h3>How to Use Them</h3>
+                    <p>Simply click the "Download" button on any book. The file (usually a PDF) will be saved to your device. You can read it on your computer, tablet, e-reader, or smartphone using any standard PDF reader.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="eb-section eb-gallery" id="eb-gallery-anchor">
+            <div class="eb-gallery-intro">
+                <h2>Our Curated Collection</h2>
+                <p>Explore our library organized by topic. Whether you're interested in business, technology, or personal growth, there's something here for you.</p>
+            </div>
+            <div class="eb-gallery-grid" id="eb-book-grid">
+                <!-- Books will be dynamically inserted here by JavaScript -->
+            </div>
+            
+            <!-- Pagination -->
+            <div class="eb-pagination" id="eb-pagination">
+                <!-- Pagination will be dynamically generated by JavaScript -->
+            </div>
+        </section>
+        
+        <section class="eb-section eb-author-wisdom">
+            <div class="eb-wisdom-quote">
+                <p>A reader lives a thousand lives before he dies . . . The man who never reads lives only one.</p>
+                <span class="eb-author-name">- George R.R. Martin</span>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Book data with downloadable document links
+        const ebBooks = [
+            { id: 1, title: "Digital Marketing Mastery", author: "Jane Doe", cover: "thumbnails/Screenshot 2025-10-20 131322.png", file: "ebooks/digital-marketing-mastery.pdf" },
+            { id: 2, title: "Mindful Productivity", author: "John Smith", cover: "thumbnails/Screenshot 2025-10-20 133026.png", file: "ebooks/mindful-productivity.pdf" },
+            { id: 3, title: "The Startup Playbook", author: "Alex Johnson", cover: "thumbnails/Screenshot 2025-10-20 133112.png", file: "ebooks/startup-playbook.pdf" },
+            { id: 4, title: "Creative Thinking", author: "Emily White", cover: "thumbnails/Screenshot 2025-10-20 133146.png", file: "ebooks/creative-thinking.pdf" },
+            { id: 5, title: "Data Science Fundamentals", author: "Michael Brown", cover: "thumbnails/Screenshot 2025-10-20 133215.png", file: "ebooks/data-science-fundamentals.pdf" },
+            { id: 6, title: "Leadership Principles", author: "Sarah Johnson", cover: "thumbnails/Screenshot 2025-10-22 134428.png", file: "ebooks/leadership-principles.pdf" },
+            { id: 7, title: "Web Development Guide", author: "David Wilson", cover: "thumbnails/Screenshot 2025-10-23 102705.png", file: "ebooks/web-development-guide.pdf" },
+            { id: 8, title: "Financial Freedom", author: "Robert Davis", cover: "thumbnails/Screenshot 2025-10-20 131322.png", file: "ebooks/financial-freedom.pdf" },
+            { id: 9, title: "Artificial Intelligence Basics", author: "Lisa Anderson", cover: "thumbnails/Screenshot 2025-10-20 133026.png", file: "ebooks/ai-basics.pdf" },
+            { id: 10, title: "Public Speaking Skills", author: "Thomas Clark", cover: "thumbnails/Screenshot 2025-10-20 133112.png", file: "ebooks/public-speaking-skills.pdf" },
+            { id: 11, title: "Healthy Cooking Guide", author: "Jennifer Lee", cover: "thumbnails/Screenshot 2025-10-20 133146.png", file: "ebooks/healthy-cooking-guide.pdf" },
+            { id: 12, title: "Photography Essentials", author: "Kevin Martinez", cover: "thumbnails/Screenshot 2025-10-20 133215.png", file: "ebooks/photography-essentials.pdf" },
+            { id: 13, title: "Mobile App Development", author: "Amanda Taylor", cover: "thumbnails/Screenshot 2025-10-22 134428.png", file: "ebooks/mobile-app-development.pdf" },
+            { id: 14, title: "Psychology of Success", author: "Brian Wilson", cover: "thumbnails/Screenshot 2025-10-23 102705.png", file: "ebooks/psychology-of-success.pdf" },
+            { id: 15, title: "Blockchain Technology", author: "Rachel Green", cover: "thumbnails/Screenshot 2025-10-20 131322.png", file: "ebooks/blockchain-technology.pdf" },
+            { id: 16, title: "Sustainable Living", author: "Daniel Moore", cover: "thumbnails/Screenshot 2025-10-20 133026.png", file: "ebooks/sustainable-living.pdf" },
+            { id: 17, title: "Machine Learning Guide", author: "Michelle Adams", cover: "thumbnails/Screenshot 2025-10-20 133112.png", file: "ebooks/machine-learning-guide.pdf" },
+            { id: 18, title: "Business Strategy", author: "Christopher Hall", cover: "thumbnails/Screenshot 2025-10-20 133146.png", file: "ebooks/business-strategy.pdf" },
+            { id: 19, title: "Creative Writing", author: "Jessica Scott", cover: "thumbnails/Screenshot 2025-10-20 133215.png", file: "ebooks/creative-writing.pdf" },
+            { id: 20, title: "Digital Art Techniques", author: "Andrew King", cover: "thumbnails/Screenshot 2025-10-22 134428.png", file: "ebooks/digital-art-techniques.pdf" },
+            { id: 21, title: "Entrepreneurship 101", author: "Stephanie Lewis", cover: "thumbnails/Screenshot 2025-10-23 102705.png", file: "ebooks/entrepreneurship-101.pdf" },
+            { id: 22, title: "Cybersecurity Basics", author: "Patrick Walker", cover: "thumbnails/Screenshot 2025-10-20 131322.png", file: "ebooks/cybersecurity-basics.pdf" },
+            { id: 23, title: "Meditation Guide", author: "Olivia Harris", cover: "thumbnails/Screenshot 2025-10-20 133026.png", file: "ebooks/meditation-guide.pdf" },
+            { id: 24, title: "Graphic Design Principles", author: "Nicholas Young", cover: "thumbnails/Screenshot 2025-10-20 133112.png", file: "ebooks/graphic-design-principles.pdf" }
+        ];
+
+        // Pagination variables
+        const ebBooksPerPage = 12;
+        let ebCurrentPage = 1;
+
+        // Function to display books for a specific page
+        function ebDisplayBooks(page) {
+            const bookGrid = document.getElementById('eb-book-grid');
+            bookGrid.innerHTML = '';
+            
+            const startIndex = (page - 1) * ebBooksPerPage;
+            const endIndex = startIndex + ebBooksPerPage;
+            const booksToShow = ebBooks.slice(startIndex, endIndex);
+            
+            booksToShow.forEach(book => {
+                const bookCard = document.createElement('article');
+                bookCard.className = 'eb-book-card';
+                bookCard.innerHTML = `
+                    <img class="eb-book-card-image" src="${book.cover}" alt="${book.title}">
+                    <div class="eb-book-card-overlay">
+                        <h3>${book.title}</h3>
+                        <p class="eb-author">By ${book.author}</p>
+                        <a href="${book.file}" class="eb-download-link" download>Download &rarr;</a>
+                    </div>
+                `;
+                bookGrid.appendChild(bookCard);
+            });
+        }
+
+        // Function to setup pagination
+        function ebSetupPagination() {
+            const paginationContainer = document.getElementById('eb-pagination');
+            paginationContainer.innerHTML = '';
+            
+            const totalPages = Math.ceil(ebBooks.length / ebBooksPerPage);
+            
+            // Previous button
+            if (ebCurrentPage > 1) {
+                const prevButton = document.createElement('a');
+                prevButton.href = '#eb-gallery-anchor';
+                prevButton.className = 'eb-page-btn eb-prev-next';
+                prevButton.textContent = 'Previous';
+                prevButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    ebCurrentPage--;
+                    ebDisplayBooks(ebCurrentPage);
+                    ebSetupPagination();
+                    window.scrollTo({ top: document.getElementById('eb-gallery-anchor').offsetTop - 100, behavior: 'smooth' });
+                });
+                paginationContainer.appendChild(prevButton);
+            }
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = document.createElement('a');
+                pageButton.href = '#eb-gallery-anchor';
+                pageButton.className = `eb-page-btn ${i === ebCurrentPage ? 'active' : ''}`;
+                pageButton.textContent = i;
+                pageButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    ebCurrentPage = i;
+                    ebDisplayBooks(ebCurrentPage);
+                    ebSetupPagination();
+                    window.scrollTo({ top: document.getElementById('eb-gallery-anchor').offsetTop - 100, behavior: 'smooth' });
+                });
+                paginationContainer.appendChild(pageButton);
+            }
+            
+            // Next button
+            if (ebCurrentPage < totalPages) {
+                const nextButton = document.createElement('a');
+                nextButton.href = '#eb-gallery-anchor';
+                nextButton.className = 'eb-page-btn eb-prev-next';
+                nextButton.textContent = 'Next';
+                nextButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    ebCurrentPage++;
+                    ebDisplayBooks(ebCurrentPage);
+                    ebSetupPagination();
+                    window.scrollTo({ top: document.getElementById('eb-gallery-anchor').offsetTop - 100, behavior: 'smooth' });
+                });
+                paginationContainer.appendChild(nextButton);
+            }
+        }
+
+        // Simple JavaScript for scroll-triggered fade-in animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.eb-section');
+            
+            // Initialize books and pagination
+            ebDisplayBooks(ebCurrentPage);
+            ebSetupPagination();
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

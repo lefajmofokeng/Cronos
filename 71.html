@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications | DEFCON IT Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== ROOT VARIABLES ===== */
+        :root {
+            --defcon-primary: #1199fa;
+            --defcon-dark: #0b1426;
+            --defcon-white: #ffffff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-text-dark: #1a1a1a;
+            --defcon-text-light: #666666;
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ===== GLOBAL RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--defcon-text-dark);
+            background-color: var(--defcon-light-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .defcon-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .defcon-section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--defcon-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .defcon-section-subtitle {
+            font-size: 1.1rem;
+            color: var(--defcon-text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .defcon-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .defcon-btn-primary {
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+        }
+
+        .defcon-btn-primary:hover {
+            background-color: #0d7bc7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(17, 153, 250, 0.3);
+        }
+
+        .defcon-btn-secondary {
+            background-color: var(--defcon-white);
+            color: var(--defcon-primary);
+            border: 2px solid var(--defcon-primary);
+        }
+
+        .defcon-btn-secondary:hover {
+            background-color: var(--defcon-primary);
+            color: var(--defcon-white);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .defcon-hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0b1426 0%, #1a2b4d 100%);
+        }
+
+        .defcon-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('thumbnails/background-3.jpg');
+            opacity: 0.5;
+        }
+
+        .defcon-hero-glow-1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: 10%;
+            right: 5%;
+            animation: defcon-float 6s ease-in-out infinite;
+        }
+
+        .defcon-hero-glow-2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: 10%;
+            left: 5%;
+            animation: defcon-float 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes defcon-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .defcon-hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: var(--defcon-white);
+            max-width: 900px;
+            animation: defcon-fade-in 1s ease-out;
+        }
+
+        @keyframes defcon-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .defcon-hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--defcon-primary), #66d9ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .defcon-hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .defcon-hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== PRODUCTS GRID SECTION ===== */
+        .defcon-products-section {
+            padding: 5rem 0;
+            background-color: var(--defcon-white);
+        }
+
+        .defcon-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .defcon-product-card {
+            background: var(--defcon-light-gray);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: var(--transition-smooth);
+            border: 1px solid #e8e8e8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--defcon-primary), #66d9ff);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .defcon-product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(17, 153, 250, 0.15);
+            border-color: var(--defcon-primary);
+        }
+
+        .defcon-product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .defcon-product-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--defcon-primary), #66d9ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--defcon-white);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .defcon-product-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-product-card p {
+            color: var(--defcon-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .defcon-product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-product-features li {
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+            color: var(--defcon-text-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-product-features li::before {
+            content: '✓';
+            color: var(--defcon-primary);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        /* ===== PRICING SECTION ===== */
+        .defcon-pricing-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--defcon-light-gray) 0%, #ffffff 100%);
+        }
+
+        .defcon-pricing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .defcon-pricing-toggle-label {
+            font-weight: 600;
+            color: var(--defcon-text-dark);
+        }
+
+        .defcon-pricing-toggle-switch {
+            width: 60px;
+            height: 32px;
+            background-color: #e0e0e0;
+            border-radius: 16px;
+            cursor: pointer;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .defcon-pricing-toggle-switch.active {
+            background-color: var(--defcon-primary);
+        }
+
+        .defcon-pricing-toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border-radius: 14px;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s ease;
+        }
+
+        .defcon-pricing-toggle-switch.active::after {
+            left: 30px;
+        }
+
+        .defcon-pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .defcon-pricing-card {
+            background: var(--defcon-white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 2px solid #e8e8e8;
+            position: relative;
+            transition: var(--transition-smooth);
+        }
+
+        .defcon-pricing-card.featured {
+            border-color: var(--defcon-primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(17, 153, 250, 0.2);
+        }
+
+        .defcon-pricing-card:hover {
+            border-color: var(--defcon-primary);
+            box-shadow: 0 12px 32px rgba(17, 153, 250, 0.15);
+        }
+
+        .defcon-pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--defcon-primary), #66d9ff);
+            color: var(--defcon-white);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .defcon-pricing-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-pricing-card p {
+            color: var(--defcon-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-pricing-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--defcon-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .defcon-pricing-period {
+            color: var(--defcon-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .defcon-pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .defcon-pricing-features li {
+            padding: 0.6rem 0;
+            font-size: 0.9rem;
+            color: var(--defcon-text-light);
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-pricing-features li::before {
+            content: '✓';
+            color: var(--defcon-primary);
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .defcon-pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* ===== HOW WE WORK SECTION ===== */
+        .defcon-how-we-work {
+            padding: 5rem 0;
+            background-color: var(--defcon-white);
+        }
+
+        .defcon-process-timeline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .defcon-process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--defcon-primary), transparent);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .defcon-process-timeline::before {
+                display: block;
+            }
+        }
+
+        .defcon-process-step {
+            position: relative;
+            text-align: center;
+            padding: 2rem;
+            background: var(--defcon-light-gray);
+            border-radius: 12px;
+            transition: var(--transition-smooth);
+        }
+
+        .defcon-process-step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(17, 153, 250, 0.15);
+        }
+
+        .defcon-process-step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--defcon-primary), #66d9ff);
+            color: var(--defcon-white);
+            font-size: 1.8rem;
+            font-weight: 800;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .defcon-process-step h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-process-step p {
+            color: var(--defcon-text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== BUSINESS TIERS SECTION ===== */
+        .defcon-business-tiers {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--defcon-light-gray) 0%, #ffffff 100%);
+        }
+
+        .defcon-tiers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .defcon-tier-card {
+            background: var(--defcon-white);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 2px solid #e8e8e8;
+            transition: var(--transition-smooth);
+            text-align: center;
+        }
+
+        .defcon-tier-card:hover {
+            border-color: var(--defcon-primary);
+            box-shadow: 0 12px 32px rgba(17, 153, 250, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .defcon-tier-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .defcon-tier-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--defcon-dark);
+        }
+
+        .defcon-tier-card p {
+            color: var(--defcon-text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-tier-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .defcon-tier-features li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: var(--defcon-text-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-tier-features li::before {
+            content: '✓';
+            color: var(--defcon-primary);
+            font-weight: bold;
+            margin-right: 0.7rem;
+            font-size: 1rem;
+        }
+
+        /* ===== GETTING STARTED SECTION ===== */
+        .defcon-getting-started {
+            padding: 5rem 0;
+            background-color: var(--defcon-white);
+        }
+
+        .defcon-getting-started-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .defcon-getting-started-form {
+            background: var(--defcon-light-gray);
+            padding: 2.5rem;
+            border-radius: 12px;
+        }
+
+        .defcon-form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .defcon-form-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--defcon-dark);
+            font-size: 0.95rem;
+        }
+
+        .defcon-form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+        }
+
+        .defcon-form-input:focus {
+            outline: none;
+            border-color: var(--defcon-primary);
+            box-shadow: 0 0 0 3px rgba(17, 153, 250, 0.1);
+        }
+
+        .defcon-getting-started-checklist {
+            list-style: none;
+        }
+
+        .defcon-getting-started-checklist li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: var(--defcon-light-gray);
+            border-radius: 8px;
+            border-left: 4px solid var(--defcon-primary);
+            display: flex;
+            align-items: center;
+        }
+
+        .defcon-getting-started-checklist li::before {
+            content: '→';
+            color: var(--defcon-primary);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .defcon-getting-started-content {
+                grid-template-columns: 1fr;
+            }
+
+            .defcon-section-title {
+                font-size: 2rem;
+            }
+
+            .defcon-hero h1 {
+                font-size: 2rem;
+            }
+
+            .defcon-hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .defcon-pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .defcon-hero-glow-1,
+            .defcon-hero-glow-2 {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .defcon-container {
+                padding: 0 15px;
+            }
+
+            .defcon-section-title {
+                font-size: 1.5rem;
+            }
+
+            .defcon-product-card,
+            .defcon-pricing-card,
+            .defcon-process-step {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="defcon-hero" id="defcon-hero-section">
+        <div class="defcon-hero-glow-1"></div>
+        <div class="defcon-hero-glow-2"></div>
+        
+        <div class="defcon-hero-content">
+            <h1>Enterprise Web Solutions</h1>
+            <p>Scalable, secure, and performance-driven web applications built for your business success. From concept to deployment, we deliver excellence.</p>
+            <div class="defcon-hero-buttons">
+                <button class="defcon-btn defcon-btn-primary" onclick="document.getElementById('defcon-products-section').scrollIntoView({behavior: 'smooth'})">Explore Solutions</button>
+                <button class="defcon-btn defcon-btn-secondary" onclick="document.getElementById('defcon-getting-started-section').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRODUCTS SECTION ===== -->
+    <section class="defcon-products-section" id="defcon-products-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Our Web Application Products</h2>
+            <p class="defcon-section-subtitle">Comprehensive solutions tailored to meet diverse business needs and industry requirements</p>
+            
+            <div class="defcon-products-grid" id="defcon-products-grid">
+                <!-- Progressive Web Apps (PWA) -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📱</div>
+                    <h3>Progressive Web Apps (PWA)</h3>
+                    <p>High-performance applications that work seamlessly on all devices with offline capability and instant loading.</p>
+                    <ul class="defcon-product-features">
+                        <li>Offline functionality</li>
+                        <li>Push notifications</li>
+                        <li>App-like experience</li>
+                        <li>Fast load times</li>
+                    </ul>
+                </div>
+
+                <!-- Single Page Applications (SPA) -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">⚡</div>
+                    <h3>Single Page Applications</h3>
+                    <p>Fast, responsive applications using React, Vue, or Angular that provide smooth user experiences without page reloads.</p>
+                    <ul class="defcon-product-features">
+                        <li>Dynamic content</li>
+                        <li>Real-time updates</li>
+                        <li>React/Vue/Angular</li>
+                        <li>Optimal performance</li>
+                    </ul>
+                </div>
+
+                <!-- E-Commerce Platforms -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🛒</div>
+                    <h3>E-Commerce Platforms</h3>
+                    <p>Full-featured online stores with payment processing, inventory management, and customer analytics built-in.</p>
+                    <ul class="defcon-product-features">
+                        <li>Payment gateway integration</li>
+                        <li>Inventory tracking</li>
+                        <li>Customer analytics</li>
+                        <li>Order management</li>
+                    </ul>
+                </div>
+
+                <!-- Content Management Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📝</div>
+                    <h3>Content Management Systems</h3>
+                    <p>Intuitive CMS platforms enabling you to manage content, users, and workflows without technical expertise.</p>
+                    <ul class="defcon-product-features">
+                        <li>Easy content editing</li>
+                        <li>User role management</li>
+                        <li>SEO optimization</li>
+                        <li>Multi-language support</li>
+                    </ul>
+                </div>
+
+                <!-- SaaS Applications -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">☁️</div>
+                    <h3>SaaS Applications</h3>
+                    <p>Subscription-based software solutions with multi-tenancy support, flexible billing, and enterprise-grade security.</p>
+                    <ul class="defcon-product-features">
+                        <li>Multi-tenant architecture</li>
+                        <li>Flexible billing models</li>
+                        <li>API-first design</li>
+                        <li>Enterprise security</li>
+                    </ul>
+                </div>
+
+                <!-- Real-Time Collaboration Tools -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">👥</div>
+                    <h3>Real-Time Collaboration Tools</h3>
+                    <p>Interactive platforms enabling teams to collaborate seamlessly with live editing, chat, and video integration.</p>
+                    <ul class="defcon-product-features">
+                        <li>Live editing</li>
+                        <li>Integrated chat</li>
+                        <li>Video conferencing</li>
+                        <li>Document sharing</li>
+                    </ul>
+                </div>
+
+                <!-- Dashboard & Analytics -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📊</div>
+                    <h3>Dashboard & Analytics Platforms</h3>
+                    <p>Data visualization tools providing real-time insights with customizable dashboards and actionable reporting.</p>
+                    <ul class="defcon-product-features">
+                        <li>Real-time data visualization</li>
+                        <li>Custom dashboards</li>
+                        <li>Advanced reporting</li>
+                        <li>Export capabilities</li>
+                    </ul>
+                </div>
+
+                <!-- Social Platforms -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🌐</div>
+                    <h3>Social & Community Platforms</h3>
+                    <p>Engage your audience through feature-rich social networks with user profiles, feeds, and interaction tools.</p>
+                    <ul class="defcon-product-features">
+                        <li>User profiles & feeds</li>
+                        <li>Messaging system</li>
+                        <li>Content moderation</li>
+                        <li>Community management</li>
+                    </ul>
+                </div>
+
+                <!-- Booking & Reservation Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📅</div>
+                    <h3>Booking & Reservation Systems</h3>
+                    <p>Streamline appointments and reservations with calendar management, automated reminders, and payment processing.</p>
+                    <ul class="defcon-product-features">
+                        <li>Calendar integration</li>
+                        <li>Automated reminders</li>
+                        <li>Payment processing</li>
+                        <li>Resource management</li>
+                    </ul>
+                </div>
+
+                <!-- Project Management Tools -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">✓</div>
+                    <h3>Project Management Tools</h3>
+                    <p>Organize team workflows with task management, progress tracking, team collaboration, and resource allocation.</p>
+                    <ul class="defcon-product-features">
+                        <li>Task management</li>
+                        <li>Progress tracking</li>
+                        <li>Time tracking</li>
+                        <li>Team collaboration</li>
+                    </ul>
+                </div>
+
+                <!-- Learning Management Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📚</div>
+                    <h3>Learning Management Systems</h3>
+                    <p>Comprehensive e-learning platforms with course management, student progress tracking, and certification systems.</p>
+                    <ul class="defcon-product-features">
+                        <li>Course creation & management</li>
+                        <li>Progress tracking</li>
+                        <li>Assessment tools</li>
+                        <li>Certification programs</li>
+                    </ul>
+                </div>
+
+                <!-- Health & Fitness Apps -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">💪</div>
+                    <h3>Health & Fitness Applications</h3>
+                    <p>Wellness platforms with workout tracking, nutrition management, and personalized health recommendations.</p>
+                    <ul class="defcon-product-features">
+                        <li>Workout tracking</li>
+                        <li>Nutrition management</li>
+                        <li>Progress analytics</li>
+                        <li>Social features</li>
+                    </ul>
+                </div>
+
+                <!-- Enterprise Resource Planning (ERP) -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🏢</div>
+                    <h3>Enterprise Resource Planning (ERP)</h3>
+                    <p>Integrated business management systems for finance, HR, supply chain, and operations unification.</p>
+                    <ul class="defcon-product-features">
+                        <li>Financial management</li>
+                        <li>HR integration</li>
+                        <li>Supply chain control</li>
+                        <li>Reporting & analytics</li>
+                    </ul>
+                </div>
+
+                <!-- Customer Relationship Management (CRM) -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📞</div>
+                    <h3>Customer Relationship Management (CRM)</h3>
+                    <p>Manage customer interactions, sales pipelines, and marketing campaigns in one centralized platform.</p>
+                    <ul class="defcon-product-features">
+                        <li>Lead management</li>
+                        <li>Sales pipeline tracking</li>
+                        <li>Customer database</li>
+                        <li>Marketing automation</li>
+                    </ul>
+                </div>
+
+                <!-- Inventory Management Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📦</div>
+                    <h3>Inventory Management Systems</h3>
+                    <p>Track stock levels, manage warehouses, and automate reordering with real-time inventory visibility.</p>
+                    <ul class="defcon-product-features">
+                        <li>Real-time stock tracking</li>
+                        <li>Multi-warehouse support</li>
+                        <li>Automated reordering</li>
+                        <li>Barcode management</li>
+                    </ul>
+                </div>
+
+                <!-- Human Resources Management (HRM) -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">👔</div>
+                    <h3>Human Resources Management (HRM)</h3>
+                    <p>Streamline HR operations with employee management, payroll, benefits, and performance tracking.</p>
+                    <ul class="defcon-product-features">
+                        <li>Employee management</li>
+                        <li>Payroll processing</li>
+                        <li>Leave management</li>
+                        <li>Performance reviews</li>
+                    </ul>
+                </div>
+
+                <!-- Financial Management Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">💰</div>
+                    <h3>Financial Management Systems</h3>
+                    <p>Comprehensive accounting and financial control with budgeting, invoicing, and compliance reporting.</p>
+                    <ul class="defcon-product-features">
+                        <li>Accounting automation</li>
+                        <li>Budget tracking</li>
+                        <li>Invoice management</li>
+                        <li>Tax compliance</li>
+                    </ul>
+                </div>
+
+                <!-- Supply Chain Management -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🚚</div>
+                    <h3>Supply Chain Management</h3>
+                    <p>Optimize logistics with vendor management, shipment tracking, and procurement automation.</p>
+                    <ul class="defcon-product-features">
+                        <li>Vendor management</li>
+                        <li>Shipment tracking</li>
+                        <li>Procurement automation</li>
+                        <li>Cost optimization</li>
+                    </ul>
+                </div>
+
+                <!-- Real Estate & Property Management -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🏠</div>
+                    <h3>Real Estate & Property Management</h3>
+                    <p>Manage properties, tenant relations, maintenance, and financial operations for real estate portfolios.</p>
+                    <ul class="defcon-product-features">
+                        <li>Property listings</li>
+                        <li>Tenant management</li>
+                        <li>Maintenance tracking</li>
+                        <li>Payment processing</li>
+                    </ul>
+                </div>
+
+                <!-- Restaurant & Hospitality Management -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🍽️</div>
+                    <h3>Restaurant & Hospitality Management</h3>
+                    <p>Manage dining operations with online reservations, menu management, and kitchen ordering systems.</p>
+                    <ul class="defcon-product-features">
+                        <li>Online reservations</li>
+                        <li>Menu management</li>
+                        <li>Order tracking</li>
+                        <li>Table management</li>
+                    </ul>
+                </div>
+
+                <!-- Appointment Scheduling -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">⏰</div>
+                    <h3>Appointment Scheduling Systems</h3>
+                    <p>Automated scheduling platforms for professionals with calendar sync and client notifications.</p>
+                    <ul class="defcon-product-features">
+                        <li>Calendar integration</li>
+                        <li>Automated notifications</li>
+                        <li>Multi-provider support</li>
+                        <li>Client self-service</li>
+                    </ul>
+                </div>
+
+                <!-- Ticketing & Support Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">🎫</div>
+                    <h3>Ticketing & Support Systems</h3>
+                    <p>Customer support platforms with ticket management, knowledge base, and multi-channel integration.</p>
+                    <ul class="defcon-product-features">
+                        <li>Ticket management</li>
+                        <li>Knowledge base</li>
+                        <li>Multi-channel support</li>
+                        <li>AI chatbot integration</li>
+                    </ul>
+                </div>
+
+                <!-- Document Management Systems -->
+                <div class="defcon-product-card">
+                    <div class="defcon-product-icon">📄</div>
+                    <h3>Document Management Systems</h3>
+                    <p>Centralized document storage with version control, access management, and compliance features.</p>
+                    <ul class="defcon-product-features">
+                        <li>Centralized storage</li>
+                        <li>Version control</li>
+                        <li>Access management</li>
+                        <li>Audit trails</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PRICING SECTION ===== -->
+    <section class="defcon-pricing-section" id="defcon-pricing-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Flexible Pricing Plans</h2>
+            <p class="defcon-section-subtitle">Choose the perfect plan for your business needs. Scalable solutions that grow with you.</p>
+
+            <div class="defcon-pricing-toggle">
+                <span class="defcon-pricing-toggle-label">Monthly</span>
+                <div class="defcon-pricing-toggle-switch" id="defcon-pricing-switch" onclick="togglePricing()"></div>
+                <span class="defcon-pricing-toggle-label">Annually (Save 20%)</span>
+            </div>
+
+            <div class="defcon-pricing-cards" id="defcon-pricing-cards">
+                <!-- Starter Plan -->
+                <div class="defcon-pricing-card" id="defcon-starter-card">
+                    <h3>Starter</h3>
+                    <p>Perfect for small projects and MVPs</p>
+                    <div class="defcon-pricing-amount" id="defcon-starter-price">$2,500</div>
+                    <div class="defcon-pricing-period">per month</div>
+                    <ul class="defcon-pricing-features">
+                        <li>Up to 3 web pages</li>
+                        <li>Basic responsive design</li>
+                        <li>Contact form & CMS</li>
+                        <li>SSL certificate included</li>
+                        <li>Mobile optimization</li>
+                        <li>Monthly support (4 hours)</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-primary">Get Started</button>
+                </div>
+
+                <!-- Professional Plan (Featured) -->
+                <div class="defcon-pricing-card featured" id="defcon-professional-card">
+                    <div class="defcon-pricing-badge">MOST POPULAR</div>
+                    <h3>Professional</h3>
+                    <p>For growing businesses and web applications</p>
+                    <div class="defcon-pricing-amount" id="defcon-professional-price">$5,999</div>
+                    <div class="defcon-pricing-period">per month</div>
+                    <ul class="defcon-pricing-features">
+                        <li>Full-featured web application</li>
+                        <li>Advanced customization</li>
+                        <li>User authentication & roles</li>
+                        <li>Database integration</li>
+                        <li>Payment gateway setup</li>
+                        <li>Weekly support (12 hours)</li>
+                        <li>Performance optimization</li>
+                        <li>SEO optimization</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-primary">Choose Plan</button>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="defcon-pricing-card" id="defcon-enterprise-card">
+                    <h3>Enterprise</h3>
+                    <p>For large-scale applications and custom needs</p>
+                    <div class="defcon-pricing-amount" id="defcon-enterprise-price">$12,999</div>
+                    <div class="defcon-pricing-period">per month</div>
+                    <ul class="defcon-pricing-features">
+                        <li>Custom architecture design</li>
+                        <li>Unlimited features</li>
+                        <li>Advanced security</li>
+                        <li>API development</li>
+                        <li>Real-time analytics</li>
+                        <li>24/7 dedicated support</li>
+                        <li>Scalability infrastructure</li>
+                        <li>Cloud deployment options</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-primary">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HOW WE WORK SECTION ===== -->
+    <section class="defcon-how-we-work" id="defcon-how-we-work-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">How We Work</h2>
+            <p class="defcon-section-subtitle">Our proven development methodology ensures quality, reliability, and timely delivery</p>
+
+            <div class="defcon-process-timeline">
+                <div class="defcon-process-step">
+                    <div class="defcon-process-step-number">1</div>
+                    <h3>Discovery & Planning</h3>
+                    <p>We understand your business goals, requirements, and vision. Comprehensive planning ensures alignment before development begins.</p>
+                </div>
+
+                <div class="defcon-process-step">
+                    <div class="defcon-process-step-number">2</div>
+                    <h3>Design & Prototyping</h3>
+                    <p>Creating wireframes and interactive prototypes to visualize the solution before coding. Your feedback shapes every iteration.</p>
+                </div>
+
+                <div class="defcon-process-step">
+                    <div class="defcon-process-step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Building robust, scalable code using latest technologies. Regular check-ins and agile sprints keep you informed throughout.</p>
+                </div>
+
+                <div class="defcon-process-step">
+                    <div class="defcon-process-step-number">4</div>
+                    <h3>Testing & QA</h3>
+                    <p>Rigorous testing across devices and browsers. We ensure performance, security, and functionality meet the highest standards.</p>
+                </div>
+
+                <div class="defcon-process-step">
+                    <div class="defcon-process-step-number">5</div>
+                    <h3>Deployment</h3>
+                    <p>Seamless launch to production with zero downtime. We handle all technical aspects to ensure smooth go-live.</p>
+                </div>
+
+                <div class="defcon-process-step">
+                    <div class="defcon-process-step-number">6</div>
+                    <h3>Support & Maintenance</h3>
+                    <p>Ongoing support, monitoring, and updates. We're here to optimize and enhance your application as your business evolves.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== BUSINESS TIERS SECTION ===== -->
+    <section class="defcon-business-tiers" id="defcon-business-tiers-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Solutions for Every Business Size</h2>
+            <p class="defcon-section-subtitle">From solopreneurs to enterprises, we have the perfect solution for your scale</p>
+
+            <div class="defcon-tiers-grid">
+                <!-- Personal/Freelancers -->
+                <div class="defcon-tier-card">
+                    <div class="defcon-tier-icon">👤</div>
+                    <h3>Personal / Freelancers</h3>
+                    <p>Showcase your work and get clients with professional portfolio and contact management systems.</p>
+                    <ul class="defcon-tier-features">
+                        <li>Portfolio website</li>
+                        <li>Client management tools</li>
+                        <li>Invoice generation</li>
+                        <li>Email integration</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-secondary">Learn More</button>
+                </div>
+
+                <!-- Small Business -->
+                <div class="defcon-tier-card">
+                    <div class="defcon-tier-icon">🏪</div>
+                    <h3>Small Business</h3>
+                    <p>Scale your operations with e-commerce, customer management, and automation tools.</p>
+                    <ul class="defcon-tier-features">
+                        <li>E-commerce store</li>
+                        <li>Customer database</li>
+                        <li>Booking system</li>
+                        <li>Basic analytics</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-secondary">Learn More</button>
+                </div>
+
+                <!-- Mid-Size Business -->
+                <div class="defcon-tier-card">
+                    <div class="defcon-tier-icon">🏢</div>
+                    <h3>Mid-Size Business</h3>
+                    <p>Advanced solutions including CRM, ERP, and custom integrations to streamline operations.</p>
+                    <ul class="defcon-tier-features">
+                        <li>Full CRM system</li>
+                        <li>Inventory management</li>
+                        <li>Advanced reporting</li>
+                        <li>Multi-user access</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-secondary">Learn More</button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="defcon-tier-card">
+                    <div class="defcon-tier-icon">🌍</div>
+                    <h3>Enterprise</h3>
+                    <p>Complex, mission-critical systems with unlimited scalability and 24/7 support.</p>
+                    <ul class="defcon-tier-features">
+                        <li>Custom architecture</li>
+                        <li>Enterprise security</li>
+                        <li>Dedicated support team</li>
+                        <li>Global deployment</li>
+                    </ul>
+                    <button class="defcon-btn defcon-btn-secondary">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GETTING STARTED SECTION ===== -->
+    <section class="defcon-getting-started" id="defcon-getting-started-section">
+        <div class="defcon-container">
+            <h2 class="defcon-section-title">Ready to Get Started?</h2>
+            <p class="defcon-section-subtitle">Let's turn your vision into reality. Start your web application journey today.</p>
+
+            <div class="defcon-getting-started-content">
+                <div>
+                    <h3 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--defcon-dark);">Next Steps</h3>
+                    <ul class="defcon-getting-started-checklist">
+                        <li>Schedule a free consultation with our team</li>
+                        <li>Define your project scope and requirements</li>
+                        <li>Receive a detailed proposal and timeline</li>
+                        <li>Kick off development with sprint planning</li>
+                        <li>Regular updates and milestone reviews</li>
+                        <li>Launch and ongoing support begins</li>
+                    </ul>
+                </div>
+
+                <div class="defcon-getting-started-form">
+                    <h3 style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--defcon-dark);">Quick Inquiry Form</h3>
+                    
+                    <form id="defcon-inquiry-form" onsubmit="handleFormSubmit(event)">
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label">Full Name</label>
+                            <input type="text" class="defcon-form-input" placeholder="Your name" required>
+                        </div>
+
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label">Company Email</label>
+                            <input type="email" class="defcon-form-input" placeholder="your@company.com" required>
+                        </div>
+
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label">Company Name</label>
+                            <input type="text" class="defcon-form-input" placeholder="Your company" required>
+                        </div>
+
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label">Project Type</label>
+                            <select class="defcon-form-input" required>
+                                <option value="">Select a project type</option>
+                                <option value="web-app">Web Application</option>
+                                <option value="ecommerce">E-Commerce</option>
+                                <option value="saas">SaaS Platform</option>
+                                <option value="crm">CRM System</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label">Budget Range</label>
+                            <select class="defcon-form-input" required>
+                                <option value="">Select budget</option>
+                                <option value="under-5k">Under $5,000</option>
+                                <option value="5k-15k">$5,000 - $15,000</option>
+                                <option value="15k-50k">$15,000 - $50,000</option>
+                                <option value="over-50k">Over $50,000</option>
+                            </select>
+                        </div>
+
+                        <div class="defcon-form-group">
+                            <label class="defcon-form-label">Brief Description</label>
+                            <textarea class="defcon-form-input" placeholder="Tell us about your project..." rows="4" required></textarea>
+                        </div>
+
+                        <button type="submit" class="defcon-btn defcon-btn-primary" style="width: 100%;">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // Toggle pricing plans between monthly and annual
+        function togglePricing() {
+            const toggle = document.getElementById('defcon-pricing-switch');
+            const starterPrice = document.getElementById('defcon-starter-price');
+            const professionalPrice = document.getElementById('defcon-professional-price');
+            const enterprisePrice = document.getElementById('defcon-enterprise-price');
+            
+            toggle.classList.toggle('active');
+            
+            if (toggle.classList.contains('active')) {
+                // Annual pricing (20% discount)
+                starterPrice.textContent = '$24,000';
+                professionalPrice.textContent = '$57,592';
+                enterprisePrice.textContent = '$124,792';
+                
+                document.getElementById('defcon-starter-card').querySelector('.defcon-pricing-period').textContent = 'per year';
+                document.getElementById('defcon-professional-card').querySelector('.defcon-pricing-period').textContent = 'per year';
+                document.getElementById('defcon-enterprise-card').querySelector('.defcon-pricing-period').textContent = 'per year';
+            } else {
+                // Monthly pricing
+                starterPrice.textContent = '$2,500';
+                professionalPrice.textContent = '$5,999';
+                enterprisePrice.textContent = '$12,999';
+                
+                document.getElementById('defcon-starter-card').querySelector('.defcon-pricing-period').textContent = 'per month';
+                document.getElementById('defcon-professional-card').querySelector('.defcon-pricing-period').textContent = 'per month';
+                document.getElementById('defcon-enterprise-card').querySelector('.defcon-pricing-period').textContent = 'per month';
+            }
+        }
+
+        // Handle form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            alert('Thank you for your inquiry! Our team will contact you shortly.');
+            event.target.reset();
+        }
+
+        // Smooth scroll helper (already used in buttons)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
