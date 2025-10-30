@@ -13,7 +13,7 @@
             --color-accent: #0091ff;
             --color-accent-dark: #0070cc;
             --color-text-dark: #1a1a1a;
-            --color-background-light: #f8fafb;
+            --color-background-light: #f4f4f4;
             --color-text-muted: #555566;
             --header-height: 60px;
         }
@@ -42,7 +42,7 @@
         }
 
         .content-container {
-            max-width: 1400px;
+            max-width: 1300px;
             width: 100%;
             margin: 0 auto;
             padding: 0 50px;
@@ -52,17 +52,17 @@
         /* Hero Section */
         .hero-section {
             padding: 40px 0;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
-            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            background: #f4f4f4;
             margin-top: var(--header-height);
         }
 
         .hero-section h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 3.9rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
             background: linear-gradient(135deg, #0091ff 0%, #0070cc 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-text-fill-color: #000;
             background-clip: text;
             margin-bottom: 15px;
             letter-spacing: -0.02em;
@@ -94,10 +94,8 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 8px;
-            background: white;
-            padding: 20px;
+            background: transparent;
             border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
 
         .alphabet-nav a {
@@ -106,13 +104,14 @@
             justify-content: center;
             width: 100%;
             padding: 10px 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 8px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 4px;
             transition: all 0.2s ease;
-            background-color: #f5f7fa;
-            color: #666;
+            background-color: #fff;
+            color: #565f76;
             text-decoration: none;
+            border: 1px solid #e0e0e0;
         }
 
         .alphabet-nav a:hover:not(.disabled) {
@@ -145,7 +144,7 @@
             width: 100%;
             padding: 12px 16px;
             border: 1px solid #e0e0e0;
-            border-radius: 8px;
+            border-radius: 4px;
             font-size: 0.95rem;
             transition: all 0.2s;
             background-color: white;
@@ -172,14 +171,13 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 10px;
             padding-bottom: 15px;
-            border-bottom: 2px solid var(--color-accent);
         }
 
         .term-group-header h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
+            font-size: 3rem;
+            font-weight: 600;
             color: var(--color-accent);
             letter-spacing: -0.02em;
             min-width: 80px;
@@ -204,21 +202,13 @@
         .term-card {
             background: white;
             padding: 24px;
-            border-radius: 10px;
+            border-radius: 4px;
             border: 1px solid #e8e8e8;
-            transition: all 0.3s ease;
             cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        }
-
-        .term-card:hover {
-            border-color: var(--color-accent);
-            box-shadow: 0 8px 24px rgba(0, 145, 255, 0.12);
-            transform: translateY(-4px);
         }
 
         .term-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: var(--color-text-dark);
             margin-bottom: 10px;
@@ -344,19 +334,195 @@
             }
         }
     </style>
+
+      <style>
+    /* =============================================
+    TRENDING TERMS SECTION CSS
+    =============================================
+    */
+    .trending-terms-container {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0;
+        position: relative;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #121212;
+        margin: 0;
+    }
+    
+    .terms-wrapper {
+        display: flex;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        padding-bottom: 25px;
+        margin-bottom: 10px;
+    }
+
+    .terms-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .terms-wrapper {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .term-card-sv {
+        flex: 0 0 360px;
+        margin-right: 20px;
+        background-color: white;
+        border-radius: 30px;
+        padding: 30px 25px;
+        border: 1px solid #e0e0e0ab;
+        height: auto; /* Changed from fixed height to auto */
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .term-card-sv:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(25, 118, 210, 0.1);
+    }
+
+    .term-card-sv h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e0e0e055;
+        padding-bottom: 10px;
+    }
+
+    .term-card-sv p {
+        font-size: 0.95rem;
+        color: #555;
+        line-height: 1.6;
+        padding-top: 10px;
+    }
+
+    .scroll-controls {
+        position: absolute;
+        bottom: -60px;
+        right: 20px;
+        display: flex;
+        gap: 15px;
+    }
+
+    .scroll-btn {
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .scroll-btn:hover {
+        background-color: #e7e7e7;
+        color: white;
+    }
+
+    .scroll-btn svg {
+        width: 40px;
+        height: 40px;
+        fill: currentColor;
+    }
+
+    @media (max-width: 600px) {
+        .term-card-sv {
+            flex: 0 0 85%;
+            margin-right: 15px;
+        }
+        .scroll-controls {
+            right: 50%;
+            transform: translateX(50%);
+            bottom: -5px;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="header-placeholder"></div>
 
     <section class="hero-section">
         <div class="content-container">
-            <h1>Defcon IT & Digital Glossary</h1>
-            <p>Master the language of modern technology. From core infrastructure to cutting-edge frameworks—find comprehensive definitions for technical terms you need to know.</p>
+            <h1>Hyperion Glossary</h1>
+            <p>Comprehensive definitions for technical terms you need to know.</p>
         </div>
     </section>
 
+<section class="trending-terms-container">
+    <div class="section-header">
+        <h2>Trending Terms</h2>
+    </div>
+
+    <div class="terms-wrapper" id="trendingTermsWrapper">
+        <div class="term-card-sv">
+            <h3>DevOps</h3>
+            <p>A set of practices, cultural philosophies, and tools that increases an organization's ability to deliver applications and services at high velocity. DevOps emphasizes collaboration between development and operations teams, automation of the software delivery pipeline, continuous integration and delivery, infrastructure as code, monitoring, and rapid feedback loops to improve reliability, quality, and time to market.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Cloud Computing</h3>
+            <p>The delivery of computing services—servers, storage, databases, networking, software, analytics, and intelligence—over the internet (the cloud). Cloud computing provides on-demand resources, elasticity, and pay-as-you-go pricing, enabling faster innovation, easier scaling, reduced operational overhead, and the ability to run workloads globally without owning physical infrastructure.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>API</h3>
+            <p>Application Programming Interface. A set of rules, protocols, and tools that defines how software components should interact. APIs expose functionality and data from applications or services in a standardized way, enabling integration, automation, and modular development by allowing clients to request and manipulate resources without needing knowledge of internal implementation details.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>CI/CD Pipeline</h3>
+            <p>Continuous Integration (CI) and Continuous Delivery/Deployment (CD) are automated practices for building, testing, and delivering code changes. CI automates merging and testing of code in a shared repository to detect issues early. CD automates the packaging, staging, and deployment of changes so teams can release reliable software faster, often with automated testing, promotion gates, and rollback mechanisms.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Microservices</h3>
+            <p>An architectural style that structures an application as a collection of small, independently deployable services, each responsible for a single business capability. Microservices communicate over lightweight protocols (e.g., HTTP/REST, gRPC, or messaging), enable decentralized data management, allow teams to iterate and scale independently, and improve resilience by isolating failures.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Blockchain</h3>
+            <p>A distributed ledger technology that records transactions in an ordered, append-only chain of cryptographically linked blocks across a decentralized network of nodes. Blockchains provide immutability, tamper-resistance, and transparent audit trails; they can be permissionless (public) or permissioned (private) and are used for cryptocurrencies, smart contracts, and provenance or supply-chain applications.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Latency</h3>
+            <p>The delay between initiating an action and observing its effect. In networking, latency is the time it takes for a packet to travel from source to destination, typically measured in milliseconds. Latency is influenced by propagation, transmission, processing, and queuing delays and is a critical metric for real-time applications such as gaming, video conferencing, and high-frequency trading.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>SaaS</h3>
+            <p>Software as a Service. A cloud delivery model where software applications are hosted by a provider and made available to customers over the internet, typically on a subscription or usage-based pricing model. SaaS removes the need for local installation and maintenance, centralizes updates and security, and enables quick onboarding and access from any device with a network connection.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Artificial Intelligence</h3>
+            <p>The field of computer science focused on creating systems that perform tasks normally requiring human intelligence. AI encompasses machine learning, deep learning, natural language processing, computer vision, and reasoning techniques to enable machines to perceive, learn from data, make decisions, and perform tasks such as classification, prediction, planning, and language understanding.</p>
+        </div>
+    </div>
+
+    <div class="scroll-controls">
+        <button class="scroll-btn" id="scrollLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#000000" d="M29 16a1 1 0 0 1-1 1H6.414l8.293 8.293a1 1 0 0 1-1.414 1.414l-10-10a1 1 0 0 1 0-1.414l10-10a1 1 0 1 1 1.414 1.414L6.414 15H28a1 1 0 0 1 1 1Z"/></svg>
+        </button>
+        <button class="scroll-btn" id="scrollRight">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#000000" d="M3 16a1 1 0 0 1 1-1h21.586l-8.293-8.293a1 1 0 0 1 1.414-1.414l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L25.586 17H4a1 1 0 0 1-1-1Z"/></svg>
+        </button>
+    </div>
+</section>
+
+
+
     <section class="pb-20">
         <div class="content-container">
+            <span style="font-size: 2rem; font-weight: 700;">Glossary A to Z</span>
             <div class="glossary-wrapper">
                 <aside class="sidebar">
                     <div class="search-box">
@@ -375,6 +541,33 @@
             <p>&copy; 2025 Defcon. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const wrapper = document.getElementById('trendingTermsWrapper');
+        const scrollLeftBtn = document.getElementById('scrollLeft');
+        const scrollRightBtn = document.getElementById('scrollRight');
+
+        const cardWidth = 280;
+
+        scrollRightBtn.addEventListener('click', function() {
+            wrapper.scrollLeft += cardWidth * 3;
+        });
+
+        scrollLeftBtn.addEventListener('click', function() {
+            wrapper.scrollLeft -= cardWidth * 3;
+        });
+
+        function checkScrollability() {
+            const isScrollable = wrapper.scrollWidth > wrapper.clientWidth;
+            scrollLeftBtn.style.display = isScrollable ? 'flex' : 'none';
+            scrollRightBtn.style.display = isScrollable ? 'flex' : 'none';
+        }
+        
+        checkScrollability();
+        window.addEventListener('resize', checkScrollability);
+    });
+</script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
