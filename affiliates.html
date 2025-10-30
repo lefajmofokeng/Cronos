@@ -3,1256 +3,487 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Partnership Program | Defcon</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Affiliate Programme - IT Solutions</title>
     <style>
-        /* =============================================
-           CSS VARIABLES (Custom Properties)
-           ============================================= */
-        :root {
-            /* Color Palette */
-            --dc-color-header-bg: #0a0a1f;
-            --dc-color-accent: #0091ff;
-            --dc-color-accent-light: #4db8ff;
-            --dc-color-text-light: #ffffff;
-            --dc-color-text-muted: #a0a8d0;
-            --dc-color-background-dark: #050514;
-            --dc-color-menu-bg: #121233;
-            --dc-color-menu-border: rgba(0, 145, 255, 0.15);
-            --dc-color-button-primary: #0077cc;
-            --dc-color-button-hover: #0088ee;
-            --dc-color-panel-bg: #171a3a;
-            --dc-color-card-bg: rgba(30, 30, 70, 0.6);
-            
-            /* Gradients */
-            --gradient-primary: linear-gradient(135deg, #0091ff 0%, #5d34a9 100%);
-            --gradient-header: linear-gradient(180deg, rgba(10,10,31,0.95) 0%, rgba(10,10,31,0.85) 100%);
-            --gradient-card: linear-gradient(135deg, rgba(30, 30, 70, 0.7) 0%, rgba(20, 20, 50, 0.9) 100%);
-            --gradient-section: linear-gradient(180deg, #050514 0%, #0a0a1f 100%);
-            
-            /* Sizing */
-            --dc-header-height: 55px;
-            --dc-content-max-width: 1200px;
-            --dc-border-radius: 1px;
-            --dc-border-radius-sm: 8px;
-            --dc-transition-speed: 0.3s;
-            --dc-transition-slow: 0.5s;
-            
-            /* Shadows */
-            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
-            --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.2);
-            --shadow-heavy: 0 12px 36px rgba(0, 0, 0, 0.3);
-        }
-
-        /* =============================================
-           BASE STYLES
-           ============================================= */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding-top: var(--dc-header-height);
-            background-color: var(--dc-color-background-dark);
-            color: var(--dc-color-text-light);
-            overflow-x: hidden;
-            line-height: 1.6;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 145, 255, 0.05) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(93, 52, 169, 0.05) 0%, transparent 20%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
         }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: all var(--dc-transition-speed) ease;
+
+        .full-width {
+            width: 100%;
         }
 
         .container {
-            max-width: var(--dc-content-max-width);
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 30px;
+            padding: 0 20px;
         }
 
-        section {
-            padding: 100px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 70px;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--dc-color-accent);
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-desc {
-            font-size: 20px;
-            color: var(--dc-color-text-muted);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all var(--dc-transition-speed) ease;
-            text-align: center;
-            border: none;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: var(--dc-color-text-light);
-            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 145, 255, 0.4);
-        }
-
-        .btn-secondary {
-            background: rgba(98, 184, 250, 0.15);
-            color: #95d1ff;
-            border: 1px solid rgba(98, 184, 250, 0.3);
-        }
-
-        .btn-secondary:hover {
-            background-color: rgba(98, 184, 250, 0.25);
-            border-color: rgba(98, 184, 250, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(98, 184, 250, 0.2);
-        }
-
-        /* =============================================
-           HEADER STYLES
-           ============================================= */
-        .dc-header-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--gradient-header);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .dc-header {
-            height: var(--dc-header-height);
-            display: flex;
-            align-items: center;
-        }
-
-        .dc-header-container {
-            max-width: var(--dc-content-max-width);
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .dc-logo-container {
-            flex-shrink: 0;
-            z-index: 1010;
-        }
-
-        .dc-logo-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .dc-logo-image {
-            height: 42px;
-            vertical-align: middle;
-            transition: all var(--dc-transition-speed) ease;
-            filter: brightness(0) invert(1);
-        }
-
-        .dc-logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-        }
-
-        /* =============================================
-           HERO SECTION
-           ============================================= */
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('thumbnails/pexels-altabena-10142683.jpg') no-repeat center center/cover;
+            background: linear-gradient(135deg, #0a1e3e 0%, #1a3a52 100%);
+            color: white;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 700px;
             position: relative;
             overflow: hidden;
         }
 
         .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-label {
+            color: #51b0f9;
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.6;
+            color: #a8c5dd;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: white;
+            color: #0a1e3e;
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-visual {
+            flex: 1;
             position: relative;
-            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+        }
+
+        .hero-3d {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .phone-mockup {
+            background: linear-gradient(135deg, #1a3a52 0%, #0f2438 100%);
+            border-radius: 40px;
+            padding: 12px;
+            width: 250px;
+            height: 280px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .phone-screen {
+            background: linear-gradient(135deg, #1e4d6d 0%, #0a1e3e 100%);
+            border-radius: 30px;
+            padding: 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .user-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .speech-bubble {
+            background: white;
+            color: #0a1e3e;
+            padding: 15px 20px;
+            border-radius: 20px;
+            position: absolute;
+            top: -30px;
+            right: -20px;
+            width: 120px;
             text-align: center;
-            max-width: 900px;
+            font-weight: 600;
+            font-size: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hexagon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6ba3d4, #4a7ba7);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 20px;
+            background: #f7f9fa;
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #0a1e3e;
+            letter-spacing: -0.03em;
+            backface-visibility: visible;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .hero-title {
-            font-size: 64px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-        }
-
-        .hero-desc {
-            font-size: 22px;
-            color: var(--dc-color-text-muted);
-            margin-bottom: 40px;
-            line-height: 1.6;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: rgba(0, 145, 255, 0.15);
-            color: var(--dc-color-accent-light);
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 30px;
-            border: 1px solid rgba(0, 145, 255, 0.3);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 40px;
-        }
-
-        /* =============================================
-           PROGRAM INTRO SECTION
-           ============================================= */
-        .program-intro {
-            background: var(--dc-color-background-dark);
-        }
-
-        .intro-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .intro-text h2 {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .intro-text p {
-            font-size: 18px;
-            color: var(--dc-color-text-muted);
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .intro-visual {
-            position: relative;
-        }
-
-        .visual-card {
-            background: var(--gradient-card);
-            border-radius: var(--dc-border-radius);
+        .step-card {
+            background: #fff;
             padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: var(--shadow-heavy);
-            position: relative;
-            overflow: hidden;
+            border-radius: 30px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        .visual-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(0, 145, 255, 0.1);
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: var(--dc-color-accent);
-        }
-
-        .card-title {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .card-content {
-            color: var(--dc-color-text-muted);
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-
-        .card-highlight {
-            background: rgba(0, 145, 255, 0.1);
-            border-left: 4px solid var(--dc-color-accent);
-            padding: 20px;
-            border-radius: 0 var(--dc-border-radius-sm) var(--dc-border-radius-sm) 0;
-            margin-top: 20px;
-        }
-
-        .highlight-text {
-            font-size: 16px;
-            color: var(--dc-color-text-light);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .highlight-desc {
-            font-size: 14px;
-            color: var(--dc-color-text-muted);
-        }
-
-        /* =============================================
-           PARTNERSHIP TYPES SECTION
-           ============================================= */
-        .partnership-types {
-            background: var(--gradient-section);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .partnership-types::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 70% 30%, rgba(0, 145, 255, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 30% 70%, rgba(93, 52, 169, 0.05) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        .partnership-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .types-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-
-        .type-card {
-            background: var(--gradient-card);
-            border-radius: var(--dc-border-radius);
-            padding: 40px 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all var(--dc-transition-speed) ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .type-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--gradient-primary);
-            transform: scaleX(0);
-            transition: transform var(--dc-transition-speed) ease;
-        }
-
-        .type-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-heavy);
-        }
-
-        .type-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .type-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 25px;
-            background: rgba(0, 145, 255, 0.1);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin-bottom: 20px;
             font-size: 32px;
-            color: var(--dc-color-accent);
         }
 
-        .type-name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-align: left;
+        .step-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0a1e3e;
+            margin-bottom: 12px;
         }
 
-        .type-desc {
-            color: var(--dc-color-text-muted);
-            margin-bottom: 25px;
-            line-height: 1.6;
-            text-align: left;
-        }
-
-        .type-features {
-            list-style: none;
-            text-align: left;
-            margin-top: 20px;
-        }
-
-        .type-features li {
-            padding: 8px 0;
-            color: var(--dc-color-text-muted);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .type-features li i {
-            color: var(--dc-color-accent);
+        .step-description {
             font-size: 14px;
+            color: #666;
+            line-height: 1.6;
         }
 
-        /* =============================================
-           BENEFITS SECTION
-           ============================================= */
-        .benefits {
-            background: var(--dc-color-background-dark);
+        /* Why Partner Section */
+        .why-partner {
+            padding: 40px 0 80px 0;
+            background: #f7f9fa;
         }
 
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-
-        .benefit-card {
-            background: var(--gradient-card);
-            border-radius: var(--dc-border-radius);
-            padding: 40px 30px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all var(--dc-transition-speed) ease;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .benefit-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 25px;
-            background: rgba(0, 145, 255, 0.1);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            color: var(--dc-color-accent);
-        }
-
-        .benefit-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .benefit-desc {
-            color: var(--dc-color-text-muted);
-            line-height: 1.6;
-        }
-
-        /* =============================================
-           CTA SECTION
-           ============================================= */
-        .cta-section {
-            background: var(--gradient-section);
-            text-align: center;
-        }
-
-        .cta-content {
-            max-width: 800px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
-        .cta-title {
-            font-size: 40px;
-            font-weight: 700;
-            margin-bottom: 20px;
+        .benefit-card {
+            text-align: left;
+            padding-right: 30px;
         }
 
-        .cta-desc {
-            font-size: 20px;
-            color: var(--dc-color-text-muted);
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+
+        .benefit-title {
+            font-size: 19px;
+            font-weight: 600;
+            color: #0066cc;
+            margin-bottom: 12px;
+        }
+
+        .benefit-description {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: none;
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #f7f9fa;
+            color: white;
+        }
+
+        .cta-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            padding: 30px 20px;
+            border-radius: 30px;
+        }
+
+        .cta-label {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #6ba3d4;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .cta-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        .cta-subtitle {
+            font-size: 18px;
+            font-weight: 600;
+            color: #a8c5dd;
             margin-bottom: 40px;
             line-height: 1.6;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
+        .privacy-notice {
+            font-size: 12px;
+            color: #6ba3d4;
+            margin-top: 40px;
         }
 
-        /* =============================================
-           FOOTER
-           ============================================= */
-        .footer {
-            background: var(--gradient-section);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 80px 0 40px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 40px;
-            margin-bottom: 60px;
-        }
-
-        .footer-column h3 {
-            font-size: 15px;
-            margin-bottom: 25px;
-            font-weight: 500;
-            color: var(--dc-color-text-muted);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: var(--dc-color-text-light);
-            transition: color var(--dc-transition-speed) ease;
-            font-weight: 500;
-            font-size: 16px;
-        }
-
-        .footer-links a:hover {
-            color: var(--dc-color-accent);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--dc-color-text-muted);
-        }
-
-        /* =============================================
-           RESPONSIVE STYLES
-           ============================================= */
-        @media (max-width: 1024px) {
-            .hero-title {
-                font-size: 48px;
-            }
-            
-            .section-title {
-                font-size: 36px;
-            }
-            
-            .intro-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            
-            .intro-text h2 {
-                font-size: 32px;
-            }
+        .privacy-notice a {
+            color: #6ba3d4;
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
+            .hero-content {
+                flex-direction: column;
+                gap: 40px;
             }
-            
-            section {
-                padding: 70px 0;
-            }
-            
-            .hero-title {
+
+            .hero h1 {
                 font-size: 36px;
             }
-            
-            .hero-desc {
-                font-size: 18px;
-            }
-            
-            .hero-buttons, .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .section-title {
-                font-size: 32px;
-            }
-            
-            .section-desc {
-                font-size: 18px;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 15px;
+            .steps-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
-            
-            .hero-title {
+
+            .section-title,
+            .cta-title {
                 font-size: 32px;
             }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .type-card, .benefit-card {
-                padding: 30px 20px;
+
+            .hero-visual {
+                height: 300px;
             }
         }
     </style>
 </head>
 <body>
-
-<!-- =============================================
-     HEADER
-     ============================================= -->
-<div class="dc-header-wrapper">
-    <header class="dc-header">
-        <div class="dc-header-container">
-            <div class="dc-logo-container">
-                <a href="index.html" class="dc-logo-link">
-                    <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" alt="Defcon Logo" class="dc-logo-image"> 
-                <span>The partner program is currently unavailable, but will launch soon.</span>
-                </a>
-            </div>
-            <nav class="dc-main-nav">
-                <!-- Navigation would go here -->
-            </nav>
-        </div>
-    </header>
-</div>
-
-<!-- =============================================
-     HERO SECTION
-     ============================================= -->
-<section class="hero">
-    <div class="container">
+    <!-- Hero Section -->
+    <div class="hero full-width">
         <div class="hero-content">
-            <div class="hero-badge">Launching Soon</div>
-            <h1 class="hero-title">Join Our Inaugural Partnership Program</h1>
-            <p class="hero-desc">Be among the first to partner with Defcon and help shape the future of digital innovation. We're building our partner network from the ground up and looking for pioneers to join us.</p>
-            <div class="hero-buttons">
-                <a href="#program-details" class="btn btn-primary">Apply for Early Access</a>
-                <a href="#partnership-types" class="btn btn-secondary">Learn More</a>
+            <div class="hero-text">
+                <div class="hero-label">Affiliate Programme</div>
+                <h1>Earn <br>industry-leading commissions</h1>
+                <p>Join our IT Solutions Affiliate Program and unlock industry-leading commissions, exclusive partner benefits, and comprehensive support to grow your business with our innovative technology solutions.</p>
+                <button class="btn-primary">Start Earning</button>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- =============================================
-     PROGRAM INTRO SECTION
-     ============================================= -->
-<section class="program-intro" id="program-details">
-    <div class="container">
-        <div class="intro-content">
-            <div class="intro-text">
-                <h2>Building the Future Together</h2>
-                <p>At Defcon, we believe that the most powerful innovations happen through collaboration. That's why we're launching our partnership program - to join forces with forward-thinking companies and individuals who share our vision for transformative digital solutions.</p>
-                <p>As a launch partner, you'll have the unique opportunity to help shape our program while enjoying exclusive benefits and priority access to our resources.</p>
-                <a href="#" class="btn btn-primary">Become a Launch Partner</a>
-            </div>
-            <div class="intro-visual">
-                <div class="visual-card">
-                    <div class="card-header">
-                        <div class="card-icon">
-                            <i class="fas fa-rocket"></i>
+            <div class="hero-visual">
+                <div class="hero-3d">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="user-icon">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="user-icon">
+                                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div class="speech-bubble">
+                                <div class="hexagon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                                        <circle cx="12" cy="12" r="1"></circle>
+                                        <circle cx="19" cy="12" r="1"></circle>
+                                        <circle cx="5" cy="12" r="1"></circle>
+                                        <path d="M12 1a2 2 0 0 0-2 2v2a2 2 0 1 0 4 0V3a2 2 0 0 0-2-2z" fill="white" stroke="white" stroke-width="1.5"></path>
+                                        <path d="M9.5 5c-1 1-1.5 2.5-1.5 4.5s.5 3.5 1.5 4.5M14.5 5c1 1 1.5 2.5 1.5 4.5s-.5 3.5-1.5 4.5" stroke="white" stroke-width="1.5" fill="none"></path>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="card-title">Founding Partner Benefits</h3>
-                    </div>
-                    <p class="card-content">As one of our first partners, you'll receive exclusive founding member privileges that won't be available to later participants.</p>
-                    <div class="card-highlight">
-                        <p class="highlight-text">Limited to First 50 Partners</p>
-                        <p class="highlight-desc">Only the first 50 approved partners will receive founding member status with enhanced benefits.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<!-- =============================================
-     PARTNERSHIP TYPES SECTION
-     ============================================= -->
-<section class="partnership-types" id="partnership-types">
-    <div class="container">
-        <div class="section-header">
-            <p class="section-subtitle">Opportunities</p>
-            <h2 class="section-title">Partnership Tiers</h2>
-            <p class="section-desc">We're establishing multiple partnership levels to accommodate different types of collaborators.</p>
-        </div>
-        
-        <div class="partnership-content">
-            <div class="types-grid">
-                <div class="type-card">
-                    <h3 class="type-name">Strategic Partners</h3>
-                    <p class="type-desc">For established companies looking to integrate Defcon solutions into their offerings or co-develop new technologies.</p>
-                    <ul class="type-features">
-                        <li><i class="fas fa-check"></i> Co-development opportunities</li>
-                        <li><i class="fas fa-check"></i> Technical integration support</li>
-                        <li><i class="fas fa-check"></i> Joint marketing initiatives</li>
-                        <li><i class="fas fa-check"></i> Revenue sharing models</li>
-                    </ul>
+    <!-- How It Works Section -->
+    <div class="how-it-works full-width">
+        <div class="container">
+            <h2 class="section-title">How it works</h2>
+            <p class="section-subtitle">Sign up and start earning in 3 steps:</p>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 14 14" fill="#0577da"><g fill="none" stroke="#0577da" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 9l-3 .54L5 6.5L10.73.79a1 1 0 0 1 1.42 0l1.06 1.06a1 1 0 0 1 0 1.42Z"/><path d="M12 9.5v3a1 1 0 0 1-1 1H1.5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h3"/></g></svg>
+                    </div>
+                    <h3 class="step-title">Complete Your Application</h3>
+                    <p class="step-description">Submit your affiliate application through our partner portal with essential details about your IT company, client base, and service offerings. Our team will review and approve qualified partners within 5 business days.</p>
                 </div>
-                
-                <div class="type-card">
-                    <h3 class="type-name">Affiliate Partners</h3>
-                    <p class="type-desc">For individuals and organizations who want to refer clients to Defcon and earn commissions on successful engagements.</p>
-                    <ul class="type-features">
-                        <li><i class="fas fa-check"></i> Competitive commission structure</li>
-                        <li><i class="fas fa-check"></i> Marketing resources</li>
-                        <li><i class="fas fa-check"></i> Dedicated affiliate portal</li>
-                        <li><i class="fas fa-check"></i> Performance tracking</li>
-                    </ul>
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" stroke-width="0.7"><path fill="#0577da" d="M12 22c.8 0 1.6-.1 2.3-.3c-.4-.5-.8-1.1-1-1.8c-.4.1-.9.1-1.3.1c-4.4 0-8-3.6-8-8s3.6-8 8-8c.8 0 1.5.1 2.2.3l1.6-1.6C14.6 2.3 13.3 2 12 2C6.5 2 2 6.5 2 12s4.5 10 10 10M6.5 11.5l1.4-1.4l3.1 3.1l8.6-8.6L21 6L11 16l-4.5-4.5M19 14l-1.26 2.75L15 18l2.74 1.26L19 22l1.25-2.74L23 18l-2.75-1.25L19 14Z"/></svg>
+                    </div>
+                    <h3 class="step-title">Access Marketing Resources</h3>
+                    <p class="step-description">Get instant access to your unique referral links, customizable marketing materials, product documentation, and case studies. Use our comprehensive toolkit to promote our solutions to your existing and prospective clients.</p>
                 </div>
-                
-                <div class="type-card">
-                    <h3 class="type-name">Technology Partners</h3>
-                    <p class="type-desc">For technology companies whose products or services complement Defcon's offerings and create enhanced solutions.</p>
-                    <ul class="type-features">
-                        <li><i class="fas fa-check"></i> API access and documentation</li>
-                        <li><i class="fas fa-check"></i> Technical collaboration</li>
-                        <li><i class="fas fa-check"></i> Solution bundling options</li>
-                        <li><i class="fas fa-check"></i> Cross-promotion opportunities</li>
-                    </ul>
+                <div class="step-card">
+                    <div class="step-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 16 16" stroke-width="0.7"><path fill="#0575da" d="M1.5 14a.5.5 0 0 1 0-1h13a.5.5 0 0 1 0 1h-13Zm.5-3.75c0 .966.784 1.75 1.75 1.75h1.5A1.75 1.75 0 0 0 7 10.25v-6.5A1.75 1.75 0 0 0 5.25 2h-1.5A1.75 1.75 0 0 0 2 3.75v6.5Zm1.75.75a.75.75 0 0 1-.75-.75v-6.5A.75.75 0 0 1 3.75 3h1.5a.75.75 0 0 1 .75.75v6.5a.75.75 0 0 1-.75.75h-1.5ZM9 10.25c0 .966.784 1.75 1.75 1.75h1.5A1.75 1.75 0 0 0 14 10.25v-4.5A1.75 1.75 0 0 0 12.25 4h-1.5A1.75 1.75 0 0 0 9 5.75v4.5Zm1.75.75a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.5a.75.75 0 0 1-.75.75h-1.5Z"/></svg>
+                    </div>
+                    <h3 class="step-title">Earn Recurring Revenue</h3>
+                    <p class="step-description">Receive competitive commissions on every successful referral with transparent tracking and real-time analytics. Commissions are processed monthly, directly into your account with no hidden fees.</p>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<!-- =============================================
-     BENEFITS SECTION
-     ============================================= -->
-<section class="benefits">
-    <div class="container">
-        <div class="section-header">
-            <p class="section-subtitle">Advantages</p>
-            <h2 class="section-title">Why Partner With Defcon?</h2>
-            <p class="section-desc">Our partnership program is designed to create mutual growth and success.</p>
-        </div>
-        
-        <div class="benefits-grid">
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <h3 class="benefit-title">Revenue Growth</h3>
-                <p class="benefit-desc">Access new revenue streams through commissions, referrals, and joint service offerings.</p>
-            </div>
+    <!-- Why Partner Section -->
+    <div class="why-partner full-width">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 50px;">Why partner with us</h2>
             
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-bullhorn"></i>
+            <div class="benefits-grid">
+                <div class="benefit-card" style="border-right: 1px solid rgb(216, 216, 216);">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#0577da" d="M4 20v2h4.586L2 28.586L3.414 30L10 23.414V28h2v-8H4zM30 4h-7v2h3.586L19 13.586l-4.293-4.293a1 1 0 0 0-1.414 0L8 14.586L9.414 16L14 11.414l4.293 4.293a1 1 0 0 0 1.414 0L28 7.414V11h2zM16 28h14v2H16zM2 2h2v14H2z"/></svg>                    </div>
+                    <h3 class="benefit-title">Earn up to 30% recurring commissions</h3>
+                    <p class="benefit-description">Earn substantial commissions on managed services, software licenses, and implementation projects. Our multi-tier commission structure rewards top performers with even higher rates. Build passive income from long-term customer relationships without caps or limitations.</p>
                 </div>
-                <h3 class="benefit-title">Marketing Support</h3>
-                <p class="benefit-desc">Leverage our marketing resources, content, and co-branded campaigns to reach new audiences.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-cogs"></i>
+                <div class="benefit-card" style="border-right: 1px solid rgb(216, 216, 216);">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 14 14" fill="#0577da"><g fill="none" stroke="#0577da" stroke-linecap="round" stroke-linejoin="round"><rect x=".5" y=".5" rx="1" transform="rotate(180 7 7)"/><path d="M3 3h2M3 5.5h4.5m4 0l-3 5l-3.5-2l-2 3"/></g></svg>
+                    </div>
+                    <h3 class="benefit-title">Real-time tracking and analytics</h3>
+                    <p class="benefit-description">Monitor your referrals, conversions, and earnings through our advanced partner dashboard. Track commission calculations, view detailed reports, and manage all your partner activities in one centralized platform with transparent real-time data.</p>
                 </div>
-                <h3 class="benefit-title">Technical Resources</h3>
-                <p class="benefit-desc">Get access to our technical documentation, APIs, and developer support for seamless integration.</p>
-            </div>
-            
-            <div class="benefit-card">
-                <div class="benefit-icon">
-                    <i class="fas fa-gem"></i>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 28 28"><path fill="#0577da" d="M14 19a2 2 0 0 1-1.839-1.212a7.94 7.94 0 0 1-.951-.288l-.017-.006A7.997 7.997 0 0 1 8.708 16a8 8 0 1 1 13.257-6.75c.039.413-.3.75-.715.75c-.414 0-.745-.337-.793-.749A6.5 6.5 0 1 0 11.496 16l.04.017c.2.082.406.154.616.217a2 2 0 0 1 3.785 1.266A2 2 0 0 1 14 19Zm-7-1.5h1.169a9.554 9.554 0 0 1-1.518-1.48A3 3 0 0 0 4 19v.715C4 23.433 8.21 26 14 26s10-2.708 10-6.285V19a3 3 0 0 0-3-3h-3.645a3.5 3.5 0 0 1 .11 1.5H21l.145.007A1.5 1.5 0 0 1 22.5 19v.715l-.005.161c-.14 2.52-3.569 4.624-8.495 4.624c-5.111 0-8.5-2.111-8.5-4.785V19l.007-.145A1.5 1.5 0 0 1 7 17.5ZM19 10a5 5 0 0 1-2.644 4.411A3.487 3.487 0 0 0 14 13.5a3.5 3.5 0 1 0 0-7a3.5 3.5 0 0 0 0 7c-.908 0-1.734.346-2.355.912a5.024 5.024 0 0 1-1.932-1.838A5 5 0 1 1 19 10Z"/></svg>
+                    </div>
+                    <h3 class="benefit-title">Dedicated partner support</h3>
+                    <p class="benefit-description">Access a dedicated account manager, technical support team, and co-marketing opportunities. Benefit from regular training sessions, priority lead handling, and exclusive partner events to maximize your earning potential.</p>
                 </div>
-                <h3 class="benefit-title">Founding Status</h3>
-                <p class="benefit-desc">As an early partner, you'll receive special recognition and benefits that won't be available later.</p>
             </div>
         </div>
     </div>
-</section>
 
-<!-- =============================================
-     CTA SECTION
-     ============================================= -->
-<section class="cta-section">
-    <div class="container">
+    <!-- CTA Section -->
+    <div class="cta-section full-width">
         <div class="cta-content">
-            <h2 class="cta-title">Be Among Our First Partners</h2>
-            <p class="cta-desc">We're selectively onboarding our first partners to ensure a quality experience for everyone. If you're interested in joining us from the beginning, apply now for early access consideration.</p>
-            <div class="cta-buttons">
-                <a href="#" class="btn btn-secondary">Download Program Overview</a>
+            <div class="cta-label">Partner With Us</div>
+            <h2 class="cta-title">Ready to grow your IT business?</h2>
+            <p class="cta-subtitle">Join our thriving network of successful IT partners and unlock <br> new revenue streams. Start earning today. The future of your business is waiting.</p>
+            <button class="btn-primary">Apply Now</button>
+            <div class="privacy-notice">
+                We respect your privacy and are committed to protecting your business information. <br> Please read our <a href="#">Affiliate Programme Terms & Privacy Policy</a> carefully before applying.
             </div>
         </div>
     </div>
-</section>
-
-<!-- =============================================
-     FOOTER
-     ============================================= -->
-<footer class="footer">
- <div class="container">
-
-        <div class="contact-section-container" style="margin-bottom: 5rem;">
-            
-            <div class="contact-section-right">
-                <div class="contact-section-decoration"></div>
-                <h1 class="contact-section-heading">
-                    Be Among our <span class="contact-section-heading-highlight">First Partners</span>
-                </h1>
-            </div>
-
-            <div class="contact-section-left">
-                <p class="contact-section-subtitle">Get In Touch</p>
-                <p class="contact-section-description">
-                   We're selectively onboarding our first partners to ensure a quality experience for everyone.
-                   If you're interested in joining us from the beginning, apply now for early access consideration.
-                </p>
-                <button class="contact-section-button" id="contact-section-button">
-                    Apply for Partnership
-                </button>
-            </div>
-        </div>
-
-
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>Resources</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Free eBooks</a></li>
-                    <li><a href="#">Podcasts</a></li>
-                    <li><a href="#">Webinars</a></li>
-                    <li><a href="#">Youtube Playlists</a></li>
-                    <li><a href="#">Recommendations</a></li>
-                    <li><a href="#">Guides & Tutorials</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Solutions</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Software Development</a></li>
-                    <li><a href="#">IT Infrastructure</a></li>
-                    <li><a href="#">Marketing & Creative Studio</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Help</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">Plan Comparison</a></li>
-                    <li><a href="#">Troubleshooting</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Community Forum</a></li>
-                    <li><a href="#">Feedback</a></li>
-                    <li><a href="#">Status</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Company</h3>
-                <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Roadmap</a></li>
-                    <li><a href="#">Innovations</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Legal</a></li>
-                    <li><a href="#">Certificates & Registrations</a></li>
-                    <li><a href="#">Security</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
-                <h3>Connect</h3>
-                <ul class="footer-links">
-                    <li><a href="#">X</a></li>
-                    <li><a href="#">Company News</a></li>
-                    <li><a href="#">Product Updates</a></li>
-                    <li><a href="#">Events</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Youtube</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">GitHub</a></li>
-                </ul>
-            </div>
-
-        </div>
-        
-        <div class="footer-bottom">
-            <p>Copyright &copy; 2025 Defcon. All rights reserved. | Privacy Policy | Terms of Service</p>
-        </div>
-    </div>
-</footer>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Contact Section</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Reset and base styles */
-        .contact-section-wrapper * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .contact-section-wrapper {
-            font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4;
-            padding: 80px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .contact-section-container {
-            max-width: 1200px;
-            width: 100%;
-            background-color: #fff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        /* Left column styles */
-        .contact-section-left {
-            flex: 1;
-            min-width: 300px;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: #fff;
-        }
-
-        .contact-section-subtitle {
-            font-size: 16px;
-            font-weight: 600;
-            color: #0091ff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .contact-section-description {
-            font-size: 18px;
-            line-height: 1.7;
-            color: #06273e;
-            margin-bottom: 40px;
-            max-width: 500px;
-        }
-
-        .contact-section-button {
-            display: inline-block;
-            background-color: #0091ff;
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 16px 32px;
-            border-radius: 4px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            max-width: fit-content;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .contact-section-button:hover {
-            background-color: #0078d4;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(0, 145, 255, 0.3);
-        }
-
-        .contact-section-button:active {
-            transform: translateY(0);
-        }
-
-        .contact-section-button::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 5px;
-            height: 5px;
-            background: rgba(255, 255, 255, 0.5);
-            opacity: 0;
-            border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
-            transform-origin: 50% 50%;
-        }
-
-        .contact-section-button:focus:not(:active)::after {
-            animation: ripple 1s ease-out;
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0, 0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(40, 40);
-                opacity: 0;
-            }
-        }
-
-        /* Right column styles */
-        .contact-section-right {
-            flex: 1;
-            min-width: 300px;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background-color: #171a3a;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-section-heading {
-            font-size: 48px;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-section-heading-highlight {
-            color: #0091ff;
-        }
-
-        .contact-section-decoration {
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            background: rgba(0, 145, 255, 0.1);
-            top: -50px;
-            right: -50px;
-            z-index: 1;
-        }
-
-        .contact-section-decoration::after {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: rgba(0, 145, 255, 0.15);
-            bottom: -70px;
-            left: -70px;
-        }
-
-        /* Responsive design */
-        @media (max-width: 768px) {
-            .contact-section-container {
-                flex-direction: column-reverse;
-            }
-            
-            .contact-section-left, 
-            .contact-section-right {
-                padding: 40px 30px;
-            }
-            
-            .contact-section-heading {
-                font-size: 36px;
-            }
-            
-            .contact-section-description {
-                font-size: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .contact-section-heading {
-                font-size: 28px;
-            }
-            
-            .contact-section-left, 
-            .contact-section-right {
-                padding: 30px 20px;
-            }
-        }
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactButton = document.getElementById('contact-section-button');
-            
-            // Add click animation to button
-            contactButton.addEventListener('click', function() {
-                // Add a temporary class for the click animation
-                this.classList.add('contact-section-button-clicked');
-                
-                // Remove the class after animation completes
-                setTimeout(() => {
-                    this.classList.remove('contact-section-button-clicked');
-                }, 300);
-                
-                // In a real implementation, this would open a contact form or redirect
-                alert('Contact form would open here in a real implementation');
-            });
-            
-            // Add focus effect for accessibility
-            contactButton.addEventListener('focus', function() {
-                this.style.outline = '2px solid #0091ff';
-                this.style.outlineOffset = '2px';
-            });
-            
-            contactButton.addEventListener('blur', function() {
-                this.style.outline = 'none';
-            });
-            
-            // Add subtle animation to the decorative element
-            const decoration = document.querySelector('.contact-section-decoration');
-            if (decoration) {
-                // Create a subtle floating animation
-                let floatDirection = 1;
-                let floatPosition = 0;
-                
-                function floatAnimation() {
-                    floatPosition += 0.2 * floatDirection;
-                    
-                    if (floatPosition > 5) {
-                        floatDirection = -1;
-                    } else if (floatPosition < -5) {
-                        floatDirection = 1;
-                    }
-                    
-                    decoration.style.transform = `translate(${floatPosition}px, ${floatPosition * 0.5}px)`;
-                    requestAnimationFrame(floatAnimation);
-                }
-                
-                // Start the animation
-                floatAnimation();
-            }
-        });
-    </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
