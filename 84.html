@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Defcon - Digital & Infrastructure Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS is provided below */
+    </style>
+</head>
+<body>
+
+    <header class="portfolio-hero">
+        <div class="container">
+            <h1 class="hero-title">Our Digital Footprint</h1>
+            <p class="hero-subtitle">
+                A curated selection of projects across Software Development, IT Infrastructure, and Creative Marketing.
+            </p>
+        </div>
+    </header>
+
+    <section class="project-filters">
+        <div class="container">
+            <nav>
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="software">Software Development</button>
+                <button class="filter-btn" data-filter="infrastructure">IT Infrastructure</button>
+                <button class="filter-btn" data-filter="marketing">Marketing & Creative</button>
+            </nav>
+        </div>
+    </section>
+
+    <section class="projects-grid-section">
+        <div class="container">
+            <div class="projects-grid">
+                
+                <article class="project-card software" data-category="software">
+                    <div class="card-image-placeholder">[Image Placeholder: Web3 E-commerce Platform Screenshot]</div>
+                    <div class="card-content">
+                        <span class="project-tag software-tag">Software Development</span>
+                        <h3>CryptoVault Market</h3>
+                        <p>Built a high-volume, secure **e-commerce platform** integrated with blockchain for tokenized loyalty and instant payments.</p>
+                        <ul class="tech-list">
+                            <li>Web Applications</li>
+                            <li>Blockchain & Web3</li>
+                            <li>API Development</li>
+                        </ul>
+                        <a href="#" class="view-project-btn">View Case Study &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="project-card infrastructure" data-category="infrastructure">
+                    <div class="card-image-placeholder">[Image Placeholder: Cloud Migration Dashboard]</div>
+                    <div class="card-content">
+                        <span class="project-tag infra-tag">IT Infrastructure</span>
+                        <h3>GlobalScale Cloud Migration</h3>
+                        <p>Executed a zero-downtime migration of legacy systems to a **multi-cloud environment** with AI-driven monitoring and automation.</p>
+                        <ul class="tech-list">
+                            <li>Cloud Computing</li>
+                            <li>Automation & AI</li>
+                            <li>Data Center Mgmt</li>
+                        </ul>
+                        <a href="#" class="view-project-btn">View Case Study &rarr;</a>
+                    </div>
+                </article>
+
+                <article class="project-card marketing" data-category="marketing">
+                    <div class="card-image-placeholder">[Image Placeholder: Multimedia Ad Campaign Mockup]</div>
+                    <div class="card-content">
+                        <span class="project-tag marketing-tag">Marketing & Creative</span>
+                        <h3>Nexus Rebranding Campaign</h3>
+                        <p>Designed a comprehensive **rebranding campaign** including graphic design, multimedia production, and targeted digital advertising.</p>
+                        <ul class="tech-list">
+                            <li>Digital Marketing</li>
+                            <li>Graphic Design</li>
+                            <li>Multimedia Production</li>
+                        </ul>
+                        <a href="#" class="view-project-btn">View Case Study &rarr;</a>
+                    </div>
+                </article>
+                
+                </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2>Ready to Start Your Next Project?</h2>
+            <p>We're ready to deploy our expertise across software, infrastructure, and marketing to achieve your goals.</p>
+            <a href="#" class="cta-btn">Contact Defcon Today</a>
+        </div>
+    </section>
+
+    <script>
+        // Simple JavaScript for filtering functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove 'active' class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add 'active' class to the clicked button
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+                        if (filterValue === 'all' || category === filterValue) {
+                            card.style.display = 'block';
+                            setTimeout(() => card.style.opacity = '1', 10); // Fade in
+                        } else {
+                            card.style.opacity = '0'; // Fade out
+                            setTimeout(() => card.style.display = 'none', 300); // Hide after transition
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+<style>
+    /* Custom CSS */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0d1117; /* Dark background for a modern tech feel */
+    color: #f0f6f9; /* Light text */
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 1. Header/Hero --- */
+.portfolio-hero {
+    padding: 100px 0;
+    background-color: #161b22; /* Slightly darker than body */
+    text-align: center;
+    border-bottom: 5px solid #007bff; /* Main accent color */
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #c9d1d9;
+}
+
+/* --- 2. Filters/Categories --- */
+.project-filters {
+    padding: 40px 0;
+    background-color: #0d1117;
+    border-bottom: 1px solid #30363d;
+}
+
+.project-filters nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: #21262d; /* Dark button base */
+    color: #f0f6f9;
+    padding: 10px 20px;
+    border: 1px solid #30363d;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: #30363d;
+}
+
+.filter-btn.active {
+    background-color: #007bff; /* Accent color for active state */
+    border-color: #007bff;
+    font-weight: 700;
+}
+
+/* --- 3. Projects Grid --- */
+.projects-grid-section {
+    padding: 60px 0 100px 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s;
+    opacity: 1; /* Default state for JS fade */
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2); /* Accent color glow on hover */
+}
+
+.card-image-placeholder {
+    width: 100%;
+    height: 250px;
+    background-color: #21262d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #8b949e;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #30363d;
+}
+
+.card-content {
+    padding: 25px;
+}
+
+.project-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+/* Color coding by category */
+.software-tag { background-color: #1f6feb; color: white; } /* Blue */
+.infra-tag { background-color: #58a6ff; color: #0d1117; } /* Lighter Blue */
+.marketing-tag { background-color: #a371f7; color: white; } /* Purple */
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+.tech-list {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 25px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-list li {
+    background-color: #30363d;
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    color: #c9d1d9;
+}
+
+.view-project-btn {
+    display: inline-block;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.view-project-btn:hover {
+    color: #58a6ff;
+}
+
+/* --- 4. Call to Action --- */
+.cta-section {
+    padding: 80px 0;
+    background-color: #161b22;
+    border-top: 1px solid #30363d;
+}
+
+.cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    font-size: 1.1rem;
+    color: #c9d1d9;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .filter-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+</style>
