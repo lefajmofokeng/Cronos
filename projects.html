@@ -1365,8 +1365,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1400,7 +1398,7 @@ document.addEventListener('DOMContentLoaded', function() {
             text-align: center;
             color: white;
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            margin: 1.5rem 1.5rem; /* 1.5rem margin retained */
+            margin: 1.5rem 1.5rem; 
         }
 
         .hero-container {
@@ -1408,8 +1406,9 @@ document.addEventListener('DOMContentLoaded', function() {
             margin: 0 auto;
         }
 
+        /* Hero Title Fix: Mobile first is now 40px, desktop is 60px */
         .hero-title{
-            font-size: 7rem;
+            font-size: 40px; /* Adjusted for better mobile compatibility */
             font-weight: 600;
             margin-bottom: 20px;
             letter-spacing: -1px;
@@ -1455,7 +1454,7 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: #e5e5e514;
         }
 
-        /* ===== INTRO SECTION (Existing) ===== */
+        /* ===== INTRO SECTION (Existing) - Kept for context ===== */
         .intro-section {
             background-color: #ffffff;
             border-bottom: 1px solid #f0f0f0;
@@ -1502,161 +1501,114 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* ===== PROJECT CONTAINER (NEW STYLING) ===== */
         .project-section-wrapper {
-            /* Applies requested styling for the overall container */
-            margin: 5rem; /* 3rem vertical margin, 1.5rem horizontal margin */
+            /* Full container with background and padding */
+            margin: 5rem 1.5rem; 
             margin-bottom: 5rem;
-            padding: 50px;
-            background-color: #f4f4f4; /* Add background for the new container */
-            border-radius: 40px; /* Requested border radius */
-            max-width: 1460px;
-            margin-left: 5rem;
-            margin-right: 5rem;
-        }
-
-        /* Adjusting main-container to be an inner wrapper without margin/padding */
-        .main-container {
-            max-width: 100%; /* No fixed width, lets wrapper handle it */
-            margin: 0; /* Remove existing margin */
-            padding: 0; /* Remove existing padding */
-        }
-
-        .main-grid {
-            display: grid;
-            gap: 30px;
-        }
-
-        @media (min-width: 1024px) {
-            .main-grid {
-                grid-template-columns: 1fr 3fr;
-            }
-        }
-
-        /* ===== SIDEBAR (FILTERS) (Adjusted for Sticky Scroll) ===== */
-        .sidebar {
-            padding-top: 0; /* Adjusted padding as it's now inside a padded container */
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar {
-                /* Ensures the sidebar is sticky */
-                position: sticky;
-                top: 40px; /* Offset from the top to prevent it from sticking to the absolute top of the viewport */
-                height: auto; /* Allow height to adjust naturally */
-                max-height: calc(100vh - 80px); /* Limit height for scrolling inside the container */
-                overflow-y: auto;
-                padding-right: 30px;
-                padding-bottom: 30px; /* Ensure padding at the bottom */
-            }
+            padding: 50px 20px;
+            background-color: transparent; 
+            border-radius: 40px; 
+            max-width: 1150px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* Mobile adjustment for filters list to flow horizontally */
-        .filters-list {
-            list-style: none;
-            margin-bottom: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
         @media (min-width: 1024px) {
-            .filters-list {
-                flex-direction: column;
-                gap: 8px;
+            .project-section-wrapper {
+                padding: 60px;
             }
         }
 
-        .sidebar-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #1a202c;
+        .main-container {
+            max-width: 100%; 
+            margin: 0 auto;
+            padding: 0; 
         }
 
-        .filter-button {
-            padding: 10px 16px;
-            border: none;
+        /* HIDE OLD SIDEBAR/GRID STRUCTURE */
+        .main-grid {
+            /* Removed grid layout to allow projects to span full width */
+            display: block;
+        }
+        
+        .sidebar {
+            display: none; 
+        }
+
+        /* ===== NEW FILTER NAVIGATION STYLING (Pill Design) ===== */
+        .top-filters-container {
+            /* Contains the horizontal filter bar */
+            margin-bottom: 60px;
+            border: 1px solid #e5e7eb;
             border-radius: 50px;
-            font-weight: 700;
+            padding: 5px;
+            /* NEW: Center the filter list horizontally */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+        }
+
+        .filters-list {
+            list-style: none;
+            display: flex; /* Horizontal layout */
+            flex-wrap: nowrap; /* Prevent wrapping */
+            gap: 15px; 
+            padding: 0;
+            margin: 0;
+            overflow-x: auto; /* Allow horizontal scroll if many items */
+        }
+        
+        .filter-button {
+            padding: 10px 20px; 
+            border: none;
+            border-radius: 50px; /* Pill shape */
+            font-weight: 600;
             cursor: pointer;
-            width: 100%;
             background-color: transparent;
-            color: #4b5563;
+            color: #6f7782; /* Non-active text color */
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 16px; 
             font-family: 'Inter', sans-serif;
-            text-align: left;
         }
 
         .filter-button:hover {
-            background-color: #f1f5f9;
+            background-color: #e5e7eb; /* Light hover effect */
         }
-        
-        /* Mobile: Let button width be flexible in the row */
-        @media (max-width: 1023px) {
-            .filter-button {
-                width: auto;
-                border-radius: 8px; /* Rounded corners for mobile buttons */
-            }
-        }
-
 
         .filter-button.active {
-            background-color:#0577da;
-            color: #fff;
-            border-radius: 50px;
+            background-color: #0577da; /* Blue background for active pill */
+            color: #fff; /* White text for active pill */
         }
 
-        .service-focus {
-            font-size: 12px;
-            color: #9ca3af;
-            padding-top: 16px;
-            border-top: 1px solid #e5e7eb;
-            margin-top: 16px; /* Added separation */
-        }
-
-        .service-focus-title {
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        /* ===== PROJECTS SECTION (Existing) ===== */
+        /* ===== PROJECTS SECTION (Content) ===== */
         .projects-section {
-            flex: 1;
+            padding-top: 20px;
         }
 
         .section-heading {
             font-size: 36px;
             font-weight: 700;
             margin-bottom: 16px;
-            color: #1a202c;
+            color: #ffffff;
         }
 
-        .section-description {
-            color: #4b5563;
-            margin-bottom: 40px;
-            font-size: 30px;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        /* ===== PROJECT TABLE (Existing) ===== */
+        /* Table Header - Only Project Name and Completion Date */
         .table-header {
-            display: none;
-            grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+            display: grid; 
+            /* Two columns: Name (2x wider) and Date (1x) */
+            grid-template-columns: 2fr 1fr; 
             gap: 16px;
             padding-bottom: 12px;
             border-bottom: 2px solid #cbd5e1;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 600;
-            
-            color: #5b6067;
+            color: #ffffff;
             margin-bottom: 10px;
         }
 
-        @media (min-width: 768px) {
+        @media (max-width: 767px) {
             .table-header {
-                display: grid;
+                display: none; /* Hide header on mobile for cleaner look */
             }
         }
 
@@ -1664,102 +1616,69 @@ document.addEventListener('DOMContentLoaded', function() {
             text-align: left;
         }
 
-        .table-header-cell.text-center {
-            text-align: center;
-        }
-
         .table-header-cell.text-right {
             text-align: right;
         }
 
-        /* ===== PROJECT ROW (Existing) ===== */
-       
-
+        /* ===== PROJECT ROW (Modified to only show Name and Date) ===== */
         .project-row {
             display: grid;
             gap: 16px;
             padding: 16px 8px;
-            border-bottom: 2px solid #e5e7eb;
-            transition: background-color 0.2s ease;
+            border-bottom: 1px solid #e5e7eb; 
             cursor: pointer;
+            grid-template-columns: 1fr; /* Mobile default layout: stacked */
+            margin-bottom: 15px;
         }
 
         @media (min-width: 768px) {
             .project-row {
-                grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+                /* Desktop layout: Name and Date in two columns */
+                grid-template-columns: 2fr 1fr; 
                 padding: 16px 0;
-            }
-        }
-
-        .project-row:hover {
-            background-color: #f1f5f9;
-        }
-
-        @media (min-width: 768px) {
-            .project-row:hover {
-                background-color: transparent;
             }
         }
 
         .project-name {
             font-weight: 600;
-            color: #0577da;
-            grid-column: 1;
+            color: #ffffff; 
+            grid-column: 1 / 2;
+            font-size: 25px; 
+            line-height: 1.2;
         }
 
-        .project-service {
-            font-size: 16px;
-            font-weight: 600;
-            color: #0b1426;
-            grid-column: 1;
-            margin-top: -8px;
+        /* NEW: Link styling for project name */
+        .project-name a {
+            color: inherit; /* Use the parent dark color */
+            text-decoration: none; /* Remove default underline */
         }
-
-        @media (min-width: 768px) {
-            .project-service {
-                grid-column: 2;
-                margin-top: 0;
-            }
+        
+        /* Highlight link on hover */
+        .project-name a:hover {
+            color: #0577da; /* Blue hover color */
+            text-decoration: underline;
         }
-
-        .project-tech {
-            font-size: 16px;
-            font-weight: 600;
-            color: #9ca3af;
-        }
-
-        .project-team {
-            text-align: right;
-            font-size: 16px;
-            font-weight: 600;
-            color: #4b5563;
-            grid-column: 2;
-        }
-
-        @media (min-width: 768px) {
-            .project-team {
-                grid-column: 4;
-                text-align: center;
-            }
-        }
+        /* END NEW LINK STYLING */
 
         .project-date {
-            text-align: right;
-            font-size: 16px;
+            text-align: left; /* Default to left on mobile */
+            font-size: 25px;
             font-weight: 600;
-            color: #4b5563;
-            grid-column: 2;
-            order: 5;
+            color: #0099fa;
+            grid-column: 1 / 2; 
+            order: 2; /* Ensure date is below name on mobile */
         }
-
+        
+        /* Force date to right for desktop/tablet */
         @media (min-width: 768px) {
             .project-date {
-                grid-column: 5;
+                grid-column: 2 / 3; 
+                text-align: right;
                 order: initial;
             }
         }
-
-        .project-team-label,
+        
+        /* Show label on mobile */
         .project-date-label {
             display: inline;
             color: #9ca3af;
@@ -1767,14 +1686,38 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-right: 6px;
         }
 
+        /* Hide label on desktop */
         @media (min-width: 768px) {
-            .project-team-label,
             .project-date-label {
                 display: none;
             }
         }
 
-        /* ===== EMPTY STATE (Existing) ===== */
+        /* ===== NEW: SEE ALL PROJECTS BUTTON STYLING ===== */
+        .all-projects-cta {
+            padding-top: 40px;
+            text-align: center;
+        }
+
+        .all-projects-button {
+            display: inline-block;
+            padding: 8px 38px;
+            background-color: #fff;
+            color: #080d1b;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 17px;
+            text-decoration: none;
+        }
+
+        .all-projects-button:hover {
+            background-color: #045ca3;
+            transform: translateY(-1px);
+        }
+        /* ===== END NEW CTA STYLING ===== */
+
+
+        /* ===== EMPTY/LOADING STATE (Existing) ===== */
         .empty-state {
             padding: 40px 20px;
             text-align: center;
@@ -1786,11 +1729,97 @@ document.addEventListener('DOMContentLoaded', function() {
             text-align: center;
             color: #9ca3af;
         }
+
+        /* --- CTA STYLES --- (Existing) */
+        .cta-section {
+            padding: 80px 20px;
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            margin-top: 6rem;
+        }
+
+        .cta-inner-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-inner-container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+
+        .cta-text-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta-text-content {
+                text-align: left;
+                max-width: 60%;
+            }
+        }
+
+        .cta-heading {
+            font-size: 60px;
+            font-weight: 600;
+            color: #fefefe;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            font-weight: 700;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 28px;
+            background-color: #0577da;
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #1a3a69;
+        }
+
+        .cta-button svg {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+        }
+
+        .cta-image-symbol {
+            width: 100%;
+            max-width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <div style="background-color: 010119;">
+    <div style="background-color: #010119;">
     <!-- HERO SECTION -->
     <header class="hero-section">
         <div class="hero-container">
@@ -2355,52 +2384,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
 
-    <!-- MAIN CONTENT WRAPPER (New Container) -->
+
+<!-- MAIN CONTENT WRAPPER -->
     <div class="project-section-wrapper">
         <main id="projects" class="main-container">
-            <div class="main-grid">
-                
-                <!-- SIDEBAR -->
-                <aside class="sidebar">
-                    <h3 class="sidebar-title">Select a Category</h3>
-                    
+            <!-- The old main-grid is removed via CSS to allow the content to be full width -->
+            
+            <!-- SIDEBAR - HIDDEN -->
+            <aside class="sidebar" style="display: none;">
+                <h3 class="sidebar-title">Select a Category</h3>
+                <div class="service-focus">
+                    <p class="service-focus-title">Service Focus</p>
+                    <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
+                </div>
+            </aside>
+
+            <!-- PROJECTS CONTENT -->
+            <section class="projects-section">
+                <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
+                <!-- FILTER NAVIGATION (Now centered via CSS) -->
+                <div class="top-filters-container">
                     <div id="filters-container">
                         <ul class="filters-list" id="category-filters">
-                            <!-- Filters will be generated here -->
+                            <!-- Filters will be generated here by JavaScript -->
                         </ul>
                     </div>
+                </div>
+                <!-- END FILTER NAVIGATION -->
+                
+                
 
-                    <div class="service-focus">
-                        <p class="service-focus-title">Service Focus</p>
-                        <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
-                    </div>
-                </aside>
+                <!-- Table Header - MODIFIED to only show Name and Date -->
+                <div class="table-header">
+                    <div class="table-header-cell">Project Name</div>
+                    <div class="table-header-cell text-right">Completion Date</div>
+                </div>
 
-                <!-- PROJECTS CONTENT -->
-                <section class="projects-section">
-                    <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
+                <!-- Projects List -->
+                <div id="projects-list" class="projects-list">
+                    <div class="loading-state" id="loading-message">Loading projects...</div>
+                </div>
 
-                    <!-- Table Header -->
-                    <div class="table-header">
-                        <div class="table-header-cell">Project Name</div>
-                        <div class="table-header-cell">Primary Service</div>
-                        <div class="table-header-cell">Technologies</div>
-                        <div class="table-header-cell text-center">Team Size</div>
-                        <div class="table-header-cell text-right">Completion Date</div>
-                    </div>
-
-                    <!-- Projects List -->
-                    <div id="projects-list" class="projects-list">
-                        <div class="loading-state" id="loading-message">Loading projects...</div>
-                    </div>
-                </section>
-            </div>
+                <!-- NEW: "See All Projects" Link Button -->
+                <div class="all-projects-cta">
+                    <!-- Link destination is currently placeholder, update to your actual "All Projects" page -->
+                    <a href="/all-projects" target="_blank" class="all-projects-button">
+                        See All Projects
+                    </a>
+                </div>
+            </section>
         </main>
     </div>
     
     <!-- END MAIN CONTENT WRAPPER -->
 
-    <!-- CALL TO ACTION SECTION (New Section) -->
+    <!-- CALL TO ACTION SECTION -->
     <section class="cta-section">
         <div class="cta-inner-container">
             <div class="cta-text-content">
@@ -2416,166 +2454,57 @@ document.addEventListener('DOMContentLoaded', function() {
                 </a>
             </div>
             <div class="cta-image-symbol">
-                <img src="thumbnails/3d-rendering-neon-triangle-removebg-preview.png" alt="Symbolic Image" width="300" height="300">
+                <!-- Using placeholder image for symbolic illustration -->
+                <img src="https://placehold.co/300x200/010119/ffffff?text=Symbolic+Image" alt="Symbolic Image" width="300" height="300" style="opacity: 0.8; border-radius: 10px;">
             </div>
         </div>
     </section>
     <!-- END CALL TO ACTION SECTION -->
 
-    <style>
-        /* --- NEW CTA STYLES --- */
-        .cta-section {
-            padding: 80px 20px;
-            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
-            margin-top: 6rem;
-        }
-
-        .cta-inner-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .cta-inner-container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-        }
-
-        .cta-text-content {
-            flex: 1;
-            text-align: center;
-        }
-
-        @media (min-width: 768px) {
-            .cta-text-content {
-                text-align: left;
-                max-width: 60%;
-            }
-        }
-
-        .cta-heading {
-            font-size: 60px;
-            font-weight: 600;
-            color: #fefefe;
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .cta-description {
-            font-size: 18px;
-            font-weight: 700;
-            color: #a0a0a0;
-            margin-bottom: 30px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 28px;
-            background-color: #0577da;
-            color: white;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: #1a3a69;
-        }
-
-        .cta-button svg {
-            margin-right: 8px;
-            width: 20px;
-            height: 20px;
-        }
-
-        .cta-image-symbol {
-            width: 100%;
-            max-width: 300px;
-            height: 200px;
-            
-           
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #94a3b8;
-            font-size: 14px;
-            font-weight: 600;
-            text-align: center;
-           
-        }
-        
-        @media (min-width: 768px) {
-             .cta-image-symbol {
-                width: 300px;
-                height: 200px;
-             }
-        }
-    </style>
-
     <script>
-        // ===== DATA =====
+        // The projectsData array has been cleaned up, removing unused properties like service, technologies, and team.
         const projectsData = [
             {
                 id: 1,
                 name: "Q4 Hyper-Growth Digital Marketing Campaign",
-                service: "Digital Marketing & Advertising",
-                technologies: "Google Ads, Meta Business...",
-                team: 4,
                 date: "Dec 1, 2024",
-                category: "Marketing & Creative Studio"
+                category: "Marketing & Creative Studio",
+                url: "https://example.com/case-study/q4-hyper-growth"
             },
             {
                 id: 2,
                 name: "E-Commerce SaaS Platform Relaunch",
-                service: "Web Applicating & E commerce",
-                technologies: "React, Node.js...",
-                team: 7,
                 date: "Oct 15, 2024",
-                category: "Software Development"
+                category: "Software Development",
+                url: "https://example.com/case-study/saas-relaunch"
             },
             {
                 id: 3,
                 name: "E-Comated Cloud Migration to AWS/Azure",
-                service: "Cloud Computing & Automation",
-                technologies: "AWS, Terraform...",
-                team: 6,
                 date: "Aug 20, 2024",
-                category: "IT Infrastructure"
+                category: "IT Infrastructure",
+                url: "https://example.com/case-study/cloud-migration"
             },
             {
                 id: 4,
                 name: "Decentralized NFT Ticketing System",
-                service: "Blockchain & Web3",
-                technologies: "Solidity, Web3.js...",
-                team: 6,
                 date: "May 20, 2024",
-                category: "Software Development"
+                category: "Software Development",
+                url: "https://example.com/case-study/nft-ticketing"
             },
             {
                 id: 5,
                 name: "Integrated Home Automation Hub V2",
-                service: "IoT & Smart Home Solutions",
-                technologies: "Zigbee, Python, MQTT",
-                team: 5,
                 date: "Feb 1, 2024",
-                category: "Smart Technology"
+                category: "Smart Technology",
+                url: "https://example.com/case-study/home-automation"
             },
             {
                 id: 6,
                 name: "Codex",
-                service: "AI",
-                technologies: "Zigbee, Python, MQTT",
-                team: 1,
                 date: "In Progress",
-                category: "Software Development"
+                category: "Software Development",
+                url: "https://example.com/case-study/codex-ai"
             }
         ];
 
@@ -2603,17 +2532,15 @@ document.addEventListener('DOMContentLoaded', function() {
             container.innerHTML = categories
                 .map(category => {
                     const isActive = category === currentFilter;
-                    const count = category === "All Projects" 
-                        ? projectsData.length 
-                        : projectsData.filter(p => p.category === category).length;
                     
+                    // Display the category name only, matching the pill style
                     return `
                         <li>
                             <button 
                                 class="filter-button ${isActive ? "active" : ""}"
                                 data-category="${category}"
                             >
-                                ${category} (${count})
+                                ${category}
                             </button>
                         </li>
                     `;
@@ -2623,7 +2550,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Attach event listeners
             container.querySelectorAll("button").forEach(btn => {
                 btn.addEventListener("click", (e) => {
-                    currentFilter = e.target.dataset.category;
+                    // Find the category from the data attribute, handling potential span clicks
+                    const category = e.target.closest('button').dataset.category;
+                    currentFilter = category;
                     renderFilterButtons();
                     renderProjects();
                 });
@@ -2631,14 +2560,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         function createProjectRow(project) {
+            // ONLY Project Name and Completion Date are rendered now
+            const caseStudyUrl = project.url || `#case-study-${project.id}`;
             return `
                 <div class="project-row">
-                    <div class="project-name">${project.name}</div>
-                    <div class="project-service">${project.service}</div>
-                    <div class="project-tech">${project.technologies}</div>
-                    <div class="project-team">
-                        <span class="project-team-label">Team:</span>
-                        ${project.team}
+                    <div class="project-name">
+                        <a href="${caseStudyUrl}" target="_blank">${project.name}</a>
                     </div>
                     <div class="project-date">
                         <span class="project-date-label">Completed:</span>
@@ -2672,9 +2599,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
-
-
 
 
 
