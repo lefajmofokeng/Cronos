@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Technology Stack</title>
+    
+    <!-- Using the 'Inter' font for a premium feel -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+    </style>
+
+    <!-- 
+      CUSTOM NAMESPACED STYLESHEET
+      All classes are prefixed with 'ts-' (Tech Stack) to prevent conflicts.
+      No Tailwind CSS is used here.
+    -->
+    <style>
+        /* --- 1. Basic Reset & Page Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #ffffff; /* Default light background */
+            color: #1a202c; /* Default text */
+            line-height: 1.6;
+        }
+
+        .ts-page-wrapper {
+            width: 100%;
+            overflow: hidden; /* Prevents horizontal scroll */
+        }
+
+        .ts-container {
+            width: 100%;
+            max-width: 1240px; /* Standard container width */
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 24px;
+        }
+
+        /* --- 2. Hero Section --- */
+        .ts-hero {
+            background-color: #1c4587; /* Your primary dark blue */
+            color: #ffffff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .ts-hero-title {
+            font-size: 3rem; /* 48px */
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .ts-hero-subtitle {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- 3. Section Styling (Dark & Light) --- */
+        .ts-section {
+            padding: 80px 0;
+        }
+
+        .ts-section-dark {
+            background-color: #1c4587; /* Dark blue */
+            color: #ffffff;
+        }
+
+        .ts-section-light {
+            background-color: #ffffff; /* White */
+            color: #1a202c;
+        }
+        
+        /* Ensures contrast on dark section titles */
+        .ts-section-dark .ts-section-title {
+            color: #ffffff;
+        }
+        
+        /* Ensures contrast on light section titles */
+        .ts-section-light .ts-section-title {
+            color: #1c4587;
+        }
+
+        .ts-section-title {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 800;
+            margin-bottom: 48px; /* 3rem */
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* --- 4. Technology Grid --- */
+        .ts-grid {
+            display: grid;
+            /* Responsive grid: 1 col on mobile, 2 on tablet, 3 on desktop */
+            grid-template-columns: repeat(1, 1fr);
+            gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+            .ts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .ts-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* --- 5. Technology Card --- */
+        .ts-tech-card {
+            border-radius: 1px; /* Your 1px border rule */
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Card variant for DARK sections */
+        .ts-section-dark .ts-tech-card {
+            background-color: #2a5a9e; /* Slightly lighter blue */
+            border: 1px solid #3a6aa8;
+        }
+
+        /* Card variant for LIGHT sections */
+        .ts-section-light .ts-tech-card {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+        
+        /* Premium hover effect */
+        .ts-tech-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+        
+        .ts-section-dark .ts-tech-card:hover {
+             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .ts-tech-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .ts-tech-logo {
+            width: 48px;
+            height: 48px;
+            margin-right: 16px;
+            object-fit: contain;
+            /* Adds a subtle drop shadow to logos, looks great on light cards */
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .ts-tech-name {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+        }
+        
+        .ts-tech-description {
+            font-size: 1rem; /* 16px */
+            margin-bottom: 24px;
+            opacity: 0.9;
+            flex-grow: 1; /* Ensures card heights align if in flex column */
+        }
+        
+        .ts-tech-uses-title {
+             font-size: 0.875rem; /* 14px */
+             font-weight: 600;
+             text-transform: uppercase;
+             letter-spacing: 0.5px;
+             margin-bottom: 12px;
+             opacity: 0.7;
+        }
+
+        .ts-tech-uses {
+            list-style: none;
+        }
+
+        .ts-tech-uses li {
+            font-size: 0.95rem; /* 15px */
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        /* Custom bullet point for the 3-point list */
+        .ts-tech-uses li::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 12px;
+            margin-top: 8px; /* Aligns with text */
+            flex-shrink: 0;
+        }
+        
+        /* Custom bullet color for DARK cards */
+        .ts-section-dark .ts-tech-uses li::before {
+            background-color: #ffffff;
+            opacity: 0.8;
+        }
+
+        /* Custom bullet color for LIGHT cards */
+        .ts-section-light .ts-tech-uses li::before {
+            background-color: #1c4587;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ts-page-wrapper">
+
+        <!-- === HERO === -->
+        <header class="ts-hero">
+            <div class="ts-container">
+                <h1 class="ts-hero-title">Our Technology Ecosystem</h1>
+                <p class="ts-hero-subtitle">The advanced tools, platforms, and frameworks we leverage to build, secure, and scale your solutions from concept to enterprise.</p>
+            </div>
+        </header>
+
+        <main>
+
+            <!-- === SECTION 1: SOFTWARE ENGINEERING === -->
+            <section class="ts-section ts-section-light">
+                <div class="ts-container">
+                    <h2 class="ts-section-title">Software Engineering Arsenal</h2>
+                    <div class="ts-grid">
+
+                        <!-- Tech Card: React.js -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=React" alt="React.js Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">React.js & Next.js</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: As our primary frontend library for building highly interactive, high-performance, and scalable user interfaces for web applications.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Developing complex single-page applications (SPAs) and dashboards.</li>
+                                <li>Building server-side rendered (SSR) e-commerce sites with Next.js.</li>
+                                <li>Creating reusable component libraries for design system consistency.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Node.js -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Node" alt="Node.js Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Node.js</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: As our main backend runtime for building fast, scalable, and data-intensive API & microservice architectures.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <li>Constructing secure RESTful and GraphQL APIs for web and mobile apps.</li>
+                            <li>Building real-time applications like chat services or live dashboards.</li>
+                            <li>Creating serverless functions that scale automatically in the cloud.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Python (AI/ML) -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Py" alt="Python Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Python & TensorFlow</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The core of our AI & ML engineering, used for data analysis, model training, and integrating predictive insights into applications.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                                <li>Developing custom machine learning models for predictive analytics.</li>
+                                <li>Implementing natural language processing (NLP) for chatbots.</li>
+                                <li>Automating data processing pipelines and business intelligence tasks.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Solidity -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Web3" alt="Blockchain Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Solidity & Web3.js</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: For our Blockchain & Web3 services, we build and deploy secure, audited smart contracts on EVM-compatible chains.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                                <li>Writing smart contracts for decentralized finance (DeFi) platforms.</li>
+                                <li>Creating and managing NFT (ERC-721/1155) collections and marketplaces.</li>
+                                <li>Integrating decentralized applications (dApps) with user wallets.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- === SECTION 2: IT INFRASTRUCTURE === -->
+            <section class="ts-section ts-section-dark">
+                <div class="ts-container">
+                    <h2 class="ts-section-title">IT Infrastructure Backbone</h2>
+                    <div class="ts-grid">
+
+                        <!-- Tech Card: AWS -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=AWS" alt="AWS Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Amazon Web Services</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: Our primary cloud computing partner for deploying, managing, and scaling our clients' entire infrastructure securely and efficiently.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Migrating on-premise servers to the cloud (EC2, RDS, S3).</li>
+                                <li>Designing and managing highly available, multi-region networks (VPC).</li>
+                                <li>Implementing robust disaster recovery and data backup strategies.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Cisco / Meraki -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=Cisco" alt="Cisco Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Cisco & Meraki</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The gold standard for our Network Infrastructure services, allowing us to build and manage secure, high-speed corporate networks.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Deploying next-generation firewalls (NGFW) and security appliances.</li>
+                                <li>Setting up enterprise-grade Wi-Fi 6 networks for dense environments.</li>
+                                <li>Managing multi-site connectivity with cloud-controlled Meraki SD-WAN.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: VMware -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=VM" alt="VMware Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">VMware vSphere</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: A key component of our Data Center Management, enabling us to virtualize servers, reduce hardware costs, and improve resource efficiency.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Consolidating physical servers into a virtualized ESXi cluster.</li>
+                                <li>Managing and monitoring virtual machine performance and health.</li>
+                                <li>Creating private cloud environments for enhanced control and security.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: ConnectWise -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/232F3E/FFFFFF?text=Help" alt="Helpdesk Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Helpdesk & RMM Tools</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The engine for our Managed IT Support & Helpdesk, allowing for proactive monitoring, rapid response, and detailed ticket tracking.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Providing remote support to end-users to resolve issues quickly.</li>
+                                <li>Proactively monitoring network and device health to prevent downtime.</li>
+                                <li>Managing software patches, updates, and IT asset inventory.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- === SECTION 3: MARKETING & CREATIVE === -->
+            <section class="ts-section ts-section-light">
+                <div class="ts-container">
+                    <h2 class="ts-section-title">Marketing & Creative Toolkit</h2>
+                    <div class="ts-grid">
+
+                        <!-- Tech Card: Adobe Creative Cloud -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=Ps" alt="Adobe Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Adobe Creative Cloud</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: The industry-standard suite that powers our Creative Studio for graphic design, multimedia production, and advertising campaigns.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Creating vector logos and brand identity packages in Illustrator.</li>
+                                <li>Editing and producing high-definition video content in Premiere Pro.</li>
+                                <li>Designing website/app mockups and UI/UX prototypes in Adobe XD/Figma.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: Google Marketing Platform -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=GA" alt="Google Analytics Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">Google Marketing Platform</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: Our central hub for digital marketing, allowing us to track campaign performance, analyze user behavior, and optimize for results.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Analyzing website traffic and conversion funnels with Google Analytics 4.</li>
+                                <li>Managing and optimizing pay-per-click (PPC) advertising campaigns.</li>
+                                <li>Using Google Tag Manager to deploy tracking pixels and scripts.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Tech Card: WordPress / CMS -->
+                        <div class="ts-tech-card">
+                            <div class="ts-tech-header">
+                                <img src="https://placehold.co/100x100/E8F7FE/1C4587?text=WP" alt="WordPress Logo" class="ts-tech-logo">
+                                <h3 class="ts-tech-name">WordPress & Headless CMS</h3>
+                            </div>
+                            <p class="ts-tech-description">
+                                How we use it: We build robust, easy-to-use content management systems (CMS) that empower our clients to manage their own digital content.
+                            </p>
+                            <h4 class="ts-tech-uses-title">What we use it for</h4>
+                            <ul class="ts-tech-uses">
+                                <li>Building custom, high-performance WordPress themes and plugins.</li>
+                                <li>Developing e-commerce stores using the WooCommerce platform.</li>
+                                <li>Using Headless CMS (like Strapi or Contentful) to feed content to apps.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div><!-- /ts-page-wrapper -->
+
+</body>
+</html>
