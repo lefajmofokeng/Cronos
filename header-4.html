@@ -1,682 +1,1396 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon - Improved Header</title>
-    
-    <!-- Font Import -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* =============================================
-           CSS VARIABLES (Custom Properties)
-           ============================================= */
+<style>
+        /*
+        =============================================
+        0. ROOT & FONT STYLES
+        =============================================
+        */
         :root {
-            /* Color Palette */
-            --dc-color-header-bg: #07071e;
-            --dc-color-accent: #0091ff;
-            --dc-color-text-light: #fff;
-            --dc-color-background-dark: #000;
-            --dc-color-text-muted: #b5b5d9;
-            --dc-color-menu-bg: #10102a;
-            --dc-color-menu-border: rgba(0, 145, 255, 0.2);
-            --dc-color-button-primary: #0077cc;
-            --dc-color-button-hover: #0081ff;
-            --dc-color-panel-bg: #171a2e;
+            /* Palette */
+            --color-header-bg: #080d1b;   /* Very Dark Blue/Indigo */
+            --color-accent: #0091ff;      /* Bright Blue Accent */
+            --color-text-light: #fff;
+            --color-background-dark: #000;
+            --color-off-white: #f4f4f4;
+            --color-text-muted: #A0A9BE;  /* Lighter blue for subtle text */
+            --color-menu-bg: #080d1b;     /* Slightly darker dark blue for mega menu backdrop */
+            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
+            --color-qr-dropdown-bg: #1c1a3b; /* Darker background for QR dropdown */
             
-            /* Sizing & Transitions */
-            --dc-header-height: 60px;
-            --dc-content-max-width: 1500px;
-            --dc-border-radius: 8px;
-            --dc-transition-speed: 0.3s;
-            
-            /* Z-index layers */
-            --dc-z-header: 1000;
-            --dc-z-mobile-nav: 990;
+            /* Sizing */
+            --header-height: 55px;
+            --content-max-width-fg: 1500px;
         }
 
-        /* =============================================
-           BASE STYLES
-           ============================================= */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding-top: var(--dc-header-height); /* Prevent content from hiding behind fixed header */
-            background-color: var(--dc-color-background-dark);
-            color: var(--dc-color-text-light);
+            padding-top: var(--header-height); /* Space for fixed header */
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
             overflow-x: hidden;
         }
         
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
-
         a {
             text-decoration: none;
             color: inherit;
         }
 
-        /* =============================================
-           HEADER
-           ============================================= */
-        .dc-header-wrapper {
-            position: fixed;
+        /*
+        =============================================
+        1. HEADER WRAPPER (FIXED & DARK BLUE)
+        =============================================
+        */
+        .header-wrapper {
+            position: fixed; 
             top: 0;
             left: 0;
-            width: 100%;
-            z-index: var(--dc-z-header);
-            background-color: var(--dc-color-header-bg);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%; 
+            z-index: 1000;
+            background-color: var(--color-header-bg);
+            /* Removed box-shadow as per request, keeping subtle bottom line */
         }
 
-        .dc-header {
-            height: var(--dc-header-height);
+        .custom-header {
+            height: var(--header-height);
             display: flex;
             align-items: center;
-            max-width: var(--dc-content-max-width);
+        }
+
+        .custom-header-container {
+            max-width: var(--content-max-width-fg);
             width: 100%;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 40px;
+            display: flex;
             justify-content: space-between;
-        }
-
-        /* =============================================
-           LOGO
-           ============================================= */
-        .dc-logo-container {
-            flex-shrink: 0;
-        }
-
-        .dc-logo-link {
-            display: flex;
             align-items: center;
         }
 
-        .dc-logo-image {
-            height: 40px;
-            width: auto;
+        /* Logo */
+        .custom-logo-text img{
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+            height: 23px;
             vertical-align: middle;
-            transition: opacity var(--dc-transition-speed) ease;
+        }
+        
+        .custom-logo-text:hover {
+             color: var(--color-accent);
         }
 
-        .dc-logo-link:hover .dc-logo-image {
-            opacity: 0.8;
-        }
-
-        /* =============================================
-           DESKTOP NAVIGATION
-           ============================================= */
-        .dc-main-nav {
+        /* Desktop Navigation - MODIFIED for Left Alignment of Links & Right Alignment of Button */
+        .custom-main-nav {
+            flex-grow: 1; /* Allows nav to take up remaining space */
             display: flex;
+            justify-content: space-between; /* Pushes the link group (left) and button (right) apart */
             align-items: center;
-            gap: 16px; /* Space between nav list and buttons */
         }
 
-        .dc-nav-list {
+        .custom-nav-list {
             display: flex;
             list-style: none;
             margin: 0;
             padding: 0;
             align-items: center;
-            gap: 32px; /* Space between nav items */
         }
 
-        .dc-nav-item {
+        .custom-nav-list li {
+            margin-left: 35px;
             position: relative;
         }
 
-        .dc-nav-link {
-            color: var(--dc-color-text-light);
+        .custom-nav-link {
+            text-decoration: none;
+            color: var(--color-text-light);
             font-weight: 500;
             padding: 10px 0;
             display: flex;
-            font-size: 15px;
+            font-size: 14px;
             align-items: center;
-            gap: 6px; /* Space between text and indicator */
-            transition: color var(--dc-transition-speed) ease;
         }
 
-        .dc-nav-link:hover,
-        .dc-nav-item.is-active > .dc-nav-link {
-            color: var(--dc-color-accent);
+        .custom-nav-link:hover {
+            color: #a0a9be;
         }
-
-        /* =============================================
-           HEADER ACTION BUTTONS
-           ============================================= */
-        .dc-header-actions {
+        
+        /* NEW - Icon for desktop links like Pricing/Projects */
+        .desktop-link-icon {
+            width: 14px;
+            height: 14px;
+            margin-left: 6px;
+            color: var(--color-text-muted);
+            stroke-width: 2;
+        }
+        
+        .custom-nav-link:hover .desktop-link-icon {
+            color: #a0a9be; /* Match the link hover color */
+        }
+        
+        /* Action Buttons Wrapper - NEW */
+        .header-action-buttons {
             display: flex;
             align-items: center;
-            gap: 12px;
         }
 
-        .dc-header-action-btn {
-            background: var(--dc-color-button-primary);
-            color: var(--dc-color-text-light);
+        /* Primary Action Button (Contact Us) */
+        .header-action-btn {
+            background: #0077cc;
+            color: var(--color-text-light);
             border: none;
-            padding: 9px 18px;
+            padding: 9px 15px;
             border-radius: 50px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            white-space: nowrap;
-            transition: background-color var(--dc-transition-speed) ease;
+            margin-left: 20px; /* Space between the last nav item and this button */
+            transition: background-color 0.2s ease;
         }
 
-        .dc-header-action-btn:hover {
-            background-color: var(--dc-color-button-hover);
+        .header-action-btn a {
+            color: inherit;
         }
 
-        .dc-header-action-btn-cta {
-            background: rgba(98, 184, 250, 0.2);
+        .header-action-btn:hover {
+            background-color: #0081ff;
+        }
+        
+        /* Secondary Action Button (Get Started) - NEW */
+        .header-secondary-btn {
+            background-color: #62b8fa32; /* Light blue background */
             color: #95d1ff;
             border: none;
-            padding: 9px 18px;
+            padding: 9px 15px;
             border-radius: 50px;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
             cursor: pointer;
-            white-space: nowrap;
-            transition: background-color var(--dc-transition-speed) ease;
+            margin-left: 10px; /* Space between "Contact Us" and "Get Started" */
+            transition: background-color 0.2s ease;
         }
 
-        .dc-header-action-btn-cta:hover {
-          background-color: rgba(98, 184, 250, 0.35);
+        .header-secondary-btn a {
+            color: inherit;
         }
 
-        /* =============================================
-           MEGA MENU STYLES (DESKTOP)
-           ============================================= */
-        .dc-mega-menu-container {
+        .header-secondary-btn:hover {
+            background-color: #4a4b6b; /* Slightly lighter on hover */
+        }
+
+        /* QR Code Dropdown Trigger - NEW */
+        .qr-dropdown-trigger {
+            position: relative;
+            margin-left: 10px; /* Space from Get Started button */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Circular button */
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: var(--color-text-light);
+            font-size: 18px; /* Icon size */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        
+        .qr-dropdown-trigger:hover {
+            background-color: #2b294a;
+        }
+
+        /* QR Code Dropdown Content - NEW */
+        .qr-dropdown-content {
             position: absolute;
-            top: calc(100% + 10px);
-            background-color: var(--dc-color-menu-bg);
-            border-radius: var(--dc-border-radius);
-            opacity: 0;
+            top: calc(100% + 10px); /* Position below the header, with a gap */
+            right: 0; /* Align to the right of the trigger button */
+            background-color: #080d1b;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px; /* Fixed width for the dropdown */
             visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity var(--dc-transition-speed) ease, 
-                        transform var(--dc-transition-speed) ease, 
-                        visibility var(--dc-transition-speed) ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--dc-color-menu-border);
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+            z-index: 100; /* Ensure it's above other content */
         }
 
-        .dc-nav-item:hover > .dc-mega-menu-container {
+        .qr-dropdown-trigger svg {
+            content: '';
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            }
+
+        .qr-dropdown-content.show {
             visibility: visible;
             opacity: 1;
             transform: translateY(0);
         }
-        
-        /* IMPROVEMENT: More stable positioning for mega menus.
-           This positions the menu relative to the trigger item, then uses transform to center it.
-           It's more robust than hardcoded percentages. */
-        .dc-mega-menu-container--services {
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
+
+        .qr-dropdown-content img {
+            width: 100px; /* Size of the QR code image */
+            height: 100px;
+            background-color: #fff; /* White background for QR code */
+            padding: 10px; /* Padding around QR code to make it look embedded */
+            border-radius: 8px; /* Slightly rounded corners for the QR code */
+            margin-bottom: 15px;
         }
 
-        .dc-mega-menu-container--discover {
-            right: 0; /* Aligns to the right of the trigger item */
-            width: fit-content;
-        }
-
-        .dc-services-menu-layout,
-        .dc-discover-menu-layout {
-            display: flex;
-        }
-
-        /* Services Mega Menu */
-        .dc-services-categories {
-            list-style: none;
-            width: 45%;
+        .qr-dropdown-content p {
+            color: var(--color-text-light);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
             margin: 0;
-            padding: 24px 0;
-            border-right: 1px solid var(--dc-color-menu-border);
+            line-height: 1.4;
+        }
+
+        /*
+        =============================================
+        2. MEGA MENU CONTAINER (Look-Alike Styles)
+        =============================================
+        */
+        .mega-menu-container {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: var(--color-menu-bg);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0s, opacity 0s, transform 0s;
+        }
+
+        .header-wrapper.mega-menu-open .mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-panel {
+            display: none;
+            max-width: var(--content-max-width-fg);
+            width: 100%; /* Ensure it spans the max width */
+            margin: 0 auto;
+            padding: 20px 40px 40px 40px; /* Reduced top padding */
+        }
+
+        .mega-menu-panel.active {
+            display: block;
         }
         
-        .dc-services-category-item .dc-services-category-link {
+        /* Consistent 3-Column Grid for BOTH Menus - MODIFIED for left-alignment */
+        .megamenu-3-column-grid {
+            display: grid;
+            /* Use auto-fit with a min-max for column width, which helps alignment. 
+               Setting fixed columns here to ensure they stop at a reasonable width 
+               to look like the image, and the entire block is left-aligned within the 1200px container.
+            */
+            grid-template-columns: repeat(3, 250px); /* Set fixed width columns to control alignment */
+            gap: 40px;
+            justify-content: start; /* Aligns the grid itself to the start (left) */
+            padding-left: 9rem;
+        }
+        
+        .menu-group-card {
+            padding: 0;
+            padding-top: 10px;
+            padding-bottom: 2.5rem;
+            border-radius: 8px; 
+        }
+
+        .menu-group-card h3 {
+            font-size: 13px; /* Slightly larger heading for better hierarchy */
+            font-weight: 600;
+            margin-bottom: 25px; /* More space below heading */
+            text-transform: none;
+            letter-spacing: 0.1px;
+            cursor: default; /* Not a clickable element */
+            
+            /* MODIFIED to contain icon, heading, and tagline */
+            display: flex; 
+            align-items: center; /* Vertically center icon with the text block */
+            
+             color: var(--color-text-muted);
+        }
+        
+        /* NEW - Icon for mega menu group headings */
+        .menu-group-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px; /* Space between icon and text */
+            color: var(--color-accent); /* Use the accent color */
+            stroke-width: 2;
+            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
+            flex-shrink: 0; 
+        }
+        
+        /* NEW - Image Icon for mega menu group headings - MODIFIED TO SUPPORT ALIGNMENT */
+        .menu-group-img-icon {
+            width: auto;
+            height: 50px;
+            margin-right: 8px; /* Space between icon and text */
+            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
+            flex-shrink: 0;
+        }
+        
+        /* NEW - Container for Heading Text and Tagline */
+        .menu-group-text-container {
             display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 16px 24px;
-            transition: background-color var(--dc-transition-speed) ease;
-            cursor: pointer;
+            flex-direction: column;
+            justify-content: center; /* Vertically center the text block if icon is taller */
         }
 
-        .dc-services-category-item.is-active .dc-services-category-link,
-        .dc-services-category-item:hover .dc-services-category-link {
-            background-color: var(--dc-color-panel-bg);
-        }
-        
-        .dc-services-category-icon { width: 24px; height: 24px; flex-shrink: 0; }
-        .dc-services-category-text { flex-grow: 1; }
-        .dc-services-category-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-        .dc-services-category-desc { font-size: 13px; color: var(--dc-color-text-muted); line-height: 1.3; }
-
-        .dc-services-submenu-container {
-            width: 55%;
-            background-color: var(--dc-color-panel-bg);
-            border-top-right-radius: var(--dc-border-radius);
-            border-bottom-right-radius: var(--dc-border-radius);
-            padding: 32px;
+        /* NEW - Tagline Style - ONLY VISIBLE ON DESKTOP */
+        .menu-group-tagline {
+            font-size: 13px; /* Smaller font for tagline */
+            font-weight: 400; /* Lighter weight */
+            color: var(--color-text-muted); /* Subtler color */
+            margin-top: 2px; /* Small space below the main heading */
+            display: block; /* Ensure it takes up its own line */
         }
         
-        .dc-submenu-panel { display: none; }
-        .dc-submenu-panel.is-active { display: block; }
-        .dc-submenu-content { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .dc-submenu-link { display: block; padding: 8px; border-radius: 6px; transition: background-color var(--dc-transition-speed) ease; }
-        .dc-submenu-link:hover { background-color: rgba(255, 255, 255, 0.05); }
-        .dc-submenu-link:hover .dc-mega-menu-link-title { color: var(--dc-color-accent); }
-        .dc-mega-menu-link-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
-        .dc-mega-menu-link-desc { font-size: 13px; color: var(--dc-color-text-muted); line-height: 1.4; }
-
-
-        /* Discover Mega Menu */
-        .dc-discover-main-links {
-            width: 280px;
-            padding: 16px 0;
-            border-right: 1px solid var(--dc-color-menu-border);
+        .mega-menu-group-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
-        .dc-discover-main-link { display: flex; align-items: center; gap: 12px; padding: 12px 20px; transition: background-color var(--dc-transition-speed) ease; }
-        .dc-discover-main-link:hover { background-color: var(--dc-color-panel-bg); }
-        .dc-discover-icon { flex-shrink: 0; width: 24px; height: 24px; }
-        .dc-discover-link-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
-        .dc-discover-link-desc { font-size: 13px; color: var(--dc-color-text-muted); }
 
-        .dc-discover-submenu-container {
-            width: 590px;
-            background-color: var(--dc-color-panel-bg);
-            padding: 32px;
+        /* Link Items inside Mega Menu - MODIFIED: Reduced margin for tighter list */
+        .mega-menu-group-list a {
+            display: block;
+            border-radius: 0; /* Remove border radius */
+            transition: color 0s;
+            position: relative;
+            margin: 5px 0; /* Tighter vertical spacing */
+            padding: 2px 0; /* Minimal padding */
+            letter-spacing: -0.03em;
+            font-size: 19px;
+            font-weight: 600; /* Regular weight for links */
+            color: var(--color-text-light); /* Make column headers light/white */
         }
-        .dc-discover-submenu-content { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .dc-discover-group-title { font-size: 14px; font-weight: 500; color: var(--dc-color-text-muted); margin: 0 0 16px 0; }
-        .dc-discover-group-links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-        .dc-discover-group-link { font-size: 15px; transition: color var(--dc-transition-speed) ease; }
-        .dc-discover-group-link:hover { color: var(--dc-color-accent); }
+
+        /* Link Title - MODIFIED: Re-use the link itself for the title, making it a single line */
+        .mega-menu-link-title {
+            /* This class is now redundant but keeping it for structure if needed later */
+            font-size: inherit; 
+            font-weight: inherit;
+            color: inherit; 
+            margin-bottom: 0;
+        }
         
-        /* =============================================
-           MOBILE MENU TOGGLE
-           ============================================= */
-        .dc-mobile-toggle {
-            display: none; /* Hidden on desktop */
+        .mega-menu-group-list a:hover {
+            color: #9cd4ff; /* White on hover */
+            background-color: transparent; /* No background change on hover */
+        }
+        
+        /* REMOVED: .mega-menu-link-desc is removed as requested */
+        .mega-menu-link-desc {
+            display: none; /* Hide descriptions */
+        }
+        
+        /*
+        =============================================
+        4. MOBILE AND RESPONSIVENESS (Keeping original structure but with removed descriptions)
+        =============================================
+        */
+        
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none; 
             background: none;
             border: none;
-            padding: 0;
-            width: 24px;
+            width: 30px;
             height: 24px;
             cursor: pointer;
+            padding: 0;
             position: relative;
-            z-index: calc(var(--dc-z-header) + 1); /* Ensure it's above other header content */
+            z-index: 1010;
         }
 
-        .dc-mobile-toggle span {
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-toggle span {
             display: block;
             height: 2px;
             width: 100%;
-            background-color: var(--dc-color-text-light);
-            position: absolute;
-            left: 0;
-            transition: transform var(--dc-transition-speed) ease, opacity var(--dc-transition-speed) ease;
+            background-color: var(--color-text-light);
+            margin: 6px 0;
+            transition: all 0.3s ease;
         }
 
-        .dc-mobile-toggle span:nth-child(1) { top: 4px; }
-        .dc-mobile-toggle span:nth-child(2) { top: 11px; }
-        .dc-mobile-toggle span:nth-child(3) { top: 18px; }
-
-        .is-mobile-menu-open .dc-mobile-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-        .is-mobile-menu-open .dc-mobile-toggle span:nth-child(2) { opacity: 0; }
-        .is-mobile-menu-open .dc-mobile-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-        /* =============================================
-           RESPONSIVE STYLES (Mobile)
-           ============================================= */
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Mobile Overrides */
         @media (max-width: 1024px) {
-            .dc-header { padding: 0 16px; }
-            .dc-mobile-toggle { display: block; }
-            .dc-nav-list { display: none; } /* Hide desktop nav items initially */
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
             
-            .dc-main-nav {
-                position: fixed;
-                top: var(--dc-header-height);
-                left: 0;
-                width: 100%;
-                height: calc(100vh - var(--dc-header-height));
-                background-color: var(--dc-color-header-bg);
-                overflow-y: auto;
-                padding: 24px;
-                transform: translateX(100%);
-                transition: transform var(--dc-transition-speed) ease-in-out;
-                z-index: var(--dc-z-mobile-nav);
-                display: flex;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 24px;
+            .custom-header-container {
+                padding: 0 20px;
+            }
+            
+            .mobile-toggle {
+                display: block; 
             }
 
-            .is-mobile-menu-open .dc-main-nav {
+            .custom-main-nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-header-bg);
+                overflow-y: auto;
+                padding: 20px 0;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                display: block; 
+                z-index: 900;
+            }
+
+            .header-wrapper.mobile-menu-open .custom-main-nav {
                 transform: translateX(0);
             }
 
-            /* Re-enable nav list for mobile view */
-            .dc-main-nav .dc-nav-list {
-                display: flex;
+            .custom-nav-list {
                 flex-direction: column;
-                align-items: stretch;
-                gap: 0;
-                width: 100%;
+                align-items: flex-start;
+                padding: 0 20px;
+                margin-left: 0; /* Reset desktop margin */
             }
 
-            .dc-nav-item {
+            .custom-nav-list li {
+                margin: 0;
                 width: 100%;
-                border-bottom: 1px solid var(--dc-color-menu-border);
-            }
-            .dc-nav-item:first-child {
-                border-top: 1px solid var(--dc-color-menu-border);
-            }
-            
-            .dc-nav-link {
-                padding: 16px 0;
-                font-size: 16px;
-                width: 100%;
-                justify-content: space-between;
-            }
-            
-            /* Mobile header action buttons */
-            .dc-header-actions {
-                width: 100%;
-                flex-direction: column-reverse; /* Puts primary action on bottom */
-                gap: 16px;
-                margin-top: 16px;
-            }
-            .dc-header-action-btn, .dc-header-action-btn-cta {
-                width: 100%;
-                padding: 14px;
-                font-size: 16px;
-            }
-            
-            /* IMPROVEMENT: Changed dropdown indicator from span to SVG for better scaling and animation */
-            .dc-dropdown-indicator {
-                width: 20px;
-                height: 20px;
-                stroke: currentColor;
-                transition: transform var(--dc-transition-speed) ease;
+                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
             }
 
-            .dc-nav-item.is-active > .dc-nav-link .dc-dropdown-indicator {
+            .custom-nav-link {
+                padding: 15px 0;
+                font-size: 1.1rem;
+                width: 100%;
+                display: flex; /* Use flex to position icon */
+                justify-content: space-between; /* Pushes text left, icon right */
+                align-items: center;
+            }
+            
+            /* NEW - Hide desktop-only icons on mobile */
+            .desktop-link-icon {
+                display: none;
+            }
+            
+            /* Hide the tagline on mobile */
+            .menu-group-tagline {
+                display: none; 
+            }
+            
+            /* Show and style mobile icon */
+            .mobile-dropdown-icon {
+                display: inline-block; /* Show on mobile */
+            }
+            
+            /* Rotate icon when the parent menu item is active */
+            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
                 transform: rotate(180deg);
             }
             
-            /* Mobile Mega Menu */
-            .dc-nav-item:hover > .dc-mega-menu-container {
-                /* Disable hover effect on mobile */
-                visibility: hidden;
-                opacity: 0;
-                transform: translateY(10px);
+            /* Remove underline effect on mobile */
+            .custom-nav-link::after {
+                display: none;
             }
-            .dc-mega-menu-container {
+
+            
+            /* Mobile Action Buttons */
+            .header-action-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+                box-sizing: border-box; /* Include padding in width */
+                margin-top: 20px; /* Space from last nav item */
+            }
+
+            .header-action-btn,
+            .header-secondary-btn {
+                width: 100%;
+                margin: 10px 0 0 0; /* Stack vertically with space */
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            .qr-dropdown-trigger {
+                width: 100%;
+                border-radius: 50px; /* Make it a full button shape */
+                margin: 10px 0 0 0;
+                padding: 15px 20px;
+                height: auto; /* Adjust height based on padding */
+                box-sizing: border-box;
+                justify-content: center; /* Center content horizontally */
+                display: none; /* HIDE QR TRIGGER ON MOBILE */
+            }
+
+            .qr-dropdown-trigger i {
+                margin-right: 10px; /* Space between icon and text if we add it */
+            }
+
+            /* Mobile QR Dropdown */
+            .qr-dropdown-content {
+                position: static; /* Remove absolute positioning */
+                width: 100%;
+                margin-top: 15px; /* Space from trigger */
+                padding: 15px;
+                box-shadow: none;
+                border-top: 1px solid rgba(0, 145, 255, 0.1);
+                border-radius: 0;
+                background-color: #0d0d29; /* Match mega menu background */
+                display: none; /* HIDE QR CONTENT ON MOBILE */
+            }
+            
+            .qr-dropdown-content img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .qr-dropdown-content.show {
+                transform: none; /* No transform on mobile */
+            }
+
+            /* Mobile Mega Menu */
+            .mega-menu-container {
                 position: static;
                 visibility: visible;
                 opacity: 1;
                 transform: none;
-                transition: max-height var(--dc-transition-speed) ease-out, padding var(--dc-transition-speed) ease-out;
+                transition: max-height 0.3s ease;
                 overflow: hidden;
                 max-height: 0;
-                box-shadow: none;
-                border: none;
-                width: 100%;
-                background: none;
-                border-radius: 0;
+                background-color: var(--color-menu-bg);
+                border-top: none;
+            }
+
+            .mega-menu-link-title {
+              padding: 0;
+              border-bottom: none;
+            }
+            
+            .custom-nav-item--has-megamenu.active .mega-menu-container {
+                max-height: 2000px;
                 padding: 0;
             }
             
-            .dc-nav-item.is-active .dc-mega-menu-container {
-                max-height: 2500px; /* Large enough for content */
-                padding: 16px 0 16px 16px;
-            }
-            
-            .dc-services-menu-layout, .dc-discover-menu-layout { display: block; }
-            .dc-services-categories, .dc-discover-main-links { display: none; } /* Hide the side panels on mobile */
-
-            .dc-services-submenu-container, .dc-discover-submenu-container {
-                width: 100%;
-                padding: 0;
-                background: none;
+            .mega-menu-panel {
+                padding: 15px 0; /* Align content with parent link */
+                display: block; /* Make panel visible by default inside mobile menu */
             }
 
-            .dc-submenu-panel {
-                display: block !important;
-                padding: 0;
-                margin-bottom: 24px;
-            }
-
-            /* Add titles for each section in mobile dropdown */
-            .dc-submenu-panel::before {
-                content: attr(data-mobile-title);
-                display: block;
-                font-weight: 600;
-                font-size: 14px;
-                color: var(--dc-color-text-muted);
-                margin-bottom: 12px;
-                padding-bottom: 8px;
-                border-bottom: 1px solid var(--dc-color-menu-border);
-            }
-            
-            .dc-submenu-content, .dc-discover-submenu-content {
+            .megamenu-3-column-grid {
                 grid-template-columns: 1fr;
-                gap: 8px;
+                gap: 20px;
+                padding-left: 0; /* Reset desktop padding */
             }
-            .dc-discover-submenu-content { gap: 20px; }
-            .dc-submenu-link { padding: 8px 0; }
-            .dc-mega-menu-link-title { font-size: 16px; }
-            .dc-mega-menu-link-desc { display: none; } /* Hide descriptions on mobile for cleaner look */
-            .dc-discover-group-links { gap: 8px; }
+            
+            .menu-group-card {
+                padding: 0;
+            }
+            
+            .menu-group-card h3 {
+                margin-top: 23px;
+                /* Reset mobile h3 layout to default */
+                flex-direction: row; 
+                align-items: center;
+                display: flex;
+            }
+            
+            .mega-menu-group-list a {
+                margin: 10px 0;
+            }
+
+            .mega-menu-group-list li {
+                
+                border: none;
+                
+            }
+            
+            .mega-menu-group-list a:hover {
+                background-color: rgba(0, 145, 255, 0.1);
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="dc-header-wrapper">
-    <header class="dc-header">
+<div class="header-wrapper">
+    
+    <header class="custom-header">
+        <div class="custom-header-container">
+            
+            <div class="custom-logo-container">
+                <a href="index.html" class="custom-logo-link custom-logo-text">
+                    <img src="thumbnails/logo.png" alt="Defcon Logo">
+                </a>
+            </div>
+
+            <nav class="custom-main-nav">
+                <ul class="custom-nav-list">
+                    <li>
+                        <a href="pricing.html" class="custom-nav-link">Pricing
+                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="projects.html" class="custom-nav-link">Projects
+                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
+                            Solutions
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-panel" data-megamenu-panel="services">
+                                <div class="megamenu-3-column-grid">
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Software Development
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Web Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Mobile Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">API Development</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Database Management</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            IT Infrastructure
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">IT Consulting</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Cloud Computing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Data Center Management</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Smart Technology</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Marketing & Creative Studio
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Digital Marketing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Graphic Design</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Content Management</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Multimedia Production</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                            Discover
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-panel" data-megamenu-panel="discover">
+                                <div class="megamenu-3-column-grid">
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Defcon
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">About Us</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Product News</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Innovations</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Careers</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Partners</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Resources
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Blog</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">eBooks</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Podcasts</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Webinars</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">YouTube Playlists</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Connect
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Media</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Partnerships</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Media</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Find a Local Office</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="header-action-buttons">
+                    <button class="header-secondary-btn">
+                        <a href="get-started.html">Get Started</a>
+                    </button>
+                    <button class="header-action-btn">
+                        <a href="contact-us.html">Contact Us</a>
+                    </button>
+                    <div class="qr-dropdown-trigger" id="qrDropdownTrigger">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
+                        <div class="qr-dropdown-content" id="qrDropdownContent">
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mega-menu-container desktop-mega-menu">
         
-        <div class="dc-logo-container">
-            <a href="#" class="dc-logo-link">
-                <!-- Using a placeholder for the logo -->
-                <img src="https://placehold.co/150x40/07071e/ffffff?text=DEFCON" alt="Defcon Logo" class="dc-logo-image">
-            </a>
+        <div class="mega-menu-panel" data-megamenu-panel="services">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>
+                        <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
+                        <span class="menu-group-text-container">
+                            Software Engineering
+                            <span class="menu-group-tagline">Build, innovate, and scale with us.</span>
+                        </span>
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Web Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Mobile Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">API & Microservices Architecture</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Database Engineering & Management</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>
+                        <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
+                         <span class="menu-group-text-container">
+                            IT Infrastructure
+                            <span class="menu-group-tagline">Secure, optimize, and manage your network.</span>
+                        </span>
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">IT Consulting</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Cloud Computing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Data Center & Storage</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Smart Technology</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
+                        <span class="menu-group-text-container">
+                            Marketing & Creative Studio
+                            <span class="menu-group-tagline">Drive growth with impactful creative design.</span>
+                        </span>
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Digital Marketing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Graphic Design</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Content Management</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Multimedia Production</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
-        <nav class="dc-main-nav" id="main-nav">
-            <ul class="dc-nav-list">
-                <li class="dc-nav-item"><a href="#" class="dc-nav-link">Level Up</a></li>
-                <li class="dc-nav-item"><a href="#" class="dc-nav-link">Support</a></li>
-                <li class="dc-nav-item"><a href="#" class="dc-nav-link">Projects</a></li>
+        <div class="mega-menu-panel" data-megamenu-panel="discover">
+            <div class="megamenu-3-column-grid">
                 
-                <li class="dc-nav-item">
-                    <a href="#" class="dc-nav-link" data-megamenu-trigger="services" role="button" aria-expanded="false" aria-controls="services-menu">
-                        <span>Services</span>
-                        <!-- IMPROVEMENT: Switched to an inline SVG for the dropdown arrow -->
-                        <svg class="dc-dropdown-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </a>
-                    <div class="dc-mega-menu-container dc-mega-menu-container--services" id="services-menu">
-                        <div class="dc-services-menu-layout">
-                            <ul class="dc-services-categories">
-                                <li class="dc-services-category-item is-active" data-submenu-trigger="software">
-                                    <div class="dc-services-category-link">
-                                        <svg class="dc-services-category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 12l4.179 2.25m0 0l5.571 3m5.571-3l-5.571 3m0 0l-5.571-3m11.142 0l4.179-2.25L12 9.75 7.821 12l4.179 2.25m0 0l4.179 2.25L12 14.25l-4.179-2.25m16.5 0L12 14.25 7.821 12l4.179-2.25m7.5 4.5L12 18.75l-4.179-2.25m16.5 0l-4.179 2.25L12 18.75l-4.179-2.25m7.5 4.5L12 14.25" /></svg>
-                                        <div class="dc-services-category-text">
-                                            <span class="dc-services-category-title">Software Development</span>
-                                            <span class="dc-services-category-desc">Custom applications & platforms</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dc-services-category-item" data-submenu-trigger="infra">
-                                    <div class="dc-services-category-link">
-                                        <svg class="dc-services-category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13a7 7 0 1 0 14 0a7 7 0 1 0-14 0"/><path d="M10 11h4l-4 4h4M7 4L4.25 6M17 4l2.75 2"/></svg>
-                                        <div class="dc-services-category-text">
-                                            <span class="dc-services-category-title">IT Infrastructure</span>
-                                            <span class="dc-services-category-desc">Networks, cloud & security</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="dc-services-category-item" data-submenu-trigger="creative">
-                                    <div class="dc-services-category-link">
-                                        <svg class="dc-services-category-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.573L16.5 21.75l-.398-1.177a3.375 3.375 0 00-2.455-2.455l-1.177-.398 1.177-.398a3.375 3.375 0 002.455-2.455l.398-1.177.398 1.177a3.375 3.375 0 002.455 2.455l1.177.398-1.177.398a3.375 3.375 0 00-2.455 2.455z" /></svg>
-                                        <div class="dc-services-category-text">
-                                            <span class="dc-services-category-title">Marketing & Creative</span>
-                                            <span class="dc-services-category-desc">Branding & digital campaigns</span>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            
-                            <div class="dc-services-submenu-container">
-                                <div class="dc-submenu-panel is-active" data-submenu-panel="software" data-mobile-title="Software Development">
-                                    <div class="dc-submenu-content">
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Web Applications</span><div class="dc-mega-menu-link-desc">Resilient, high-performance platforms.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Mobile Applications</span><div class="dc-mega-menu-link-desc">Native experiences for iOS and Android.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">AI & Machine Learning</span><div class="dc-mega-menu-link-desc">Intelligent systems that automate.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">API Development</span><div class="dc-mega-menu-link-desc">Secure, documented APIs for integration.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">E-commerce Solutions</span><div class="dc-mega-menu-link-desc">Custom storefronts with payment gateways.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Blockchain & Web3</span><div class="dc-mega-menu-link-desc">Decentralized apps & smart contracts.</div></a>
-                                    </div>
-                                </div>
-                                <div class="dc-submenu-panel" data-submenu-panel="infra" data-mobile-title="IT Infrastructure">
-                                     <div class="dc-submenu-content">
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">IT Support</span><div class="dc-mega-menu-link-desc">Comprehensive assistance and security.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">IT Consulting</span><div class="dc-mega-menu-link-desc">Strategic advisory for digital transformation.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Cloud Computing</span><div class="dc-mega-menu-link-desc">Seamless migration and cloud optimization.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Data Center Management</span><div class="dc-mega-menu-link-desc">Efficient and secure data operations.</div></a>
-                                    </div>
-                                </div>
-                                <div class="dc-submenu-panel" data-submenu-panel="creative" data-mobile-title="Marketing & Creative">
-                                    <div class="dc-submenu-content">
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Digital Marketing</span><div class="dc-mega-menu-link-desc">SEO, PPC, and performance marketing.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Graphic Design</span><div class="dc-mega-menu-link-desc">Complete brand identity and visual assets.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Content Marketing</span><div class="dc-mega-menu-link-desc">Compelling narratives for digital platforms.</div></a>
-                                        <a href="#" class="dc-submenu-link"><span class="dc-mega-menu-link-title">Multimedia Production</span><div class="dc-mega-menu-link-desc">High-definition video and motion graphics.</div></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                <div class="menu-group-card">
+                    <h3>
+                        Hyperion
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="about.html">
+                                <span class="mega-menu-link-title">About Us</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="roadmap.html">
+                                <span class="mega-menu-link-title">Roadmap</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="innovations.html">
+                                <span class="mega-menu-link-title">Innovations</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Product News</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="events.html">
+                                <span class="mega-menu-link-title">Events</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="careers.html">
+                                <span class="mega-menu-link-title">Careers</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="partners.html">
+                                <span class="mega-menu-link-title">Partners</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="licenses-and-registrations.html">
+                                <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
                 
-                <li class="dc-nav-item">
-                    <a href="#" class="dc-nav-link" data-megamenu-trigger="discover" role="button" aria-expanded="false" aria-controls="discover-menu">
-                        <span>Discover</span>
-                        <svg class="dc-dropdown-indicator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-                    </a>
-                    <div class="dc-mega-menu-container dc-mega-menu-container--discover" id="discover-menu">
-                        <div class="dc-discover-menu-layout">
-                            <div class="dc-discover-main-links">
-                                <a href="#" class="dc-discover-main-link">
-                                    <svg class="dc-discover-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" /></svg>
-                                    <div><span class="dc-discover-link-title">Defcon</span><span class="dc-discover-link-desc">Vision, team, and history</span></div>
+                <div class="menu-group-card">
+                    <h3>
+                        Resources
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Blog</span>
                                 </a>
-                                <a href="#" class="dc-discover-main-link">
-                                    <svg class="dc-discover-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
-                                    <div><span class="dc-discover-link-title">Resources</span><span class="dc-discover-link-desc">Case studies and insights</span></div>
+                        </li>
+                        <li>
+                            <a href="ebooks.html">
+                                <span class="mega-menu-link-title">eBooks</span>
                                 </a>
-                                <a href="#" class="dc-discover-main-link">
-                                    <svg class="dc-discover-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.282A24.423 24.423 0 015.623 6.34a3 3 0 01-4.682 2.72m8.14 8.14A24.423 24.423 0 006.34 5.623a3 3 0 00-2.72 4.682m5.04 5.04a24.423 24.423 0 01-4.186 5.623a3 3 0 01-2.72-4.682m11.82-3.355A24.423 24.423 0 0018.377 2.25a3 3 0 014.682 2.72m-8.14 8.14c-.112.57.294 1.127.845 1.255a.75.75 0 00.938-.938c-.128-.551-.685-.956-1.255-.845z" /></svg>
-                                    <div><span class="dc-discover-link-title">Connect</span><span class="dc-discover-link-desc">Join our team or get in touch</span></div>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Webinars</span>
                                 </a>
-                            </div>
-                            
-                            <div class="dc-discover-submenu-container">
-                                <div class="dc-discover-submenu-content">
-                                    <div class="dc-discover-menu-group"><h4 class="dc-discover-group-title">Advanced</h4><ul class="dc-discover-group-links"><li><a href="#" class="dc-discover-group-link">Level Up</a></li><li><a href="#" class="dc-discover-group-link">Developers</a></li></ul></div>
-                                    <div class="dc-discover-menu-group"><h4 class="dc-discover-group-title">Resources</h4><ul class="dc-discover-group-links"><li><a href="#" class="dc-discover-group-link">Market Updates</a></li><li><a href="#" class="dc-discover-group-link">Product News</a></li><li><a href="#" class="dc-discover-group-link">Events</a></li><li><a href="#" class="dc-discover-group-link">University</a></li><li><a href="#" class="dc-discover-group-link">Research</a></li></ul></div>
-                                    <div class="dc-discover-menu-group"><h4 class="dc-discover-group-title">Company</h4><ul class="dc-discover-group-links"><li><a href="#" class="dc-discover-group-link">About Us</a></li><li><a href="#" class="dc-discover-group-link">Careers</a></li><li><a href="#" class="dc-discover-group-link">Partners</a></li><li><a href="#" class="dc-discover-group-link">Security</a></li></ul></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="dc-header-actions">
-                <button class="dc-header-action-btn-cta">Contact Us</button>
-                <button class="dc-header-action-btn">Get Started</button>
-            </div>  
-        </nav>
-        
-        <button class="dc-mobile-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </header>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Podcasts</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Recommendations</span>
+                                </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>
+                        Connect
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">X</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Facebook</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">LinkedIn</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Youtube</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mega-menu-link-title">Github</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+
 <script>
+// =============================================
+// JAVASCRIPT FOR MENU FUNCTIONALITY
+// =============================================
 document.addEventListener('DOMContentLoaded', function() {
-    const mobileToggle = document.querySelector('.dc-mobile-toggle');
-    const headerWrapper = document.querySelector('.dc-header-wrapper');
-    const mainNav = document.getElementById('main-nav');
+    const headerWrapper = document.querySelector('.header-wrapper');
+    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
+    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const body = document.body;
     
-    // --- Mobile Menu Toggle ---
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            const isMenuOpen = headerWrapper.classList.toggle('is-mobile-menu-open');
-            mobileToggle.setAttribute('aria-expanded', isMenuOpen);
-            // Prevent body scroll when mobile menu is open
-            document.body.style.overflow = isMenuOpen ? 'hidden' : '';
-        });
+    // NEW: QR Code Dropdown elements
+    const qrDropdownTrigger = document.getElementById('qrDropdownTrigger');
+    const qrDropdownContent = document.getElementById('qrDropdownContent');
+
+    let closeTimer = null;
+    let qrCloseTimer = null; // Timer for QR dropdown
+
+    // =============================================
+    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // =============================================
+    
+    // Function to set the active state on trigger and panel
+    function setActiveMenu(trigger, panel) {
+        // Deactivate all others first
+        megaMenuTriggers.forEach(t => t.classList.remove('active'));
+        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+
+        if (trigger && panel) {
+            trigger.classList.add('active');
+            panel.classList.add('active');
+            headerWrapper.classList.add('mega-menu-open');
+        } else {
+            // Close all
+            headerWrapper.classList.remove('mega-menu-open');
+        }
     }
 
-    // --- Mobile Submenu (Accordion) ---
-    const megaMenuTriggers = document.querySelectorAll('.dc-nav-link[data-megamenu-trigger]');
+    function handleOpen(trigger) {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
+            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
+            setActiveMenu(trigger, targetMenuPanel);
+            // Close QR dropdown if mega menu opens
+            if (qrDropdownContent.classList.contains('show')) {
+                hideQrDropdown();
+            }
+        }
+    }
+
+    function handleClose() {
+        if (window.innerWidth > 1024) {
+            // Set a slight delay to allow mouse transition from trigger to menu
+            closeTimer = setTimeout(() => {
+                setActiveMenu(null, null); // Close all
+            }, 150); 
+        }
+    }
+
+    // Attach mouse event listeners for desktop
     megaMenuTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => {
-            // Use window.matchMedia for a more reliable check than window.innerWidth
-            if (window.matchMedia('(max-width: 1024px)').matches) {
+        // Open on mouse enter
+        trigger.addEventListener('mouseenter', () => {
+            handleOpen(trigger);
+        });
+        
+        // Use the common container as the exit point for the entire menu system
+        trigger.parentElement.addEventListener('mouseleave', () => {
+            handleClose();
+        });
+    });
+
+    // Prevent menu from closing when mouse is over the menu container
+    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+        }
+    });
+
+    // Close menu when mouse leaves the menu container
+    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        handleClose();
+    });
+
+    // =============================================
+    // QR CODE DROPDOWN LOGIC (Open/Close on click/hover for desktop)
+    // =============================================
+    function showQrDropdown() {
+        if (window.innerWidth > 1024) {
+            clearTimeout(qrCloseTimer);
+            qrDropdownContent.classList.add('show');
+            // Close mega menu if QR dropdown opens
+            setActiveMenu(null, null);
+        }
+    }
+
+    function hideQrDropdown() {
+        if (window.innerWidth > 1024) {
+            qrCloseTimer = setTimeout(() => {
+                qrDropdownContent.classList.remove('show');
+            }, 150); // Slight delay for smooth transition
+        }
+    }
+
+    qrDropdownTrigger.addEventListener('mouseenter', showQrDropdown);
+    qrDropdownTrigger.addEventListener('mouseleave', hideQrDropdown);
+    qrDropdownContent.addEventListener('mouseenter', showQrDropdown); // Keep open if mouse moves to content
+    qrDropdownContent.addEventListener('mouseleave', hideQrDropdown);
+
+    // =============================================
+    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // =============================================
+    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    
+    // Mobile hamburger toggle
+    mobileMenuToggle.addEventListener('click', function() {
+        headerWrapper.classList.toggle('mobile-menu-open');
+        body.classList.toggle('mobile-menu-active');
+        
+        // If closing the mobile menu, ensure all mega menu active states are cleared
+        if (!headerWrapper.classList.contains('mobile-menu-open')) {
+             mobileDropdownItems.forEach(item => item.classList.remove('active'));
+             // Also close QR dropdown on mobile close
+             qrDropdownContent.classList.remove('show');
+        }
+    });
+
+    // Mobile dropdown toggle (for Services and Discover links)
+    mobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.custom-nav-link');
+        trigger.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1024) {
                 e.preventDefault();
-                const parentItem = trigger.parentElement;
-                
-                // Close other open submenus for a cleaner accordion experience
-                if (!parentItem.classList.contains('is-active')) {
-                    document.querySelectorAll('.dc-nav-item.is-active').forEach(item => {
-                        item.classList.remove('is-active');
-                        item.querySelector('[data-megamenu-trigger]').setAttribute('aria-expanded', 'false');
-                    });
-                }
-                
-                const isActive = parentItem.classList.toggle('is-active');
-                trigger.setAttribute('aria-expanded', isActive);
+                e.stopPropagation(); 
+
+                // Close all other dropdowns
+                mobileDropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current dropdown
+                item.classList.toggle('active');
+                // Close QR dropdown if a mega menu opens
+                qrDropdownContent.classList.remove('show');
             }
         });
     });
 
-    // --- Desktop Services Menu (Tabbed Interface) ---
-    const serviceCategoryItems = document.querySelectorAll('.dc-services-category-item');
-    serviceCategoryItems.forEach(item => {
-        item.addEventListener('mouseenter', () => {
-            if (window.matchMedia('(min-width: 1025px)').matches) {
-                // Deactivate all sibling items and panels
-                item.parentElement.querySelectorAll('.dc-services-category-item').forEach(sibling => {
-                    sibling.classList.remove('is-active');
-                });
-                document.querySelectorAll('.dc-submenu-panel').forEach(panel => {
-                    panel.classList.remove('is-active');
-                });
-                
-                // Activate the hovered item and its corresponding panel
-                item.classList.add('is-active');
-                const targetPanelId = item.getAttribute('data-submenu-trigger');
-                const targetPanel = document.querySelector(`.dc-submenu-panel[data-submenu-panel="${targetPanelId}"]`);
-                if (targetPanel) {
-                    targetPanel.classList.add('is-active');
+    // Toggle QR dropdown on click for mobile
+    qrDropdownTrigger.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            e.stopPropagation();
+            qrDropdownContent.classList.toggle('show');
+            // Close any open mega menus
+            mobileDropdownItems.forEach(item => item.classList.remove('active'));
+        }
+    });
+
+    // Close mobile menu when a standard link is clicked
+    document.querySelectorAll('.custom-nav-list a').forEach(link => {
+        // Exclude links that trigger a mega menu, and links that are inside a mega menu
+        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container')) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                    body.classList.remove('mobile-menu-active');
+                    qrDropdownContent.classList.remove('show'); // Also close QR dropdown
                 }
+            });
+        }
+    });
+    
+    // Close QR dropdown if clicked outside on desktop
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth > 1024 && !qrDropdownTrigger.contains(event.target) && !qrDropdownContent.contains(event.target)) {
+            hideQrDropdown();
+        }
+    });
+
+    // =============================================
+    // WINDOW RESIZE HANDLER
+    // =============================================
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (window.innerWidth > 1024) {
+                // Reset desktop/mobile states
+                headerWrapper.classList.remove('mobile-menu-open');
+                body.classList.remove('mobile-menu-active');
+                mobileDropdownItems.forEach(item => item.classList.remove('active'));
+                setActiveMenu(null, null); // Close any open mega menu
+            } else { // Mobile specific reset
+                 // Ensure QR dropdown is closed if switching to mobile from desktop-hovered state
+                 qrDropdownContent.classList.remove('show');
             }
-        });
+        }, 250);
     });
 });
 </script>
-
-</body>
-</html>

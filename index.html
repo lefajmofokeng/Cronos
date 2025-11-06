@@ -327,7 +327,6 @@
 
 
 
-
 <style>
         /*
         =============================================
@@ -646,11 +645,10 @@
             letter-spacing: 0.1px;
             cursor: default; /* Not a clickable element */
             
-            /* MODIFIED */
-            display: flex; /* Use flex to align icon */
-            align-items: center;
-            
-             color: var(--color-text-muted);
+            /* MODIFIED to contain icon, heading, and tagline */
+            display: flex; 
+            align-items: center; /* Vertically center icon with the text block */
+            color: var(--color-text-muted);
         }
         
         /* NEW - Icon for mega menu group headings */
@@ -660,13 +658,34 @@
             margin-right: 8px; /* Space between icon and text */
             color: var(--color-accent); /* Use the accent color */
             stroke-width: 2;
+            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
+            flex-shrink: 0; 
         }
         
-        /* NEW - Image Icon for mega menu group headings */
+        /* NEW - Image Icon for mega menu group headings - MODIFIED TO SUPPORT ALIGNMENT */
         .menu-group-img-icon {
             width: auto;
-            height: 50px;
+            height: 40px;
             margin-right: 8px; /* Space between icon and text */
+            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
+            flex-shrink: 0;
+            backface-visibility: visible
+        }
+        
+        /* NEW - Container for Heading Text and Tagline */
+        .menu-group-text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center the text block if icon is taller */
+        }
+
+        /* NEW - Tagline Style - ONLY VISIBLE ON DESKTOP */
+        .menu-group-tagline {
+            font-size: 12px; /* Smaller font for tagline */
+            font-weight: 500; /* Lighter weight */
+            color: var(--color-text-muted); /* Subtler color */
+            margin-top: 5px; /* Small space below the main heading */
+            display: block; /* Ensure it takes up its own line */
         }
         
         .mega-menu-group-list {
@@ -821,6 +840,11 @@
                 display: none;
             }
             
+            /* Hide the tagline on mobile */
+            .menu-group-tagline {
+                display: none; 
+            }
+            
             /* Show and style mobile icon */
             .mobile-dropdown-icon {
                 display: inline-block; /* Show on mobile */
@@ -931,6 +955,10 @@
             
             .menu-group-card h3 {
                 margin-top: 23px;
+                /* Reset mobile h3 layout to default */
+                flex-direction: row; 
+                align-items: center;
+                display: flex;
             }
             
             .mega-menu-group-list a {
@@ -1114,9 +1142,6 @@
                                     
                                     <div class="menu-group-card">
                                         <h3>
-                                            <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
-                                            </svg>
                                             Defcon
                                         </h3>
                                         <ul class="mega-menu-group-list">
@@ -1155,9 +1180,6 @@
                                     
                                     <div class="menu-group-card">
                                         <h3>
-                                            <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
-                                            </svg>
                                             Resources
                                         </h3>
                                         <ul class="mega-menu-group-list">
@@ -1191,9 +1213,6 @@
 
                                     <div class="menu-group-card">
                                         <h3>
-                                            <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
-                                            </svg>
                                             Connect
                                         </h3>
                                         <ul class="mega-menu-group-list">
@@ -1256,7 +1275,10 @@
                 <div class="menu-group-card">
                     <h3>
                         <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
-                        Software Engineering
+                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Software Engineering
+                            <span class="menu-group-tagline">Build your custom vision</span>
+                        </span>
                     </h3>
                     <ul class="mega-menu-group-list">
                         <li>
@@ -1300,7 +1322,10 @@
                 <div class="menu-group-card">
                     <h3>
                         <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
-                        IT Infrastructure
+                         <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            IT Infrastructure
+                            <span class="menu-group-tagline">Power your business</span>
+                        </span>
                     </h3>
                     <ul class="mega-menu-group-list">
                         <li>
@@ -1334,7 +1359,10 @@
                 <div class="menu-group-card">
                     <h3>
                         <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
-                        Marketing & Creative Studio
+                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Marketing & Creative Studio
+                            <span class="menu-group-tagline">Grow your audience</span>
+                        </span>
                     </h3>
                     <ul class="mega-menu-group-list">
                         <li>
@@ -1372,9 +1400,6 @@
                 
                 <div class="menu-group-card">
                     <h3>
-                        <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
-                        </svg>
                         Hyperion
                     </h3>
                     <ul class="mega-menu-group-list">
@@ -1423,9 +1448,6 @@
                 
                 <div class="menu-group-card">
                     <h3>
-                        <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
-                        </svg>
                         Resources
                     </h3>
                     <ul class="mega-menu-group-list">
@@ -1460,24 +1482,21 @@
 
                 <div class="menu-group-card">
                     <h3>
-                        <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
-                        </svg>
                         Connect
                     </h3>
                     <ul class="mega-menu-group-list">
                         <li>
-                            <a href="#">
+                            <a href="page.html">
                                 <span class="mega-menu-link-title">X</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="page.html">
                                 <span class="mega-menu-link-title">Facebook</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="page.html">
                                 <span class="mega-menu-link-title">LinkedIn</span>
                                 </a>
                         </li>
@@ -1761,23 +1780,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-<!-- Premium Showcase Section -->
 <section class="defcon-premium-showcase">
-  <!-- New Header Section -->
   <div class="defcon-header-container-hd">
     <div class="defcon-main-heading-hd">Trusted Local Technology Partner in South Africa.</div>
   </div>
 
-  <!-- New Crypto CTA Button -->
   <button class="defcon-crypto-cta">
     <span class="defcon-crypto-text">Discover Why Hyperion</span>
     <span class="defcon-crypto-icon">
@@ -1809,26 +1816,28 @@ document.addEventListener('DOMContentLoaded', function() {
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* Header Container: Ensures full width and animation works */
 .defcon-header-container-hd {
-align-items: center;
-justify-content: center;
-max-width: fit-content;
-text-align: center;
-animation: defconFadeInUp 1s ease-out forwards;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  animation: defconFadeInUp 1s ease-out forwards;
 }
 
+/* Main Heading Fixes: Removed fixed 'width: 800px' for responsiveness */
 .defcon-main-heading-hd {
-font-size: 51px;
-font-weight: 700;
-text-transform: none;
-width: 800px;
-letter-spacing: -0.04em;
-line-height: 1.2;
-color: white;
-text-align: center;
-margin-bottom: 3rem;
+  font-size: 51px;
+  font-weight: 700;
+  text-transform: none;
+  max-width: 800px; /* Constrains width for readability on large screens */
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  color: white;
+  text-align: center;
+  margin: 0 auto 3rem auto; /* Centered and set bottom margin */
 }
 
+/* CTA Button Styles - This padding is now maintained on all devices */
 .defcon-crypto-cta {
   display: inline-flex;
   align-items: center;
@@ -1876,102 +1885,571 @@ margin-bottom: 3rem;
   transform: translateX(3px);
 }
 
-.defcon-showcase-container {
-  width: 100%;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  z-index: 2;
-    margin-bottom: 5rem;
-}
 
-/* Responsive Adjustments */
-@media (min-width: 768px) {
-  .defcon-showcase-container {
-    flex-direction: row;
-    gap: 60px;
-  }
-  
-  /* .defcon-video-container { flex: 1; } -- removed */
-  
-  .defcon-content-area {
-    flex: 1;
-  }
-  
-  .defcon-showcase-heading {
-    font-size: 2.8rem;
-  }
-  
+/* --- Responsive Adjustments --- */
+
+/* Laptops / Large Tablets (Max-width 1024px) */
+@media (max-width: 1024px) {
   .defcon-main-heading-hd {
-    font-size: 4rem;
-  }
-  
-  .defcon-subheading {
-    font-size: 1.4rem;
-  }
-
-  .defcon-feature-item {
-    font-size: 1.2rem;
-    gap: 15px;
-  }
-
-  .defcon-feature-icon {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    min-height: 28px;
+    font-size: 44px; /* Scale down for smaller screens */
   }
 }
 
+/* Tablets (Max-width 767px) */
+@media (max-width: 767px) {
+  .defcon-premium-showcase {
+    min-height: 70vh; /* Reduced height on smaller devices */
+  }
+  .defcon-main-heading-hd {
+    font-size: 38px;
+    line-height: 1.25;
+  }
+}
+
+/* Mobile Devices (Max-width 480px) */
 @media (max-width: 480px) {
   .defcon-premium-showcase {
     padding: 40px 5%;
+    min-height: 60vh; /* Reduced height on small phones */
   }
   
-  .defcon-showcase-heading {
-    font-size: 1.8rem;
+  /* Heading size reduced significantly for small screens */
+  .defcon-main-heading-hd {
+    font-size: 30px; 
+    line-height: 1.3;
+    margin-bottom: 2rem;
   }
   
-  .defcon-showcase-description {
-    font-size: 1rem;
-  }
-  
-  .defcon-cta-button {
-    padding: 12px 24px;
-  }
-  
-  .defcon-glass-morphism {
-    padding: 20px;
-  }
-  
-  .defcon-main-heading {
-    font-size: 2rem;
-  }
-  
-  .defcon-subheading {
-    font-size: 1rem;
-  }
-  
+  /* CTA button adjustments: Removed padding override */
   .defcon-crypto-cta {
-    padding: 12px 20px;
-    font-size: 1rem;
+    /* **FIXED: Removed mobile padding override to keep original shape** */
+    font-size: 15px; /* Text size still scales down */
+    margin-top: 0.5rem;
+    margin-bottom: 2rem;
   }
-
-  .defcon-feature-item {
-    font-size: 1rem;
-    gap: 10px;
+  
+  /* Icon size is still reduced to prevent overflow */
+  .defcon-crypto-icon {
+    width: 30px;
+    height: 30px;
   }
-
-  .defcon-feature-icon {
+  
+  .defcon-crypto-icon svg {
     width: 20px;
     height: 20px;
-    min-width: 20px;
-    min-height: 20px;
+  }
+  
+  .defcon-crypto-text {
+    margin-right: 10px;
   }
 }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================================
+     FEATURE PAGE - About Us
+     ============================================= -->
+
+<div class="hero-section-dv rb-fade-in">
+    <div class="container-dv">
+      <div class="content-left">
+        <p style="text-transform: uppercase; color: #06273e; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px;">Future of Infrastructure</p>
+        <h1 class="main-heading">
+            Innovate, Integrate <br> and 
+            <span class="highlight-word">
+                Elevate.
+                <svg class="underline-svg" viewBox="0 0 196 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 16.9998C30.4988 9.39999 91.2223 -6.38075 193 11.0002"/>
+                </svg>
+            </span>
+        </h1>
+            
+        <div class="description">
+            <p>We're more than just developers – we're your trusted digital partner. From smart design to solid delivery, every detail is handled with care, precision, and a commitment to excellence.</p>
+        </div>
+
+        <!-- New Crypto CTA Button -->
+        <button class="defcon-crypto-cta">
+          <span class="defcon-crypto-text">Get Started</span>
+          <span class="defcon-crypto-icon">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+      <div class="image-container">
+          <div class="main-image">
+            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Happy team celebrating together" />
+          </div>
+          
+          <div class="stats-card">
+            <div class="stats-number">53%</div>
+            <div class="stats-text">High Conversions<br>Everything</div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .hero-section-dv {
+    position: relative;
+    min-height: 100vh;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    line-height: 1.7;
+  }
+
+  .container-dv {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 0 20px;
+  }
+
+  .content-left {
+    flex: 1;
+    max-width: 600px;
+    z-index: 2;
+  }
+
+  .main-heading {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #06273e;
+    margin-bottom: 30px;
+    letter-spacing: -0.03em;
+  }
+
+  .description {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #4B5563;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+
+  .image-container {
+    position: relative;
+    flex: 1;
+    max-width: 600px;
+    height: 400px;
+  }
+
+  /* --- NEW CREATIVE ADDITION: Dot Pattern Overlay --- */
+  .image-container::after {
+    content: '';
+    position: absolute;
+    top: -30px;
+    left: -40px;
+    width: 50%;
+    height: 50%;
+    background-image: radial-gradient(circle at 1.5px 1.5px, #0066ff 1.5px, transparent 0);
+    background-size: 20px 20px;
+    opacity: 0.4;
+    z-index: 1;
+  }
+
+  .main-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    z-index: 2;
+  }
+
+  .main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%; /* Focus on the people in the image */
+    display: block; /* Remove any default inline spacing */
+  }
+
+  .stats-card {
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    background: #ffd700;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    min-width: 150px;
+  }
+
+  .stats-number {
+    font-size: 32px;
+    font-weight: 800;
+    color: #06273e;
+    line-height: 1;
+    margin-bottom: 5px;
+    text-align: left;
+  }
+
+  .stats-text {
+    font-size: 14px;
+    color: #06273e;
+    line-height: 1.3;
+    text-align: left;
+  }
+
+  /* --- NEW CREATIVE ADDITION: Underline Scribble --- */
+  .highlight-word {
+    position: relative;
+    color: #0091ff;
+  }
+
+  .underline-svg {
+    position: absolute;
+    bottom: -15px;
+    left: -5%;
+    width: 110%;
+    height: 25px;
+    overflow: visible;
+  }
+
+  .underline-svg path {
+    stroke: #0091ff;
+    stroke-width: 5;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: draw 1.5s ease-out 0.5s forwards;
+  }
+
+  @keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+  }
+
+  /* CTA Button Styles */
+  .defcon-crypto-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #0091ff 0%, #0066ff 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 119, 255, 0.3);
+  }
+
+  .defcon-crypto-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 119, 255, 0.4);
+  }
+
+  /* Tablet Styles */
+  @media (max-width: 1024px) {
+    .container-dv {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+    }
+
+    .main-heading {
+        font-size: 3.5rem;
+    }
+
+    .content-left {
+      text-align: center;
+      max-width: 100%;
+    }
+
+    .description {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .image-container {
+      width: 100%;
+      max-width: 500px;
+      height: 350px;
+    }
+
+    /* Adjust dot pattern for tablet */
+    .image-container::after {
+        width: 100%;
+        height: 50%;
+        left: 0;
+    }
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .hero-section-dv {
+      padding: 60px 20px 80px;
+      min-height: auto;
+    }
+
+    .container-dv {
+      gap: 40px;
+      padding: 0 15px;
+    }
+
+    .main-heading {
+        font-size: 2.5rem;
+    }
+
+    .content-left {
+      text-align: left;
+    }
+
+    .description {
+      font-size: 15px;
+      max-width: 100%;
+    }
+
+    .image-container {
+      height: 300px;
+    }
+
+    .main-image img {
+      object-position: center 30%; /* Adjust focus for mobile */
+    }
+
+    .stats-card {
+      bottom: -15px;
+      left: -15px;
+      padding: 15px;
+      min-width: 130px;
+    }
+
+    .stats-number {
+      font-size: 28px;
+    }
+
+    .stats-text {
+      font-size: 13px;
+    }
+  }
+
+  /* Small Phone Styles */
+  @media (max-width: 480px) {
+    .hero-section-dv {
+      padding: 40px 15px 60px;
+    }
+
+    .container-dv {
+      gap: 30px;
+    }
+
+    .main-heading {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .description {
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+
+    .image-container {
+      height: 250px;
+    }
+
+    .main-image img {
+      object-position: center 35%; /* Further adjust focus for small screens */
+    }
+
+    .stats-card {
+      bottom: -10px;
+      left: -10px;
+      padding: 12px;
+      min-width: 120px;
+    }
+
+    .stats-number {
+      font-size: 24px;
+    }
+
+    .stats-text {
+      font-size: 12px;
+    }
+
+    .defcon-crypto-cta {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .defcon-crypto-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  /* Extra Small Phone Styles */
+  @media (max-width: 360px) {
+    .main-heading {
+        font-size: 1.8rem;
+    }
+
+    .image-container {
+      height: 220px;
+    }
+
+    .main-image img {
+      object-position: center 40%; /* Final adjustment for extra small screens */
+    }
+
+    .stats-card {
+      min-width: 110px;
+      padding: 10px;
+    }
+
+    .stats-number {
+      font-size: 22px;
+    }
+  }
 </style>
 
 
@@ -2102,378 +2580,7 @@ margin-bottom: 3rem;
 
 
 
-
-<!-- =============================================
-     FEATURE PAGE - About Us
-     ============================================= -->
-
-    <div class="hero-section-dv rb-fade-in">
-        <div class="container-dv">
-          <div class="content-left">
-            <p style="text-transform: uppercase; color: #06273e; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px;">Future of Infrastructure</p>
-            <h1 class="main-heading">
-                Innovate, Integrate <br> and 
-                <span class="highlight-word">
-                    Elevate.
-                    <svg class="underline-svg" viewBox="0 0 196 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3 16.9998C30.4988 9.39999 91.2223 -6.38075 193 11.0002"/>
-                    </svg>
-                </span>
-            </h1>
-                
-            <div class="description">
-                <p>We're more than just developers – we're your trusted digital partner. From smart design to solid delivery, every detail is handled with care, precision, and a commitment to excellence.</p>
-            </div>
-
-            <!-- New Crypto CTA Button -->
-            <button class="defcon-crypto-cta">
-              <span class="defcon-crypto-text">Get Started</span>
-              <span class="defcon-crypto-icon">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </button>
-          </div>
-
-            
-          
-        
-
-
-            <div class="image-container">
-                <div class="main-image">
-                  <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Happy team celebrating together" />
-                </div>
-                
-                <div class="stats-card">
-                  <div class="stats-number">53%</div>
-                  <div class="stats-text">High Conversions<br>Everything</div>
-                </div>
-            </div>
-        </div>
-      </div>
-
-    <style>
-      * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    }
-
-    .hero-section-dv {
-    position: relative;
-    min-height: 100vh;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 100px;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden; /* Prevents decorative elements from showing outside */
-    line-height: 1.7;
-}
-
-    .container-dv {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    }
-
-    .content-left {
-    flex: 1;
-    max-width: 600px;
-    z-index: 2;
-    }
-
-    .main-heading {
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #06273e;
-    margin-bottom: 30px;
-    letter-spacing: -0.03em;
-    }
-
-    .description {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #4B5563;
-    margin-bottom: 40px;
-    max-width: 480px;
-    }
-
-    .image-container {
-    position: relative;
-    flex: 1;
-    max-width: 600px;
-    height: 400px;
-    }
-
-    /* --- NEW CREATIVE ADDITION: Dot Pattern Overlay --- */
-    .image-container::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: -40px;
-    width: 50%;
-    height: 50%;
-    background-image: radial-gradient(circle at 1.5px 1.5px, #0066ff 1.5px, transparent 0);
-    background-size: 20px 20px;
-    opacity: 0.4;
-    z-index: 1;
-    }
-
-    .main-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-    overflow: hidden;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    z-index: 2; /* Make sure image is on top of dot pattern */
-    }
-
-    .main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    }
-
-
-    /* --- NEW CREATIVE ADDITION: Underline Scribble --- */
-    .highlight-word {
-    position: relative;
-    color: #0091ff;
-    }
-
-    .underline-svg {
-    position: absolute;
-    bottom: -15px;
-    left: -5%;
-    width: 110%;
-    height: 25px;
-    overflow: visible;
-    }
-
-    .underline-svg path {
-    stroke: #0091ff;
-    stroke-width: 5;
-    stroke-linecap: round;
-    fill: none;
-    stroke-dasharray: 300; /* Approximate length of the path */
-    stroke-dashoffset: 300;
-    animation: draw 1.5s ease-out 0.5s forwards;
-    }
-
-    @keyframes draw {
-    to {
-        stroke-dashoffset: 0;
-    }
-    }
-
-
-    @media (max-width: 1024px) {
-    .container-dv {
-        flex-direction: column;
-        text-align: center;
-        gap: 50px;
-    }
-
-    .main-heading {
-        font-size: 3.5rem;
-    }
-
-    .stats-card {
-        position: static;
-        margin-top: 30px;
-        display: inline-block;
-    }
-
-    /* Adjust dot pattern for mobile */
-    .image-container::after {
-        width: 100%;
-        height: 50%;
-        left: 0;
-    }
-    }
-
-    @media (max-width: 768px) {
-    .main-heading {
-        font-size: 2.8rem;
-    }
-
-    .hero-section-dv {
-      padding: 2rem;    }
-
-    .content-left {
-      text-align: left;
-    }
-    }
-
-    </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============================================
-     SERVICES SHOWCASE
-     ============================================= -->
 <body>
-    <!-- DEFCON SHOWCASE SECTION START -->
     <defcon-showcase-section>
         <div class="services-heading">
           <h1>What We Do</h1>
@@ -2481,27 +2588,18 @@ margin-bottom: 3rem;
         </div>
         <defcon-showcase-grid>
 
-            <!-- Card 1: Software Development -->
-            <defcon-showcase-card class="defcon-showcase-reveal" id="marketing">
+            <defcon-showcase-card class="defcon-showcase-reveal" id="software-engineering">
                 <defcon-showcase-content>
-                    <defcon-showcase-heading>Software Development</defcon-showcase-heading>
+                    <defcon-showcase-heading>Software Engineering</defcon-showcase-heading>
                     <defcon-showcase-paragraph>
-                      Unlock your business's full potential with Defcon. We deliver premier web development, custom software, and monetization platforms designed to elevate your brand and scale your operations.
+                      We design, develop, and deploy custom, scalable software and platforms that turn your vision into a high-performance digital reality.
                     </defcon-showcase-paragraph>
 
-                    <button class="animated-buttonv view-details view-details" data-service="development">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
-                        <path
-                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                        ></path>
-                      </svg>
-                      <span class="text">Learn More</span>
-                      <span class="circle"></span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
-                        <path
-                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                        ></path>
-                      </svg>
+                    <button class="learn-more">
+                      <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Learn More</span>
                     </button>
 
                 </defcon-showcase-content>
@@ -2510,28 +2608,18 @@ margin-bottom: 3rem;
                 </defcon-showcase-image-wrapper>
             </defcon-showcase-card>
 
-            <!-- Card 2: IT Infrastructure -->
-            <defcon-showcase-card class="defcon-showcase-reveal">
+            <defcon-showcase-card class="defcon-showcase-reveal" id="it-infrastructure">
                 <defcon-showcase-content>
                     <defcon-showcase-heading>IT Infrastructure</defcon-showcase-heading>
                     <defcon-showcase-paragraph>
-                      Building a memorable brand involves a series of thoughtful steps, from identifying your niche to connecting with your target audience. Let us guide you through the process from start to finish.
+                      We secure your operations with end-to-end cloud solutions, network security, and 24/7 proactive monitoring for maximum stability.
                     </defcon-showcase-paragraph>
                     
-                    <!-- button -->
-                    <button class="animated-buttonv view-details view-details" data-service="digital">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
-                        <path
-                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                        ></path>
-                      </svg>
-                      <span class="text">Learn More</span>
-                      <span class="circle"></span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
-                        <path
-                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                        ></path>
-                      </svg>
+                    <button class="learn-more">
+                      <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Learn More</span>
                     </button>
 
                 </defcon-showcase-content>
@@ -2540,28 +2628,18 @@ margin-bottom: 3rem;
                 </defcon-showcase-image-wrapper>
             </defcon-showcase-card>
 
-            <!-- Card 3: Marketing & Creative Studio -->
             <defcon-showcase-card class="defcon-showcase-reveal" id="marketing">
                 <defcon-showcase-content>
                     <defcon-showcase-heading>Marketing & Creative Studio</defcon-showcase-heading>
                     <defcon-showcase-paragraph>
-                      Unlock your business's full potential with Defcon. We deliver premier web development, custom software, and monetization platforms designed to elevate your brand and scale your operations.
+                      We blend innovative creative design with data-driven strategies to build memorable brands and maximize your market presence.
                     </defcon-showcase-paragraph>
 
-                    <!-- button -->
-                    <button class="animated-buttonv view-details view-details" data-service="marketing">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
-                        <path
-                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                        ></path>
-                      </svg>
-                      <span class="text">Learn More</span>
-                      <span class="circle"></span>
-                      <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
-                        <path
-                          d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                        ></path>
-                      </svg>
+                    <button class="learn-more">
+                      <span class="circle" aria-hidden="true">
+                      <span class="icon arrow"></span>
+                      </span>
+                      <span class="button-text">Learn More</span>
                     </button>
 
                 </defcon-showcase-content>
@@ -2572,24 +2650,25 @@ margin-bottom: 3rem;
         </defcon-showcase-grid>
 
   </defcon-showcase-section>
-    <!-- DEFCON SHOWCASE SECTION END -->
-
-
-
     <style>
       /* --- Google Font Import --- */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+        /* Optimized services-heading */
         .services-heading {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            max-width: auto;
+            max-width: 900px;
+            margin: 0 auto;
             padding-top: 3rem;
+            text-align: center;
         }
 
         .services-heading h1 {
             color: #06273e;
-            font-size: 14px; /* 14px */
+            font-size: 14px;
             font-weight: 700;
             letter-spacing: 0.03em;
             text-transform: uppercase;
@@ -2602,7 +2681,6 @@ margin-bottom: 3rem;
             font-size: 54px;
             font-weight: 700;
             text-transform: none;
-            min-width: 500px;
             letter-spacing: -0.03em;
             line-height: 1.2;
             padding-bottom: 7rem;
@@ -2610,16 +2688,12 @@ margin-bottom: 3rem;
         }
 
         /* --- Main "Showcase" Section Wrapper --- */
-        /* This container holds all elements and sets the overall styling. */
         defcon-showcase-section {
             font-family: 'Inter', sans-serif;
-            background-color: #f6f6f6; /* Light gray background for a soft, premium feel */
-            display: block; /* Ensures custom tag behaves like a div */
-            overflow: hidden; /* Contains animations and rounded corners */
-            padding-top: 80px;
-            padding-bottom: 80px;
-            padding-left: 5%;
-            padding-right: 5%;
+            background-color: #f6f6f6;
+            display: block;
+            overflow: hidden;
+            padding: 80px 5%;
             width: 100%;
             box-sizing: border-box;
         }
@@ -2627,25 +2701,23 @@ margin-bottom: 3rem;
         /* --- Grid Layout for the two main cards --- */
         defcon-showcase-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Single column to stack the cards */
-            gap: 30px; /* Space between the two cards */
+            grid-template-columns: 1fr;
+            gap: 30px;
             max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 100px;
+            margin: 0 auto 100px auto;
         }
 
         /* --- Individual Showcase Card --- */
         defcon-showcase-card {
-            display: flex; /* Creates the two-column layout */
+            display: flex;
             align-items: center;
             background-color: #ffffff;
             border: 1px solid #E5E7EB;
-            border-radius: 24px; /* Large, modern rounded corners */
+            border-radius: 24px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
             position: relative;
             overflow: hidden;
-            opacity: 0; /* Initial state for animation */
+            opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
@@ -2658,59 +2730,76 @@ margin-bottom: 3rem;
         /* --- Staggered animation delay --- */
         defcon-showcase-card:nth-child(1) { transition-delay: 0.1s; }
         defcon-showcase-card:nth-child(2) { transition-delay: 0.2s; }
+        defcon-showcase-card:nth-child(3) { transition-delay: 0.3s; }
 
 
         /* --- Left/Right Columns within the card --- */
         defcon-showcase-content {
             flex-basis: 50%;
             padding: 60px;
+            text-align: left; 
         }
 
         defcon-showcase-image-wrapper {
             flex-basis: 50%;
-            align-self: stretch; /* Makes the image column fill the full height */
+            align-self: stretch;
             position: relative;
             overflow: hidden;
             display: flex;
         }
 
-        /* --- Reversing order for the second card --- */
+        /* --- Reversing order for the cards on Desktop --- */
+        /* Card 1: Text (Right), Image (Left) */
         defcon-showcase-card:nth-child(1) defcon-showcase-content {
-            order: 1; /* Puts text on the right */
+            order: 2;
         }
-        defcon-showcase-card:nth-child(2) defcon-showcase-image-wrapper {
-            order: 2; /* Puts image on the left */
+        defcon-showcase-card:nth-child(1) defcon-showcase-image-wrapper {
+            order: 1;
         }
 
-        defcon-showcase-card:nth-child(3) defcon-showcase-content{
-          order:1
+        /* Card 2: Text (Left), Image (Right) - Standard Order */
+        defcon-showcase-card:nth-child(2) defcon-showcase-content {
+            order: 1;
         }
+        defcon-showcase-card:nth-child(2) defcon-showcase-image-wrapper {
+            order: 2;
+        }
+
+        /* Card 3: Text (Right), Image (Left) */
+        defcon-showcase-card:nth-child(3) defcon-showcase-content{
+          order: 2;
+        }
+        defcon-showcase-card:nth-child(3) defcon-showcase-image-wrapper {
+            order: 1;
+        }
+
 
         /* --- Text Styling --- */
         defcon-showcase-heading {
             display: block;
             font-size: 36px;
-            font-weight: 800;
+            font-weight: 700;
             color: #06273e;
             line-height: 1.25;
-            margin-top: 0;
             margin-bottom: 16px;
         }
 
+        /* --- PARAGRAPH FONT FIXES --- */
         defcon-showcase-paragraph {
             display: block;
-            font-size: 16px;
-            color: #4B5563;
+            font-size: 20px; /* INCREASED FONT SIZE TO 20PX */
+            font-weight: 700; /* INCREASED FONT WEIGHT TO 700 */
+            color: #757575;
             line-height: 1.6;
             margin-bottom: 32px;
-            max-width: 480px; /* Improves readability */
+            max-width: 480px;
         }
 
         /* --- Image Styling --- */
         defcon-showcase-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ensures image covers the area without distortion */
+            object-fit: cover;
             display: block;
             transition: transform 0.5s ease;
         }
@@ -2719,209 +2808,188 @@ margin-bottom: 3rem;
             transform: scale(1.05);
         }
 
-        /* --- Responsive Design for Tablets and Mobile --- */
+        /* =============================================
+           RESPONSIVENESS FIXES
+           ============================================= */
+
+        /* --- Tablet & Medium Devices (Max-width 992px) --- */
         @media (max-width: 992px) {
+            
+            .services-heading-text {
+                font-size: 44px;
+                padding-bottom: 5rem;
+            }
+
             defcon-showcase-card {
-                flex-direction: column; /* Stack columns vertically */
-                text-align: center;
+                flex-direction: column;
             }
             
-            /* Ensure order is correct on mobile */
-            defcon-showcase-card:nth-child(2) defcon-showcase-content {
+            /* Order for all cards on mobile: Image Top (1), Text Bottom (2) */
+            defcon-showcase-card defcon-showcase-content {
                 order: 2;
             }
-            defcon-showcase-card:nth-child(2) defcon-showcase-image-wrapper {
+            defcon-showcase-card defcon-showcase-image-wrapper {
                 order: 1;
             }
 
             defcon-showcase-content {
                 padding: 40px;
+                text-align: left; 
             }
             
             defcon-showcase-image-wrapper {
                 width: 100%;
-                height: 300px; /* Fixed height for images on mobile */
-            }
-
-            defcon-showcase-heading {
-                font-size: 30px;
-                padding: 2rem 0;
-                text-align: left;
-            }
-
-            defcon-showcase-paragraph {
-                margin-left: auto;
-                margin-right: auto;
-                text-align: left;
+                height: 300px;
+                /* Mobile image wrapper should not have radius to allow card's top radius to show */
+                border-radius: 0; 
             }
         }
 
-        /* Small mobile devices */
-        @media (max-width: 480px) {
+        /* --- Mobile Devices (Max-width 600px) --- */
+        @media (max-width: 600px) {
+
+            defcon-showcase-section {
+                padding: 50px 5%;
+            }
+
+            .services-heading-text {
+                font-size: 32px; 
+                padding-bottom: 3rem; 
+            }
+
             defcon-showcase-content {
                 padding: 30px 20px;
             }
             
             defcon-showcase-heading {
                 font-size: 26px;
+                margin-bottom: 12px;
+            }
+
+            defcon-showcase-paragraph {
+                font-size: 18px; /* Slightly reduced for better fit on small phones */
+                margin-bottom: 20px;
             }
             
             defcon-showcase-image-wrapper {
-                height: 250px;
+                height: 200px;
             }
         }
 
 
-        /* BUTTONS */
-        /* From Uiverse.io by ryota1231 */ 
-            .animated-buttonv {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            padding: 14px 36px;
-            
-            border: none;
-            font-size: 16px;
-            background-color: #0091ff;
-            border-radius: 100px;
-            font-weight: 500;
-            color: #ffffff;
-            box-shadow: 0 0 0 2px #fff;
-            cursor: pointer;
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            }
+        /* --- Button Styles --- */
+        button {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        outline: none;
+        border: 0;
+        vertical-align: middle;
+        text-decoration: none;
+        background: transparent;
+        padding: 0;
+        font-size: inherit;
+        font-family: inherit;
+        }
 
-            .animated-buttonv svg {
-            position: absolute;
-            width: 24px;
-            fill: #ffffff;
-            z-index: 9;
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            }
+        button.learn-more {
+        width: 12rem;
+        height: auto;
+        }
 
-            .animated-buttonv .arr-1 {
-            right: 16px;
-            }
+        button.learn-more .circle {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: relative;
+        display: block;
+        margin: 0;
+        width: 3rem;
+        height: 3rem;
+        background: #282936;
+        border-radius: 1.625rem;
+        }
 
-            .animated-buttonv .arr-2 {
-            left: -25%;
-            }
+        button.learn-more .circle .icon {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background: #fff;
+        }
 
-            .animated-buttonv .circle {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 20px;
-            height: 20px;
-            background-color: #06273e;
-            border-radius: 50%;
-            opacity: 0;
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            }
+        button.learn-more .circle .icon.arrow {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        left: 0.625rem;
+        width: 1.125rem;
+        height: 0.125rem;
+        background: none;
+        }
 
-            .animated-buttonv .text {
-            position: relative;
-            z-index: 1;
-            transform: translateX(-12px);
-            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-            }
+        button.learn-more .circle .icon.arrow::before {
+        position: absolute;
+        content: "";
+        top: -0.29rem;
+        right: 0.0625rem;
+        width: 0.625rem;
+        height: 0.625rem;
+        border-top: 0.125rem solid #fff;
+        border-right: 0.125rem solid #fff;
+        transform: rotate(45deg);
+        }
 
-            .animated-buttonv:hover {
-            box-shadow: 0 0 0 12px transparent;
-            
-            color: #ffffff;
-            border-radius: 6px;
-            }
+        button.learn-more .button-text {
+        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 0.75rem 0;
+        margin: 0 0 0 1.85rem;
+        color: #282936;
+        font-weight: 700;
+        line-height: 1.6;
+        text-align: center;
+        text-transform: uppercase;
+        }
 
-            .animated-buttonv:hover .arr-1 {
-            right: -25%;
-            }
+        button:hover .circle {
+        width: 100%;
+        }
 
-            .animated-buttonv:hover .arr-2 {
-            left: 16px;
-            }
+        button:hover .circle .icon.arrow {
+        background: #fff;
+        transform: translate(1rem, 0);
+        }
 
-            .animated-buttonv:hover .text {
-            transform: translateX(12px);
-            }
-
-            .animated-buttonv:hover svg {
-            fill: white;
-            }
-
-            .animated-buttonv:active {
-            scale: 0.95;
-            box-shadow: 0 0 0 4px #06273e;
-            }
-
-            .animated-buttonv:hover .circle {
-            width: 220px;
-            height: 220px;
-            opacity: 1;
-            }
-
-            .service-row-right {
-                        padding: 2rem;
-                        border-radius: 12px;
-                    }
-            .service-row-left {
-                        padding: 2rem;
-                        border-radius: 12px;
-                        }
+        button:hover .button-text {
+        color: #fff;
+        }
     </style>
 
     <script>
-      // This script provides a simple and performant scroll-reveal animation.
     document.addEventListener('DOMContentLoaded', function() {
 
-        // Select all elements that should be animated when they appear.
         const revealElements = document.querySelectorAll('.defcon-showcase-reveal');
 
-        // Set up the Intersection Observer.
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // If the element is in the viewport...
                 if (entry.isIntersecting) {
-                    // ...add the 'is-visible' class to trigger the CSS transition.
                     entry.target.classList.add('defcon-showcase-is-visible');
-                    // Stop observing this element to prevent re-animation.
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1 // Trigger when 10% of the element is visible.
+            threshold: 0.1
         });
 
-        // Start observing each target element.
         revealElements.forEach(element => {
             observer.observe(element);
         });
-      
-            // Reveal animations on scroll
-            const serviceRows = document.querySelectorAll('.service-row');
-            
-            function checkScroll() {
-                serviceRows.forEach(row => {
-                    const rowTop = row.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-                    
-                    if (rowTop < windowHeight * 0.25) {
-                        row.classList.add('visible');
-                    }
-                });
-            }
-            
-            // Initial check
-            checkScroll();
-            
-            // Check on scroll
-            window.addEventListener('scroll', checkScroll);
+        
         });
     </script>
-
+</body>
 
 
 
@@ -3325,7 +3393,7 @@ margin-bottom: 3rem;
             <div class="defcon-video-frame defcon-frame-2"></div>
             <div class="defcon-video-frame defcon-frame-3"></div>
             <video id="devVideo" style="width:100%;height:auto;display:block;"  autoplay muted loop playsinline>
-              <source src="videos/Recording 2025-10-22 162029.mp4" type="video/mp4">
+              <source src="https://www.pexels.com/download/video/33644289/" type="video/mp4">
               Your browser does not support the video tag.
             </video>
           </div>
@@ -3991,6 +4059,7 @@ margin-bottom: 3rem;
                     <img src="thumbnails/pexels-dominick-davis.jpg" alt="Mobile App Development" class="defcon-grid-item-image">
                 </div>
 
+                
                 <div class="defcon-grid-item defcon-item-5-text">
                     Leverage AI & Data Analytics to drive informed decisions.
                 </div>
@@ -4278,7 +4347,6 @@ margin-bottom: 3rem;
     line-height: 1.6;
     font-weight: 400;
     font-size: 1rem;
-    opacity: 1;
   }
 
   .defcon-accordion-item.active .defcon-accordion-content {
@@ -4286,7 +4354,6 @@ margin-bottom: 3rem;
   }
 
   .defcon-accordion-item.active .defcon-accordion-content-inner {
-    opacity: 1;
     transform: translateY(0);
   }
 
@@ -5149,7 +5216,7 @@ margin-bottom: 3rem;
             <li><a href="webinars.html">Webinars</a></li>
             <li><a href="youtube-playlists.html">YouTube Playlists</a></li>
             <li><a href="recommendations.html">Recommendations</a></li>
-            <li><a href="guides-and-tutorials.html">Tutorials</a></li>
+            <li><a href="guides-and-tutorials.html">Training & Certification</a></li>
           </ul>
         </div>
 
@@ -5169,14 +5236,14 @@ margin-bottom: 3rem;
           <div class="footer-column">
             <h3>Developers</h3>
             <ul>
-              <li><a href="#">C#</a></li>
+              <li><a href="#">API Documentation</a></li>
               <li><a href="#">Github</a></li>
-              <li><a href="#">Objective C</a></li>
-              <li><a href="#">Android</a></li>
-              <li><a href="#">AI Agents</a></li>
-              <li><a href="#">Cryptography</a></li>
-              <li><a href="#">Markets Trends</a></li>
-              <li><a href="#">C++</a></li>
+              <li><a href="#">SDKs & Libraries</a></li>
+              <li><a href="#">Developer Guides</a></li>
+              <li><a href="#">Code of Conduct</a></li>
+              <li><a href="#">Support</a></li>
+              <li><a href="#">Community</a></li>
+              <li><a href="#">Open Source</a></li>
             
               
             </ul>
@@ -5187,26 +5254,27 @@ margin-bottom: 3rem;
         <div class="footer-column">
           <h3>Help</h3>
           <ul>
-            <li><a href="customer-care-support.html">Support</a></li>
+            <li><a href="customer-care-support.html">Contact Support</a></li>
             <li><a href="plan-comparison.html">Plan Comparison</a></li>
             <li><a href="glossary.html">Glossary</a></li>
             <li><a href="faqs.html">FAQs</a></li>
-            <li><a href="community-forum.html">Community</a></li>
+            <li><a href="community-forum.html">Account & Billing</a></li>
             <li><a href="feedback.html">Feedback</a></li>
+            <li><a href="feedback.html">knowledge Base</a></li>
           </ul>
         </div>
 
         <!-- Updates Column -->
           <div class="footer-column">
-            <h3>Businesses</h3>
+            <h3>Business</h3>
             <ul>
               <li><a href="company-news.html">Partnership</a></li>
-              <li><a href="#">Enterprise</a></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Youtube</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Github</a></li>
+              <li><a href="#">Industries</a></li>
+              <li><a href="#">Investment & Ventures</a></li>
+              <li><a href="#">Corporate Responsibility</a></li>
+              <li><a href="#">Global Network</a></li>
+              <li><a href="#">Market Insights</a></li>
+              <li><a href="#">Startup Collaboration</a></li>
             </ul>
           </div>
 
