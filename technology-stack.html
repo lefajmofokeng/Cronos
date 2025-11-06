@@ -3089,3 +3089,707 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================================
+     *** FOOTER ***
+     ============================================= -->
+<style>
+  /* =============================================
+     *** FOOTER STYLES ***
+     ============================================= */
+  
+  /* Main container for the footer */
+  .pc-footer-container {
+    font-family: 'Inter', sans-serif;
+    background-color: #07071e;
+    color: #7b849b;
+    width: 100%;
+    padding: 5rem 0;
+    box-sizing: border-box;
+  }
+
+  .pc-footer-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    
+  }
+
+  /* Top section: logo, line, and icons */
+  .pc-footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .image-logo {
+    height: 45px;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .pc-footer-logo span {
+    font-size: 25px;
+    font-weight: 600;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+    color: white;
+  }
+
+  /* The decorative line between logo and icons */
+  .pc-footer-line {
+    flex-grow: 1;
+    height: 1.2px;
+    background-color: #303c55;
+    min-width: 50px;
+    border: none;
+    margin: 0;
+  }
+
+  /* Social Icons */ 
+  .social-icons-container {
+    display: flex;
+    column-gap: 18px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-icon {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    font-size: 12px;
+    background-color: #a4aaae38;
+    border-radius: 50%;
+    transition-property: outline-offset, outline-color, background-color;
+    transition-duration: 0.25s;
+    color: #fff;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon:hover {
+    outline-offset: 4px;
+    color: #f4f4f4;
+    background-color: #cdcdcd7d;
+  }
+
+  .social-icon img {
+    display: block;
+    width: 19px;
+    height: 19px;
+  }
+
+  .social-icon svg {
+    margin: auto;
+    width: 19px;
+  }
+
+  .social-icon:hover svg,
+  .social-icon:hover img {
+    animation: shake 0.25s;
+  }
+
+  @keyframes shake {
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-15deg);
+    }
+    30% {
+      transform: rotate(15deg);
+    }
+    40% {
+      transform: rotate(-15deg);
+    }
+    50%, 100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Footer content with columns */
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-top: 3.5rem;
+    width: 100%;
+  }
+
+  .footer-column h3 {
+    color: #858992;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: none;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-column h3::after {
+    content: '+';
+    font-size: 18px;
+    display: none;
+  }
+
+  .footer-column.active h3::after {
+    content: '‒';
+    font-size: 18px;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 12px;
+  }
+
+  .footer-column ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: fit-content;
+  }
+
+  .footer-column ul li a:hover {
+    color: #62b8fa;
+  }
+
+  /* Middle content section with paragraphs */
+  .pc-footer-content {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #a0a9be;
+  }
+
+  .pc-footer-content p {
+    margin-bottom: 1rem;
+  }
+
+  .footer-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-left {
+    flex-basis: 100%;
+  }
+
+  /* Bottom section with copyright */
+.pc-footer-bottom {
+    margin-top: 15px;
+    padding-top: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: flex-end; /* This is the key change */
+    gap: 1.5rem;
+    font-size: 0.826rem;
+    font-weight: 400;
+    color: #a0a9be;
+    flex-wrap: wrap;
+}
+
+.pc-footer-bottom span {
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pc-footer-bottom {
+        justify-content: center; /* Center on mobile */
+        text-align: center;
+        padding: 1rem 0;
+    }
+}
+
+  /* =============================================
+     *** RESPONSIVE STYLES ***
+     ============================================= */
+  @media (max-width: 1024px) {
+    .footer-content {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .pc-footer-wrapper {
+      padding: 0 20px;
+    }
+
+    .footer-columns {
+      flex-direction: column;
+    }
+
+    .footer-left, .footer-right {
+      flex-basis: 100%;
+    }
+
+    .footer-right {
+      text-align: left;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pc-footer-container {
+      padding: 3rem 0;
+    }
+
+    .logo-ft {
+      font-size: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .pc-footer-top {
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .pc-footer-line {
+      display: none;
+    }
+    
+    .pc-footer-bottom .footer-kv {
+      justify-content: center;
+      text-align: center; 
+      padding: 1rem 0;
+    }
+    
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-top: 2rem;
+    }
+    
+    .footer-column {
+      border-bottom: 1px solid #303c55;
+      padding: 15px 0;
+    }
+
+    .footer-column:last-child {
+      border-bottom: none;
+    }
+    
+    .footer-column h3 {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .footer-column h3::after {
+      display: block;
+    }
+    
+    .footer-column ul {
+      display: none;
+      margin-top: 10px;
+      padding-left: 10px;
+    }
+    
+    .footer-column.active ul {
+      display: block;
+    }
+    
+    .footer-columns {
+      flex-direction: column;
+    }
+    
+    .footer-left {
+      flex-basis: 100%;
+      border-top: 1px solid #303c55;
+      padding-top: 2rem;
+    }
+    
+    .footer-right {
+      text-align: left;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+
+    .social-icons-container {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pc-footer-container {
+      padding: 2rem 0;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .social-icons-container {
+      column-gap: 12px;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .social-icon img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-right {
+      gap: 10px;
+    }
+
+    .footer-image {
+      height: 40px;
+    }
+
+    .defcon-qr-code {
+      height: 88px;
+      padding: 8px;
+    }
+
+    .defcon-qr-image {
+      width: 70px;
+      height: 70px;
+    }
+
+    .defcon-footer-qr-section {
+      margin-top: 40px;
+    }
+  }
+
+  /* Add top padding for nested columns on desktop */
+@media (min-width: 769px) {
+    .footer-content > div > .footer-column:not(:first-child) {
+        padding-top: 2rem; /* Adjust this value as needed */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .footer-content > div > .footer-column {
+        border-bottom: 1px solid #303c55;
+        padding: 15px 0;
+    }
+    
+    .footer-content > div > .footer-column:last-child {
+        border-bottom: 1px solid #303c55;
+    }
+}
+</style>
+
+<div style="background-color: #080d1b; margin: 0; padding: 2rem 0;">
+  <primecapital-footer class="pc-footer-container">
+    <div class="pc-footer-wrapper">
+      <!-- *** TOP SECTION: LOGO AND SOCIAL ICONS *** -->
+      <div class="pc-footer-top">
+        <div class="pc-footer-logo">
+          <a href="index.html">
+            <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" class="image-logo" alt="Logo">
+          </a>
+        </div>
+
+        <hr class="pc-footer-line">
+
+        <div class="social-icons-container">
+                <a href="https://x.com/defcon.com" class="social-icons twitter" aria-label="Twitter">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                      </svg>
+                </a>
+
+                <a href="https://facebook.com/defcon" class="social-icons" aria-label="Twitter">
+                    <i class="fab fa-facebook"></i>
+                </a>
+
+                <a href="https://youtube.com/defconplaylists" class="social-icons" aria-label="Twitter">
+                    <i class="fab fa-youtube"></i>
+                </a>
+
+                <a href="https://linkedin.com/in/defcon" class="social-icons linkedin" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="htts://github.com/thisislefa" class="social-icons github" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+      </div>
+
+      <!-- *** MIDDLE CONTENT SECTION *** -->
+      <div class="pc-footer-content">
+        <div class="footer-columns">
+          <div class="footer-left">
+            <p>
+              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
+            </p>
+
+            <p>
+              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
+      <div class="footer-content">
+        <!-- Resources Column -->
+        <div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="page.html">Blog</a></li>
+            <li><a href="page.html">Learn</a></li>
+            <li><a href="page.html">eBooks</a></li>
+            <li><a href="page.html">Podcasts</a></li>
+            <li><a href="page.html">Webinars</a></li>
+            <li><a href="page.html">YouTube Playlists</a></li>
+            <li><a href="page.html">Recommendations</a></li>
+            <li><a href="page.html">Training & Certification</a></li>
+          </ul>
+        </div>
+
+        </div>
+
+        <div>
+          <!-- Services Column -->
+          <div class="footer-column">
+            <h3>Solutions</h3>
+            <ul>
+              <li><a href="page.html">Software Development</a></li>
+              <li><a href="page.html">IT Infrastructure</a></li>
+              <li><a href="page.html">Communicative Media</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Developers</h3>
+            <ul>
+              <li><a href="page.html">API Docs</a></li>
+              <li><a href="page.html">Github</a></li>
+              <li><a href="page.html">SDKs & Libraries</a></li>
+              <li><a href="page.html">Developer Guides</a></li>
+              <li><a href="page.html">Code of Conduct</a></li>
+              <li><a href="page.html">Support</a></li>
+              <li><a href="page.html">Community</a></li>
+              <li><a href="page.html">Open Source</a></li>
+            
+              
+            </ul>
+          </div>
+        </div>
+
+        <!-- Help Column -->
+        <div class="footer-column">
+          <h3>Help</h3>
+          <ul>
+            <li><a href="page.html">Contact Support</a></li>
+            <li><a href="page.html">Plan Comparison</a></li>
+            <li><a href="page.html">Glossary</a></li>
+            <li><a href="page.html">FAQs</a></li>
+            <li><a href="page.html">Account & Billing</a></li>
+            <li><a href="page.html">Feedback</a></li>
+            <li><a href="page.html">knowledge Base</a></li>
+          </ul>
+        </div>
+
+        <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Business</h3>
+            <ul>
+              <li><a href="page.html">Partnership</a></li>
+              <li><a href="page.html">Industries</a></li>
+              <li><a href="page.html">Investment</a></li>
+              <li><a href="page.html">Corporate Responsibility</a></li>
+              <li><a href="page.html">Global Network</a></li>
+              <li><a href="page.html">Market Insights</a></li>
+              <li><a href="page.html">Startup Collaboration</a></li>
+            </ul>
+          </div>
+
+        <!-- Company Column -->
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="page.html">About Us</a></li>
+            <li><a href="page.html">Roadmap</a></li>
+            <li><a href="page.html">Innovations</a></li>
+            <li><a href="page.html">Careers</a></li>
+            <li><a href="page.html">Legal</a></li>
+            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="affiliates.html">Affiliate</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="page.html">Capital</a></li>
+            <li><a href="page.html">Verify</a></li>
+          </ul>
+        </div>
+
+        
+        <div>
+          <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Updates</h3>
+            <ul>
+              <li><a href="#">X</a></li>
+              <li><a href="page.html">Company News</a></li>
+              <li><a href="page.html">Product Updates</a></li>
+              <li><a href="page.html">Events</a></li>
+              <li><a href="page.html">Facebook</a></li>
+              <li><a href="page.html">Youtube</a></li>
+              <li><a href="page.html">LinkedIn</a></li>
+              <li><a href="page.html">Github</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="pc-footer-line">
+      
+      <!-- *** COPYRIGHT SECTION *** -->
+      <div class="pc-footer-bottom">
+
+        <style>
+          .footer-kv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            line-height: 0.9;
+            gap: 12px;
+          }
+          .footer-kv a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0;
+            font-weight: 500;
+          }
+          .footer-kv a + a {
+            padding-left: 12px;
+            border-left: 1px solid #7b849b;
+            margin-left: 8px;
+          }
+
+          @media (max-width: 768px) {
+            .footer-kv {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              gap: 6px;
+              padding: 8px 0;
+              order: 1;
+            }
+            .footer-kv a + a {
+              border-left: none;
+              padding-left: 0;
+              margin-left: 0;
+            }
+          }
+        </style>
+
+        <div class="footer-kv">
+          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="page.html" aria-label="Status">Status</a>
+        </div>
+
+        <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
+      </div>
+    </div>
+  </primecapital-footer>
+</div>
+
+<script>
+  // Mobile accordion functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const footerColumns = document.querySelectorAll('.footer-column');
+    
+    footerColumns.forEach(column => {
+      const header = column.querySelector('h3');
+      if (header) {
+        header.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            column.classList.toggle('active');
+          }
+        });
+      }
+    });
+
+    // Close accordion on resize to desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        footerColumns.forEach(column => {
+          column.classList.remove('active');
+        });
+      }
+    });
+  });
+</script>
