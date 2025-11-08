@@ -1,71 +1,1522 @@
+
+
+<style>
+        /*
+        =============================================
+        0. ROOT & FONT STYLES
+        =============================================
+        */
+        :root {
+            /* Palette */
+            --color-header-bg: #080d1b;   /* Very Dark Blue/Indigo */
+            --color-accent: #0091ff;      /* Bright Blue Accent */
+            --color-text-light: #fff;
+            --color-background-dark: #000;
+            --color-off-white: #f4f4f4;
+            --color-text-muted: #A0A9BE;  /* Lighter blue for subtle text */
+            --color-menu-bg: #080d1b;     /* Slightly darker dark blue for mega menu backdrop */
+            --color-menu-border: rgba(0, 145, 255, 0.2); /* Subtle blue border/divider */
+            --color-qr-dropdown-bg: #1c1a3b; /* Darker background for QR dropdown */
+            
+            /* Sizing */
+            --header-height: 55px;
+            --content-max-width-fg: 1500px;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding-top: var(--header-height); /* Space for fixed header */
+            background-color: var(--color-background-dark);
+            color: var(--color-text-light);
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /*
+        =============================================
+        1. HEADER WRAPPER (FIXED & DARK BLUE)
+        =============================================
+        */
+        .header-wrapper {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            z-index: 1000;
+            background-color: var(--color-header-bg);
+            /* Removed box-shadow as per request, keeping subtle bottom line */
+        }
+
+        .custom-header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+        }
+
+        .custom-header-container {
+            max-width: var(--content-max-width-fg);
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .custom-logo-text img{
+            font-size: 28px;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--color-text-light);
+            transition: color 0.3s ease;
+            height: 23px;
+            vertical-align: middle;
+        }
+        
+        .custom-logo-text:hover {
+             color: var(--color-accent);
+        }
+
+        /* Desktop Navigation - MODIFIED for Left Alignment of Links & Right Alignment of Button */
+        .custom-main-nav {
+            flex-grow: 1; /* Allows nav to take up remaining space */
+            display: flex;
+            justify-content: space-between; /* Pushes the link group (left) and button (right) apart */
+            align-items: center;
+        }
+
+        .custom-nav-list {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            align-items: center;
+        }
+
+        .custom-nav-list li {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        .custom-nav-link {
+            text-decoration: none;
+            color: var(--color-text-light);
+            font-weight: 500;
+            padding: 10px 0;
+            display: flex;
+            font-size: 14px;
+            align-items: center;
+        }
+
+        .custom-nav-link:hover {
+            color: #a0a9be;
+        }
+        
+        /* NEW - Icon for desktop links like Pricing/Projects */
+        .desktop-link-icon {
+            width: 14px;
+            height: 14px;
+            margin-left: 6px;
+            color: var(--color-text-muted);
+            stroke-width: 2;
+        }
+        
+        .custom-nav-link:hover .desktop-link-icon {
+            color: #a0a9be; /* Match the link hover color */
+        }
+        
+        /* Action Buttons Wrapper - NEW */
+        .header-action-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Primary Action Button (Contact Us) */
+        .header-action-btn {
+            background: #0077cc;
+            color: var(--color-text-light);
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 20px; /* Space between the last nav item and this button */
+            transition: background-color 0.2s ease;
+        }
+
+        .header-action-btn a {
+            color: inherit;
+        }
+
+        .header-action-btn:hover {
+            background-color: #0081ff;
+        }
+        
+        /* Secondary Action Button (Get Started) - NEW */
+        .header-secondary-btn {
+            background-color: #62b8fa32; /* Light blue background */
+            color: #95d1ff;
+            border: none;
+            padding: 9px 15px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            margin-left: 10px; /* Space between "Contact Us" and "Get Started" */
+            transition: background-color 0.2s ease;
+        }
+
+        .header-secondary-btn a {
+            color: inherit;
+        }
+
+        .header-secondary-btn:hover {
+            background-color: #4a4b6b; /* Slightly lighter on hover */
+        }
+
+        /* QR Code Dropdown Trigger - NEW */
+        .qr-dropdown-trigger {
+            position: relative;
+            margin-left: 10px; /* Space from Get Started button */
+            width: 40px;
+            height: 40px;
+            border-radius: 50%; /* Circular button */
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            color: var(--color-text-light);
+            font-size: 18px; /* Icon size */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+        }
+        
+        .qr-dropdown-trigger:hover {
+            background-color: #2b294a;
+        }
+
+        /* QR Code Dropdown Content - NEW */
+        .qr-dropdown-content {
+            position: absolute;
+            top: calc(100% + 10px); /* Position below the header, with a gap */
+            right: 0; /* Align to the right of the trigger button */
+            background-color: #080d1b;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 130px; /* Fixed width for the dropdown */
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+            z-index: 100; /* Ensure it's above other content */
+        }
+
+        .qr-dropdown-trigger svg {
+            content: '';
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            }
+
+        .qr-dropdown-content.show {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .qr-dropdown-content img {
+            width: 100px; /* Size of the QR code image */
+            height: 100px;
+            background-color: #fff; /* White background for QR code */
+            padding: 10px; /* Padding around QR code to make it look embedded */
+            border-radius: 8px; /* Slightly rounded corners for the QR code */
+            margin-bottom: 15px;
+        }
+
+        .qr-dropdown-content p {
+            color: var(--color-text-light);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: center;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        /*
+        =============================================
+        2. MEGA MENU CONTAINER (Look-Alike Styles)
+        =============================================
+        */
+        .mega-menu-container {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: var(--color-menu-bg);
+            visibility: hidden;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: visibility 0s, opacity 0s, transform 0s;
+        }
+
+        .header-wrapper.mega-menu-open .mega-menu-container {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mega-menu-panel {
+            display: none;
+            max-width: var(--content-max-width-fg);
+            width: 100%; /* Ensure it spans the max width */
+            margin: 0 auto;
+            padding: 20px 40px 40px 40px; /* Reduced top padding */
+        }
+
+        .mega-menu-panel.active {
+            display: block;
+        }
+        
+        /* Consistent 3-Column Grid for BOTH Menus - MODIFIED for left-alignment */
+        .megamenu-3-column-grid {
+            display: grid;
+            /* Use auto-fit with a min-max for column width, which helps alignment. 
+               Setting fixed columns here to ensure they stop at a reasonable width 
+               to look like the image, and the entire block is left-aligned within the 1200px container.
+            */
+            grid-template-columns: repeat(3, 250px); /* Set fixed width columns to control alignment */
+            gap: 40px;
+            justify-content: start; /* Aligns the grid itself to the start (left) */
+            margin-left: 8.45rem;
+        }
+        
+        .menu-group-card {
+            padding: 0;
+            padding-top: 10px;
+            padding-bottom: 2.5rem;
+            border-radius: 8px; 
+        }
+
+        .menu-group-card h3 {
+            font-size: 13px; /* Slightly larger heading for better hierarchy */
+            font-weight: 600;
+            margin-bottom: 25px; /* More space below heading */
+            text-transform: none;
+            letter-spacing: 0.1px;
+            cursor: default; /* Not a clickable element */
+            
+            /* MODIFIED to contain icon, heading, and tagline */
+            display: flex; 
+            align-items: center; /* Vertically center icon with the text block */
+            color: var(--color-text-muted);
+        }
+        
+        /* NEW - Icon for mega menu group headings */
+        .menu-group-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px; /* Space between icon and text */
+            color: var(--color-accent); /* Use the accent color */
+            stroke-width: 2;
+            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
+            flex-shrink: 0; 
+        }
+        
+        /* NEW - Image Icon for mega menu group headings - MODIFIED TO SUPPORT ALIGNMENT */
+        .menu-group-img-icon {
+            width: auto;
+            height: 40px;
+            margin-right: 8px; /* Space between icon and text */
+            /* Ensure the icon's container doesn't stretch and it respects the h3's align-items: center */
+            flex-shrink: 0;
+            backface-visibility: visible
+        }
+        
+        /* NEW - Container for Heading Text and Tagline */
+        .menu-group-text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Vertically center the text block if icon is taller */
+        }
+
+        /* NEW - Tagline Style - ONLY VISIBLE ON DESKTOP */
+        .menu-group-tagline {
+            font-size: 12px; /* Smaller font for tagline */
+            font-weight: 500; /* Lighter weight */
+            color: var(--color-text-muted); /* Subtler color */
+            margin-top: 5px; /* Small space below the main heading */
+            display: block; /* Ensure it takes up its own line */
+        }
+        
+        .mega-menu-group-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Link Items inside Mega Menu - MODIFIED: Reduced margin for tighter list */
+        .mega-menu-group-list a {
+            display: block;
+            border-radius: 0; /* Remove border radius */
+            transition: color 0s;
+            position: relative;
+            margin: 7px 0; /* Tighter vertical spacing */
+            padding: 2px 0; /* Minimal padding */
+            letter-spacing: -0.03em;
+            font-size: 19px;
+            font-weight: 600; /* Regular weight for links */
+            color: var(--color-text-light); /* Make column headers light/white */
+        }
+
+        /* Link Title - MODIFIED: Re-use the link itself for the title, making it a single line */
+        .mega-menu-link-title {
+            /* This class is now redundant but keeping it for structure if needed later */
+            font-size: inherit; 
+            font-weight: inherit;
+            color: inherit; 
+            margin-bottom: 0;
+        }
+        
+        .mega-menu-group-list a:hover {
+            color: #9cd4ff; /* White on hover */
+            background-color: transparent; /* No background change on hover */
+        }
+        
+        /* REMOVED: .mega-menu-link-desc is removed as requested */
+        .mega-menu-link-desc {
+            display: none; /* Hide descriptions */
+        }
+        
+        /*
+        =============================================
+        4. MOBILE AND RESPONSIVENESS (Keeping original structure but with removed descriptions)
+        =============================================
+        */
+        
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
+        }
+
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            padding: 0;
+            position: relative;
+            z-index: 1010;
+        }
+
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--color-text-light);
+            margin: 6px 0;
+            transition: all 0.3s ease;
+        }
+
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        .header-wrapper.mobile-menu-open .mobile-toggle span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Mobile Overrides */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .custom-header-container {
+                padding: 0 20px;
+            }
+            
+            .mobile-toggle {
+                display: block; 
+            }
+
+            .custom-main-nav {
+                position: fixed;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                height: calc(100vh - var(--header-height));
+                background-color: var(--color-header-bg);
+                overflow-y: auto;
+                padding: 20px 0;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                display: block; 
+                z-index: 900;
+            }
+
+            .header-wrapper.mobile-menu-open .custom-main-nav {
+                transform: translateX(0);
+            }
+
+            .custom-nav-list {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0 20px;
+                margin-left: 0; /* Reset desktop margin */
+            }
+
+            .custom-nav-list li {
+                margin: 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            }
+
+            .custom-nav-link {
+                padding: 15px 0;
+                font-size: 1.1rem;
+                width: 100%;
+                display: flex; /* Use flex to position icon */
+                justify-content: space-between; /* Pushes text left, icon right */
+                align-items: center;
+            }
+            
+            /* NEW - Hide desktop-only icons on mobile */
+            .desktop-link-icon {
+                display: none;
+            }
+            
+            /* Hide the tagline on mobile */
+            .menu-group-tagline {
+                display: none; 
+            }
+            
+            /* Show and style mobile icon */
+            .mobile-dropdown-icon {
+                display: inline-block; /* Show on mobile */
+            }
+            
+            /* Rotate icon when the parent menu item is active */
+            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
+                transform: rotate(180deg);
+            }
+            
+            /* Remove underline effect on mobile */
+            .custom-nav-link::after {
+                display: none;
+            }
+
+            
+            /* Mobile Action Buttons */
+            .header-action-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0 20px;
+                box-sizing: border-box; /* Include padding in width */
+                margin-top: 20px; /* Space from last nav item */
+            }
+
+            .header-action-btn,
+            .header-secondary-btn {
+                width: 100%;
+                margin: 10px 0 0 0; /* Stack vertically with space */
+                padding: 15px 20px;
+                text-align: center;
+            }
+
+            .qr-dropdown-trigger {
+                width: 100%;
+                border-radius: 50px; /* Make it a full button shape */
+                margin: 10px 0 0 0;
+                padding: 15px 20px;
+                height: auto; /* Adjust height based on padding */
+                box-sizing: border-box;
+                justify-content: center; /* Center content horizontally */
+                display: none; /* HIDE QR TRIGGER ON MOBILE */
+            }
+
+            .qr-dropdown-trigger i {
+                margin-right: 10px; /* Space between icon and text if we add it */
+            }
+
+            /* Mobile QR Dropdown */
+            .qr-dropdown-content {
+                position: static; /* Remove absolute positioning */
+                width: 100%;
+                margin-top: 15px; /* Space from trigger */
+                padding: 15px;
+                box-shadow: none;
+                border-top: 1px solid rgba(0, 145, 255, 0.1);
+                border-radius: 0;
+                background-color: #0d0d29; /* Match mega menu background */
+                display: none; /* HIDE QR CONTENT ON MOBILE */
+            }
+            
+            .qr-dropdown-content img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .qr-dropdown-content.show {
+                transform: none; /* No transform on mobile */
+            }
+
+            /* Mobile Mega Menu */
+            .mega-menu-container {
+                position: static;
+                visibility: visible;
+                opacity: 1;
+                transform: none;
+                transition: max-height 0.3s ease;
+                overflow: hidden;
+                max-height: 0;
+                background-color: var(--color-menu-bg);
+                border-top: none;
+            }
+
+            .mega-menu-link-title {
+              padding: 0;
+              border-bottom: none;
+            }
+            
+            .custom-nav-item--has-megamenu.active .mega-menu-container {
+                max-height: 2000px;
+                padding: 0;
+            }
+            
+            .mega-menu-panel {
+                padding: 15px 0; /* Align content with parent link */
+                display: block; /* Make panel visible by default inside mobile menu */
+            }
+
+            .megamenu-3-column-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding-left: 0; /* Reset desktop padding */
+            }
+            
+            .menu-group-card {
+                padding: 0;
+            }
+            
+            .menu-group-card h3 {
+                margin-top: 23px;
+                /* Reset mobile h3 layout to default */
+                flex-direction: row; 
+                align-items: center;
+                display: flex;
+            }
+            
+            .mega-menu-group-list a {
+                margin: 10px 0;
+            }
+
+            .mega-menu-group-list li {
+                
+                border: none;
+                
+            }
+            
+            .mega-menu-group-list a:hover {
+                background-color: rgba(0, 145, 255, 0.1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-wrapper">
+    
+    <header class="custom-header">
+        <div class="custom-header-container">
+            
+            <div class="custom-logo-container">
+                <a href="index.html" class="custom-logo-link custom-logo-text">
+                    <img src="thumbnails/hyperion logo (2).png" alt="Defcon Logo">
+                </a>
+            </div>
+
+            <nav class="custom-main-nav">
+                <ul class="custom-nav-list">
+                    <li>
+                        <a href="pricing.html" class="custom-nav-link">Pricing
+                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="page.html" class="custom-nav-link">Projects
+                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="page.html" class="custom-nav-link" data-megamenu-trigger="services">
+                            Solutions
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-panel" data-megamenu-panel="services">
+                                <div class="megamenu-3-column-grid">
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Software Development
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Web Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Mobile Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">API & Microservices Architecture</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Database Engineering & Management</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            IT Infrastructure
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">IT Consulting</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Cloud Computing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Data Center & Storage</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Smart Technology</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Marketing & Creative Studio
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Digital Marketing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Graphic Design</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Content Management</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Multimedia Production</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="custom-nav-item--has-megamenu">
+                        <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
+                            Discover
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="mega-menu-container">
+                            <div class="mega-menu-panel" data-megamenu-panel="discover">
+                                <div class="megamenu-3-column-grid">
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Defcon
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">About Us</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Product News</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Innovations</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="careers.html">
+                                                    <span class="mega-menu-link-title">Careers</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="partners.html">
+                                                    <span class="mega-menu-link-title">Partners</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="licenses-and-registrations.html">
+                                                    <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Resources
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Blog</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">eBooks</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Podcasts</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Webinars</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Recommendations</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="menu-group-card">
+                                        <h3>
+                                            Connect
+                                        </h3>
+                                        <ul class="mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">X</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="mega-menu-link-title">Facebook</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">LinkedIn</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Youtube</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="mega-menu-link-title">Github</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="header-action-buttons">
+                    <button class="header-secondary-btn">
+                        <a href="page.html">Get Started</a>
+                    </button>
+                    <button class="header-action-btn">
+                        <a href="page.html">Contact Us</a>
+                    </button>
+                    <div class="qr-dropdown-trigger" id="qrDropdownTrigger">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
+                        <div class="qr-dropdown-content" id="qrDropdownContent">
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="mega-menu-container desktop-mega-menu">
+        
+        <div class="mega-menu-panel" data-megamenu-panel="services">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>
+                        <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
+                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Software Engineering
+                            <span class="menu-group-tagline">Build your custom vision</span>
+                        </span>
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Web Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Mobile Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">AI & Machine Learning</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">API & Microservices Architecture</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">E-commerce Solutions</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Blockchain & Web3</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Database Engineering & Management</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>
+                        <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
+                         <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            IT Infrastructure
+                            <span class="menu-group-tagline">Power your business</span>
+                        </span>
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">IT Consulting</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Cloud Computing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Data Center & Storage</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Smart Technology</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
+                        <span class="menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Marketing & Creative Studio
+                            <span class="menu-group-tagline">Grow your audience</span>
+                        </span>
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Digital Marketing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Graphic Design</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Content Management</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Multimedia Production</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Advertising Campaigns</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="mega-menu-panel" data-megamenu-panel="discover">
+            <div class="megamenu-3-column-grid">
+                
+                <div class="menu-group-card">
+                    <h3>
+                        Hyperion
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">About Us</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Roadmap</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Innovations</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Product News</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Events</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="careers.html">
+                                <span class="mega-menu-link-title">Careers</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="partners.html">
+                                <span class="mega-menu-link-title">Partners</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="licenses-and-registrations.html">
+                                <span class="mega-menu-link-title">Licenses & Registrations</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="menu-group-card">
+                    <h3>
+                        Resources
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Blog</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">eBooks</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Webinars</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Podcasts</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Recommendations</span>
+                                </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="menu-group-card">
+                    <h3>
+                        Connect
+                    </h3>
+                    <ul class="mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">X</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Facebook</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">LinkedIn</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Youtube</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="mega-menu-link-title">Github</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// =============================================
+// JAVASCRIPT FOR MENU FUNCTIONALITY
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const headerWrapper = document.querySelector('.header-wrapper');
+    const desktopMegaMenuContainer = document.querySelector('.desktop-mega-menu');
+    const megaMenuTriggers = document.querySelectorAll('[data-megamenu-trigger]');
+    const desktopMegaMenuPanels = desktopMegaMenuContainer.querySelectorAll('.mega-menu-panel');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const body = document.body;
+    
+    // NEW: QR Code Dropdown elements
+    const qrDropdownTrigger = document.getElementById('qrDropdownTrigger');
+    const qrDropdownContent = document.getElementById('qrDropdownContent');
+
+    let closeTimer = null;
+    let qrCloseTimer = null; // Timer for QR dropdown
+
+    // =============================================
+    // DESKTOP MEGA MENU LOGIC (Open/Close on hover)
+    // =============================================
+    
+    // Function to set the active state on trigger and panel
+    function setActiveMenu(trigger, panel) {
+        // Deactivate all others first
+        megaMenuTriggers.forEach(t => t.classList.remove('active'));
+        desktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+
+        if (trigger && panel) {
+            trigger.classList.add('active');
+            panel.classList.add('active');
+            headerWrapper.classList.add('mega-menu-open');
+        } else {
+            // Close all
+            headerWrapper.classList.remove('mega-menu-open');
+        }
+    }
+
+    function handleOpen(trigger) {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+            const targetMenuId = trigger.getAttribute('data-megamenu-trigger');
+            const targetMenuPanel = desktopMegaMenuContainer.querySelector(`[data-megamenu-panel="${targetMenuId}"]`);
+            setActiveMenu(trigger, targetMenuPanel);
+            // Close QR dropdown if mega menu opens
+            if (qrDropdownContent.classList.contains('show')) {
+                hideQrDropdown();
+            }
+        }
+    }
+
+    function handleClose() {
+        if (window.innerWidth > 1024) {
+            // Set a slight delay to allow mouse transition from trigger to menu
+            closeTimer = setTimeout(() => {
+                setActiveMenu(null, null); // Close all
+            }, 150); 
+        }
+    }
+
+    // Attach mouse event listeners for desktop
+    megaMenuTriggers.forEach(trigger => {
+        // Open on mouse enter
+        trigger.addEventListener('mouseenter', () => {
+            handleOpen(trigger);
+        });
+        
+        // Use the common container as the exit point for the entire menu system
+        trigger.parentElement.addEventListener('mouseleave', () => {
+            handleClose();
+        });
+    });
+
+    // Prevent menu from closing when mouse is over the menu container
+    desktopMegaMenuContainer.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 1024) {
+            clearTimeout(closeTimer);
+        }
+    });
+
+    // Close menu when mouse leaves the menu container
+    desktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        handleClose();
+    });
+
+    // =============================================
+    // QR CODE DROPDOWN LOGIC (Open/Close on click/hover for desktop)
+    // =============================================
+    function showQrDropdown() {
+        if (window.innerWidth > 1024) {
+            clearTimeout(qrCloseTimer);
+            qrDropdownContent.classList.add('show');
+            // Close mega menu if QR dropdown opens
+            setActiveMenu(null, null);
+        }
+    }
+
+    function hideQrDropdown() {
+        if (window.innerWidth > 1024) {
+            qrCloseTimer = setTimeout(() => {
+                qrDropdownContent.classList.remove('show');
+            }, 150); // Slight delay for smooth transition
+        }
+    }
+
+    qrDropdownTrigger.addEventListener('mouseenter', showQrDropdown);
+    qrDropdownTrigger.addEventListener('mouseleave', hideQrDropdown);
+    qrDropdownContent.addEventListener('mouseenter', showQrDropdown); // Keep open if mouse moves to content
+    qrDropdownContent.addEventListener('mouseleave', hideQrDropdown);
+
+    // =============================================
+    // MOBILE MENU LOGIC (Click to toggle dropdown)
+    // =============================================
+    const mobileDropdownItems = document.querySelectorAll('.custom-nav-item--has-megamenu');
+    
+    // Mobile hamburger toggle
+    mobileMenuToggle.addEventListener('click', function() {
+        headerWrapper.classList.toggle('mobile-menu-open');
+        body.classList.toggle('mobile-menu-active');
+        
+        // If closing the mobile menu, ensure all mega menu active states are cleared
+        if (!headerWrapper.classList.contains('mobile-menu-open')) {
+             mobileDropdownItems.forEach(item => item.classList.remove('active'));
+             // Also close QR dropdown on mobile close
+             qrDropdownContent.classList.remove('show');
+        }
+    });
+
+    // Mobile dropdown toggle (for Services and Discover links)
+    mobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.custom-nav-link');
+        trigger.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                e.stopPropagation(); 
+
+                // Close all other dropdowns
+                mobileDropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                // Toggle current dropdown
+                item.classList.toggle('active');
+                // Close QR dropdown if a mega menu opens
+                qrDropdownContent.classList.remove('show');
+            }
+        });
+    });
+
+    // Toggle QR dropdown on click for mobile
+    qrDropdownTrigger.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            e.stopPropagation();
+            qrDropdownContent.classList.toggle('show');
+            // Close any open mega menus
+            mobileDropdownItems.forEach(item => item.classList.remove('active'));
+        }
+    });
+
+    // Close mobile menu when a standard link is clicked
+    document.querySelectorAll('.custom-nav-list a').forEach(link => {
+        // Exclude links that trigger a mega menu, and links that are inside a mega menu
+        if (!link.hasAttribute('data-megamenu-trigger') && !link.closest('.mega-menu-container')) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    headerWrapper.classList.remove('mobile-menu-open');
+                    body.classList.remove('mobile-menu-active');
+                    qrDropdownContent.classList.remove('show'); // Also close QR dropdown
+                }
+            });
+        }
+    });
+    
+    // Close QR dropdown if clicked outside on desktop
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth > 1024 && !qrDropdownTrigger.contains(event.target) && !qrDropdownContent.contains(event.target)) {
+            hideQrDropdown();
+        }
+    });
+
+    // =============================================
+    // WINDOW RESIZE HANDLER
+    // =============================================
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (window.innerWidth > 1024) {
+                // Reset desktop/mobile states
+                headerWrapper.classList.remove('mobile-menu-open');
+                body.classList.remove('mobile-menu-active');
+                mobileDropdownItems.forEach(item => item.classList.remove('active'));
+                setActiveMenu(null, null); // Close any open mega menu
+            } else { // Mobile specific reset
+                 // Ensure QR dropdown is closed if switching to mobile from desktop-hovered state
+                 qrDropdownContent.classList.remove('show');
+            }
+        }, 250);
+    });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hyperion IT Cost Estimator</title>
-    <!-- Load Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
-          CSS Resets & Base Styles
+          CSS Resets & Base Styles for Hyperion Body Container
           ============================================================
         */
-        :root {
+        hprn-body-tag {
+            display: block; /* Ensure custom tag behaves like a block element */
+        }
+        
+        /* Apply global body styles to the new, unique class/tag */
+        .hprn-pricing-body-global {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            line-height: inherit;
+            /* Original body background color */
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        /* The unique wrapper for the entire page content */
+        .hyperion-body-wrapper {
+            /* This div now acts as the body */
+            display: block;
+            min-height: 100vh; /* Ensure it takes up the full viewport height */
+            background-color: #f3f4f6; /* bg-gray-100 */
+        }
+
+        /* Apply other global resets scoped to the wrapper */
+        .hyperion-body-wrapper :root {
             -moz-tab-size: 4;
             -o-tab-size: 4;
             tab-size: 4;
             -webkit-tap-highlight-color: transparent;
         }
 
-        *,
-        ::before,
-        ::after {
+        .hyperion-body-wrapper *,
+        .hyperion-body-wrapper ::before,
+        .hyperion-body-wrapper ::after {
             box-sizing: border-box;
             border-width: 0;
             border-style: solid;
             border-color: #e5e7eb; /* equivalent to border-gray-200 */
         }
 
-        html {
+        .hyperion-body-wrapper {
             line-height: 1.5;
             -webkit-text-size-adjust: 100%;
         }
 
-        body {
-            margin: 0;
-            font-family: 'Inter', sans-serif;
-            line-height: inherit;
-        }
-        
-        h1, h2, h3, h4, p, ul {
+        .hyperion-body-wrapper h1, .hyperion-body-wrapper h2, .hyperion-body-wrapper h3, .hyperion-body-wrapper h4, .hyperion-body-wrapper p, .hyperion-body-wrapper ul {
             margin: 0;
             padding: 0;
         }
         
-        ul {
+        .hyperion-body-wrapper ul {
             list-style: none;
         }
         
-        a {
+        .hyperion-body-wrapper a {
             color: inherit;
             text-decoration: inherit;
         }
         
-        svg {
+        .hyperion-body-wrapper svg {
             display: block;
             vertical-align: middle;
         }
 
         /* ============================================================
-          Body
+          Body (Now the hyperion-body-wrapper)
           ============================================================
         */
-        .hprn-pricing-body {
+        /* The hprn-pricing-body class is now applied to the wrapper */
+        /* .hprn-pricing-body {
             background-color: #f3f4f6; /* bg-gray-100 */
-        }
+        /* } */ 
 
         /* ============================================================
           General Container
@@ -78,9 +1529,10 @@
             margin-right: auto;
             padding-left: 1rem; /* px-4 */
             padding-right: 1rem; /* px-4 */
-            width: 1100px;
+            /* REMOVED fixed width: width: 1100px; */
         }
 
+       
         @media (min-width: 640px) {
             .hprn-pricing-container {
                 padding-left: 1.5rem; /* sm:px-6 */
@@ -99,7 +1551,7 @@
           ============================================================
         */
         .hprn-pricing-hero {
-            background-color: #080d1b; /* bg-slate-900 */
+            background-color: #001023; /* bg-slate-900 */
             color: #ffffff; /* text-white */
             padding-top: 5rem; /* py-20 */
             padding-bottom: 5rem; /* py-20 */
@@ -134,7 +1586,7 @@
             background-color: #ffffff; /* bg-white */
             color: #111827; /* text-gray-900 */
             padding: 1.5rem; /* p-6 */
-            border-radius: 20px; /* rounded-lg */
+            border-radius: 8px; /* rounded-lg */
             box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
             width: 100%; /* w-full */
             margin-top: 2.5rem; /* mt-10 */
@@ -191,7 +1643,7 @@
             padding-bottom: 0.75rem;
             padding-left: 1.25rem; /* px-5 */
             padding-right: 1.25rem;
-            border-radius: 20px; /* rounded-lg */
+            border-radius: 50px; /* rounded-lg */
             transition-property: all; /* transition */
             transition-duration: 200ms; /* duration-200 */
         }
@@ -297,7 +1749,19 @@
             box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
             padding: 2rem;
             background-color: #fff;
+            border-radius: 8px; /* Consolidate rounding */
         }
+        
+        .hprn-pricing-step {
+            padding-bottom: 2rem; /* Add spacing for border-bottom */
+            border-bottom: 1px solid #e4e4e4; /* Default separator for mobile */
+        }
+        /* Remove bottom border from the last item on mobile/single column layout */
+        .hprn-pricing-how-it-works > div > .hprn-pricing-step:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
         .hprn-pricing-icon-wrapper {
             height: 4rem; /* h-16 */
             width: 4rem; /* w-16 */
@@ -334,7 +1798,7 @@
         }
         .hprn-pricing-feature-card {
             padding: 1.5rem; /* p-6 */
-            border-radius: 20px; /* rounded-lg */
+            border-radius: 8px; /* rounded-lg */
             background-color: #ffffff; /* bg-white */
             box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641); /* shadow-sm */
         }
@@ -372,18 +1836,31 @@
         
         /* More resources box */
         .hprn-pricing-sidebar-box:nth-of-type(1) {
-            padding-bottom: 1.5rem; /* pb-6 */
+            padding-bottom: 0; 
             margin-bottom: 1.5rem; /* mb-6 */
             box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
             background-color: #fff;
-            
+            border-radius: 8px; /* Apply consistent rounding */
         }
+        .hprn-pricing-sidebar-box:nth-of-type(1) > div:first-child {
+            background-color: #e9e9e9;
+            border-radius: 8px 8px 0 0;
+        }
+        .hprn-pricing-sidebar-box:nth-of-type(1) > div:first-child h3 {
+            padding: 1rem 1.5rem;
+            margin-bottom: 0; /* Override previous margin-bottom */
+        }
+        .hprn-pricing-sidebar-box:nth-of-type(1) ul {
+             padding: 1.5rem 1.5rem; /* Add padding to the list itself */
+             display: grid;
+             gap: 0.75rem;
+        }
+
         .hprn-pricing-sidebar-box h3 {
             font-size: 1.125rem; /* text-lg */
             line-height: 1.75rem;
             font-weight: 700; /* font-semibold */
             color: #111827; /* text-gray-900 */
-            margin-bottom: 1rem; /* mb-4 or mb-3 */
             display: flex;
             align-items: center;
         }
@@ -392,10 +1869,6 @@
             height: 1rem; /* h-4 */
             margin-left: 0.5rem; /* ml-2 */
             color: #4b5563; /* text-gray-600 */
-        }
-        .hprn-pricing-sidebar-box ul {
-            display: grid;
-            gap: 0.75rem; /* space-y-3 */
         }
         .hprn-pricing-sidebar-box li a {
             color: #0065b3; /* text-blue-600 */
@@ -407,23 +1880,27 @@
         
         /* Modernization calculator box */
         .hprn-pricing-sidebar-box:nth-of-type(2) {
-            background-color: #fff;
-            border-radius: 20px; /* rounded-lg */
+            background-color: #ffffff;
+            border-radius: 8px; /* rounded-lg */
             box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
-          
+            padding-bottom: 1.5rem; /* Add padding to the bottom of the box */
         }
-         .hprn-pricing-sidebar-box:nth-of-type(2) h3 {
-             margin-bottom: 0.75rem; /* mb-3 */
+        .hprn-pricing-sidebar-box:nth-of-type(2) > div:first-child {
+             background-color: #e9e9e9;
+             border-radius: 8px 8px 0 0;
+        }
+         .hprn-pricing-sidebar-box:nth-of-type(2) > div:first-child h3 {
+             padding: 1rem 1.5rem;
+             margin-bottom: 0;
          }
         .hprn-pricing-sidebar-box:nth-of-type(2) p {
             color: #4b5563; /* text-gray-600 */
             margin-bottom: 1rem; /* mb-4 */
+            padding: 0 1.5rem; /* Add horizontal padding to paragraph */
+            margin-top: 1rem; /* Add top margin */
         }
         .hprn-pricing-sidebar-box:nth-of-type(2) a {
-            font-weight: 500; /* font-medium */
-            color: #0065b3; /* text-blue-600 */
-            display: flex;
-            align-items: center;
+            padding: 0 0 0 1.5rem; /* Adjust padding for the link */
         }
         .hprn-pricing-sidebar-box:nth-of-type(2) a:hover {
             text-decoration: underline; /* hover:underline */
@@ -437,6 +1914,36 @@
             .hprn-pricing-benefits-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
             }
+            
+            /* How it works border fix for 2-column layout */
+            .hprn-pricing-step {
+                 border-bottom: none; /* remove bottom border on 2-col layout */
+                 padding-bottom: 0;
+            }
+            /* Vertical separator for left column items (1st and 3rd in the grid) */
+            .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(odd) {
+                border-right: 1px solid #e4e4e4;
+                padding-right: 3rem; /* Add padding to the right for the border */
+            }
+            /* Remove separator for right column items (2nd and 4th in the grid) */
+            .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(even) {
+                border-right: none;
+                padding-left: 3rem; /* Add padding to the left to align with right column */
+            }
+            /* Horizontal separator for top row (1st and 2nd in the grid) */
+             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(1),
+             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(2) {
+                padding-bottom: 2rem; 
+                margin-bottom: 2rem; /* space-y between rows */
+                border-bottom: 1px solid #e4e4e4; 
+             }
+             /* Remove bottom border and extra padding/margin from last row elements (3rd and 4th) */
+             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(3),
+             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(4) {
+                 border-bottom: none; 
+                 padding-bottom: 0;
+                 margin-bottom: 0;
+             }
         }
         
         @media (min-width: 1024px) { /* lg: */
@@ -501,320 +2008,984 @@
         }
     </style>
 </head>
-<body class="hprn-pricing-body">
-
-    <!-- 
-      ============================================================
-      Hero Section (Dark Background)
-      Based on Screenshot 1
-      ============================================================
-    -->
-    <header class="hprn-pricing-hero">
-        <div class="hprn-pricing-container">
-            <div>
-                
-                <!-- Hero Text Content -->
-                <div class="hprn-pricing-hero-text">
-                    <h1>
-                        Hyperion IT Cost Estimator
-                    </h1>
-                    <p>
-                        Estimate the cost for your architecture solution.
-                    </p>
-                    <p>
-                        Configure a cost estimate that fits your unique business needs
-                        with Hyperion IT products and services.
-                    </p>
-                </div>
-
-                <!-- Hero CTA Box -->
-                <div class="hprn-pricing-hero-cta-box">
-                    <h2>
-                        Create an estimate
-                    </h2>
-                    <p>
-                        Start your estimate with no commitment, and explore Hyperion IT
-                        services and pricing for your architecture needs.
-                    </p>
-                    <a href="calculator.html" class="hprn-pricing-btn-primary">
-                        Create estimate
-                    </a>
-                    <p>
-                        Already a Hyperion Customer?
-                    </p>
-                    <a href="#" class="hprn-pricing-btn-secondary">
-                        Log into the console
-                        <!-- External link icon -->
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                    </a>
-                    <p>
-                        Log into the console to estimate your costs
-                        including your volume discounts.
-                        <a href="#">Learn more
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                </svg>
-                            </span>
-                        </a>
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </header>
-
-    <!-- 
-      ============================================================
-      Main Content Section (White Background)
-      Based on Screenshots 2 & 3
-      ============================================================
-    -->
-    <main class="hprn-pricing-main-wrapper">
-        <div class="hprn-pricing-container">
-            <div>
-
-                <!-- Main Content (Left Column) -->
-                <div class="hprn-pricing-main-content">
-
-                    <!-- "How it works" Section -->
-                    <section class="hprn-pricing-how-it-works">
-                        <h2>
-                            How it works
-                        </h2>
-                        
-                        <div>
-                            
-                            <!-- Step 1 -->
-                            <div class="hprn-pricing-step" style="border-right: 1px solid #e4e4e4;">
-                                <div class="hprn-pricing-icon-wrapper">
-                                    <!-- Option 1: keep filled shapes but make them less bold by using a lighter color and reduced opacity -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                        <path fill="#000000" d="M18 23.5q-2.3 0-3.9-1.6T12.5 18q0-2.3 1.6-3.9t3.9-1.6q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T18 23.5Zm0-1.5q1.65 0 2.825-1.175Q22 19.65 22 18q0-1.65-1.175-2.825Q19.65 14 18 14q-1.65 0-2.825 1.175Q14 16.35 14 18q0 1.65 1.175 2.825Q16.35 22 18 22ZM6 23.5q-2.3 0-3.9-1.6T.5 18q0-2.3 1.6-3.9T6 12.5q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T6 23.5ZM6 22q1.65 0 2.825-1.175Q10 19.65 10 18q0-1.65-1.175-2.825Q7.65 14 6 14q-1.65 0-2.825 1.175Q2 16.35 2 18q0 1.65 1.175 2.825Q4.35 22 6 22Zm0-10.5q-2.3 0-3.9-1.6T.5 6q0-2.3 1.6-3.9T6 .5q2.3 0 3.9 1.6T11.5 6q0 2.3-1.6 3.9T6 11.5ZM6 10q1.65 0 2.825-1.175Q10 7.65 10 6q0-1.65-1.175-2.825Q7.65 2 6 2Q4.35 2 3.175 3.175Q2 4.35 2 6q0 1.65 1.175 2.825Q4.35 10 6 10Zm12 1.5q-2.3 0-3.9-1.6T12.5 6q0-2.3 1.6-3.9T18 .5q2.3 0 3.9 1.6T23.5 6q0 2.3-1.6 3.9T18 11.5Zm0-1.5q1.65 0 2.825-1.175Q22 7.65 22 6q0-1.65-1.175-2.825Q19.65 2 18 2q-1.65 0-2.825 1.175Q14 4.35 14 6q0 1.65 1.175 2.825Q16.35 10 18 10Zm-2.5 10v-1.5h5V20Zm0-2.5V16h5v1.5Zm-10.25 3v-1.75H3.5v-1.5h1.75V15.5h1.5v1.75H8.5v1.5H6.75v1.75ZM3.5 6.75v-1.5h5v1.5ZM16.75 8.3L15.7 7.25L16.95 6L15.7 4.75l1.05-1.05L18 4.95l1.25-1.25l1.05 1.05L19.05 6l1.25 1.25l-1.05 1.05L18 7.05Z"/>
-                                    </svg>
-                                </div>
-                                <h3>
-                                    Hyperion Cost Estimator
-                                </h3>
-                                <p>
-                                    Estimate the cost of your Hyperion IT products and
-                                    services.
-                                </p>
-                            </div>
-                            
-                            <!-- Step 2 -->
-                            <div class="hprn-pricing-step">
-                                <div class="hprn-pricing-icon-wrapper">
-                                    <!-- Add Services Icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#000000" d="M48 464V144H16v328a24.027 24.027 0 0 0 24 24h328v-32H48Z"/><path fill="#000000" d="M144 400h-32V80H80v328a24.027 24.027 0 0 0 24 24h328v-32H144Z"/><path fill="#000000" d="M472 16H168a24.027 24.027 0 0 0-24 24v304a24.027 24.027 0 0 0 24 24h304a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24Zm-8 320H176V48h288Z"/><path fill="#000000" d="M304 288h32v-84h84v-32h-84V88h-32v84h-84v32h84v84z"/></svg>
-                                </div>
-                                <h3>
-                                    Step 1: Add services
-                                </h3>
-                                <p>
-                                    Search and add the IT services that you
-                                    need for your solution.
-                                </p>
-                            </div>
-                            
-                            <!-- Step 3 -->
-                            <div class="hprn-pricing-step" style="border-right: 1px solid #e4e4e4;">
-                                <div class="hprn-pricing-icon-wrapper">
-                                    <!-- Configure Service Icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"><path fill="#000000" d="m31.707 19.293l-3-3a1 1 0 0 0-1.414 0L18 25.586V30h4.414l9.293-9.293a1 1 0 0 0 0-1.414zM21.586 28H20v-1.586l5-5L26.586 23l-5 5zM28 21.586L26.414 20L28 18.414L29.586 20L28 21.586zM16 22c-3.364 0-6-2.636-6-6s2.636-6 6-6s6 2.636 6 6s-2.636 6-6 6zm0-10c-2.28 0-4 1.72-4 4s1.72 4 4 4s4-1.72 4-4s-1.72-4-4-4z"/><path fill="#000000" d="m27.547 12l1.733-1l-2.336-4.044a2 2 0 0 0-2.373-.894l-2.434.823a11.056 11.056 0 0 0-1.312-.758l-.503-2.52A2 2 0 0 0 18.36 2h-4.72a2 2 0 0 0-1.962 1.608l-.503 2.518c-.46.225-.906.47-1.327.754l-2.42-.818a2 2 0 0 0-2.373.894l-2.36 4.088a2 2 0 0 0 .412 2.502l1.931 1.697C5.021 15.495 5 15.745 5 16c0 .258.01.513.028.766l-1.92 1.688a2 2 0 0 0-.413 2.502l2.36 4.088a2 2 0 0 0 2.374.894l2.434-.823c.418.282.856.535 1.312.758l.503 2.519A2 2 0 0 0 13.64 30H16v-2h-2.36l-.71-3.55a9.096 9.096 0 0 1-2.695-1.572l-3.447 1.166l-2.36-4.088l2.725-2.395a8.929 8.929 0 0 1-.007-3.128l-2.719-2.39l2.361-4.087l3.427 1.16A9.027 9.027 0 0 1 12.93 7.55L13.64 4h4.721l.71 3.55a9.1 9.1 0 0 1 2.695 1.572l3.447-1.166L27.547 12Z"/></svg>
-                                </div>
-                                <h3>   
-                                    Step 2: Configure service
-                                </h3>
-                                <p>
-                                    Enter the details of your usage to see
-                                    service costs.
-                                </p>
-                            </div>
-                            
-                            <!-- Step 4 -->
-                            <div class="hprn-pricing-step">
-                                <div class="hprn-pricing-icon-wrapper">
-                                    <!-- View Totals Icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="#000000"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5.5h-7a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-7Z"/><path d="M8.5 5V.5l5 5H9a.5.5 0 0 1-.5-.5Zm-4-.5V3M3 8.5c0 .75.67 1 1.5 1s1.5 0 1.5-1C6 7 3 7 3 5.5c0-1 .67-1 1.5-1s1.5.38 1.5 1m-1.5 4V11m4-1.5h3"/></g></svg>
-                                </div>
-                                <h3>
-                                    Step 3: View estimate totals
-                                </h3>
-                                <p>
-                                    See estimated costs per service, service
-                                    groups, and totals.
-                                </p>
-                            </div>
-
-                        </div>
-                    </section>
-
-                    <!-- "Benefits and features" Section -->
-                    <section class="hprn-pricing-benefits">
-                        <h2>
-                            Benefits and features
-                        </h2>
-                        
-                        <div class="hprn-pricing-benefits-grid">
-
-                            <!-- Feature 1 -->
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Transparent pricing
-                                </h3>
-                                <p>
-                                    See the math behind the price for your
-                                    service configurations. View prices per
-                                    service or per group of services to analyze
-                                    your architecture costs.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Reading your estimate
-                                    <!-- External link icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <!-- Feature 2 -->
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Share your estimates
-                                </h3>
-                                <p>
-                                    Save each estimate's unique link to share
-                                    or revisit directly through your browser.
-                                    Estimates are saved to Hyperion public
-                                    servers.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Saving and sharing your estimate
-                                    <!-- External link icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <!-- Feature 3 -->
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Hierarchical estimates
-                                </h3>
-                                <p>
-                                    See and analyze service costs grouped by
-                                    different parts of your architecture.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Using groups
-                                    <!-- External link icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <!-- Feature 4 -->
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Estimate exports
-                                </h3>
-                                <p>
-                                    Export your estimate to a .csv, .pdf and
-                                    .json file to quickly share and analyze
-                                    your proposed architecture spend.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Exporting estimates
-                                    <!-- External link icon -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- Sidebar (Right Column) -->
-                <aside class="hprn-pricing-sidebar">
+<hprn-body-tag class="hprn-pricing-body-global"> <hprn-body-container class="hyperion-body-wrapper"> <header class="hprn-pricing-hero">
+            <div class="hprn-pricing-container">
+                <div>
                     
-                    <!-- More resources box -->
-                    <div class="hprn-pricing-sidebar-box">
-                    <div style="background-color: #e9e9e9;">
-                        <h3 style="padding: 1rem 1.5rem;">
-                            More resources
-                            <!-- External link icon -->
+                    <div class="hprn-pricing-hero-text">
+                        <h1>
+                            Hyperion IT Cost Estimator
+                        </h1>
+                        <p>
+                            Estimate the cost for your architecture solution.
+                        </p>
+                        <p>
+                            Configure a cost estimate that fits your unique business needs
+                            with Hyperion IT products and services.
+                        </p>
+                    </div>
+
+                    <div class="hprn-pricing-hero-cta-box">
+                        <h2>
+                            Create an estimate
+                        </h2>
+                        <p>
+                            Start your estimate with no commitment, and explore Hyperion IT
+                            services and pricing for your architecture needs.
+                        </p>
+                        <a href="calculator.html" class="hprn-pricing-btn-primary">
+                            Create estimate
+                        </a>
+                        <p>
+                            Already a Hyperion Customer?
+                        </p>
+                        <a href="#" class="hprn-pricing-btn-secondary">
+                            Log into the console
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
                             </svg>
-                        </h3>
-                    </div>
-                        <ul style="padding: 0 1.5rem;">
-                            <li><a href="#">User guide</a></li>
-                            <li><a href="pricing-assumptions.html">Pricing assumptions and variations</a></li>
-                            <li><a href="#">Need help with estimation? Connect with Hyperion experts</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Modernization calculator box -->
-                    <div class="hprn-pricing-sidebar-box">
-                        <div style="background-color: #e9e9e9;">
-                         <h3 style="padding: 1rem 1.5rem;">
-                            Hyperion Cloud Migration Calculator
-                            <!-- External link icon -->
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </h3>
-                        </div>
-                        <p style="padding: 0 1.5rem;">
-                            Estimate the cost of transforming legacy workloads
-                            to a modern architecture that uses
-                            open source and cloud-native services deployed
-                            on Hyperion.
-                        </p>
-                        <a href="cloud-calculator.html" class="hprn-pricing-link" style="padding: 0 0 1.5rem 1.5rem;">
-                            Get started
                         </a>
+                        <p>
+                            Log into the console to estimate your costs
+                            including your volume discounts.
+                            <a href="#">Learn more
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </p>
                     </div>
-                </aside>
 
+                </div>
             </div>
-        </div>
-    </main>
+        </header>
 
-    <!-- 
-      ============================================================
-      Footer Section
-      Based on Screenshot 3
-      ============================================================
-    -->
-    <footer class="hprn-pricing-footer">
-        <div class="hprn-pricing-container">
-            <h4>
-                Acknowledgement
-            </h4>
-            <p>
-                The Hyperion IT Cost Estimator provides only an estimate of your Hyperion IT
-                fees and doesn't include any taxes that might apply. Your actual
-                fees depend on a variety of factors, including your actual usage
-                of Hyperion IT services.
-                <a href="#">Learn more
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                    </span>
-                </a>
-            </p>
-        </div>
-    </footer>
+        <main class="hprn-pricing-main-wrapper">
+            <div class="hprn-pricing-container">
+                <div>
 
-</body>
+                    <div class="hprn-pricing-main-content">
+
+                        <section class="hprn-pricing-how-it-works">
+                            <h2>
+                                How it works
+                            </h2>
+                            
+                            <div> <div class="hprn-pricing-step"> <div class="hprn-pricing-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                            <path fill="#000000" d="M18 23.5q-2.3 0-3.9-1.6T12.5 18q0-2.3 1.6-3.9t3.9-1.6q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T18 23.5Zm0-1.5q1.65 0 2.825-1.175Q22 19.65 22 18q0-1.65-1.175-2.825Q19.65 14 18 14q-1.65 0-2.825 1.175Q14 16.35 14 18q0 1.65 1.175 2.825Q16.35 22 18 22ZM6 23.5q-2.3 0-3.9-1.6T.5 18q0-2.3 1.6-3.9T6 12.5q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T6 23.5ZM6 22q1.65 0 2.825-1.175Q10 19.65 10 18q0-1.65-1.175-2.825Q7.65 14 6 14q-1.65 0-2.825 1.175Q2 16.35 2 18q0 1.65 1.175 2.825Q4.35 22 6 22Zm0-10.5q-2.3 0-3.9-1.6T.5 6q0-2.3 1.6-3.9T6 .5q2.3 0 3.9 1.6T11.5 6q0 2.3-1.6 3.9T6 11.5ZM6 10q1.65 0 2.825-1.175Q10 7.65 10 6q0-1.65-1.175-2.825Q7.65 2 6 2Q4.35 2 3.175 3.175Q2 4.35 2 6q0 1.65 1.175 2.825Q4.35 10 6 10Zm12 1.5q-2.3 0-3.9-1.6T12.5 6q0-2.3 1.6-3.9T18 .5q2.3 0 3.9 1.6T23.5 6q0 2.3-1.6 3.9T18 11.5Zm0-1.5q1.65 0 2.825-1.175Q22 7.65 22 6q0-1.65-1.175-2.825Q19.65 2 18 2q-1.65 0-2.825 1.175Q14 4.35 14 6q0 1.65 1.175 2.825Q16.35 10 18 10Zm-2.5 10v-1.5h5V20Zm0-2.5V16h5v1.5Zm-10.25 3v-1.75H3.5v-1.5h1.75V15.5h1.5v1.75H8.5v1.5H6.75v1.75ZM3.5 6.75v-1.5h5v1.5ZM16.75 8.3L15.7 7.25L16.95 6L15.7 4.75l1.05-1.05L18 4.95l1.25-1.25l1.05 1.05L19.05 6l1.25 1.25l-1.05 1.05L18 7.05Z"/>
+                                        </svg>
+                                    </div>
+                                    <h3>
+                                        Hyperion Cost Estimator
+                                    </h3>
+                                    <p>
+                                        Estimate the cost of your Hyperion IT products and
+                                        services.
+                                    </p>
+                                </div>
+                                
+                                <div class="hprn-pricing-step">
+                                    <div class="hprn-pricing-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#000000" d="M48 464V144H16v328a24.027 24.027 0 0 0 24 24h328v-32H48Z"/><path fill="#000000" d="M144 400h-32V80H80v328a24.027 24.027 0 0 0 24 24h328v-32H144Z"/><path fill="#000000" d="M472 16H168a24.027 24.027 0 0 0-24 24v304a24.027 24.027 0 0 0 24 24h304a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24Zm-8 320H176V48h288Z"/><path fill="#000000" d="M304 288h32v-84h84v-32h-84V88h-32v84h-84v32h84v84z"/></svg>
+                                    </div>
+                                    <h3>
+                                        Step 1: Add services
+                                    </h3>
+                                    <p>
+                                        Search and add the IT services that you
+                                        need for your solution.
+                                    </p>
+                                </div>
+                                
+                                <div class="hprn-pricing-step"> <div class="hprn-pricing-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"><path fill="#000000" d="m31.707 19.293l-3-3a1 1 0 0 0-1.414 0L18 25.586V30h4.414l9.293-9.293a1 1 0 0 0 0-1.414zM21.586 28H20v-1.586l5-5L26.586 23l-5 5zM28 21.586L26.414 20L28 18.414L29.586 20L28 21.586zM16 22c-3.364 0-6-2.636-6-6s2.636-6 6-6s6 2.636 6 6s-2.636 6-6 6zm0-10c-2.28 0-4 1.72-4 4s1.72 4 4 4s4-1.72 4-4s-1.72-4-4-4z"/><path fill="#000000" d="m27.547 12l1.733-1l-2.336-4.044a2 2 0 0 0-2.373-.894l-2.434.823a11.056 11.056 0 0 0-1.312-.758l-.503-2.52A2 2 0 0 0 18.36 2h-4.72a2 2 0 0 0-1.962 1.608l-.503 2.518c-.46.225-.906.47-1.327.754l-2.42-.818a2 2 0 0 0-2.373.894l-2.36 4.088a2 2 0 0 0 .412 2.502l1.931 1.697C5.021 15.495 5 15.745 5 16c0 .258.01.513.028.766l-1.92 1.688a2 2 0 0 0-.413 2.502l2.36 4.088a2 2 0 0 0 2.374.894l2.434-.823c.418.282.856.535 1.312.758l.503 2.519A2 2 0 0 0 13.64 30H16v-2h-2.36l-.71-3.55a9.096 9.096 0 0 1-2.695-1.572l-3.447 1.166l-2.36-4.088l2.725-2.395a8.929 8.929 0 0 1-.007-3.128l-2.719-2.39l2.361-4.087l3.427 1.16A9.027 9.027 0 0 1 12.93 7.55L13.64 4h4.721l.71 3.55a9.1 9.1 0 0 1 2.695 1.572l3.447-1.166L27.547 12Z"/></svg>
+                                    </div>
+                                    <h3>   
+                                        Step 2: Configure service
+                                    </h3>
+                                    <p>
+                                        Enter the details of your usage to see
+                                        service costs.
+                                    </p>
+                                </div>
+                                
+                                <div class="hprn-pricing-step">
+                                    <div class="hprn-pricing-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="#000000"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5.5h-7a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-7Z"/><path d="M8.5 5V.5l5 5H9a.5.5 0 0 1-.5-.5Zm-4-.5V3M3 8.5c0 .75.67 1 1.5 1s1.5 0 1.5-1C6 7 3 7 3 5.5c0-1 .67-1 1.5-1s1.5.38 1.5 1m-1.5 4V11m4-1.5h3"/></g></svg>
+                                    </div>
+                                    <h3>
+                                        Step 3: View estimate totals
+                                    </h3>
+                                    <p>
+                                        See estimated costs per service, service
+                                        groups, and totals.
+                                    </p>
+                                </div>
+
+                            </div>
+                        </section>
+
+                        <section class="hprn-pricing-benefits">
+                            <h2>
+                                Benefits and features
+                            </h2>
+                            
+                            <div class="hprn-pricing-benefits-grid">
+
+                                <div class="hprn-pricing-feature-card">
+                                    <h3>
+                                        Transparent pricing
+                                    </h3>
+                                    <p>
+                                        See the math behind the price for your
+                                        service configurations. View prices per
+                                        service or per group of services to analyze
+                                        your architecture costs.
+                                    </p>
+                                    <a href="#" class="hprn-pricing-link">
+                                        Reading your estimate
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <div class="hprn-pricing-feature-card">
+                                    <h3>
+                                        Share your estimates
+                                    </h3>
+                                    <p>
+                                        Save each estimate's unique link to share
+                                        or revisit directly through your browser.
+                                        Estimates are saved to Hyperion public
+                                        servers.
+                                    </p>
+                                    <a href="#" class="hprn-pricing-link">
+                                        Saving and sharing your estimate
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <div class="hprn-pricing-feature-card">
+                                    <h3>
+                                        Hierarchical estimates
+                                    </h3>
+                                    <p>
+                                        See and analyze service costs grouped by
+                                        different parts of your architecture.
+                                    </p>
+                                    <a href="#" class="hprn-pricing-link">
+                                        Using groups
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                                <div class="hprn-pricing-feature-card">
+                                    <h3>
+                                        Estimate exports
+                                    </h3>
+                                    <p>
+                                        Export your estimate to a .csv, .pdf and
+                                        .json file to quickly share and analyze
+                                        your proposed architecture spend.
+                                    </p>
+                                    <a href="#" class="hprn-pricing-link">
+                                        Exporting estimates
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <aside class="hprn-pricing-sidebar">
+                        
+                        <div class="hprn-pricing-sidebar-box"> <div> <h3> More resources
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                </svg>
+                            </h3>
+                        </div>
+                            <ul> <li><a href="#">User guide</a></li>
+                                <li><a href="pricing-assumptions.html">Pricing assumptions and variations</a></li>
+                                <li><a href="#">Need help with estimation? Connect with Hyperion experts</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="hprn-pricing-sidebar-box">
+                            <div> <h3> Hyperion Cloud Migration Calculator
+                                <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                  <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </h3>
+                            </div>
+                            <p> Estimate the cost of transforming legacy workloads
+                                to a modern architecture that uses
+                                open source and cloud-native services deployed
+                                on Hyperion.
+                            </p>
+                            <a href="cloud-calculator.html" class="hprn-pricing-link"> Get started
+                            </a>
+                        </div>
+                    </aside>
+
+                </div>
+            </div>
+        </main>
+
+        <footer class="hprn-pricing-footer">
+            <div class="hprn-pricing-container">
+                <h4>
+                    Acknowledgement
+                </h4>
+                <p>
+                    The Hyperion IT Cost Estimator provides only an estimate of your Hyperion IT
+                    fees and doesn't include any taxes that might apply. Your actual
+                    fees depend on a variety of factors, including your actual usage
+                    of Hyperion IT services.
+                    <a href="pricing-assumptions.html">Learn more
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                            </svg>
+                        </span>
+                    </a>
+                </p>
+            </div>
+        </footer>
+    </hprn-body-container>
+</hprn-body-tag>
 </html>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================================
+     *** FOOTER ***
+     ============================================= -->
+<style>
+  /* =============================================
+     *** FOOTER STYLES ***
+     ============================================= */
+  
+  /* Main container for the footer */
+  .pc-footer-container {
+    font-family: 'Inter', sans-serif;
+    background-color: #07071e;
+    color: #7b849b;
+    width: 100%;
+    padding: 5rem 0;
+    box-sizing: border-box;
+  }
+
+  .pc-footer-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    
+  }
+
+  /* Top section: logo, line, and icons */
+  .pc-footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .image-logo {
+    height: 45px;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .pc-footer-logo span {
+    font-size: 25px;
+    font-weight: 600;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+    color: white;
+  }
+
+  /* The decorative line between logo and icons */
+  .pc-footer-line {
+    flex-grow: 1;
+    height: 1.2px;
+    background-color: #303c55;
+    min-width: 50px;
+    border: none;
+    margin: 0;
+  }
+
+  /* Social Icons */ 
+  .social-icons-container {
+    display: flex;
+    column-gap: 18px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-icon {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    font-size: 12px;
+    background-color: #a4aaae38;
+    border-radius: 50%;
+    transition-property: outline-offset, outline-color, background-color;
+    transition-duration: 0.25s;
+    color: #fff;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon:hover {
+    outline-offset: 4px;
+    color: #f4f4f4;
+    background-color: #cdcdcd7d;
+  }
+
+  .social-icon img {
+    display: block;
+    width: 19px;
+    height: 19px;
+  }
+
+  .social-icon svg {
+    margin: auto;
+    width: 19px;
+  }
+
+  .social-icon:hover svg,
+  .social-icon:hover img {
+    animation: shake 0.25s;
+  }
+
+  @keyframes shake {
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-15deg);
+    }
+    30% {
+      transform: rotate(15deg);
+    }
+    40% {
+      transform: rotate(-15deg);
+    }
+    50%, 100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Footer content with columns */
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-top: 3.5rem;
+    width: 100%;
+  }
+
+  .footer-column h3 {
+    color: #858992;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: none;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-column h3::after {
+    content: '+';
+    font-size: 18px;
+    display: none;
+  }
+
+  .footer-column.active h3::after {
+    content: '‒';
+    font-size: 18px;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 12px;
+  }
+
+  .footer-column ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: fit-content;
+  }
+
+  .footer-column ul li a:hover {
+    color: #62b8fa;
+  }
+
+  /* Middle content section with paragraphs */
+  .pc-footer-content {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #a0a9be;
+  }
+
+  .pc-footer-content p {
+    margin-bottom: 1rem;
+  }
+
+  .footer-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-left {
+    flex-basis: 100%;
+  }
+
+  /* Bottom section with copyright */
+.pc-footer-bottom {
+    margin-top: 15px;
+    padding-top: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: flex-end; /* This is the key change */
+    gap: 1.5rem;
+    font-size: 0.826rem;
+    font-weight: 400;
+    color: #a0a9be;
+    flex-wrap: wrap;
+}
+
+.pc-footer-bottom span {
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pc-footer-bottom {
+        justify-content: center; /* Center on mobile */
+        text-align: center;
+        padding: 1rem 0;
+    }
+}
+
+  /* =============================================
+     *** RESPONSIVE STYLES ***
+     ============================================= */
+  @media (max-width: 1024px) {
+    .footer-content {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .pc-footer-wrapper {
+      padding: 0 20px;
+    }
+
+    .footer-columns {
+      flex-direction: column;
+    }
+
+    .footer-left, .footer-right {
+      flex-basis: 100%;
+    }
+
+    .footer-right {
+      text-align: left;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pc-footer-container {
+      padding: 3rem 0;
+    }
+
+    .logo-ft {
+      font-size: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .pc-footer-top {
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .pc-footer-line {
+      display: none;
+    }
+    
+    .pc-footer-bottom .footer-kv {
+      justify-content: center;
+      text-align: center; 
+      padding: 1rem 0;
+    }
+    
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-top: 2rem;
+    }
+    
+    .footer-column {
+      border-bottom: 1px solid #303c55;
+      padding: 15px 0;
+    }
+
+    .footer-column:last-child {
+      border-bottom: none;
+    }
+    
+    .footer-column h3 {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .footer-column h3::after {
+      display: block;
+    }
+    
+    .footer-column ul {
+      display: none;
+      margin-top: 10px;
+      padding-left: 10px;
+    }
+    
+    .footer-column.active ul {
+      display: block;
+    }
+    
+    .footer-columns {
+      flex-direction: column;
+    }
+    
+    .footer-left {
+      flex-basis: 100%;
+      border-top: 1px solid #303c55;
+      padding-top: 2rem;
+    }
+    
+    .footer-right {
+      text-align: left;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+
+    .social-icons-container {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pc-footer-container {
+      padding: 2rem 0;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .social-icons-container {
+      column-gap: 12px;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .social-icon img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-right {
+      gap: 10px;
+    }
+
+    .footer-image {
+      height: 40px;
+    }
+
+    .defcon-qr-code {
+      height: 88px;
+      padding: 8px;
+    }
+
+    .defcon-qr-image {
+      width: 70px;
+      height: 70px;
+    }
+
+    .defcon-footer-qr-section {
+      margin-top: 40px;
+    }
+  }
+
+  /* Add top padding for nested columns on desktop */
+@media (min-width: 769px) {
+    .footer-content > div > .footer-column:not(:first-child) {
+        padding-top: 2rem; /* Adjust this value as needed */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .footer-content > div > .footer-column {
+        border-bottom: 1px solid #303c55;
+        padding: 15px 0;
+    }
+    
+    .footer-content > div > .footer-column:last-child {
+        border-bottom: 1px solid #303c55;
+    }
+}
+</style>
+
+<div style="background-color: #080d1b; margin: 0; padding: 2rem 0;">
+  <primecapital-footer class="pc-footer-container">
+    <div class="pc-footer-wrapper">
+      <!-- *** TOP SECTION: LOGO AND SOCIAL ICONS *** -->
+      <div class="pc-footer-top">
+        <div class="pc-footer-logo">
+          <a href="index.html">
+            <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" class="image-logo" alt="Logo">
+          </a>
+        </div>
+
+        <hr class="pc-footer-line">
+      </div>
+
+      <!-- *** MIDDLE CONTENT SECTION *** -->
+      <div class="pc-footer-content">
+        <div class="footer-columns">
+          <div class="footer-left">
+            <p>
+              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
+            </p>
+
+            <p>
+              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
+      <div class="footer-content">
+        <!-- Resources Column -->
+        <div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="page.html">Blog</a></li>
+            <li><a href="page.html">Learn</a></li>
+            <li><a href="page.html">eBooks</a></li>
+            <li><a href="page.html">Podcasts</a></li>
+            <li><a href="page.html">Webinars</a></li>
+            <li><a href="page.html">YouTube Playlists</a></li>
+            <li><a href="page.html">Recommendations</a></li>
+            <li><a href="page.html">Training & Certification</a></li>
+          </ul>
+        </div>
+
+        </div>
+
+        <div>
+          <!-- Services Column -->
+          <div class="footer-column">
+            <h3>Solutions</h3>
+            <ul>
+              <li><a href="page.html">Software Development</a></li>
+              <li><a href="page.html">IT Infrastructure</a></li>
+              <li><a href="page.html">Communicative Media</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Developers</h3>
+            <ul>
+              <li><a href="page.html">API Docs</a></li>
+              <li><a href="page.html">Github</a></li>
+              <li><a href="page.html">SDKs & Libraries</a></li>
+              <li><a href="page.html">Developer Guides</a></li>
+              <li><a href="page.html">Code of Conduct</a></li>
+              <li><a href="page.html">Support</a></li>
+              <li><a href="page.html">Community</a></li>
+              <li><a href="page.html">Open Source</a></li>
+            
+              
+            </ul>
+          </div>
+        </div>
+
+        <!-- Help Column -->
+        <div class="footer-column">
+          <h3>Help</h3>
+          <ul>
+            <li><a href="page.html">Contact Support</a></li>
+            <li><a href="page.html">Plan Comparison</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="page.html">FAQs</a></li>
+            <li><a href="page.html">Account & Billing</a></li>
+            <li><a href="page.html">Feedback</a></li>
+            <li><a href="page.html">knowledge Base</a></li>
+          </ul>
+        </div>
+
+        <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Business</h3>
+            <ul>
+              <li><a href="page.html">Partnership</a></li>
+              <li><a href="page.html">Industries</a></li>
+              <li><a href="page.html">Investment</a></li>
+              <li><a href="page.html">Corporate Responsibility</a></li>
+              <li><a href="page.html">Global Network</a></li>
+              <li><a href="page.html">Market Insights</a></li>
+              <li><a href="page.html">Startup Collaboration</a></li>
+            </ul>
+          </div>
+
+        <!-- Company Column -->
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="page.html">Roadmap</a></li>
+            <li><a href="page.html">Innovations</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="page.html">Legal</a></li>
+            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="affiliates.html">Affiliate</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="page.html">Capital</a></li>
+            <li><a href="page.html">Verify</a></li>
+          </ul>
+        </div>
+
+        
+        <div>
+          <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Updates</h3>
+            <ul>
+              <li><a href="#">X</a></li>
+              <li><a href="page.html">Company News</a></li>
+              <li><a href="page.html">Product Updates</a></li>
+              <li><a href="page.html">Events</a></li>
+              <li><a href="page.html">Facebook</a></li>
+              <li><a href="page.html">Youtube</a></li>
+              <li><a href="page.html">LinkedIn</a></li>
+              <li><a href="page.html">Github</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="pc-footer-line">
+      
+      <!-- *** COPYRIGHT SECTION *** -->
+      <div class="pc-footer-bottom">
+
+        <style>
+          .footer-kv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            line-height: 0.9;
+            gap: 12px;
+          }
+          .footer-kv a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0;
+            font-weight: 500;
+          }
+          .footer-kv a + a {
+            padding-left: 12px;
+            border-left: 1px solid #7b849b;
+            margin-left: 8px;
+          }
+
+          @media (max-width: 768px) {
+            .footer-kv {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              gap: 6px;
+              padding: 8px 0;
+              order: 1;
+            }
+            .footer-kv a + a {
+              border-left: none;
+              padding-left: 0;
+              margin-left: 0;
+            }
+          }
+        </style>
+
+        <div class="footer-kv">
+          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="page.html" aria-label="Status">Status</a>
+        </div>
+
+        <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
+      </div>
+    </div>
+  </primecapital-footer>
+</div>
+
+<script>
+  // Mobile accordion functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const footerColumns = document.querySelectorAll('.footer-column');
+    
+    footerColumns.forEach(column => {
+      const header = column.querySelector('h3');
+      if (header) {
+        header.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            column.classList.toggle('active');
+          }
+        });
+      }
+    });
+
+    // Close accordion on resize to desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        footerColumns.forEach(column => {
+          column.classList.remove('active');
+        });
+      }
+    });
+  });
+</script>
