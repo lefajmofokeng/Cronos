@@ -1,818 +1,1165 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hyperion IT Cost Estimator</title>
+    <title>Enterprise Service Cost Estimator</title>
+    <!-- Load Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ============================================================
-          CSS Resets & Base Styles
+          CSS Resets & Base Styles (1px Border Radius enforced)
           ============================================================
         */
         :root {
-            -moz-tab-size: 4;
-            -o-tab-size: 4;
-            tab-size: 4;
-            -webkit-tap-highlight-color: transparent;
+            --color-primary: #0f172a; /* Slate-900 / Deep Charcoal */
+            --color-secondary: #7d7d7d; /* Gray-300 / Light Gray */
+            --color-accent: #f97316; /* Orange-500 */
+            --color-bg-light: #fff; /* Slate-50 */
         }
+        
+        
 
-        *,
-        ::before,
-        ::after {
-            box-sizing: border-box;
-            border-width: 0;
-            border-style: solid;
-            border-color: #e5e7eb; /* equivalent to border-gray-200 */
-        }
-
-        html {
-            line-height: 1.5;
-            -webkit-text-size-adjust: 100%;
-        }
+        html { line-height: 1.6; -webkit-text-size-adjust: 100%; }
 
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             line-height: inherit;
+            background-color: var(--color-bg-light); 
+            color: #1f2937;
         }
         
-        h1, h2, h3, h4, p, ul {
-            margin: 0;
-            padding: 0;
-        }
+        h1, h2, h3, h4, p, ul { margin: 0; padding: 0; }
+        ul { list-style: none; }
         
-        ul {
-            list-style: none;
-        }
-        
-        a {
-            color: inherit;
-            text-decoration: inherit;
-        }
-        
-        svg {
-            display: block;
-            vertical-align: middle;
+        /* Enforce 1px radius globally */
+        .hprn-pricing-body, .hprn-estimate-bar, .hprn-pricing-btn-secondary,
+        .hprn-pricing-feature-card, .hprn-pricing-sidebar-box,
+        .hprn-service-list-item input[type="checkbox"], .hprn-calc-input,
+        .hprn-calc-select, .hprn-calc-checkbox {
+            border-radius: 1px !important; 
         }
 
         /* ============================================================
-          Body
-          ============================================================
-        */
-        .hprn-pricing-body {
-            background-color: #f3f4f6; /* bg-gray-100 */
-        }
-
-        /* ============================================================
-          General Container
+          Header & Estimate Bar (NOT STICKY)
           ============================================================
         */
         .hprn-pricing-container {
             width: 100%;
-            max-width: 80rem; /* max-w-7xl */
+            max-width: 80rem; 
             margin-left: auto;
             margin-right: auto;
-            padding-left: 1rem; /* px-4 */
-            padding-right: 1rem; /* px-4 */
-            /* REMOVED fixed width: width: 1100px; */
+            padding-left: 1rem;
+            padding-right: 1rem;
+            box-sizing: border-box;
         }
 
-       
         @media (min-width: 640px) {
-            .hprn-pricing-container {
-                padding-left: 1.5rem; /* sm:px-6 */
-                padding-right: 1.5rem; /* sm:px-6 */
-            }
-        }
-        @media (min-width: 1024px) {
-            .hprn-pricing-container {
-                padding-left: 2rem; /* lg:px-8 */
-                padding-right: 2rem; /* lg:px-8 */
-            }
+            .hprn-pricing-container { padding-left: 1.5rem; padding-right: 1.5rem; }
         }
 
-        /* ============================================================
-          Hero Section (Dark Background)
-          ============================================================
-        */
         .hprn-pricing-hero {
-            background-color: #001023; /* bg-slate-900 */
-            color: #ffffff; /* text-white */
-            padding-top: 5rem; /* py-20 */
-            padding-bottom: 5rem; /* py-20 */
+            background-color: var(--color-primary);
+            color: #ffffff;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            
+            /* === REMOVED STICKY POSITION === */
         }
-        .hprn-pricing-hero > .hprn-pricing-container > div {
-             /* This is the inner div inside the container */
-        }
-
         .hprn-pricing-hero-text h1 {
-            font-size: 1.9rem; /* text-4xl */
-            line-height: 2.5rem;
-            font-weight: 700; /* font-extrabold */
-            letter-spacing: -0.025em; /* tracking-tight */
-            color: #ffffff; /* text-white */
+            font-size: 2rem; 
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
         }
-        .hprn-pricing-hero-text p:nth-of-type(1) {
-            margin-top: 1.5rem; /* mt-6 */
-            font-size: 1.25rem; /* text-xl */
-            line-height: 1.75rem;
-            font-weight: 700;
-            color: #cbd5e1; /* text-slate-300 */
-        }
-        .hprn-pricing-hero-text p:nth-of-type(2) {
-            margin-top: 1rem; /* mt-4 */
-            font-size: 1.125rem; /* text-lg */
-            line-height: 1.75rem;
-            color: #94a3b8; /* text-slate-400 */
+        .hprn-pricing-hero-text p {
+            margin-top: 0.75rem;
+            font-size: 1rem;
+            color: #cbd5e1;
         }
 
-        /* Hero CTA Box */
-        .hprn-pricing-hero-cta-box {
-            background-color: #ffffff; /* bg-white */
-            color: #111827; /* text-gray-900 */
-            padding: 1.5rem; /* p-6 */
-            border-radius: 8px; /* rounded-lg */
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); /* shadow-2xl */
-            width: 100%; /* w-full */
-            margin-top: 2.5rem; /* mt-10 */
-            flex-shrink: 0; /* flex-shrink-0 */
-        }
-        .hprn-pricing-hero-cta-box h2 {
-            font-size: 1.25rem; /* text-xl */
-            line-height: 1.75rem;
-            font-weight: 700; /* font-bold */
-            margin-bottom: 0.75rem; /* mb-3 */
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(1) {
-            color: #374151; /* text-gray-700 */
-            margin-bottom: 1.25rem; /* mb-5 */
-        }
-        .hprn-pricing-btn-primary {
-            display: block;
-            width: 100%; /* w-full */
-            text-align: center;
-            background-color: #f97316; /* bg-orange-500 */
-            color: #ffffff; /* text-white */
-            font-weight: 700; /* font-bold */
-            padding-top: 0.75rem; /* py-3 */
-            padding-bottom: 0.75rem;
-            padding-left: 1.25rem; /* px-5 */
-            padding-right: 1.25rem;
-            border-radius: 50px; /* rounded-lg */
-            transition-property: all; /* transition */
-            transition-duration: 200ms; /* duration-200 */
-        }
-        .hprn-pricing-btn-primary:hover {
-            background-color: #ea580c; /* hover:bg-orange-600 */
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(2) { /* "Already a Hyperion Customer?" */
-            font-size: 0.875rem; /* text-sm */
-            line-height: 1.25rem;
-            font-weight: 600; /* font-semibold */
-            color: #4b5563; /* text-gray-600 */
-            margin-top: 1rem; /* my-4 */
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .hprn-pricing-btn-secondary {
-            display: flex; /* flex */
-            align-items: center; /* items-center */
-            justify-content: center; /* justify-center */
-            width: 100%; /* w-full */
-            text-align: center;
-            background-color: #ffffff; /* bg-white */
-            border: 1px solid #9ca3af; /* border border-gray-400 */
-            color: #1f2937; /* text-gray-800 */
-            font-weight: 700; /* font-bold */
-            padding-top: 0.75rem; /* py-3 */
-            padding-bottom: 0.75rem;
-            padding-left: 1.25rem; /* px-5 */
-            padding-right: 1.25rem;
-            border-radius: 50px; /* rounded-lg */
-            transition-property: all; /* transition */
-            transition-duration: 200ms; /* duration-200 */
-        }
-        .hprn-pricing-btn-secondary:hover {
-            background-color: #f3f4f6; /* hover:bg-gray-100 */
-        }
-        .hprn-pricing-btn-secondary svg {
-            width: 1rem; /* w-4 */
-            height: 1rem; /* h-4 */
-            margin-left: 0.5rem; /* ml-2 */
-            color: #4b5563; /* text-gray-600 */
-        }
-        .hprn-pricing-btn-secondary:hover svg {
-            color: #2563eb; /* group-hover:text-blue-600 */
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(3) { /* "Log into the console..." */
-            font-size: 0.75rem; /* text-xs */
-            line-height: 1rem;
-            color: #4b5563; /* text-gray-600 */
-            margin-top: 1.25rem; /* mt-5 */
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(3) a {
-            color: #2563eb; /* text-blue-600 */
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(3) a:hover {
-            text-decoration: underline; /* hover:underline */
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(3) span {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .hprn-pricing-hero-cta-box p:nth-of-type(3) svg {
-            width: 0.75rem; /* w-3 */
-            height: 0.75rem; /* h-3 */
+        /* Estimate Display Bar */
+        .hprn-estimate-bar {
+            background-color: #1e293b; /* Slate-800 */
+            padding: 1.5rem;
+            color: #ffffff;
+            margin-top: 2rem;
+            border-left: 4px solid var(--color-accent); /* Accent border */
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
         
-        /* Hero media queries */
-        @media (min-width: 1024px) {
-            .hprn-pricing-hero {
-                padding-top: 7rem; /* lg:py-28 */
-                padding-bottom: 7rem; /* lg:py-28 */
-            }
-            .hprn-pricing-hero > .hprn-pricing-container > div {
-                display: flex; /* lg:flex */
-                justify-content: space-between; /* lg:justify-between */
-                align-items: center; /* lg:items-center */
-            }
-            .hprn-pricing-hero-text {
-                width: 60%; /* lg:w-3/5 */
-            }
-            .hprn-pricing-hero-text h1 {
-                font-size: 3rem; /* lg:text-5xl */
-                line-height: 1;
-            }
-            .hprn-pricing-hero-text p:nth-of-type(1) {
-                font-size: 1.5rem; /* lg:text-2xl */
-                line-height: 2rem;
-            }
-            .hprn-pricing-hero-cta-box {
-                width: 40%; /* lg:w-2/5 */
-                margin-top: 0; /* lg:mt-0 */
-                margin-left: 3rem; /* lg:ml-12 */
-                padding: 2rem; /* lg:p-8 */
+        @media (min-width: 640px) {
+             .hprn-estimate-bar { 
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: center; 
             }
         }
-        @media (min-width: 1280px) {
-             .hprn-pricing-hero-cta-box {
-                width: 33.333333%; /* xl:w-1/3 */
-             }
+
+        .hprn-estimate-bar-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
         }
+        @media (min-width: 640px) {
+            .hprn-estimate-bar-group {
+                 flex-direction: row;
+                 align-items: center;
+                 gap: 2rem;
+            }
+        }
+
+        .hprn-estimate-bar-item h3 {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+        .hprn-estimate-bar .total-amount {
+            font-size: 1.25rem; 
+            font-weight: 700;
+            color: var(--color-accent); /* Orange */
+        }
+        .hprn-estimate-bar .total-amount-secondary {
+            font-size: 1.25rem; 
+            font-weight: 700;
+            color: var(--color-secondary); /* Teal */
+        }
+
+        .hprn-pricing-btn-secondary {
+            background-color: #334155; 
+            border: 1px solid #475569; 
+            color: #fff; 
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-size: 0.9375rem;
+            white-space: nowrap;
+            letter-spacing: 0.025em;
+            font-family: 'Inter', sans-serif;
+        }
+        .hprn-pricing-btn-secondary:hover { background-color: #475569; }
+
 
         /* ============================================================
-          Main Content Section (White Background)
+          Main Content Section
           ============================================================
         */
-        .hprn-pricing-main-wrapper {
-            background-color: #f4f4f4; /* bg-white */
-        }
         .hprn-pricing-main-wrapper > .hprn-pricing-container {
-            padding-top: 4rem; /* py-16 */
-            padding-bottom: 4rem; /* py-16 */
-        }
-        .hprn-pricing-main-wrapper > .hprn-pricing-container > div {
-             /* Inner flex div */
-        }
-        
-        .hprn-pricing-main-content {
-             /* Left Column */
-        }
-        
-        /* "How it works" Section */
-        .hprn-pricing-how-it-works h2 {
-            font-size: 1.875rem; /* text-3xl */
-            line-height: 2.25rem;
-            font-weight: 700; /* font-bold */
-            color: #111827; /* text-gray-900 */
-            margin-bottom: 1rem; /* mb-10 */
-        }
-        .hprn-pricing-how-it-works > div { /* Grid container */
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
-            gap: 2rem 3rem; /* gap-x-8 gap-y-12 */
-            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
-            padding: 2rem;
-            background-color: #fff;
-            border-radius: 8px; /* Consolidate rounding */
-        }
-        
-        .hprn-pricing-step {
-            padding-bottom: 2rem; /* Add spacing for border-bottom */
-            border-bottom: 1px solid #e4e4e4; /* Default separator for mobile */
-        }
-        /* Remove bottom border from the last item on mobile/single column layout */
-        .hprn-pricing-how-it-works > div > .hprn-pricing-step:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
+            padding-top: 3rem;
+            padding-bottom: 6rem;
         }
 
-        .hprn-pricing-icon-wrapper {
-            height: 4rem; /* h-16 */
-            width: 4rem; /* w-16 */
-            color: #6b7280; /* text-gray-500 */
-            margin-bottom: 1rem; /* mb-4 */
-        }
-
-        .hprn-pricing-step h3 {
-            font-size: 1.25rem; /* text-xl */
-            line-height: 1.75rem;
-            font-weight: 600; /* font-semibold */
-            color: #111827; /* text-gray-900 */
-            margin-bottom: 0.5rem; /* mb-2 */
-        }
-        .hprn-pricing-step p {
-            color: #4b5563; /* text-gray-600 */
+        .hprn-console-flex {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
         }
         
-        /* "Benefits and features" Section */
-        .hprn-pricing-benefits {
-            margin-top: 4rem; /* mt-16 */
+        /* === Service Selector (Sidebar) === */
+        .hprn-pricing-sidebar { width: 100%; }
+        .hprn-pricing-sidebar-box {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-        .hprn-pricing-benefits h2 {
-            font-size: 1.875rem; /* text-3xl */
-            line-height: 2.25rem;
-            font-weight: 700; /* font-bold */
-            color: #111827; /* text-gray-900 */
-            margin-bottom: 1rem; /* mb-10 */
-        }
-        .hprn-pricing-benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr)); /* grid-cols-1 */
-            gap: 1.5rem; /* gap-6 */
-        }
-        .hprn-pricing-feature-card {
-            padding: 1.5rem; /* p-6 */
-            border-radius: 8px; /* rounded-lg */
-            background-color: #ffffff; /* bg-white */
-            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641); /* shadow-sm */
-        }
-        .hprn-pricing-feature-card h3 {
-            font-size: 1.25rem; /* text-xl */
-            line-height: 1.75rem;
-            font-weight: 600; /* font-semibold */
-            color: #111827; /* text-gray-900 */
-            margin-bottom: 0.5rem; /* mb-2 */
-        }
-        .hprn-pricing-feature-card p {
-            color: #4b5563; /* text-gray-600 */
-            margin-bottom: 1rem; /* mb-4 */
-        }
-        .hprn-pricing-link {
-            font-weight: 500; /* font-medium */
-            color: #0065b3; /* text-blue-600 */
-            display: flex; /* flex */
-            align-items: center; /* items-center */
-        }
-        .hprn-pricing-link:hover {
-            text-decoration: underline; /* hover:underline */
-        }
-        .hprn-pricing-link svg {
-            width: 1rem; /* w-4 */
-            height: 1rem; /* h-4 */
-            margin-left: 0.375rem; /* ml-1.5 */
-            color: #0065b3; /* text-blue-600 */
-        }
-
-        /* Sidebar (Right Column) */
-        .hprn-pricing-sidebar {
-            margin-top: 4rem; /* mt-16 */
-        }
-        
-        /* More resources box */
-        .hprn-pricing-sidebar-box:nth-of-type(1) {
-            padding-bottom: 0; 
-            margin-bottom: 1.5rem; /* mb-6 */
-            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
-            background-color: #fff;
-            border-radius: 8px; /* Apply consistent rounding */
-        }
-        .hprn-pricing-sidebar-box:nth-of-type(1) > div:first-child {
-            background-color: #e9e9e9;
-            border-radius: 8px 8px 0 0;
-        }
-        .hprn-pricing-sidebar-box:nth-of-type(1) > div:first-child h3 {
-            padding: 1rem 1.5rem;
-            margin-bottom: 0; /* Override previous margin-bottom */
-        }
-        .hprn-pricing-sidebar-box:nth-of-type(1) ul {
-             padding: 1.5rem 1.5rem; /* Add padding to the list itself */
-             display: grid;
-             gap: 0.75rem;
-        }
-
         .hprn-pricing-sidebar-box h3 {
-            font-size: 1.125rem; /* text-lg */
-            line-height: 1.75rem;
-            font-weight: 700; /* font-semibold */
-            color: #111827; /* text-gray-900 */
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.75rem;
+         }
+        .hprn-service-list h4 {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-top: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .hprn-service-list-item {
             display: flex;
             align-items: center;
+            padding: 0.75rem 0.25rem;
+            cursor: pointer;
         }
-        .hprn-pricing-sidebar-box h3 svg {
-            width: 1rem; /* w-4 */
-            height: 1rem; /* h-4 */
-            margin-left: 0.5rem; /* ml-2 */
-            color: #4b5563; /* text-gray-600 */
+        .hprn-service-list-item:hover { background-color: var(--color-bg-light); }
+        .hprn-service-list-item input[type="checkbox"] {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--color-accent); 
         }
-        .hprn-pricing-sidebar-box li a {
-            color: #0065b3; /* text-blue-600 */
-            
-        }
-        .hprn-pricing-sidebar-box li a:hover {
-            text-decoration: underline; /* hover:underline */
-        }
-        
-        /* Modernization calculator box */
-        .hprn-pricing-sidebar-box:nth-of-type(2) {
-            background-color: #ffffff;
-            border-radius: 8px; /* rounded-lg */
-            box-shadow: 0 0px 2px 0px rgba(0, 0, 0, 0.641);
-            padding-bottom: 1.5rem; /* Add padding to the bottom of the box */
-        }
-        .hprn-pricing-sidebar-box:nth-of-type(2) > div:first-child {
-             background-color: #e9e9e9;
-             border-radius: 8px 8px 0 0;
-        }
-         .hprn-pricing-sidebar-box:nth-of-type(2) > div:first-child h3 {
-             padding: 1rem 1.5rem;
-             margin-bottom: 0;
-         }
-        .hprn-pricing-sidebar-box:nth-of-type(2) p {
-            color: #4b5563; /* text-gray-600 */
-            margin-bottom: 1rem; /* mb-4 */
-            padding: 0 1.5rem; /* Add horizontal padding to paragraph */
-            margin-top: 1rem; /* Add top margin */
-        }
-        .hprn-pricing-sidebar-box:nth-of-type(2) a {
-            padding: 0 0 0 1.5rem; /* Adjust padding for the link */
-        }
-        .hprn-pricing-sidebar-box:nth-of-type(2) a:hover {
-            text-decoration: underline; /* hover:underline */
+        .hprn-service-list-item label {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #374151;
+            flex-grow: 1;
+            cursor: pointer;
         }
         
-        /* Main Content Media Queries */
-        @media (min-width: 768px) { /* md: */
-            .hprn-pricing-how-it-works > div { /* Grid container */
-                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
-            }
-            .hprn-pricing-benefits-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr)); /* md:grid-cols-2 */
-            }
-            
-            /* How it works border fix for 2-column layout */
-            .hprn-pricing-step {
-                 border-bottom: none; /* remove bottom border on 2-col layout */
-                 padding-bottom: 0;
-            }
-            /* Vertical separator for left column items (1st and 3rd in the grid) */
-            .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(odd) {
-                border-right: 1px solid #e4e4e4;
-                padding-right: 3rem; /* Add padding to the right for the border */
-            }
-            /* Remove separator for right column items (2nd and 4th in the grid) */
-            .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(even) {
-                border-right: none;
-                padding-left: 3rem; /* Add padding to the left to align with right column */
-            }
-            /* Horizontal separator for top row (1st and 2nd in the grid) */
-             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(1),
-             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(2) {
-                padding-bottom: 2rem; 
-                margin-bottom: 2rem; /* space-y between rows */
-                border-bottom: 1px solid #e4e4e4; 
-             }
-             /* Remove bottom border and extra padding/margin from last row elements (3rd and 4th) */
-             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(3),
-             .hprn-pricing-how-it-works > div > .hprn-pricing-step:nth-child(4) {
-                 border-bottom: none; 
-                 padding-bottom: 0;
-                 margin-bottom: 0;
-             }
+        /* === Service Configuration Details === */
+        .hprn-pricing-main-content { width: 100%; }
+        .config-group-title {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #c4c4c4;
+            padding-bottom: 0.75rem;
+        }
+
+        .hprn-pricing-feature-card {
+            border: 1px solid #e2e8f0;
+            padding: 2rem;
+            background-color: #f9fafb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+        .hprn-pricing-feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hprn-pricing-feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        .hprn-pricing-feature-card p.card-description {
+            color: #64748b;
+            font-size: 0.9375rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 1rem;
+        }
+
+        /* Input Layout for Duration/Units */
+        .hprn-calc-input-row {
+            display: flex;
+            gap: 1rem;
         }
         
-        @media (min-width: 1024px) { /* lg: */
-            .hprn-pricing-main-wrapper > .hprn-pricing-container {
-                padding-top: 6rem; /* lg:py-24 */
-                padding-bottom: 6rem; /* lg:py-24 */
-            }
-            .hprn-pricing-main-wrapper > .hprn-pricing-container > div {
-                display: flex; /* lg:flex */
-                gap: 3rem; /* lg:space-x-12 */
-            }
-            .hprn-pricing-main-content {
-                width: 66.666667%; /* lg:w-2/3 */
-            }
-            .hprn-pricing-benefits {
-                margin-top: 6rem; /* lg:mt-24 */
-            }
-            .hprn-pricing-sidebar {
-                width: 33.333333%; /* lg:w-1/3 */
-                margin-top: 0; /* lg:mt-0 */
-            }
+        /* Apply to inputs that need special styling for combined fields */
+        .hprn-calc-input.duration-value {
+            flex-grow: 1;
         }
-        
+        .hprn-calc-select.duration-unit {
+            width: 100%; /* Default to full width on mobile */
+            max-width: 120px;
+        }
 
         /* ============================================================
-          Footer Section
+          Input Styles 
           ============================================================
         */
-        .hprn-pricing-footer {
-            background-color: #ffffff; /* bg-white */
-            border-top: 1px solid #e5e7eb; /* border-t border-gray-200 */
+        .hprn-calc-input-group { margin-bottom: 1.5rem; }
+        .hprn-calc-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            color: #374151;
+            margin-bottom: 0.5rem;
         }
-        .hprn-pricing-footer > .hprn-pricing-container {
-            padding-top: 2.5rem; /* py-10 */
-            padding-bottom: 2.5rem; /* py-10 */
+        .hprn-calc-price {
+            font-weight: 500;
+            color: var(--color-accent);
+        }
+        
+        .hprn-calc-input, .hprn-calc-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            background-color: #ffffff;
+            color: #1f2937;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .hprn-calc-input:focus, .hprn-calc-select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.5); 
+        }
+
+        /* === Desktop Media Query (lg) === */
+        @media (min-width: 1024px) { 
+            .hprn-console-flex {
+                flex-direction: row; 
+                align-items: flex-start; 
+            }
+            .hprn-pricing-main-content { width: 66.666667%; }
+            .hprn-pricing-sidebar { width: 33.333333%; }
+        }
+        
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .hprn-pricing-hero-text h1 {
+                font-size: 1.75rem;
+            }
+            
+            .hprn-pricing-feature-card {
+                padding: 1.5rem;
+            }
+            
+            .hprn-calc-input-row {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .hprn-calc-select.duration-unit {
+                max-width: 100%;
+            }
+            
+            .hprn-estimate-bar-group {
+                gap: 1rem;
+            }
+        }
+        
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .hprn-pricing-container {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            .hprn-pricing-hero {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+            
+            .hprn-pricing-hero-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .hprn-estimate-bar {
+                padding: 1rem;
+            }
+            
+            .hprn-pricing-sidebar-box {
+                padding: 1rem;
+            }
+            
+            .hprn-pricing-feature-card {
+                padding: 1rem;
+            }
+            
+            .config-group-title {
+                font-size: 1.25rem;
+            }
+        }
+
+        /* Footer */
+        .hprn-pricing-footer {
+            background-color: #e2e8f0;
+            padding: 2rem 0;
+            font-size: 0.875rem;
+            color: #4b5563;
         }
         .hprn-pricing-footer h4 {
-            font-size: 0.875rem; /* text-sm */
-            line-height: 1.25rem;
-            font-weight: 600; /* font-semibold */
-            color: #1f2937; /* text-gray-800 */
-            margin-bottom: 0.5rem; /* mb-2 */
-        }
-        .hprn-pricing-footer p {
-            font-size: 0.75rem; /* text-xs */
-            line-height: 1rem;
-            color: #6c727e; /* text-gray-500 */
-        }
-        .hprn-pricing-footer p a {
-            color: #2563eb; /* text-blue-600 */
-        }
-        .hprn-pricing-footer p a:hover {
-            text-decoration: underline; /* hover:underline */
-        }
-        .hprn-pricing-footer p a span {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .hprn-pricing-footer p a svg {
-            width: 0.75rem; /* w-3 */
-            height: 0.75rem; /* h-3 */
+            font-weight: 700;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 <body class="hprn-pricing-body">
 
+    <!-- 
+      ============================================================
+      Header & Estimate Bar (Scrolling)
+      ============================================================
+    -->
     <header class="hprn-pricing-hero">
         <div class="hprn-pricing-container">
-            <div>
-                
-                <div class="hprn-pricing-hero-text">
-                    <h1>
-                        Hyperion IT Cost Estimator
-                    </h1>
-                    <p>
-                        Estimate the cost for your architecture solution.
-                    </p>
-                    <p>
-                        Configure a cost estimate that fits your unique business needs
-                        with Hyperion IT products and services.
-                    </p>
+            <!-- Header Text Content -->
+            <div class="hprn-pricing-hero-text">
+                <h1>Enterprise Service Configuration Console</h1>
+                <p>Tailor your complex service solution across Software, Infrastructure, and Marketing. Estimate costs based on duration, scale, and commitment level.</p>
+            </div>
+            
+            <!-- Estimate Display Bar -->
+            <div class="hprn-estimate-bar">
+                <div class="hprn-estimate-bar-group">
+                    <div class="hprn-estimate-bar-item">
+                        <h3>Estimated Annualized OpEx (with commitment discount)</h3>
+                        <span class="total-amount-secondary" id="total-annualized-display">R 0.00</span>
+                    </div>
+                    <div class="hprn-estimate-bar-item">
+                        <h3>Estimated Monthly OpEx</h3>
+                        <span class="total-amount" id="total-monthly-display">R 0.00</span>
+                    </div>
+                    <div class="hprn-estimate-bar-item">
+                        <h3>Estimated Once-Off CapEx</h3>
+                        <span class="total-amount-secondary" id="total-once-off-display">R 0.00</span>
+                    </div>
                 </div>
-
-                <div class="hprn-pricing-hero-cta-box">
-                    <h2>
-                        Create an estimate
-                    </h2>
-                    <p>
-                        Start your estimate with no commitment, and explore Hyperion IT
-                        services and pricing for your architecture needs.
-                    </p>
-                    <a href="calculator.html" class="hprn-pricing-btn-primary">
-                        Create estimate
-                    </a>
-                    <p>
-                        Already a Hyperion Customer?
-                    </p>
-                    <a href="#" class="hprn-pricing-btn-secondary">
-                        Log into the console
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                    </a>
-                    <p>
-                        Log into the console to estimate your costs
-                        including your volume discounts.
-                        <a href="#">Learn more
-                            <span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                </svg>
-                            </span>
-                        </a>
-                    </p>
-                </div>
-
+                <button type="reset" form="calc-form" class="hprn-pricing-btn-secondary">
+                    Clear All Configurations
+                </button>
             </div>
         </div>
     </header>
 
+    <!-- 
+      ============================================================
+      Main Content (Service Configuration and Selection)
+      ============================================================
+    -->
     <main class="hprn-pricing-main-wrapper">
         <div class="hprn-pricing-container">
-            <div>
+            <div class="hprn-console-flex">
 
-                <div class="hprn-pricing-main-content">
-
-                    <section class="hprn-pricing-how-it-works">
-                        <h2>
-                            How it works
-                        </h2>
-                        
-                        <div> <div class="hprn-pricing-step"> <div class="hprn-pricing-icon-wrapper">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                        <path fill="#000000" d="M18 23.5q-2.3 0-3.9-1.6T12.5 18q0-2.3 1.6-3.9t3.9-1.6q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T18 23.5Zm0-1.5q1.65 0 2.825-1.175Q22 19.65 22 18q0-1.65-1.175-2.825Q19.65 14 18 14q-1.65 0-2.825 1.175Q14 16.35 14 18q0 1.65 1.175 2.825Q16.35 22 18 22ZM6 23.5q-2.3 0-3.9-1.6T.5 18q0-2.3 1.6-3.9T6 12.5q2.3 0 3.9 1.6t1.6 3.9q0 2.3-1.6 3.9T6 23.5ZM6 22q1.65 0 2.825-1.175Q10 19.65 10 18q0-1.65-1.175-2.825Q7.65 14 6 14q-1.65 0-2.825 1.175Q2 16.35 2 18q0 1.65 1.175 2.825Q4.35 22 6 22Zm0-10.5q-2.3 0-3.9-1.6T.5 6q0-2.3 1.6-3.9T6 .5q2.3 0 3.9 1.6T11.5 6q0 2.3-1.6 3.9T6 11.5ZM6 10q1.65 0 2.825-1.175Q10 7.65 10 6q0-1.65-1.175-2.825Q7.65 2 6 2Q4.35 2 3.175 3.175Q2 4.35 2 6q0 1.65 1.175 2.825Q4.35 10 6 10Zm12 1.5q-2.3 0-3.9-1.6T12.5 6q0-2.3 1.6-3.9T18 .5q2.3 0 3.9 1.6T23.5 6q0 2.3-1.6 3.9T18 11.5Zm0-1.5q1.65 0 2.825-1.175Q22 7.65 22 6q0-1.65-1.175-2.825Q19.65 2 18 2q-1.65 0-2.825 1.175Q14 4.35 14 6q0 1.65 1.175 2.825Q16.35 10 18 10Zm-2.5 10v-1.5h5V20Zm0-2.5V16h5v1.5Zm-10.25 3v-1.75H3.5v-1.5h1.75V15.5h1.5v1.75H8.5v1.5H6.75v1.75ZM3.5 6.75v-1.5h5v1.5ZM16.75 8.3L15.7 7.25L16.95 6L15.7 4.75l1.05-1.05L18 4.95l1.25-1.25l1.05 1.05L19.05 6l1.25 1.25l-1.05 1.05L18 7.05Z"/>
-                                    </svg>
-                                </div>
-                                <h3>
-                                    Hyperion Cost Estimator
-                                </h3>
-                                <p>
-                                    Estimate the cost of your Hyperion IT products and
-                                    services.
-                                </p>
-                            </div>
-                            
-                            <div class="hprn-pricing-step">
-                                <div class="hprn-pricing-icon-wrapper">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#000000" d="M48 464V144H16v328a24.027 24.027 0 0 0 24 24h328v-32H48Z"/><path fill="#000000" d="M144 400h-32V80H80v328a24.027 24.027 0 0 0 24 24h328v-32H144Z"/><path fill="#000000" d="M472 16H168a24.027 24.027 0 0 0-24 24v304a24.027 24.027 0 0 0 24 24h304a24.027 24.027 0 0 0 24-24V40a24.027 24.027 0 0 0-24-24Zm-8 320H176V48h288Z"/><path fill="#000000" d="M304 288h32v-84h84v-32h-84V88h-32v84h-84v32h84v84z"/></svg>
-                                </div>
-                                <h3>
-                                    Step 1: Add services
-                                </h3>
-                                <p>
-                                    Search and add the IT services that you
-                                    need for your solution.
-                                </p>
-                            </div>
-                            
-                            <div class="hprn-pricing-step"> <div class="hprn-pricing-icon-wrapper">
-                                    <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"><path fill="#000000" d="m31.707 19.293l-3-3a1 1 0 0 0-1.414 0L18 25.586V30h4.414l9.293-9.293a1 1 0 0 0 0-1.414zM21.586 28H20v-1.586l5-5L26.586 23l-5 5zM28 21.586L26.414 20L28 18.414L29.586 20L28 21.586zM16 22c-3.364 0-6-2.636-6-6s2.636-6 6-6s6 2.636 6 6s-2.636 6-6 6zm0-10c-2.28 0-4 1.72-4 4s1.72 4 4 4s4-1.72 4-4s-1.72-4-4-4z"/><path fill="#000000" d="m27.547 12l1.733-1l-2.336-4.044a2 2 0 0 0-2.373-.894l-2.434.823a11.056 11.056 0 0 0-1.312-.758l-.503-2.52A2 2 0 0 0 18.36 2h-4.72a2 2 0 0 0-1.962 1.608l-.503 2.518c-.46.225-.906.47-1.327.754l-2.42-.818a2 2 0 0 0-2.373.894l-2.36 4.088a2 2 0 0 0 .412 2.502l1.931 1.697C5.021 15.495 5 15.745 5 16c0 .258.01.513.028.766l-1.92 1.688a2 2 0 0 0-.413 2.502l2.36 4.088a2 2 0 0 0 2.374.894l2.434-.823c.418.282.856.535 1.312.758l.503 2.519A2 2 0 0 0 13.64 30H16v-2h-2.36l-.71-3.55a9.096 9.096 0 0 1-2.695-1.572l-3.447 1.166l-2.36-4.088l2.725-2.395a8.929 8.929 0 0 1-.007-3.128l-2.719-2.39l2.361-4.087l3.427 1.16A9.027 9.027 0 0 1 12.93 7.55L13.64 4h4.721l.71 3.55a9.1 9.1 0 0 1 2.695 1.572l3.447-1.166L27.547 12Z"/></svg>
-                                </div>
-                                <h3>   
-                                    Step 2: Configure service
-                                </h3>
-                                <p>
-                                    Enter the details of your usage to see
-                                    service costs.
-                                </p>
-                            </div>
-                            
-                            <div class="hprn-pricing-step">
-                                <div class="hprn-pricing-icon-wrapper">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" fill="#000000"><g fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5.5h-7a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-7Z"/><path d="M8.5 5V.5l5 5H9a.5.5 0 0 1-.5-.5Zm-4-.5V3M3 8.5c0 .75.67 1 1.5 1s1.5 0 1.5-1C6 7 3 7 3 5.5c0-1 .67-1 1.5-1s1.5.38 1.5 1m-1.5 4V11m4-1.5h3"/></g></svg>
-                                </div>
-                                <h3>
-                                    Step 3: View estimate totals
-                                </h3>
-                                <p>
-                                    See estimated costs per service, service
-                                    groups, and totals.
-                                </p>
-                            </div>
-
-                        </div>
-                    </section>
-
-                    <section class="hprn-pricing-benefits">
-                        <h2>
-                            Benefits and features
-                        </h2>
-                        
-                        <div class="hprn-pricing-benefits-grid">
-
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Transparent pricing
-                                </h3>
-                                <p>
-                                    See the math behind the price for your
-                                    service configurations. View prices per
-                                    service or per group of services to analyze
-                                    your architecture costs.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Reading your estimate
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Share your estimates
-                                </h3>
-                                <p>
-                                    Save each estimate's unique link to share
-                                    or revisit directly through your browser.
-                                    Estimates are saved to Hyperion public
-                                    servers.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Saving and sharing your estimate
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Hierarchical estimates
-                                </h3>
-                                <p>
-                                    See and analyze service costs grouped by
-                                    different parts of your architecture.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Using groups
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <div class="hprn-pricing-feature-card">
-                                <h3>
-                                    Estimate exports
-                                </h3>
-                                <p>
-                                    Export your estimate to a .csv, .pdf and
-                                    .json file to quickly share and analyze
-                                    your proposed architecture spend.
-                                </p>
-                                <a href="#" class="hprn-pricing-link">
-                                    Exporting estimates
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-
+                <!-- 
+                    =======================================
+                    SIDEBAR: SERVICE SELECTION MENU
+                    =======================================
+                -->
                 <aside class="hprn-pricing-sidebar">
                     
-                    <div class="hprn-pricing-sidebar-box"> <div> <h3> More resources
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                            </svg>
-                        </h3>
-                    </div>
-                        <ul> <li><a href="#">User guide</a></li>
-                            <li><a href="pricing-assumptions.html">Pricing assumptions and variations</a></li>
-                            <li><a href="#">Need help with estimation? Connect with Hyperion experts</a></li>
-                        </ul>
-                    </div>
-
+                    <!-- Sidebar Card: Service Selector -->
                     <div class="hprn-pricing-sidebar-box">
-                        <div> <h3> Hyperion Cloud Migration Calculator
-                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </h3>
-                        </div>
-                        <p> Estimate the cost of transforming legacy workloads
-                            to a modern architecture that uses
-                            open source and cloud-native services deployed
-                            on Hyperion.
-                        </p>
-                        <a href="cloud-calculator.html" class="hprn-pricing-link"> Get started
-                        </a>
-                    </div>
-                </aside>
+                        <h3>Service Scope Selector</h3>
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: #64748b;">Activate service groups to reveal configuration options.</p>
+                        
+                        <div class="hprn-service-list">
+                            
+                            <h4>Software Development (CapEx & OpEx)</h4>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-dev-hours" data-target="config-dev-hours">
+                                <label for="check-dev-hours">Bespoke Software Development (CapEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-devops" data-target="config-devops">
+                                <label for="check-devops">Enterprise DevOps & Web3 Maintenance (OpEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-web-apps" data-target="config-web-apps">
+                                <label for="check-web-apps">Web Applications Development</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-mobile-apps" data-target="config-mobile-apps">
+                                <label for="check-mobile-apps">Mobile Applications Development</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-api-services" data-target="config-api-services">
+                                <label for="check-api-services">API & Microservices Architecture</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-ecommerce" data-target="config-ecommerce">
+                                <label for="check-ecommerce">E-commerce Solutions</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-ai-ml" data-target="config-ai-ml">
+                                <label for="check-ai-ml">AI & Machine Learning Solutions</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-blockchain" data-target="config-blockchain">
+                                <label for="check-blockchain">Blockchain & Web3 Development</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-database" data-target="config-database">
+                                <label for="check-database">Database Engineering & Management</label>
+                            </div>
 
+                            <h4>Managed IT Infrastructure (OpEx)</h4>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-cloud-compute" data-target="config-cloud-compute">
+                                <label for="check-cloud-compute">IT Consulting & Cloud Computing (OpEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-support-plan" data-target="config-support-plan">
+                                <label for="check-support-plan">Global IT Support & Staff Augmentation (OpEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-datacenter" data-target="config-datacenter">
+                                <label for="check-datacenter">Data Center Management & Storage (OpEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-smart-tech" data-target="config-smart-tech">
+                                <label for="check-smart-tech">Smart Technology Solutions</label>
+                            </div>
+                            
+                            <h4>Marketing & Creative Studio (OpEx & CapEx)</h4>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-marketing" data-target="config-marketing">
+                                <label for="check-marketing">Advertising Campaigns & Strategy (OpEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-design-hours" data-target="config-design-hours">
+                                <label for="check-design-hours">Content & Multimedia Production (CapEx/OpEx)</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-digital-marketing" data-target="config-digital-marketing">
+                                <label for="check-digital-marketing">Digital Marketing Services</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-graphic-design" data-target="config-graphic-design">
+                                <label for="check-graphic-design">Graphic Design Services</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-content-management" data-target="config-content-management">
+                                <label for="check-content-management">Content Management</label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-multimedia" data-target="config-multimedia">
+                                <label for="check-multimedia">Multimedia Production</label>
+                            </div>
+
+                            <h4>Hardware & Smart Tech (CapEx)</h4>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-hardware" data-target="config-hardware">
+                                <label for="check-hardware">Enterprise Hardware Procurement (CapEx)</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Sidebar Card: Info -->
+                    <div class="hprn-pricing-sidebar-box">
+                         <h3>Cost & Discount Factors</h3>
+                        <p style="font-size: 0.875rem; color: #64748b;">
+                            All prices are estimated in South African Rands (ZAR). OpEx represents monthly recurring costs. Annual OpEx commitment includes a 10% Volume Discount. Conversions are based on standard 8-hour days and 4-week months.
+                        </p>
+                    </div>
+
+                </aside>
+                
+                <!-- 
+                    =======================================
+                    MAIN CONTENT: CONFIGURATION DETAILS
+                    =======================================
+                -->
+                <form class="hprn-pricing-main-content" id="calc-form">
+                    
+                    <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827;">Service Configuration</h2>
+                    <p style="color: #4b5563; margin-bottom: 2rem; font-size: 0.9375rem;">Set the parameters for your high-standard enterprise solution.</p>
+
+
+                    <!-- Group 1: Software Development -->
+                    <div class="config-group-title">Software Development</div>
+                    
+                    <!-- SERVICE BLOCK: Project Dev Hours (CapEx) - DURATION LOGIC -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-dev-hours">
+                        <h3>Bespoke Software Development (Web/Mobile/API)</h3>
+                        <p class="card-description">Estimate the total effort required for the initial project build (CapEx).</p>
+
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label">
+                                <span>Required Development Effort</span>
+                                <span class="hprn-calc-price">R 1,200.00 / Effective Hour (CapEx)</span>
+                            </label>
+                            <div class="hprn-calc-input-row">
+                                <input type="number" name="dev-duration-num" id="dev-duration-num" class="hprn-calc-input duration-value" min="0" value="0" step="1">
+                                <select name="dev-duration-unit" id="dev-duration-unit" class="hprn-calc-select duration-unit">
+                                    <option value="1">Hours</option>
+                                    <option value="8">Days (8 hours)</option>
+                                    <option value="40">Weeks (40 hours)</option>
+                                    <option value="160">Months (160 hours)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE BLOCK: DevOps Plan (OpEx) - ANNUAL COMMITMENT -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-devops">
+                        <h3>Enterprise DevOps & Web3 Maintenance</h3>
+                        <p class="card-description">Ongoing monitoring, CI/CD pipeline management, and blockchain node maintenance (OpEx).</p>
+                        
+                        <div class="hprn-calc-input-group">
+                             <label for="devops-plan" class="hprn-calc-label">
+                                <span>Select Tier</span>
+                             </label>
+                             <select name="devops-plan" id="devops-plan" class="hprn-calc-select">
+                                 <option value="0">0 - None (R 0.00 /mo)</option>
+                                 <option value="25000">1 - Advanced Monitoring & Patches (R 25,000.00 /mo)</option>
+                                 <option value="65000">2 - Full Automation, CI/CD & Security (R 65,000.00 /mo)</option>
+                                 <option value="120000">3 - Managed Web3 Infrastructure & Scaling (R 120,000.00 /mo)</option>
+                             </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="devops-commitment" class="hprn-calc-label">
+                                <span>Annual Commitment (10% Discount)</span>
+                            </label>
+                            <select name="devops-commitment" id="devops-commitment" class="hprn-calc-select">
+                                <option value="1">Monthly</option>
+                                <option value="12">Annual (Save 10%)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- SERVICE BLOCK: Web Applications -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-web-apps">
+                        <h3>Web Applications Development</h3>
+                        <p class="card-description">Custom web application development from simple sites to complex enterprise systems.</p>
+                        
+                        <div class="hprn-calc-input-group">
+                             <label for="web-apps-complexity" class="hprn-calc-label">
+                                <span>Application Complexity</span>
+                             </label>
+                             <select name="web-apps-complexity" id="web-apps-complexity" class="hprn-calc-select">
+                                 <option value="0">None (R 0.00)</option>
+                                 <option value="50000">Simple Website (R 50,000.00)</option>
+                                 <option value="150000">Business Application (R 150,000.00)</option>
+                                 <option value="350000">Enterprise System (R 350,000.00)</option>
+                             </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="web-apps-maintenance" class="hprn-calc-label">
+                                <span>Monthly Maintenance (Optional)</span>
+                                <span class="hprn-calc-price">R 5,000.00 /mo</span>
+                            </label>
+                            <input type="number" name="web-apps-maintenance" id="web-apps-maintenance" class="hprn-calc-input" min="0" max="12" value="0" placeholder="Months of maintenance">
+                        </div>
+                    </div>
+                    
+                    <!-- SERVICE BLOCK: Mobile Applications -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-mobile-apps">
+                        <h3>Mobile Applications Development</h3>
+                        <p class="card-description">Native and cross-platform mobile application development for iOS and Android.</p>
+                        
+                        <div class="hprn-calc-input-group">
+                             <label for="mobile-apps-platform" class="hprn-calc-label">
+                                <span>Platform Selection</span>
+                             </label>
+                             <select name="mobile-apps-platform" id="mobile-apps-platform" class="hprn-calc-select">
+                                 <option value="0">None (R 0.00)</option>
+                                 <option value="80000">iOS Only (R 80,000.00)</option>
+                                 <option value="80000">Android Only (R 80,000.00)</option>
+                                 <option value="120000">Cross-Platform (R 120,000.00)</option>
+                             </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="mobile-apps-complexity" class="hprn-calc-label">
+                                <span>Application Complexity</span>
+                             </label>
+                             <select name="mobile-apps-complexity" id="mobile-apps-complexity" class="hprn-calc-select">
+                                 <option value="1.0">Standard (Base Price)</option>
+                                 <option value="1.5">Complex (1.5x Multiplier)</option>
+                                 <option value="2.0">Highly Complex (2x Multiplier)</option>
+                             </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional service blocks would follow the same pattern for:
+                         - API & Microservices
+                         - E-commerce
+                         - AI & ML
+                         - Blockchain & Web3
+                         - Database Engineering
+                    -->
+                    
+                    <!-- Group 2: Managed IT Infrastructure -->
+                    <div class="config-group-title">Managed IT Infrastructure</div>
+
+                    <!-- SERVICE BLOCK: Cloud Computing (OpEx) - ANNUAL COMMITMENT -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-cloud-compute">
+                        <h3>IT Consulting & Cloud Computing</h3>
+                        <p class="card-description">Managed infrastructure, cloud resources, and strategic consulting time (OpEx).</p>
+                        
+                        <div class="hprn-calc-input-group">
+                            <label for="cloud-vm-num" class="hprn-calc-label">
+                                <span>Number of High-Availability VMs/Containers</span>
+                                <span class="hprn-calc-price">R 2,200.00 /VM/mo</span>
+                            </label>
+                            <input type="number" name="cloud-vm-num" id="cloud-vm-num" class="hprn-calc-input" min="0" max="100" value="0">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="cloud-commitment" class="hprn-calc-label">
+                                <span>Annual Commitment (10% Discount)</span>
+                            </label>
+                            <select name="cloud-commitment" id="cloud-commitment" class="hprn-calc-select">
+                                <option value="1">Monthly</option>
+                                <option value="12">Annual (Save 10%)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE BLOCK: IT Support Plan (OpEx) - STAFF SIZE SCALING -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-support-plan">
+                        <h3>Global IT Support & Staff Augmentation</h3>
+                        <p class="card-description">Tiered SLA support package plus per-user license/support fee (OpEx).</p>
+                        
+                        <div class="hprn-calc-input-group">
+                             <label for="support-plan" class="hprn-calc-label">
+                                <span>Select Base SLA Tier</span>
+                             </label>
+                             <select name="support-plan" id="support-plan" class="hprn-calc-select">
+                                 <option value="0">0 - None (R 0.00 /mo)</option>
+                                 <option value="12000">1 - Basic 8/5 Helpdesk & Onboarding (R 12,000.00 /mo)</option>
+                                 <option value="35000">2 - Pro 24/7 Managed Services & Consultancy (R 35,000.00 /mo)</option>
+                             </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="staff-size-num" class="hprn-calc-label">
+                                <span>Number of Supported Staff Users</span>
+                                <span class="hprn-calc-price">R 1,500.00 /user/mo</span>
+                            </label>
+                            <input type="number" name="staff-size-num" id="staff-size-num" class="hprn-calc-input" min="0" max="500" value="0" step="10">
+                        </div>
+                    </div>
+                    
+                    <!-- SERVICE BLOCK: Data Center & Surveillance (OpEx) -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-datacenter">
+                        <h3>Data Center Management & Storage</h3>
+                        <p class="card-description">Remote monitoring, maintenance, and compliance reporting (OpEx).</p>
+                        <div class="hprn-calc-input-group">
+                            <label for="datacenter-sites-num" class="hprn-calc-label">
+                                <span>Number of Data Center Sites or Major Racks</span>
+                                <span class="hprn-calc-price">R 15,000.00 /site/mo</span>
+                            </label>
+                            <input type="number" name="datacenter-sites-num" id="datacenter-sites-num" class="hprn-calc-input" min="0" max="10" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="cctv-points-num" class="hprn-calc-label">
+                                <span>Number of Managed Centers/Smart Technology Endpoints</span>
+                                <span class="hprn-calc-price">R 600.00 /point/mo</span>
+                            </label>
+                            <input type="number" name="cctv-points-num" id="cctv-points-num" class="hprn-calc-input" min="0" max="200" value="0" step="10">
+                        </div>
+                    </div>
+                    
+                    <!-- SERVICE BLOCK: Smart Technology -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-smart-tech">
+                        <h3>Smart Technology Solutions</h3>
+                        <p class="card-description">POS systems setup, queue management, TV mounting, ambient lighting, and smart office solutions.</p>
+                        
+                        <div class="hprn-calc-input-group">
+                            <label for="pos-systems" class="hprn-calc-label">
+                                <span>POS Systems Setup</span>
+                                <span class="hprn-calc-price">R 8,500.00 /system</span>
+                            </label>
+                            <input type="number" name="pos-systems" id="pos-systems" class="hprn-calc-input" min="0" max="20" value="0">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="queue-systems" class="hprn-calc-label">
+                                <span>Queue Management Systems</span>
+                                <span class="hprn-calc-price">R 12,000.00 /system</span>
+                            </label>
+                            <input type="number" name="queue-systems" id="queue-systems" class="hprn-calc-input" min="0" max="10" value="0">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="tv-mounting" class="hprn-calc-label">
+                                <span>TV Mounting & Setup</span>
+                                <span class="hprn-calc-price">R 1,200.00 /unit</span>
+                            </label>
+                            <input type="number" name="tv-mounting" id="tv-mounting" class="hprn-calc-input" min="0" max="50" value="0">
+                        </div>
+                    </div>
+
+                    <!-- Group 3: Marketing & Creative Studio -->
+                    <div class="config-group-title">Marketing & Creative Studio</div>
+
+                    <!-- SERVICE BLOCK: Digital Marketing Plan (OpEx) - DURATION LOGIC -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-marketing">
+                        <h3>Advertising Campaigns & Strategy</h3>
+                        <p class="card-description">Management fees for large-scale digital marketing efforts (excludes ad spend) (OpEx).</p>
+                        
+                        <div class="hprn-calc-input-group">
+                             <label for="marketing-plan" class="hprn-calc-label">
+                                <span>Select Campaign Management Tier (Monthly Rate)</span>
+                             </label>
+                             <select name="marketing-plan" id="marketing-plan" class="hprn-calc-select">
+                                 <option value="0">0 - None (R 0.00 /mo)</option>
+                                 <option value="40000">1 - Targeted Digital Strategy (R 40,000.00 /mo)</option>
+                                 <option value="85000">2 - Full Funnel Management & Analytics (R 85,000.00 /mo)</option>
+                             </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="campaign-duration-num" class="hprn-calc-label">
+                                <span>Planned Campaign Duration</span>
+                            </label>
+                            <div class="hprn-calc-input-row">
+                                <input type="number" name="campaign-duration-num" id="campaign-duration-num" class="hprn-calc-input duration-value" min="0" value="0" step="1">
+                                <select name="campaign-duration-unit" id="campaign-duration-unit" class="hprn-calc-select duration-unit">
+                                    <option value="1">Months</option>
+                                    <option value="4">Quarters (3 Months)</option>
+                                    <option value="12">Year (12 Months)</option>
+                                </select>
+                            </div>
+                            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">Total OpEx for this service will be multiplied by this duration.</p>
+                        </div>
+                    </div>
+
+                    <!-- SERVICE BLOCK: Graphic Design Retainer (OpEx) -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-design-hours">
+                        <h3>Content & Multimedia Production</h3>
+                        <p class="card-description">Fixed monthly retainer for graphic design, content management, and multimedia (OpEx).</p>
+                        <div class="hprn-calc-input-group">
+                            <label for="design-hours-num" class="hprn-calc-label">
+                                <span>Monthly Retainer Hours</span>
+                                <span class="hprn-calc-price">R 900.00 /hour/mo</span>
+                            </label>
+                            <input type="number" name="design-hours-num" id="design-hours-num" class="hprn-calc-input" min="0" max="150" value="0" step="5">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="design-cap-ex" class="hprn-calc-label">
+                                <span>One-Off Studio Setup/Consulting Fee</span>
+                                <span class="hprn-calc-price">R 45,000.00 (CapEx)</span>
+                            </label>
+                            <input type="number" name="design-cap-ex" id="design-cap-ex" class="hprn-calc-input" min="0" max="1" value="0" step="1" placeholder="Enter 1 to include fee">
+                        </div>
+                    </div>
+                    
+                    <!-- Additional service blocks would follow the same pattern for:
+                         - Digital Marketing Services
+                         - Graphic Design Services
+                         - Content Management
+                         - Multimedia Production
+                    -->
+                    
+                    <!-- Group 4: Once-Off CapEx -->
+                    <div class="config-group-title">Hardware & Smart Technology</div>
+
+                    <!-- SERVICE BLOCK: Hardware (CapEx) -->
+                    <div class="hprn-pricing-feature-card service-block" id="config-hardware">
+                        <h3>Enterprise Hardware Procurement & Setup</h3>
+                        <p class="card-description">CapEx for procurement and setup of essential physical infrastructure.</p>
+                        <div class="hprn-calc-input-group">
+                            <label for="workstations-num" class="hprn-calc-label">
+                                <span>Premium Workstations/Laptops (Procurement)</span>
+                                <span class="hprn-calc-price">R 35,000.00 /unit (CapEx)</span>
+                            </label>
+                            <input type="number" name="workstations-num" id="workstations-num" class="hprn-calc-input" min="0" max="100" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="smart-tech-units" class="hprn-calc-label">
+                                <span>Smart Tech Units (POS, Queue, A/V) Setup</span>
+                                <span class="hprn-calc-price">R 18,000.00 /unit (CapEx)</span>
+                            </label>
+                            <input type="number" name="smart-tech-units" id="smart-tech-units" class="hprn-calc-input" min="0" max="50" value="0" step="1">
+                        </div>
+                    </div>
+                    
+                </form>
             </div>
         </div>
     </main>
 
+    <!-- 
+      ============================================================
+      Footer Section
+      ============================================================
+    -->
     <footer class="hprn-pricing-footer">
         <div class="hprn-pricing-container">
-            <h4>
-                Acknowledgement
-            </h4>
+            <h4>Disclaimer</h4>
             <p>
-                The Hyperion IT Cost Estimator provides only an estimate of your Hyperion IT
-                fees and doesn't include any taxes that might apply. Your actual
-                fees depend on a variety of factors, including your actual usage
-                of Hyperion IT services.
-                <a href="pricing-assumptions.html">Learn more
-                    <span>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
-                    </span>
-                </a>
+                This Enterprise Service Configuration Console provides advanced estimates based on the provided inputs and standard assumptions. All costs are illustrative and should be confirmed with a formal quotation from our sales team. The 10% annual discount is applied before VAT.
             </p>
         </div>
     </footer>
+
+    <!-- 
+      ============================================================
+      JavaScript for Calculator Logic and UI Toggling
+      ============================================================
+    -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Conversion Constants ---
+            const CONVERSION = {
+                HOURS_PER_DAY: 8,
+                DAYS_PER_WEEK: 5,
+                MONTHS_PER_YEAR: 12,
+                ANNUAL_DISCOUNT_FACTOR: 0.90 // 10% discount
+            };
+            
+            // --- Define Prices (ZAR, Enterprise Level) ---
+            const PRICES = {
+                // Software Development
+                devHourRate: 1200,      // CapEx
+                
+                // Managed IT Infrastructure
+                cloudVM: 2200,          // OpEx
+                supportPlanUser: 1500,  // OpEx per staff member
+                datacenterSite: 15000,  // OpEx per site/rack
+                cctvPoints: 600,        // OpEx per point
+                
+                // Marketing & Creative Studio
+                designRetainerHour: 900, // OpEx (per hour/mo)
+                studioSetupFee: 45000,   // CapEx (one-off)
+
+                // Hardware & Smart Tech (CapEx)
+                workstation: 35000,
+                smartTechUnit: 18000 
+            };
+
+            // --- Get Elements ---
+            const calcForm = document.getElementById('calc-form');
+            
+            // Configuration Inputs (using name attribute for simpler selection)
+            const inputs = {
+                // Software Development
+                devDurationNum: document.getElementById('dev-duration-num'),
+                devDurationUnit: document.getElementById('dev-duration-unit'),
+                devopsCost: document.getElementById('devops-plan'),
+                devopsCommitment: document.getElementById('devops-commitment'),
+                
+                // Managed IT Infrastructure
+                cloudVMCount: document.getElementById('cloud-vm-num'),
+                cloudCommitment: document.getElementById('cloud-commitment'),
+                supportCost: document.getElementById('support-plan'),
+                staffSizeNum: document.getElementById('staff-size-num'),
+                datacenterSites: document.getElementById('datacenter-sites-num'),
+                cctvPoints: document.getElementById('cctv-points-num'),
+                
+                // Marketing & Creative Studio
+                marketingCost: document.getElementById('marketing-plan'),
+                campaignDurationNum: document.getElementById('campaign-duration-num'),
+                campaignDurationUnit: document.getElementById('campaign-duration-unit'),
+                designHours: document.getElementById('design-hours-num'),
+                designCapEx: document.getElementById('design-cap-ex'),
+
+                // Hardware & Smart Tech
+                workstations: document.getElementById('workstations-num'),
+                smartTechUnits: document.getElementById('smart-tech-units')
+            };
+
+            // Outputs
+            const monthlyDisplay = document.getElementById('total-monthly-display');
+            const onceOffDisplay = document.getElementById('total-once-off-display');
+            const annualizedDisplay = document.getElementById('total-annualized-display');
+
+            // Service Selector Checkboxes and Config Blocks
+            const serviceCheckboxes = document.querySelectorAll('.hprn-service-list-item input[type="checkbox"]');
+            const configBlocks = document.querySelectorAll('.service-block');
+
+            // --- Helper Functions ---
+
+            // Format number as ZAR
+            function formatCurrency(value) {
+                // Ensure value is a safe number
+                const safeValue = isNaN(value) ? 0 : Math.max(0, value);
+                return new Intl.NumberFormat('en-ZA', { 
+                    style: 'currency', 
+                    currency: 'ZAR',
+                    minimumFractionDigits: 0 // Keep it clean for enterprise display
+                }).format(safeValue);
+            }
+
+            // Reset inputs when a service is deselected
+            function resetServiceInputs(blockId) {
+                const block = document.getElementById(blockId);
+                if (block) {
+                    block.querySelectorAll('input[type="number"]').forEach(input => input.value = 0);
+                    block.querySelectorAll('select').forEach(select => {
+                        // Reset plans to R 0.00
+                        if (select.id.endsWith('-plan') || select.id.endsWith('-cost')) {
+                             select.value = 0;
+                        } 
+                        // Reset duration/commitment to default (1 or Monthly/Hours)
+                        else if (select.id.includes('duration') || select.id.includes('commitment')) {
+                            select.value = 1;
+                        }
+                    });
+                }
+            }
+
+            // --- UI Toggling Logic ---
+            function handleServiceToggle(event) {
+                const checkbox = event.target;
+                const configBlockId = checkbox.getAttribute('data-target');
+                const configBlock = document.getElementById(configBlockId);
+
+                if (!configBlock) return;
+
+                if (checkbox.checked) {
+                    configBlock.style.display = 'block';
+                } else {
+                    configBlock.style.display = 'none';
+                    resetServiceInputs(configBlockId);
+                }
+                
+                calculateTotal();
+            }
+
+            // --- Main Calculation Function ---
+            function calculateTotal() {
+                let totalMonthly = 0;
+                let totalOnceOff = 0;
+                let totalAnnualCommitmentFactor = 0; // Tracks if any annual commitment is made (1 for no discount, 0.9 for discount)
+                
+                // ----------------------------------------------
+                // 1. Software Development
+                // ----------------------------------------------
+                
+                // Project Development Hours (CapEx - Duration Logic)
+                if (document.getElementById('check-dev-hours').checked) {
+                    const durationNum = parseFloat(inputs.devDurationNum.value) || 0;
+                    const durationUnitFactor = parseFloat(inputs.devDurationUnit.value) || 1; // 1 (Hour), 8 (Day), 40 (Week), 160 (Month)
+                    
+                    const totalHours = durationNum * durationUnitFactor;
+                    totalOnceOff += totalHours * PRICES.devHourRate;
+                }
+                
+                // DevOps & Maintenance Plan (OpEx - Commitment)
+                if (document.getElementById('check-devops').checked) {
+                    const devopsCost = parseFloat(inputs.devopsCost.value) || 0;
+                    totalMonthly += devopsCost;
+
+                    // Check for Annual Commitment Discount
+                    if (parseFloat(inputs.devopsCommitment.value) === CONVERSION.MONTHS_PER_YEAR) {
+                        totalAnnualCommitmentFactor = CONVERSION.ANNUAL_DISCOUNT_FACTOR;
+                    }
+                }
+
+                // ----------------------------------------------
+                // 2. Managed IT Infrastructure
+                // ----------------------------------------------
+                
+                // Cloud Computing (OpEx - Commitment)
+                if (document.getElementById('check-cloud-compute').checked) {
+                    const vmCount = parseFloat(inputs.cloudVMCount.value) || 0;
+                    totalMonthly += (vmCount * PRICES.cloudVM);
+
+                    // Check for Annual Commitment Discount
+                    if (parseFloat(inputs.cloudCommitment.value) === CONVERSION.MONTHS_PER_YEAR) {
+                        totalAnnualCommitmentFactor = CONVERSION.ANNUAL_DISCOUNT_FACTOR;
+                    }
+                }
+
+                // IT Support & Staff Size (OpEx - Scaling)
+                if (document.getElementById('check-support-plan').checked) {
+                    const supportCost = parseFloat(inputs.supportCost.value) || 0;
+                    const staffSize = parseFloat(inputs.staffSizeNum.value) || 0;
+                    
+                    totalMonthly += supportCost; // Base plan cost
+                    totalMonthly += (staffSize * PRICES.supportPlanUser); // Per user fee
+                }
+                
+                // Data Center & Surveillance (OpEx)
+                if (document.getElementById('check-datacenter').checked) {
+                    const sites = parseFloat(inputs.datacenterSites.value) || 0;
+                    const cctvPoints = parseFloat(inputs.cctvPoints.value) || 0;
+                    totalMonthly += (sites * PRICES.datacenterSite);
+                    totalMonthly += (cctvPoints * PRICES.cctvPoints);
+                }
+
+                // ----------------------------------------------
+                // 3. Marketing & Creative Studio
+                // ----------------------------------------------
+                
+                // Digital Marketing Campaigns (OpEx - Duration)
+                if (document.getElementById('check-marketing').checked) {
+                    const marketingCostPerMonth = parseFloat(inputs.marketingCost.value) || 0;
+                    const durationNum = parseFloat(inputs.campaignDurationNum.value) || 0;
+                    const durationUnitFactor = parseFloat(inputs.campaignDurationUnit.value) || 1; // 1 (Month), 4 (Quarter), 12 (Year)
+                    
+                    // Total campaign OpEx is calculated and added as a one-off fee, as it's a project cost
+                    const totalMonths = durationNum * durationUnitFactor;
+                    const totalMarketingFee = marketingCostPerMonth * totalMonths;
+
+                    // We will keep the monthly OpEx zero for this component since the duration is fixed
+                    // totalMonthly += marketingCostPerMonth; 
+                    
+                    // Instead, we will add the total value to CapEx/One-Off to reflect a "Campaign Budget" style total
+                    totalOnceOff += totalMarketingFee; 
+                }
+                
+                // Graphic Design Retainer (OpEx & CapEx)
+                if (document.getElementById('check-design-hours').checked) {
+                    const designHours = parseFloat(inputs.designHours.value) || 0;
+                    const setupFeeInput = parseFloat(inputs.designCapEx.value) || 0;
+                    
+                    totalMonthly += designHours * PRICES.designRetainerHour;
+
+                    // Only add the setup fee if the user enters 1
+                    if (setupFeeInput >= 1) {
+                         totalOnceOff += PRICES.studioSetupFee;
+                    }
+                }
+                
+                // ----------------------------------------------
+                // 4. Hardware & Smart Tech (CapEx)
+                // ----------------------------------------------
+                
+                // Hardware Procurement (CapEx)
+                if (document.getElementById('check-hardware').checked) {
+                    const workstations = parseFloat(inputs.workstations.value) || 0;
+                    const smartTechUnits = parseFloat(inputs.smartTechUnits.value) || 0;
+                    
+                    totalOnceOff += (workstations * PRICES.workstation);
+                    totalOnceOff += (smartTechUnits * PRICES.smartTechUnit);
+                }
+                
+                // --- Final Calculations ---
+                
+                let totalAnnualized = totalMonthly * CONVERSION.MONTHS_PER_YEAR;
+
+                // Apply Commitment Discount to all OpEx if an annual commitment was selected for either service
+                if (totalAnnualCommitmentFactor === CONVERSION.ANNUAL_DISCOUNT_FACTOR) {
+                    totalAnnualized = totalAnnualized * CONVERSION.ANNUAL_DISCOUNT_FACTOR;
+                }
+
+
+                // Update display
+                monthlyDisplay.innerText = formatCurrency(totalMonthly);
+                onceOffDisplay.innerText = formatCurrency(totalOnceOff);
+                annualizedDisplay.innerText = formatCurrency(totalAnnualized);
+            }
+
+            // --- Event Listeners and Initial Setup ---
+            
+            // 1. Initial Setup: Hide all configuration blocks
+            configBlocks.forEach(block => {
+                block.style.display = 'none';
+            });
+            
+            // 2. Add listener to all service selection checkboxes
+            serviceCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', handleServiceToggle);
+            });
+            
+            // 3. Add listener to all configuration inputs (Numbers, Selects)
+            // Use a broader selector to catch all relevant inputs/selects on the form
+            calcForm.querySelectorAll('input, select').forEach(input => {
+                input.addEventListener('input', calculateTotal);
+            });
+
+            // 4. Handle form reset
+            calcForm.addEventListener('reset', (event) => {
+                event.preventDefault(); 
+                
+                // Manually uncheck/reset all controls
+                serviceCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                         checkbox.checked = false; 
+                         handleServiceToggle({ target: checkbox }); 
+                    }
+                });
+                
+                // Force all form elements to default values (important for selects)
+                calcForm.reset();
+                
+                // Recalculate after reset
+                calculateTotal(); 
+            });
+
+            // 5. Initial Calculation
+            calculateTotal();
+
+        });
+    </script>
 
 </body>
 </html>

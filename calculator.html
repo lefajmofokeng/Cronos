@@ -1436,120 +1436,99 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enterprise Service Cost Estimator</title>
-    <!-- Load Inter font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ============================================================
-          CSS Resets & Base Styles (1px Border Radius enforced)
-          ============================================================
-        */
         :root {
-            --color-primary: #0f172a; /* Slate-900 / Deep Charcoal */
-            --color-secondary: #7d7d7d; /* Gray-300 / Light Gray */
-            --color-accent: #f97316; /* Orange-500 */
-            --color-bg-light: #fff; /* Slate-50 */
+            --color-primary: #0f172a;
+            --color-secondary: #7d7d7d;
+            --color-accent: #f97316;
+            --color-bg-light: #fff;
         }
-        
-        
 
         html { line-height: 1.6; -webkit-text-size-adjust: 100%; }
-
         body {
             margin: 0;
             font-family: 'Inter', sans-serif;
-            line-height: inherit;
-            background-color: var(--color-bg-light); 
+            background-color: var(--color-bg-light);
             color: #1f2937;
         }
-        
         h1, h2, h3, h4, p, ul { margin: 0; padding: 0; }
         ul { list-style: none; }
-        
-        /* Enforce 1px radius globally */
+
         .hprn-pricing-body, .hprn-estimate-bar, .hprn-pricing-btn-secondary,
         .hprn-pricing-feature-card, .hprn-pricing-sidebar-box,
         .hprn-service-list-item input[type="checkbox"], .hprn-calc-input,
-        .hprn-calc-select, .hprn-calc-checkbox {
-            border-radius: 1px !important; 
-        }
+        .hprn-calc-select { border-radius: 1px !important; }
 
-        /* ============================================================
-          Header & Estimate Bar (NOT STICKY)
-          ============================================================
-        */
         .hprn-pricing-container {
             width: 100%;
-            max-width: 80rem; 
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 1rem;
-            padding-right: 1rem;
+            max-width: 80rem;
+            margin: 0 auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
         }
 
         @media (min-width: 640px) {
-            .hprn-pricing-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .hprn-pricing-container { padding: 0 1.5rem; }
         }
 
         .hprn-pricing-hero {
             background-color: var(--color-primary);
             color: #ffffff;
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-            
-            /* === REMOVED STICKY POSITION === */
+            padding: 3rem 0;
         }
+
         .hprn-pricing-hero-text h1 {
-            font-size: 2rem; 
+            font-size: 2rem;
             font-weight: 800;
             color: #ffffff;
             line-height: 1.2;
         }
+
         .hprn-pricing-hero-text p {
             margin-top: 0.75rem;
             font-size: 1rem;
             color: #cbd5e1;
         }
 
-        /* Estimate Display Bar */
         .hprn-estimate-bar {
-            background-color: #1e293b; /* Slate-800 */
+            background-color: #1e293b;
             padding: 1.5rem;
             color: #ffffff;
             margin-top: 2rem;
-            border-left: 4px solid var(--color-accent); /* Accent border */
+            border-left: 4px solid var(--color-accent);
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
-        
+
         @media (min-width: 640px) {
-             .hprn-estimate-bar { 
-                flex-direction: row; 
-                justify-content: space-between; 
-                align-items: center; 
+            .hprn-estimate-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
         }
 
         .hprn-estimate-bar-group {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
             gap: 0.5rem;
         }
+
         @media (min-width: 640px) {
             .hprn-estimate-bar-group {
-                 flex-direction: row;
-                 align-items: center;
-                 gap: 2rem;
+                flex-direction: row;
+                align-items: center;
+                gap: 2rem;
             }
         }
 
@@ -1558,37 +1537,54 @@ document.addEventListener('DOMContentLoaded', function() {
             font-weight: 500;
             color: #94a3b8;
         }
+
         .hprn-estimate-bar .total-amount {
-            font-size: 1.25rem; 
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--color-accent); /* Orange */
+            color: var(--color-accent);
         }
+
         .hprn-estimate-bar .total-amount-secondary {
-            font-size: 1.25rem; 
+            font-size: 1.25rem;
             font-weight: 700;
-            color: var(--color-secondary); /* Teal */
+            color: var(--color-secondary);
         }
 
         .hprn-pricing-btn-secondary {
-            background-color: #334155; 
-            border: 1px solid #475569; 
-            color: #fff; 
+            background-color: #334155;
+            border: 1px solid #475569;
+            color: #fff;
             font-weight: 600;
             padding: 0.75rem 1.5rem;
-            transition: all 0.2s;
             cursor: pointer;
             font-size: 0.9375rem;
             white-space: nowrap;
-            letter-spacing: 0.025em;
             font-family: 'Inter', sans-serif;
+            transition: background-color 0.2s;
         }
+
         .hprn-pricing-btn-secondary:hover { background-color: #475569; }
 
+        .capex-opex-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
 
-        /* ============================================================
-          Main Content Section
-          ============================================================
-        */
+        .capex-badge {
+            background-color: #dbeafe;
+            color: #0c4a6e;
+        }
+
+        .opex-badge {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
         .hprn-pricing-main-wrapper > .hprn-pricing-container {
             padding-top: 3rem;
             padding-bottom: 6rem;
@@ -1599,8 +1595,7 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-direction: column;
             gap: 3rem;
         }
-        
-        /* === Service Selector (Sidebar) === */
+
         .hprn-pricing-sidebar { width: 100%; }
         .hprn-pricing-sidebar-box {
             background-color: #f9fafb;
@@ -1609,12 +1604,14 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 2rem;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
+
         .hprn-pricing-sidebar-box h3 {
             font-size: 1.125rem;
             font-weight: 700;
             color: var(--color-primary);
             margin-bottom: 0.75rem;
-         }
+        }
+
         .hprn-service-list h4 {
             font-size: 0.9375rem;
             font-weight: 700;
@@ -1622,23 +1619,26 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-top: 1.5rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid #e2e8f0;
-            letter-spacing: 0.05em;
             text-transform: uppercase;
         }
+
         .hprn-service-list-item {
             display: flex;
             align-items: center;
             padding: 0.75rem 0.25rem;
             cursor: pointer;
         }
-        .hprn-service-list-item:hover { background-color: var(--color-bg-light); }
+
+        
+
         .hprn-service-list-item input[type="checkbox"] {
             width: 1.25rem;
             height: 1.25rem;
             margin-right: 0.75rem;
             cursor: pointer;
-            accent-color: var(--color-accent); 
+            accent-color: var(--color-accent);
         }
+
         .hprn-service-list-item label {
             font-weight: 500;
             font-size: 1rem;
@@ -1646,9 +1646,9 @@ document.addEventListener('DOMContentLoaded', function() {
             flex-grow: 1;
             cursor: pointer;
         }
-        
-        /* === Service Configuration Details === */
+
         .hprn-pricing-main-content { width: 100%; }
+
         .config-group-title {
             font-size: 1.55rem;
             font-weight: 700;
@@ -1667,6 +1667,7 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 2rem;
             transition: transform 0.2s;
         }
+
         .hprn-pricing-feature-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
@@ -1678,6 +1679,7 @@ document.addEventListener('DOMContentLoaded', function() {
             color: var(--color-primary);
             margin-bottom: 0.5rem;
         }
+
         .hprn-pricing-feature-card p.card-description {
             color: #64748b;
             font-size: 0.9375rem;
@@ -1686,26 +1688,22 @@ document.addEventListener('DOMContentLoaded', function() {
             padding-bottom: 1rem;
         }
 
-        /* Input Layout for Duration/Units */
         .hprn-calc-input-row {
             display: flex;
             gap: 1rem;
         }
-        
-        /* Apply to inputs that need special styling for combined fields */
+
         .hprn-calc-input.duration-value {
             flex-grow: 1;
         }
+
         .hprn-calc-select.duration-unit {
-            width: 100%; /* Default to full width on mobile */
+            width: 100%;
             max-width: 120px;
         }
 
-        /* ============================================================
-          Input Styles 
-          ============================================================
-        */
         .hprn-calc-input-group { margin-bottom: 1.5rem; }
+
         .hprn-calc-label {
             display: flex;
             justify-content: space-between;
@@ -1715,46 +1713,63 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #374151;
             margin-bottom: 0.5rem;
         }
+
         .hprn-calc-price {
             font-weight: 500;
             color: var(--color-accent);
+            white-space: nowrap;
+            margin-left: 1rem;
         }
-        
+
         .hprn-calc-input, .hprn-calc-select {
             padding: 0.75rem 1rem;
             border: 1px solid #d1d5db;
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             font-weight: 500;
-            transition: all 0.2s;
             background-color: #ffffff;
             color: #1f2937;
             width: 100%;
+            box-sizing: border-box;
+            transition: all 0.2s;
         }
-        
+
         .hprn-calc-input:focus, .hprn-calc-select:focus {
             outline: none;
             border-color: var(--color-secondary);
-            box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.5); 
+            box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.5);
         }
 
-        /* === Desktop Media Query (lg) === */
-        @media (min-width: 1024px) { 
+        @media (min-width: 1024px) {
             .hprn-console-flex {
-                flex-direction: row; 
-                align-items: flex-start; 
+                flex-direction: row;
+                align-items: flex-start;
             }
             .hprn-pricing-main-content { width: 66.666667%; }
             .hprn-pricing-sidebar { width: 33.333333%; }
         }
-        
-        /* Footer */
+
+        @media (max-width: 768px) {
+            .hprn-pricing-hero-text h1 { font-size: 1.75rem; }
+            .hprn-pricing-feature-card { padding: 1.5rem; }
+            .hprn-calc-input-row { flex-direction: column; }
+            .hprn-calc-select.duration-unit { max-width: 100%; }
+        }
+
+        @media (max-width: 480px) {
+            .hprn-pricing-container { padding: 0 0.75rem; }
+            .hprn-pricing-hero { padding: 2rem 0; }
+            .hprn-pricing-hero-text h1 { font-size: 1.5rem; }
+            .config-group-title { font-size: 1.25rem; }
+        }
+
         .hprn-pricing-footer {
             background-color: #e2e8f0;
             padding: 2rem 0;
             font-size: 0.875rem;
             color: #4b5563;
         }
+
         .hprn-pricing-footer h4 {
             font-weight: 700;
             margin-bottom: 0.5rem;
@@ -1763,24 +1778,17 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body class="hprn-pricing-body">
 
-    <!-- 
-      ============================================================
-      Header & Estimate Bar (Scrolling)
-      ============================================================
-    -->
     <header class="hprn-pricing-hero">
         <div class="hprn-pricing-container">
-            <!-- Header Text Content -->
             <div class="hprn-pricing-hero-text">
                 <h1>Enterprise Service Configuration Console</h1>
-                <p>Tailor your complex service solution across Software, Infrastructure, and Marketing. Estimate costs based on duration, scale, and commitment level.</p>
+                <p>Tailor your service solution across Software, Infrastructure, and Marketing. Estimate costs based on scope, duration, and commitment level.</p>
             </div>
-            
-            <!-- Estimate Display Bar -->
+
             <div class="hprn-estimate-bar">
                 <div class="hprn-estimate-bar-group">
                     <div class="hprn-estimate-bar-item">
-                        <h3>Estimated Annualized OpEx (with commitment discount)</h3>
+                        <h3>Estimated Annualized OpEx (10% Discount)</h3>
                         <span class="total-amount-secondary" id="total-annualized-display">R 0.00</span>
                     </div>
                     <div class="hprn-estimate-bar-item">
@@ -1792,426 +1800,439 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="total-amount-secondary" id="total-once-off-display">R 0.00</span>
                     </div>
                 </div>
-                <button type="reset" form="calc-form" class="hprn-pricing-btn-secondary">
-                    Clear All Configurations
-                </button>
+                <button type="reset" form="calc-form" class="hprn-pricing-btn-secondary">Clear All Configurations</button>
             </div>
         </div>
     </header>
 
-    <!-- 
-      ============================================================
-      Main Content (Service Configuration and Selection)
-      ============================================================
-    -->
     <main class="hprn-pricing-main-wrapper">
         <div class="hprn-pricing-container">
             <div class="hprn-console-flex">
 
-                <!-- 
-                    =======================================
-                    SIDEBAR: SERVICE SELECTION MENU
-                    =======================================
-                -->
                 <aside class="hprn-pricing-sidebar">
-                    
-                    <!-- Sidebar Card: Service Selector -->
                     <div class="hprn-pricing-sidebar-box">
                         <h3>Service Scope Selector</h3>
-                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: #64748b;">Activate service groups to reveal configuration options.</p>
-                        
+                        <p style="margin-bottom: 1rem; font-size: 0.9rem; color: #64748b;">Check services to reveal configuration options.</p>
+
                         <div class="hprn-service-list">
-                            
-                            <h4>Software Development (CapEx & OpEx)</h4>
+                            <h4>Software Development</h4>
                             <div class="hprn-service-list-item">
-                                <input type="checkbox" id="check-dev-hours" data-target="config-dev-hours">
-                                <label for="check-dev-hours">Bespoke Software Development (CapEx)</label>
+                                <input type="checkbox" id="check-web-dev" data-target="config-web-dev">
+                                <label for="check-web-dev">Bespoke Web Development <span class="capex-opex-badge capex-badge">CapEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
-                                <input type="checkbox" id="check-devops" data-target="config-devops">
-                                <label for="check-devops">Enterprise DevOps & Web3 Maintenance (OpEx)</label>
+                                <input type="checkbox" id="check-mobile-dev" data-target="config-mobile-dev">
+                                <label for="check-mobile-dev">Mobile Development <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-dev-maintenance" data-target="config-dev-maintenance">
+                                <label for="check-dev-maintenance">Dev Maintenance <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-api-services" data-target="config-api-services">
+                                <label for="check-api-services">API & Backend <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-ecommerce" data-target="config-ecommerce">
+                                <label for="check-ecommerce">E-commerce <span class="capex-opex-badge capex-badge">CapEx</span></label>
                             </div>
 
-                            <h4>Managed IT Infrastructure (OpEx)</h4>
+                            <h4>Managed IT Infrastructure</h4>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-cloud-compute" data-target="config-cloud-compute">
-                                <label for="check-cloud-compute">IT Consulting & Cloud Computing (OpEx)</label>
+                                <label for="check-cloud-compute">Cloud Computing <span class="capex-opex-badge opex-badge">OpEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
-                                <input type="checkbox" id="check-support-plan" data-target="config-support-plan">
-                                <label for="check-support-plan">Global IT Support & Staff Augmentation (OpEx)</label>
+                                <input type="checkbox" id="check-it-support" data-target="config-it-support">
+                                <label for="check-it-support">IT Support <span class="capex-opex-badge opex-badge">OpEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-datacenter" data-target="config-datacenter">
-                                <label for="check-datacenter">Data Center Management & Storage (OpEx)</label>
-                            </div>
-                            
-                            <h4>Marketing & Creative Studio (OpEx & CapEx)</h4>
-                            <div class="hprn-service-list-item">
-                                <input type="checkbox" id="check-marketing" data-target="config-marketing">
-                                <label for="check-marketing">Advertising Campaigns & Strategy (OpEx)</label>
-                            </div>
-                            <div class="hprn-service-list-item">
-                                <input type="checkbox" id="check-design-hours" data-target="config-design-hours">
-                                <label for="check-design-hours">Content & Multimedia Production (CapEx/OpEx)</label>
+                                <label for="check-datacenter">Data Center <span class="capex-opex-badge opex-badge">OpEx</span></label>
                             </div>
 
-                            <h4>Hardware & Smart Tech (CapEx)</h4>
+                            <h4>Marketing & Creative</h4>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-marketing-campaigns" data-target="config-marketing-campaigns">
+                                <label for="check-marketing-campaigns">Marketing Campaigns <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                            </div>
+                            <div class="hprn-service-list-item">
+                                <input type="checkbox" id="check-design-services" data-target="config-design-services">
+                                <label for="check-design-services">Design Services <span class="capex-opex-badge capex-badge">CapEx</span><span class="capex-opex-badge opex-badge">OpEx</span></label>
+                            </div>
+
+                            <h4>Hardware & Equipment</h4>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-hardware" data-target="config-hardware">
-                                <label for="check-hardware">Enterprise Hardware Procurement (CapEx)</label>
+                                <label for="check-hardware">Hardware Procurement <span class="capex-opex-badge capex-badge">CapEx</span></label>
                             </div>
                         </div>
-
                     </div>
-                    
-                    <!-- Sidebar Card: Info -->
+
                     <div class="hprn-pricing-sidebar-box">
-                         <h3>Cost & Discount Factors</h3>
-                        <p style="font-size: 0.875rem; color: #64748b;">
-                            All prices are estimated in South African Rands (ZAR). OpEx represents monthly recurring costs. Annual OpEx commitment includes a 10% Volume Discount. Conversions are based on standard 8-hour days and 4-week months.
-                        </p>
+                        <h3>Cost Information</h3>
+                        <p style="font-size: 0.875rem; color: #64748b;">All prices are estimated in South African Rands (ZAR). OpEx(Operational Expenditure) represents monthly recurring costs. Annual OpEx commitment includes a 10% Volume Discount. CapEx (Capital Expenditure) represents one-time upfront costs for purchasing assets that will benefit your business for years (you own assets). Conversions are based on standard 8-hour days and 4-week months.</p>
                     </div>
-
                 </aside>
-                
-                <!-- 
-                    =======================================
-                    MAIN CONTENT: CONFIGURATION DETAILS
-                    =======================================
-                -->
+
                 <form class="hprn-pricing-main-content" id="calc-form">
-                    
                     <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827;">Service Configuration</h2>
-                    <p style="color: #4b5563; margin-bottom: 2rem; font-size: 0.9375rem;">Set the parameters for your high-standard enterprise solution.</p>
+                    <p style="color: #4b5563; margin-bottom: 2rem; font-size: 0.9375rem;">Configure your enterprise services and view real-time cost estimates.</p>
 
-
-                    <!-- Group 1: Software Development -->
+                    <!-- SECTION: Software Development -->
                     <div class="config-group-title">Software Development</div>
-                    
-                    <!-- SERVICE BLOCK: Project Dev Hours (CapEx) - DURATION LOGIC -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-dev-hours">
-                        <h3>Bespoke Software Development (Web/Mobile/API)</h3>
-                        <p class="card-description">Estimate the total effort required for the initial project build (CapEx).</p>
 
+                    <div class="hprn-pricing-feature-card service-block" id="config-web-dev" style="display:none;">
+                        <h3>Web Development <span class="capex-opex-badge capex-badge">CapEx</span></h3>
+                        <p class="card-description">Custom web development with flexible packages and add-on options.</p>
                         <div class="hprn-calc-input-group">
-                            <label class="hprn-calc-label">
-                                <span>Required Development Effort</span>
-                                <span class="hprn-calc-price">R 1,200.00 / Effective Hour (CapEx)</span>
-                            </label>
-                            <div class="hprn-calc-input-row">
-                                <input type="number" name="dev-duration-num" id="dev-duration-num" class="hprn-calc-input duration-value" min="0" value="0" step="1">
-                                <select name="dev-duration-unit" id="dev-duration-unit" class="hprn-calc-select duration-unit">
-                                    <option value="1">Hours</option>
-                                    <option value="8">Days (8 hours)</option>
-                                    <option value="40">Weeks (40 hours)</option>
-                                    <option value="160">Months (160 hours)</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- SERVICE BLOCK: DevOps Plan (OpEx) - ANNUAL COMMITMENT -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-devops">
-                        <h3>Enterprise DevOps & Web3 Maintenance</h3>
-                        <p class="card-description">Ongoing monitoring, CI/CD pipeline management, and blockchain node maintenance (OpEx).</p>
-                        
-                        <div class="hprn-calc-input-group">
-                             <label for="devops-plan" class="hprn-calc-label">
-                                <span>Select Tier</span>
-                             </label>
-                             <select name="devops-plan" id="devops-plan" class="hprn-calc-select">
-                                 <option value="0">0 - None (R 0.00 /mo)</option>
-                                 <option value="25000">1 - Advanced Monitoring & Patches (R 25,000.00 /mo)</option>
-                                 <option value="65000">2 - Full Automation, CI/CD & Security (R 65,000.00 /mo)</option>
-                                 <option value="120000">3 - Managed Web3 Infrastructure & Scaling (R 120,000.00 /mo)</option>
-                             </select>
-                        </div>
-                        <div class="hprn-calc-input-group">
-                            <label for="devops-commitment" class="hprn-calc-label">
-                                <span>Annual Commitment (10% Discount)</span>
-                            </label>
-                            <select name="devops-commitment" id="devops-commitment" class="hprn-calc-select">
-                                <option value="1">Monthly</option>
-                                <option value="12">Annual (Save 10%)</option>
+                            <label class="hprn-calc-label"><span>Select Package</span></label>
+                            <select name="web-dev-package" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00)</option>
+                                <option value="50000">Single Page Application (R 50,000.00)</option>
+                                <option value="150000">Multi-Page Business Site (R 150,000.00)</option>
+                                <option value="300000">Enterprise Web Application (R 300,000.00)</option>
+                                <option value="500000">Complex SaaS Platform (R 500,000.00)</option>
                             </select>
                         </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="web-dev-pages" class="hprn-calc-label">
+                                <span>Additional Pages</span>
+                                <span class="hprn-calc-price">R 2,500.00 /page</span>
+                            </label>
+                            <input type="number" name="web-dev-pages" class="hprn-calc-input calc-input-trigger" min="0" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="web-dev-maint-months" class="hprn-calc-label">
+                                <span>Maintenance (Months)</span>
+                                <span class="hprn-calc-price">R 3,000.00 /month</span>
+                            </label>
+                            <input type="number" name="web-dev-maint-months" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                        </div>
                     </div>
-                    
-                    <!-- Group 2: Managed IT Infrastructure -->
+
+                    <div class="hprn-pricing-feature-card service-block" id="config-mobile-dev" style="display:none;">
+                        <h3>Mobile Development <span class="capex-opex-badge capex-badge">CapEx</span></h3>
+                        <p class="card-description">Native iOS and Android applications with complexity scaling.</p>
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label"><span>Platform Type</span></label>
+                            <select name="mobile-dev-platform" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00)</option>
+                                <option value="80000">iOS Only (R 80,000.00)</option>
+                                <option value="80000">Android Only (R 80,000.00)</option>
+                                <option value="140000">Cross-Platform (R 140,000.00)</option>
+                            </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label"><span>Complexity Multiplier</span></label>
+                            <select name="mobile-dev-complexity" class="hprn-calc-select calc-input-trigger">
+                                <option value="1.0">Standard (1x)</option>
+                                <option value="1.5">Moderate (1.5x)</option>
+                                <option value="2.0">High (2x)</option>
+                                <option value="2.5">Very Complex (2.5x)</option>
+                            </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="mobile-dev-maint-months" class="hprn-calc-label">
+                                <span>Maintenance (Months)</span>
+                                <span class="hprn-calc-price">R 4,000.00 /month</span>
+                            </label>
+                            <input type="number" name="mobile-dev-maint-months" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                        </div>
+                    </div>
+
+                    <div class="hprn-pricing-feature-card service-block" id="config-dev-maintenance" style="display:none;">
+                        <h3>Development Maintenance <span class="capex-opex-badge opex-badge">OpEx</span></h3>
+                        <p class="card-description">Ongoing support, bug fixes, and application updates.</p>
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label"><span>Maintenance Tier</span></label>
+                            <select name="dev-maint-tier" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00/mo)</option>
+                                <option value="8000">Basic Monitoring (R 8,000.00/mo)</option>
+                                <option value="15000">Standard Support (R 15,000.00/mo)</option>
+                                <option value="25000">Premium Support (R 25,000.00/mo)</option>
+                                <option value="40000">24/7 Managed (R 40,000.00/mo)</option>
+                            </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="dev-maint-months" class="hprn-calc-label"><span>Duration (Months)</span></label>
+                            <input type="number" name="dev-maint-months" class="hprn-calc-input calc-input-trigger" min="0" max="36" value="0" step="1">
+                        </div>
+                    </div>
+
+                    <div class="hprn-pricing-feature-card service-block" id="config-api-services" style="display:none;">
+                        <h3>API & Backend Services <span class="capex-opex-badge capex-badge">CapEx</span></h3>
+                        <p class="card-description">RESTful APIs, microservices, and robust backend infrastructure.</p>
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label"><span>Service Scope</span></label>
+                            <select name="api-scope" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00)</option>
+                                <option value="60000">Simple REST API (R 60,000.00)</option>
+                                <option value="150000">Advanced Microservices (R 150,000.00)</option>
+                                <option value="300000">Enterprise Backend System (R 300,000.00)</option>
+                            </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="api-endpoints" class="hprn-calc-label">
+                                <span>Additional Endpoints</span>
+                                <span class="hprn-calc-price">R 3,500.00 /endpoint</span>
+                            </label>
+                            <input type="number" name="api-endpoints" class="hprn-calc-input calc-input-trigger" min="0" max="50" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="api-databases" class="hprn-calc-label">
+                                <span>Database Modules</span>
+                                <span class="hprn-calc-price">R 8,000.00 /module</span>
+                            </label>
+                            <input type="number" name="api-databases" class="hprn-calc-input calc-input-trigger" min="0" max="20" value="0" step="1">
+                        </div>
+                    </div>
+
+                    <div class="hprn-pricing-feature-card service-block" id="config-ecommerce" style="display:none;">
+                        <h3>E-commerce Solutions <span class="capex-opex-badge capex-badge">CapEx</span></h3>
+                        <p class="card-description">Full-featured online stores with payment integration and inventory management.</p>
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label"><span>Platform Type</span></label>
+                            <select name="ecom-platform" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00)</option>
+                                <option value="12000">Basic Store (R 12,000.00)</option>
+                                <option value="20000">Professional Store (R 20,000.00)</option>
+                                <option value="35000">Enterprise Marketplace (R 35,000.00)</option>
+                            </select>
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="ecom-payment-gateways" class="hprn-calc-label">
+                                <span>Payment Gateway Integrations</span>
+                                <span class="hprn-calc-price">R 5,000.00 /gateway</span>
+                            </label>
+                            <input type="number" name="ecom-payment-gateways" class="hprn-calc-input calc-input-trigger" min="0" max="10" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="ecom-hosting-months" class="hprn-calc-label">
+                                <span>Hosting & Support (Months)</span>
+                                <span class="hprn-calc-price">R 6,000.00 /month</span>
+                            </label>
+                            <input type="number" name="ecom-hosting-months" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                        </div>
+                    </div>
+
+                    <!-- SECTION: Managed IT Infrastructure -->
                     <div class="config-group-title">Managed IT Infrastructure</div>
 
-                    <!-- SERVICE BLOCK: Cloud Computing (OpEx) - ANNUAL COMMITMENT -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-cloud-compute">
-                        <h3>IT Consulting & Cloud Computing</h3>
-                        <p class="card-description">Managed infrastructure, cloud resources, and strategic consulting time (OpEx).</p>
-                        
+                    <div class="hprn-pricing-feature-card service-block" id="config-cloud-compute" style="display:none;">
+                        <h3>Cloud Computing <span class="capex-opex-badge opex-badge">OpEx</span></h3>
+                        <p class="card-description">Managed cloud infrastructure, VMs, and computing resources.</p>
                         <div class="hprn-calc-input-group">
-                            <label for="cloud-vm-num" class="hprn-calc-label">
-                                <span>Number of High-Availability VMs/Containers</span>
+                            <label for="cloud-vm-count" class="hprn-calc-label">
+                                <span>Virtual Machines/Containers</span>
                                 <span class="hprn-calc-price">R 2,200.00 /VM/mo</span>
                             </label>
-                            <input type="number" name="cloud-vm-num" id="cloud-vm-num" class="hprn-calc-input" min="0" max="100" value="0">
+                            <input type="number" name="cloud-vm-count" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
-                            <label for="cloud-commitment" class="hprn-calc-label">
-                                <span>Annual Commitment (10% Discount)</span>
+                            <label for="cloud-storage-tb" class="hprn-calc-label">
+                                <span>Storage (TB)</span>
+                                <span class="hprn-calc-price">R 1,500.00 /TB/mo</span>
                             </label>
-                            <select name="cloud-commitment" id="cloud-commitment" class="hprn-calc-select">
-                                <option value="1">Monthly</option>
-                                <option value="12">Annual (Save 10%)</option>
+                            <input type="number" name="cloud-storage-tb" class="hprn-calc-input calc-input-trigger" min="0" max="500" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label class="hprn-calc-label"><span>Commitment Plan</span></label>
+                            <select name="cloud-commitment" class="hprn-calc-select calc-input-trigger">
+                                <option value="1">Monthly (No Discount)</option>
+                                <option value="0.9">Annual (10% Discount)</option>
                             </select>
                         </div>
                     </div>
 
-                    <!-- SERVICE BLOCK: IT Support Plan (OpEx) - STAFF SIZE SCALING -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-support-plan">
-                        <h3>Global IT Support & Staff Augmentation</h3>
-                        <p class="card-description">Tiered SLA support package plus per-user license/support fee (OpEx).</p>
-                        
+                    <div class="hprn-pricing-feature-card service-block" id="config-it-support" style="display:none;">
+                        <h3>IT Support & Maintenance <span class="capex-opex-badge opex-badge">OpEx</span></h3>
+                        <p class="card-description">Remote support, helpdesk services, and IT staff augmentation.</p>
                         <div class="hprn-calc-input-group">
-                             <label for="support-plan" class="hprn-calc-label">
-                                <span>Select Base SLA Tier</span>
-                             </label>
-                             <select name="support-plan" id="support-plan" class="hprn-calc-select">
-                                 <option value="0">0 - None (R 0.00 /mo)</option>
-                                 <option value="12000">1 - Basic 8/5 Helpdesk & Onboarding (R 12,000.00 /mo)</option>
-                                 <option value="35000">2 - Pro 24/7 Managed Services & Consultancy (R 35,000.00 /mo)</option>
-                             </select>
+                            <label class="hprn-calc-label"><span>Support Tier</span></label>
+                            <select name="it-support-tier" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00/mo)</option>
+                                <option value="10000">Basic 8/5 Helpdesk (R 10,000.00/mo)</option>
+                                <option value="20000">Standard 24/7 Support (R 20,000.00/mo)</option>
+                                <option value="35000">Premium Managed Services (R 35,000.00/mo)</option>
+                            </select>
                         </div>
                         <div class="hprn-calc-input-group">
-                            <label for="staff-size-num" class="hprn-calc-label">
-                                <span>Number of Supported Staff Users</span>
-                                <span class="hprn-calc-price">R 1,500.00 /user/mo</span>
+                            <label for="it-support-users" class="hprn-calc-label">
+                                <span>Supported Users</span>
+                                <span class="hprn-calc-price">R 1,200.00 /user/mo</span>
                             </label>
-                            <input type="number" name="staff-size-num" id="staff-size-num" class="hprn-calc-input" min="0" max="500" value="0" step="10">
+                            <input type="number" name="it-support-users" class="hprn-calc-input calc-input-trigger" min="0" max="500" value="0" step="5">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="it-support-remote-hours" class="hprn-calc-label">
+                                <span>Remote Support Sessions</span>
+                                <span class="hprn-calc-price">R 800.00 /hour (Monthly Cap)</span>
+                            </label>
+                            <input type="number" name="it-support-remote-hours" class="hprn-calc-input calc-input-trigger" min="0" max="160" value="0" step="5">
                         </div>
                     </div>
-                    
-                    <!-- SERVICE BLOCK: Data Center & Surveillance (OpEx) -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-datacenter">
-                        <h3>Data Center Management & Storage</h3>
-                        <p class="card-description">Remote monitoring, maintenance, and compliance reporting (OpEx).</p>
+
+                    <div class="hprn-pricing-feature-card service-block" id="config-datacenter" style="display:none;">
+                        <h3>Data Center Services <span class="capex-opex-badge opex-badge">OpEx</span></h3>
+                        <p class="card-description">Colocation, server management, backup, and disaster recovery.</p>
                         <div class="hprn-calc-input-group">
-                            <label for="datacenter-sites-num" class="hprn-calc-label">
-                                <span>Number of Data Center Sites or Major Racks</span>
-                                <span class="hprn-calc-price">R 15,000.00 /site/mo</span>
+                            <label for="dc-racks" class="hprn-calc-label">
+                                <span>Server Racks</span>
+                                <span class="hprn-calc-price">R 12,000.00 /rack/mo</span>
                             </label>
-                            <input type="number" name="datacenter-sites-num" id="datacenter-sites-num" class="hprn-calc-input" min="0" max="10" value="0" step="1">
+                            <input type="number" name="dc-racks" class="hprn-calc-input calc-input-trigger" min="0" max="20" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
-                            <label for="cctv-points-num" class="hprn-calc-label">
-                                <span>Number of Managed Centers/Smart Technology Endpoints</span>
+                            <label for="dc-backup-storage" class="hprn-calc-label">
+                                <span>Backup Storage (TB)</span>
+                                <span class="hprn-calc-price">R 2,000.00 /TB/mo</span>
+                            </label>
+                            <input type="number" name="dc-backup-storage" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="5">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="dc-monitoring-points" class="hprn-calc-label">
+                                <span>Monitoring & CCTV Points</span>
                                 <span class="hprn-calc-price">R 600.00 /point/mo</span>
                             </label>
-                            <input type="number" name="cctv-points-num" id="cctv-points-num" class="hprn-calc-input" min="0" max="200" value="0" step="10">
+                            <input type="number" name="dc-monitoring-points" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="5">
                         </div>
                     </div>
 
-                    <!-- Group 3: Marketing & Creative Studio -->
+                    <!-- SECTION: Marketing & Creative -->
                     <div class="config-group-title">Marketing & Creative Studio</div>
 
-                    <!-- SERVICE BLOCK: Digital Marketing Plan (OpEx) - DURATION LOGIC -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-marketing">
-                        <h3>Advertising Campaigns & Strategy</h3>
-                        <p class="card-description">Management fees for large-scale digital marketing efforts (excludes ad spend) (OpEx).</p>
-                        
+                    <div class="hprn-pricing-feature-card service-block" id="config-marketing-campaigns" style="display:none;">
+                        <h3>Marketing Campaigns <span class="capex-opex-badge opex-badge">OpEx</span></h3>
+                        <p class="card-description">Digital marketing strategy, execution, and management (excludes ad spend).</p>
                         <div class="hprn-calc-input-group">
-                             <label for="marketing-plan" class="hprn-calc-label">
-                                <span>Select Campaign Management Tier (Monthly Rate)</span>
-                             </label>
-                             <select name="marketing-plan" id="marketing-plan" class="hprn-calc-select">
-                                 <option value="0">0 - None (R 0.00 /mo)</option>
-                                 <option value="40000">1 - Targeted Digital Strategy (R 40,000.00 /mo)</option>
-                                 <option value="85000">2 - Full Funnel Management & Analytics (R 85,000.00 /mo)</option>
-                             </select>
+                            <label class="hprn-calc-label"><span>Campaign Management Tier</span></label>
+                            <select name="marketing-tier" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00/mo)</option>
+                                <option value="15000">Social Media Management (R 15,000.00/mo)</option>
+                                <option value="35000">Full Funnel Marketing (R 35,000.00/mo)</option>
+                                <option value="60000">Premium Strategy & Analytics (R 60,000.00/mo)</option>
+                            </select>
                         </div>
                         <div class="hprn-calc-input-group">
-                            <label for="campaign-duration-num" class="hprn-calc-label">
-                                <span>Planned Campaign Duration</span>
+                            <label for="marketing-duration-months" class="hprn-calc-label">
+                                <span>Campaign Duration (Months)</span>
                             </label>
-                            <div class="hprn-calc-input-row">
-                                <input type="number" name="campaign-duration-num" id="campaign-duration-num" class="hprn-calc-input duration-value" min="0" value="0" step="1">
-                                <select name="campaign-duration-unit" id="campaign-duration-unit" class="hprn-calc-select duration-unit">
-                                    <option value="1">Months</option>
-                                    <option value="4">Quarters (3 Months)</option>
-                                    <option value="12">Year (12 Months)</option>
-                                </select>
-                            </div>
-                            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 0.5rem;">Total OpEx for this service will be multiplied by this duration.</p>
+                            <input type="number" name="marketing-duration-months" class="hprn-calc-input calc-input-trigger" min="0" max="36" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="marketing-ad-accounts" class="hprn-calc-label">
+                                <span>Ad Accounts to Manage</span>
+                                <span class="hprn-calc-price">R 2,000.00 /account/mo</span>
+                            </label>
+                            <input type="number" name="marketing-ad-accounts" class="hprn-calc-input calc-input-trigger" min="0" max="15" value="0" step="1">
                         </div>
                     </div>
 
-                    <!-- SERVICE BLOCK: Graphic Design Retainer (OpEx) -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-design-hours">
-                        <h3>Content & Multimedia Production</h3>
-                        <p class="card-description">Fixed monthly retainer for graphic design, content management, and multimedia (OpEx).</p>
+                    <div class="hprn-pricing-feature-card service-block" id="config-design-services" style="display:none;">
+                        <h3>Design Services <span class="capex-opex-badge capex-badge">CapEx</span><span class="capex-opex-badge opex-badge">OpEx</span></h3>
+                        <p class="card-description">Graphic design, branding, content creation, and multimedia production.</p>
                         <div class="hprn-calc-input-group">
-                            <label for="design-hours-num" class="hprn-calc-label">
-                                <span>Monthly Retainer Hours</span>
-                                <span class="hprn-calc-price">R 900.00 /hour/mo</span>
-                            </label>
-                            <input type="number" name="design-hours-num" id="design-hours-num" class="hprn-calc-input" min="0" max="150" value="0" step="5">
+                            <label class="hprn-calc-label"><span>One-Time Design Package</span></label>
+                            <select name="design-capex-package" class="hprn-calc-select calc-input-trigger">
+                                <option value="0">None (R 0.00)</option>
+                                <option value="25000">Logo & Brand Guide (R 25,000.00)</option>
+                                <option value="60000">Complete Brand Identity (R 60,000.00)</option>
+                                <option value="120000">Full Design System (R 120,000.00)</option>
+                            </select>
                         </div>
                         <div class="hprn-calc-input-group">
-                            <label for="design-cap-ex" class="hprn-calc-label">
-                                <span>One-Off Studio Setup/Consulting Fee</span>
-                                <span class="hprn-calc-price">R 45,000.00 (CapEx)</span>
+                            <label for="design-opex-hours" class="hprn-calc-label">
+                                <span>Monthly Design Retainer (Hours)</span>
+                                <span class="hprn-calc-price">R 1,200.00 /hour/mo</span>
                             </label>
-                            <input type="number" name="design-cap-ex" id="design-cap-ex" class="hprn-calc-input" min="0" max="1" value="0" step="1" placeholder="Enter 1 to include fee">
+                            <input type="number" name="design-opex-hours" class="hprn-calc-input calc-input-trigger" min="0" max="160" value="0" step="5">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="design-video-production" class="hprn-calc-label">
+                                <span>Video Production Projects</span>
+                                <span class="hprn-calc-price">R 15,000.00 /video</span>
+                            </label>
+                            <input type="number" name="design-video-production" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
                         </div>
                     </div>
-                    
-                    <!-- Group 4: Once-Off CapEx -->
-                    <div class="config-group-title">Hardware & Smart Technology</div>
 
-                    <!-- SERVICE BLOCK: Hardware (CapEx) -->
-                    <div class="hprn-pricing-feature-card service-block" id="config-hardware">
-                        <h3>Enterprise Hardware Procurement & Setup</h3>
-                        <p class="card-description">CapEx for procurement and setup of essential physical infrastructure.</p>
+                    <!-- SECTION: Hardware & Equipment -->
+                    <div class="config-group-title">Hardware & Equipment</div>
+
+                    <div class="hprn-pricing-feature-card service-block" id="config-hardware" style="display:none;">
+                        <h3>Hardware Procurement <span class="capex-opex-badge capex-badge">CapEx</span></h3>
+                        <p class="card-description">Enterprise hardware, workstations, servers, and networking equipment.</p>
                         <div class="hprn-calc-input-group">
-                            <label for="workstations-num" class="hprn-calc-label">
-                                <span>Premium Workstations/Laptops (Procurement)</span>
-                                <span class="hprn-calc-price">R 35,000.00 /unit (CapEx)</span>
+                            <label for="hardware-workstations" class="hprn-calc-label">
+                                <span>Workstations/Laptops</span>
+                                <span class="hprn-calc-price">R 30,000.00 /unit</span>
                             </label>
-                            <input type="number" name="workstations-num" id="workstations-num" class="hprn-calc-input" min="0" max="100" value="0" step="1">
+                            <input type="number" name="hardware-workstations" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
-                            <label for="smart-tech-units" class="hprn-calc-label">
-                                <span>Smart Tech Units (POS, Queue, A/V) Setup</span>
-                                <span class="hprn-calc-price">R 18,000.00 /unit (CapEx)</span>
+                            <label for="hardware-servers" class="hprn-calc-label">
+                                <span>Enterprise Servers</span>
+                                <span class="hprn-calc-price">R 75,000.00 /unit</span>
                             </label>
-                            <input type="number" name="smart-tech-units" id="smart-tech-units" class="hprn-calc-input" min="0" max="50" value="0" step="1">
+                            <input type="number" name="hardware-servers" class="hprn-calc-input calc-input-trigger" min="0" max="20" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="hardware-networking" class="hprn-calc-label">
+                                <span>Networking Equipment (Switches, Routers)</span>
+                                <span class="hprn-calc-price">R 18,000.00 /unit</span>
+                            </label>
+                            <input type="number" name="hardware-networking" class="hprn-calc-input calc-input-trigger" min="0" max="30" value="0" step="1">
+                        </div>
+                        <div class="hprn-calc-input-group">
+                            <label for="hardware-pos-systems" class="hprn-calc-label">
+                                <span>POS & Retail Systems</span>
+                                <span class="hprn-calc-price">R 12,000.00 /unit</span>
+                            </label>
+                            <input type="number" name="hardware-pos-systems" class="hprn-calc-input calc-input-trigger" min="0" max="50" value="0" step="1">
                         </div>
                     </div>
-                    
+
                 </form>
             </div>
         </div>
     </main>
 
-    <!-- 
-      ============================================================
-      Footer Section
-      ============================================================
-    -->
     <footer class="hprn-pricing-footer">
         <div class="hprn-pricing-container">
             <h4>Disclaimer</h4>
-            <p>
-                This Enterprise Service Configuration Console provides advanced estimates based on the provided inputs and standard assumptions. All costs are illustrative and should be confirmed with a formal quotation from our sales team. The 10% annual discount is applied before VAT.
-            </p>
+            <p>This calculator provides estimates for enterprise services. All costs are illustrative and should be confirmed with a formal quotation. The 10% annual commitment discount is applied to OpEx services before VAT.</p>
         </div>
     </footer>
 
-    <!-- 
-      ============================================================
-      JavaScript for Calculator Logic and UI Toggling
-      ============================================================
-    -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const CONVERSION = { MONTHS_PER_YEAR: 12, ANNUAL_DISCOUNT: 0.90 };
 
-            // --- Conversion Constants ---
-            const CONVERSION = {
-                HOURS_PER_DAY: 8,
-                DAYS_PER_WEEK: 5,
-                MONTHS_PER_YEAR: 12,
-                ANNUAL_DISCOUNT_FACTOR: 0.90 // 10% discount
-            };
-            
-            // --- Define Prices (ZAR, Enterprise Level) ---
-            const PRICES = {
-                // Software Development
-                devHourRate: 1200,      // CapEx
-                
-                // Managed IT Infrastructure
-                cloudVM: 2200,          // OpEx
-                supportPlanUser: 1500,  // OpEx per staff member
-                datacenterSite: 15000,  // OpEx per site/rack
-                cctvPoints: 600,        // OpEx per point
-                
-                // Marketing & Creative Studio
-                designRetainerHour: 900, // OpEx (per hour/mo)
-                studioSetupFee: 45000,   // CapEx (one-off)
-
-                // Hardware & Smart Tech (CapEx)
-                workstation: 35000,
-                smartTechUnit: 18000 
-            };
-
-            // --- Get Elements ---
             const calcForm = document.getElementById('calc-form');
-            
-            // Configuration Inputs (using name attribute for simpler selection)
-            const inputs = {
-                // Software Development
-                devDurationNum: document.getElementById('dev-duration-num'),
-                devDurationUnit: document.getElementById('dev-duration-unit'),
-                devopsCost: document.getElementById('devops-plan'),
-                devopsCommitment: document.getElementById('devops-commitment'),
-                
-                // Managed IT Infrastructure
-                cloudVMCount: document.getElementById('cloud-vm-num'),
-                cloudCommitment: document.getElementById('cloud-commitment'),
-                supportCost: document.getElementById('support-plan'),
-                staffSizeNum: document.getElementById('staff-size-num'),
-                datacenterSites: document.getElementById('datacenter-sites-num'),
-                cctvPoints: document.getElementById('cctv-points-num'),
-                
-                // Marketing & Creative Studio
-                marketingCost: document.getElementById('marketing-plan'),
-                campaignDurationNum: document.getElementById('campaign-duration-num'),
-                campaignDurationUnit: document.getElementById('campaign-duration-unit'),
-                designHours: document.getElementById('design-hours-num'),
-                designCapEx: document.getElementById('design-cap-ex'),
-
-                // Hardware & Smart Tech
-                workstations: document.getElementById('workstations-num'),
-                smartTechUnits: document.getElementById('smart-tech-units')
-            };
-
-            // Outputs
+            const serviceCheckboxes = document.querySelectorAll('.hprn-service-list-item input[type="checkbox"]');
+            const configBlocks = document.querySelectorAll('.service-block');
             const monthlyDisplay = document.getElementById('total-monthly-display');
             const onceOffDisplay = document.getElementById('total-once-off-display');
             const annualizedDisplay = document.getElementById('total-annualized-display');
 
-            // Service Selector Checkboxes and Config Blocks
-            const serviceCheckboxes = document.querySelectorAll('.hprn-service-list-item input[type="checkbox"]');
-            const configBlocks = document.querySelectorAll('.service-block');
-
-            // --- Helper Functions ---
-
-            // Format number as ZAR
             function formatCurrency(value) {
-                // Ensure value is a safe number
                 const safeValue = isNaN(value) ? 0 : Math.max(0, value);
-                return new Intl.NumberFormat('en-ZA', { 
-                    style: 'currency', 
+                return new Intl.NumberFormat('en-ZA', {
+                    style: 'currency',
                     currency: 'ZAR',
-                    minimumFractionDigits: 0 // Keep it clean for enterprise display
+                    minimumFractionDigits: 0
                 }).format(safeValue);
             }
 
-            // Reset inputs when a service is deselected
             function resetServiceInputs(blockId) {
                 const block = document.getElementById(blockId);
                 if (block) {
                     block.querySelectorAll('input[type="number"]').forEach(input => input.value = 0);
-                    block.querySelectorAll('select').forEach(select => {
-                        // Reset plans to R 0.00
-                        if (select.id.endsWith('-plan') || select.id.endsWith('-cost')) {
-                             select.value = 0;
-                        } 
-                        // Reset duration/commitment to default (1 or Monthly/Hours)
-                        else if (select.id.includes('duration') || select.id.includes('commitment')) {
-                            select.value = 1;
-                        }
-                    });
+                    block.querySelectorAll('select').forEach(select => select.value = 0);
                 }
             }
 
-            // --- UI Toggling Logic ---
             function handleServiceToggle(event) {
                 const checkbox = event.target;
                 const configBlockId = checkbox.getAttribute('data-target');
@@ -2225,184 +2246,159 @@ document.addEventListener('DOMContentLoaded', function() {
                     configBlock.style.display = 'none';
                     resetServiceInputs(configBlockId);
                 }
-                
+
                 calculateTotal();
             }
 
-            // --- Main Calculation Function ---
             function calculateTotal() {
                 let totalMonthly = 0;
                 let totalOnceOff = 0;
-                let totalAnnualCommitmentFactor = 0; // Tracks if any annual commitment is made (1 for no discount, 0.9 for discount)
-                
-                // ----------------------------------------------
-                // 1. Software Development
-                // ----------------------------------------------
-                
-                // Project Development Hours (CapEx - Duration Logic)
-                if (document.getElementById('check-dev-hours').checked) {
-                    const durationNum = parseFloat(inputs.devDurationNum.value) || 0;
-                    const durationUnitFactor = parseFloat(inputs.devDurationUnit.value) || 1; // 1 (Hour), 8 (Day), 40 (Week), 160 (Month)
+                let hasAnnualCommitment = false;
+
+                // Web Development (CapEx)
+                if (document.getElementById('check-web-dev').checked) {
+                    const pkg = parseFloat(document.querySelector('[name="web-dev-package"]').value) || 0;
+                    const pages = parseFloat(document.querySelector('[name="web-dev-pages"]').value) || 0;
+                    const maintMonths = parseFloat(document.querySelector('[name="web-dev-maint-months"]').value) || 0;
                     
-                    const totalHours = durationNum * durationUnitFactor;
-                    totalOnceOff += totalHours * PRICES.devHourRate;
-                }
-                
-                // DevOps & Maintenance Plan (OpEx - Commitment)
-                if (document.getElementById('check-devops').checked) {
-                    const devopsCost = parseFloat(inputs.devopsCost.value) || 0;
-                    totalMonthly += devopsCost;
-
-                    // Check for Annual Commitment Discount
-                    if (parseFloat(inputs.devopsCommitment.value) === CONVERSION.MONTHS_PER_YEAR) {
-                        totalAnnualCommitmentFactor = CONVERSION.ANNUAL_DISCOUNT_FACTOR;
-                    }
+                    totalOnceOff += pkg + (pages * 2500);
+                    totalMonthly += maintMonths * 3000;
                 }
 
-                // ----------------------------------------------
-                // 2. Managed IT Infrastructure
-                // ----------------------------------------------
-                
-                // Cloud Computing (OpEx - Commitment)
+                // Mobile Development (CapEx)
+                if (document.getElementById('check-mobile-dev').checked) {
+                    const platform = parseFloat(document.querySelector('[name="mobile-dev-platform"]').value) || 0;
+                    const complexity = parseFloat(document.querySelector('[name="mobile-dev-complexity"]').value) || 1;
+                    const maintMonths = parseFloat(document.querySelector('[name="mobile-dev-maint-months"]').value) || 0;
+                    
+                    totalOnceOff += platform * complexity;
+                    totalMonthly += maintMonths * 4000;
+                }
+
+                // Dev Maintenance (OpEx)
+                if (document.getElementById('check-dev-maintenance').checked) {
+                    const tier = parseFloat(document.querySelector('[name="dev-maint-tier"]').value) || 0;
+                    const months = parseFloat(document.querySelector('[name="dev-maint-months"]').value) || 0;
+                    totalMonthly += tier * months;
+                }
+
+                // API & Backend (CapEx)
+                if (document.getElementById('check-api-services').checked) {
+                    const scope = parseFloat(document.querySelector('[name="api-scope"]').value) || 0;
+                    const endpoints = parseFloat(document.querySelector('[name="api-endpoints"]').value) || 0;
+                    const databases = parseFloat(document.querySelector('[name="api-databases"]').value) || 0;
+                    
+                    totalOnceOff += scope + (endpoints * 3500) + (databases * 8000);
+                }
+
+                // E-commerce (CapEx)
+                if (document.getElementById('check-ecommerce').checked) {
+                    const platform = parseFloat(document.querySelector('[name="ecom-platform"]').value) || 0;
+                    const gateways = parseFloat(document.querySelector('[name="ecom-payment-gateways"]').value) || 0;
+                    const hostingMonths = parseFloat(document.querySelector('[name="ecom-hosting-months"]').value) || 0;
+                    
+                    totalOnceOff += platform + (gateways * 5000);
+                    totalMonthly += hostingMonths * 6000;
+                }
+
+                // Cloud Computing (OpEx)
                 if (document.getElementById('check-cloud-compute').checked) {
-                    const vmCount = parseFloat(inputs.cloudVMCount.value) || 0;
-                    totalMonthly += (vmCount * PRICES.cloudVM);
-
-                    // Check for Annual Commitment Discount
-                    if (parseFloat(inputs.cloudCommitment.value) === CONVERSION.MONTHS_PER_YEAR) {
-                        totalAnnualCommitmentFactor = CONVERSION.ANNUAL_DISCOUNT_FACTOR;
-                    }
-                }
-
-                // IT Support & Staff Size (OpEx - Scaling)
-                if (document.getElementById('check-support-plan').checked) {
-                    const supportCost = parseFloat(inputs.supportCost.value) || 0;
-                    const staffSize = parseFloat(inputs.staffSizeNum.value) || 0;
+                    const vms = parseFloat(document.querySelector('[name="cloud-vm-count"]').value) || 0;
+                    const storage = parseFloat(document.querySelector('[name="cloud-storage-tb"]').value) || 0;
+                    const commitment = parseFloat(document.querySelector('[name="cloud-commitment"]').value) || 1;
                     
-                    totalMonthly += supportCost; // Base plan cost
-                    totalMonthly += (staffSize * PRICES.supportPlanUser); // Per user fee
+                    totalMonthly += (vms * 2200) + (storage * 1500);
+                    if (commitment === 0.9) hasAnnualCommitment = true;
                 }
-                
-                // Data Center & Surveillance (OpEx)
+
+                // IT Support (OpEx)
+                if (document.getElementById('check-it-support').checked) {
+                    const tier = parseFloat(document.querySelector('[name="it-support-tier"]').value) || 0;
+                    const users = parseFloat(document.querySelector('[name="it-support-users"]').value) || 0;
+                    const remoteHours = parseFloat(document.querySelector('[name="it-support-remote-hours"]').value) || 0;
+                    
+                    totalMonthly += tier + (users * 1200) + (remoteHours * 800);
+                }
+
+                // Data Center (OpEx)
                 if (document.getElementById('check-datacenter').checked) {
-                    const sites = parseFloat(inputs.datacenterSites.value) || 0;
-                    const cctvPoints = parseFloat(inputs.cctvPoints.value) || 0;
-                    totalMonthly += (sites * PRICES.datacenterSite);
-                    totalMonthly += (cctvPoints * PRICES.cctvPoints);
+                    const racks = parseFloat(document.querySelector('[name="dc-racks"]').value) || 0;
+                    const backup = parseFloat(document.querySelector('[name="dc-backup-storage"]').value) || 0;
+                    const monitoring = parseFloat(document.querySelector('[name="dc-monitoring-points"]').value) || 0;
+                    
+                    totalMonthly += (racks * 12000) + (backup * 2000) + (monitoring * 600);
                 }
 
-                // ----------------------------------------------
-                // 3. Marketing & Creative Studio
-                // ----------------------------------------------
-                
-                // Digital Marketing Campaigns (OpEx - Duration)
-                if (document.getElementById('check-marketing').checked) {
-                    const marketingCostPerMonth = parseFloat(inputs.marketingCost.value) || 0;
-                    const durationNum = parseFloat(inputs.campaignDurationNum.value) || 0;
-                    const durationUnitFactor = parseFloat(inputs.campaignDurationUnit.value) || 1; // 1 (Month), 4 (Quarter), 12 (Year)
+                // Marketing Campaigns (OpEx)
+                if (document.getElementById('check-marketing-campaigns').checked) {
+                    const tier = parseFloat(document.querySelector('[name="marketing-tier"]').value) || 0;
+                    const months = parseFloat(document.querySelector('[name="marketing-duration-months"]').value) || 0;
+                    const accounts = parseFloat(document.querySelector('[name="marketing-ad-accounts"]').value) || 0;
                     
-                    // Total campaign OpEx is calculated and added as a one-off fee, as it's a project cost
-                    const totalMonths = durationNum * durationUnitFactor;
-                    const totalMarketingFee = marketingCostPerMonth * totalMonths;
-
-                    // We will keep the monthly OpEx zero for this component since the duration is fixed
-                    // totalMonthly += marketingCostPerMonth; 
-                    
-                    // Instead, we will add the total value to CapEx/One-Off to reflect a "Campaign Budget" style total
-                    totalOnceOff += totalMarketingFee; 
+                    totalMonthly += (tier * months) + (accounts * 2000 * months);
                 }
-                
-                // Graphic Design Retainer (OpEx & CapEx)
-                if (document.getElementById('check-design-hours').checked) {
-                    const designHours = parseFloat(inputs.designHours.value) || 0;
-                    const setupFeeInput = parseFloat(inputs.designCapEx.value) || 0;
-                    
-                    totalMonthly += designHours * PRICES.designRetainerHour;
 
-                    // Only add the setup fee if the user enters 1
-                    if (setupFeeInput >= 1) {
-                         totalOnceOff += PRICES.studioSetupFee;
-                    }
+                // Design Services (CapEx & OpEx)
+                if (document.getElementById('check-design-services').checked) {
+                    const capex = parseFloat(document.querySelector('[name="design-capex-package"]').value) || 0;
+                    const opexHours = parseFloat(document.querySelector('[name="design-opex-hours"]').value) || 0;
+                    const videos = parseFloat(document.querySelector('[name="design-video-production"]').value) || 0;
+                    
+                    totalOnceOff += capex + (videos * 15000);
+                    totalMonthly += opexHours * 1200;
                 }
-                
-                // ----------------------------------------------
-                // 4. Hardware & Smart Tech (CapEx)
-                // ----------------------------------------------
-                
-                // Hardware Procurement (CapEx)
+
+                // Hardware (CapEx)
                 if (document.getElementById('check-hardware').checked) {
-                    const workstations = parseFloat(inputs.workstations.value) || 0;
-                    const smartTechUnits = parseFloat(inputs.smartTechUnits.value) || 0;
+                    const workstations = parseFloat(document.querySelector('[name="hardware-workstations"]').value) || 0;
+                    const servers = parseFloat(document.querySelector('[name="hardware-servers"]').value) || 0;
+                    const networking = parseFloat(document.querySelector('[name="hardware-networking"]').value) || 0;
+                    const pos = parseFloat(document.querySelector('[name="hardware-pos-systems"]').value) || 0;
                     
-                    totalOnceOff += (workstations * PRICES.workstation);
-                    totalOnceOff += (smartTechUnits * PRICES.smartTechUnit);
+                    totalOnceOff += (workstations * 30000) + (servers * 75000) + (networking * 18000) + (pos * 12000);
                 }
-                
-                // --- Final Calculations ---
-                
+
+                // Calculate annualized
                 let totalAnnualized = totalMonthly * CONVERSION.MONTHS_PER_YEAR;
-
-                // Apply Commitment Discount to all OpEx if an annual commitment was selected for either service
-                if (totalAnnualCommitmentFactor === CONVERSION.ANNUAL_DISCOUNT_FACTOR) {
-                    totalAnnualized = totalAnnualized * CONVERSION.ANNUAL_DISCOUNT_FACTOR;
+                if (hasAnnualCommitment) {
+                    totalAnnualized = totalAnnualized * CONVERSION.ANNUAL_DISCOUNT;
                 }
 
-
-                // Update display
                 monthlyDisplay.innerText = formatCurrency(totalMonthly);
                 onceOffDisplay.innerText = formatCurrency(totalOnceOff);
                 annualizedDisplay.innerText = formatCurrency(totalAnnualized);
             }
 
-            // --- Event Listeners and Initial Setup ---
-            
-            // 1. Initial Setup: Hide all configuration blocks
-            configBlocks.forEach(block => {
-                block.style.display = 'none';
-            });
-            
-            // 2. Add listener to all service selection checkboxes
+            // Initialize
+            configBlocks.forEach(block => block.style.display = 'none');
+
             serviceCheckboxes.forEach(checkbox => {
                 checkbox.addEventListener('change', handleServiceToggle);
             });
-            
-            // 3. Add listener to all configuration inputs (Numbers, Selects)
-            // Use a broader selector to catch all relevant inputs/selects on the form
+
             calcForm.querySelectorAll('input, select').forEach(input => {
                 input.addEventListener('input', calculateTotal);
+                input.addEventListener('change', calculateTotal);
             });
 
-            // 4. Handle form reset
             calcForm.addEventListener('reset', (event) => {
-                event.preventDefault(); 
-                
-                // Manually uncheck/reset all controls
+                event.preventDefault();
                 serviceCheckboxes.forEach(checkbox => {
                     if (checkbox.checked) {
-                         checkbox.checked = false; 
-                         handleServiceToggle({ target: checkbox }); 
+                        checkbox.checked = false;
+                        handleServiceToggle({ target: checkbox });
                     }
                 });
-                
-                // Force all form elements to default values (important for selects)
                 calcForm.reset();
-                
-                // Recalculate after reset
-                calculateTotal(); 
+                calculateTotal();
             });
 
-            // 5. Initial Calculation
             calculateTotal();
-
         });
     </script>
 
 </body>
 </html>
-
-
-
-
 
 
 
@@ -2480,7 +2476,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   .image-logo {
-    height: 45px;
+    height: 30px;
     align-items: center;
     align-self: center;
     vertical-align: middle;
@@ -2864,7 +2860,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="pc-footer-top">
         <div class="pc-footer-logo">
           <a href="index.html">
-            <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" class="image-logo" alt="Logo">
+            <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
           </a>
         </div>
 
