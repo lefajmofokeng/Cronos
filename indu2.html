@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Services Showcase</title>
+    <style>
+        /* Base styles for the section */
+        .it-services-showcase-section {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7e9e9; /* Light pink background from the image */
+            padding-top: 0; /* Remove top padding if background image goes all the way up */
+            padding-bottom: 50px; /* Padding for the bottom */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end; /* Push content to the bottom */
+            min-height: 700px; /* Ensure enough height for the background image and content */
+            position: relative; /* For background image positioning */
+            overflow: hidden; /* Hide any overflow from absolute positioning */
+        }
+
+        /* Background image for the cityscape */
+        .it-services-background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60%; /* Adjust height to match the image's split */
+            background-image: url('https://images.unsplash.com/photo-1519782806542-a7f45b59714e?fit=crop&w=1400&h=800'); /* Replace with a real cityscape image URL */
+            background-size: cover;
+            background-position: center bottom; /* Adjust to show city skyline */
+            z-index: 1;
+            /* Optional: Add a subtle overlay to darken the image slightly for better text contrast if text were on it */
+            /* &::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); } */
+        }
+
+        /* Container for the 4 service boxes */
+        .it-services-content-wrapper {
+            position: relative; /* Position relative to allow z-index for content */
+            z-index: 2; /* Ensure content is above the background image */
+            display: flex;
+            justify-content: center;
+            align-items: stretch; /* Make items stretch to equal height */
+            gap: 20px; /* Space between boxes */
+            width: 100%;
+            max-width: 1200px; /* Limit width */
+            padding: 0 20px; /* Inner padding */
+            margin-top: auto; /* Push content to bottom when combined with flex-end on parent */
+        }
+
+        /* Individual service box styling */
+        .it-services-box {
+            flex: 1; /* Distribute space equally */
+            background-color: #4b446f; /* Dark purple background from the image */
+            padding: 30px;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px; /* Slight rounding on corners */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to the top within the box */
+        }
+
+        .it-services-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .it-services-icon {
+            font-size: 3em; /* Large icon size */
+            margin-bottom: 20px;
+            color: #d1c4e9; /* Lighter purple for icon */
+        }
+
+        .it-services-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .it-services-description {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #e0e0e0; /* Lighter text color */
+            margin-top: auto; /* Push description to bottom if title is short */
+        }
+
+        /* "Image from Freepik" text */
+        .it-services-credit {
+            position: relative; /* Relative to flow */
+            z-index: 2; /* Above background image */
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 30px; /* Space from the boxes */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .it-services-content-wrapper {
+                flex-wrap: wrap; /* Allow boxes to wrap */
+                justify-content: center;
+                gap: 15px; /* Adjust gap for smaller screens */
+            }
+
+            .it-services-box {
+                flex: 0 0 calc(50% - 10px); /* Two boxes per row */
+                max-width: 400px; /* Max width for individual boxes */
+            }
+
+            .it-services-background-image {
+                height: 50%; /* Adjust background image height */
+            }
+
+            .it-services-showcase-section {
+                min-height: 650px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .it-services-content-wrapper {
+                flex-direction: column; /* Stack boxes vertically */
+                align-items: center;
+                gap: 10px;
+            }
+
+            .it-services-box {
+                flex: 0 0 auto; /* No flex grow, take natural width */
+                width: 90%; /* Almost full width */
+                max-width: 350px;
+                padding: 25px;
+            }
+
+            .it-services-title {
+                font-size: 1.3em;
+            }
+
+            .it-services-icon {
+                font-size: 2.5em;
+            }
+
+            .it-services-background-image {
+                height: 40%;
+            }
+
+            .it-services-showcase-section {
+                min-height: 800px; /* More height when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="it-services-showcase-section">
+        <div class="it-services-background-image" style="background-image: url('https://images.unsplash.com/photo-1519782806542-a7f45b59714e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTMzNXwwfDF8c2VhcmNofDEzfHxjaXR5c2NhcGUlMjBza3lsaW5lfGVufDB8fHx8MTcwMTg4MzA3NHww&ixlib=rb-4.0.3&q=80&w=1080');"></div>
+
+        <div class="it-services-content-wrapper">
+            
+            <div class="it-services-box">
+                <div class="it-services-icon">
+                    &#x1F4B0; 
+                </div>
+                <h3 class="it-services-title">IT CONSULTING</h3>
+                <p class="it-services-description">
+                    Expert guidance for your digital transformation. From strategy to implementation, we lead the way.
+                </p>
+            </div>
+
+            <div class="it-services-box">
+                <div class="it-services-icon">
+                    &#x2694; 
+                </div>
+                <h3 class="it-services-title">TECH STRATEGY</h3>
+                <p class="it-services-description">
+                    Crafting robust technology roadmaps that align with your business objectives and future growth.
+                </p>
+            </div>
+
+            <div class="it-services-box">
+                <div class="it-services-icon">
+                    &#x1F3C1; 
+                </div>
+                <h3 class="it-services-title">OUR MISSION</h3>
+                <p class="it-services-description">
+                    Empowering businesses with innovative IT solutions to achieve efficiency and competitive advantage.
+                </p>
+            </div>
+
+            <div class="it-services-box">
+                <div class="it-services-icon">
+                    &#x1F4B2; 
+                </div>
+                <h3 class="it-services-title">R&D INVESTMENT</h3>
+                <p class="it-services-description">
+                    Investing in cutting-edge research and development to bring you the next generation of IT tools.
+                </p>
+            </div>
+
+        </div>
+
+        <p class="it-services-credit">Image from Unsplash</p>
+    </section>
+
+</body>
+</html>

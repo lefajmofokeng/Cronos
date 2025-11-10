@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #001023;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .crypto-industries-section {
+            background-color: #f4f4f4;
+            padding: 80px 20px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        .crypto-industries-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .crypto-industries-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .crypto-industries-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #001023;
+            margin-bottom: 16px;
+        }
+
+        .crypto-industries-subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .crypto-industries-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .crypto-industries-card {
+            background-color: #fff;
+            border-radius: 12px;
+            padding: 30px 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .crypto-industries-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 145, 250, 0.2);
+        }
+
+        .crypto-industries-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0091fa, #001023);
+        }
+
+        .crypto-industries-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .crypto-industries-finance .crypto-industries-icon {
+            background: linear-gradient(135deg, #0091fa, #001023);
+        }
+
+        .crypto-industries-healthcare .crypto-industries-icon {
+            background: linear-gradient(135deg, #00c853, #001023);
+        }
+
+        .crypto-industries-retail .crypto-industries-icon {
+            background: linear-gradient(135deg, #ff4081, #001023);
+        }
+
+        .crypto-industries-manufacturing .crypto-industries-icon {
+            background: linear-gradient(135deg, #ff9100, #001023);
+        }
+
+        .crypto-industries-card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #001023;
+            margin-bottom: 16px;
+        }
+
+        .crypto-industries-services {
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .crypto-industries-service-category {
+            margin-bottom: 20px;
+        }
+
+        .crypto-industries-service-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0091fa;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .crypto-industries-service-title::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #0091fa;
+            margin-right: 8px;
+        }
+
+        .crypto-industries-service-list {
+            list-style-type: none;
+        }
+
+        .crypto-industries-service-item {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 6px;
+            padding-left: 14px;
+            position: relative;
+        }
+
+        .crypto-industries-service-item::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #0091fa;
+        }
+
+        .crypto-industries-cta {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .crypto-industries-button {
+            display: inline-block;
+            background-color: #001023;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .crypto-industries-button:hover {
+            background-color: #0091fa;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .crypto-industries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .crypto-industries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .crypto-industries-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="crypto-industries-section">
+        <div class="crypto-industries-container">
+            <div class="crypto-industries-header">
+                <h2 class="crypto-industries-title">Industry Solutions</h2>
+                <p class="crypto-industries-subtitle">Tailored services for your industry, leveraging our expertise in software development, IT infrastructure, and marketing solutions.</p>
+            </div>
+            
+            <div class="crypto-industries-grid">
+                <!-- Finance Card -->
+                <div class="crypto-industries-card crypto-industries-finance">
+                    <div class="crypto-industries-icon">
+                        <i>💰</i>
+                    </div>
+                    <h3 class="crypto-industries-card-title">Finance</h3>
+                    <div class="crypto-industries-services">
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Software Development</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Blockchain payment systems</li>
+                                <li class="crypto-industries-service-item">Financial analytics platforms</li>
+                                <li class="crypto-industries-service-item">Secure trading applications</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">IT Infrastructure</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">High-frequency trading systems</li>
+                                <li class="crypto-industries-service-item">Regulatory compliance solutions</li>
+                                <li class="crypto-industries-service-item">Secure data encryption</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Marketing & Creative</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Financial brand identity</li>
+                                <li class="crypto-industries-service-item">Investment platform UI/UX</li>
+                                <li class="crypto-industries-service-item">Regulatory-compliant marketing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="crypto-industries-cta">
+                        <a href="#" class="crypto-industries-button">Explore Finance Solutions</a>
+                    </div>
+                </div>
+                
+                <!-- Healthcare Card -->
+                <div class="crypto-industries-card crypto-industries-healthcare">
+                    <div class="crypto-industries-icon">
+                        <i>🏥</i>
+                    </div>
+                    <h3 class="crypto-industries-card-title">Healthcare</h3>
+                    <div class="crypto-industries-services">
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Software Development</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Electronic health records systems</li>
+                                <li class="crypto-industries-service-item">Telemedicine platforms</li>
+                                <li class="crypto-industries-service-item">Medical IoT applications</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">IT Infrastructure</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">HIPAA-compliant cloud storage</li>
+                                <li class="crypto-industries-service-item">Medical data security</li>
+                                <li class="crypto-industries-service-item">Healthcare network solutions</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Marketing & Creative</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Healthcare brand development</li>
+                                <li class="crypto-industries-service-item">Patient portal UI/UX design</li>
+                                <li class="crypto-industries-service-item">Medical app marketing</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="crypto-industries-cta">
+                        <a href="#" class="crypto-industries-button">Explore Healthcare Solutions</a>
+                    </div>
+                </div>
+                
+                <!-- Retail Card -->
+                <div class="crypto-industries-card crypto-industries-retail">
+                    <div class="crypto-industries-icon">
+                        <i>🛒</i>
+                    </div>
+                    <h3 class="crypto-industries-card-title">Retail</h3>
+                    <div class="crypto-industries-services">
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Software Development</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">E-commerce platforms</li>
+                                <li class="crypto-industries-service-item">Inventory management systems</li>
+                                <li class="crypto-industries-service-item">Customer loyalty apps</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">IT Infrastructure</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">POS system integration</li>
+                                <li class="crypto-industries-service-item">Retail analytics platforms</li>
+                                <li class="crypto-industries-service-item">Supply chain optimization</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Marketing & Creative</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Retail brand campaigns</li>
+                                <li class="crypto-industries-service-item">E-commerce UI/UX design</li>
+                                <li class="crypto-industries-service-item">Digital marketing strategies</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="crypto-industries-cta">
+                        <a href="#" class="crypto-industries-button">Explore Retail Solutions</a>
+                    </div>
+                </div>
+                
+                <!-- Manufacturing Card -->
+                <div class="crypto-industries-card crypto-industries-manufacturing">
+                    <div class="crypto-industries-icon">
+                        <i>🏭</i>
+                    </div>
+                    <h3 class="crypto-industries-card-title">Manufacturing</h3>
+                    <div class="crypto-industries-services">
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Software Development</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Industrial IoT applications</li>
+                                <li class="crypto-industries-service-item">Production monitoring systems</li>
+                                <li class="crypto-industries-service-item">Quality control software</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">IT Infrastructure</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Factory automation systems</li>
+                                <li class="crypto-industries-service-item">Supply chain management</li>
+                                <li class="crypto-industries-service-item">Predictive maintenance solutions</li>
+                            </ul>
+                        </div>
+                        <div class="crypto-industries-service-category">
+                            <h4 class="crypto-industries-service-title">Marketing & Creative</h4>
+                            <ul class="crypto-industries-service-list">
+                                <li class="crypto-industries-service-item">Industrial brand identity</li>
+                                <li class="crypto-industries-service-item">B2B marketing campaigns</li>
+                                <li class="crypto-industries-service-item">Technical documentation</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="crypto-industries-cta">
+                        <a href="#" class="crypto-industries-button">Explore Manufacturing Solutions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

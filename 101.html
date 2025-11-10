@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise IT Knowledge Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Color Scheme */
+        :root {
+            --corporate-navy: #0C1E3C;
+            --professional-blue: #1E5A96;
+            --clean-white: #FFFFFF;
+            --corporate-gray: #E8EAED;
+            --accent-teal: #0EA5A8;
+            --warning-orange: #F59E0B;
+            --inter: 'Inter', sans-serif;
+        }
+
+        /* Base Styles - Inter Font Family Exclusive */
+        body {
+            font-family: var(--inter);
+            background-color: var(--corporate-gray);
+            color: var(--corporate-navy);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--corporate-navy);
+        }
+
+        /* Utility Classes */
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .gap-4 { gap: 16px; }
+        .bg-navy { background-color: var(--corporate-navy); }
+        .text-white { color: var(--clean-white); }
+        .text-navy { color: var(--corporate-navy); }
+        .text-blue { color: var(--professional-blue); }
+        .text-gray { color: var(--corporate-gray); }
+        .bg-blue { background-color: var(--professional-blue); }
+        .bg-teal { background-color: var(--accent-teal); }
+        .bg-orange { background-color: var(--warning-orange); }
+        .bg-white { background-color: var(--clean-white); }
+        .bg-gray { background-color: var(--corporate-gray); }
+        .font-700 { font-weight: 700; }
+        .font-600 { font-weight: 600; }
+        .font-500 { font-weight: 500; }
+        .font-400 { font-weight: 400; }
+        .p-4 { padding: 16px; }
+        .py-2 { padding-top: 8px; padding-bottom: 8px; }
+        .px-4 { padding-left: 16px; padding-right: 16px; }
+        .rounded { border-radius: 4px; }
+        .shadow { box-shadow: 0 2px 4px rgba(12, 30, 60, 0.1); }
+        .justify-between { justify-content: space-between; }
+        .items-center { align-items: center; }
+
+        /* Button Styling */
+        .btn {
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+            font-family: var(--inter);
+        }
+        .btn-primary {
+            background-color: var(--professional-blue);
+            color: var(--clean-white);
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .btn-primary:hover {
+            background-color: #164775; /* Darker blue */
+            box-shadow: 0 4px 8px rgba(30, 90, 150, 0.3);
+        }
+        .btn-secondary {
+            background-color: var(--accent-teal);
+            color: var(--clean-white);
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .btn-secondary:hover {
+            background-color: #0A8082; /* Darker teal */
+        }
+        .btn-warning {
+            background-color: var(--warning-orange);
+            color: var(--clean-white);
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .btn-warning:hover {
+            background-color: #CC8400; /* Darker orange */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-color: var(--corporate-navy);
+            padding: 60px 0;
+            margin-bottom: 30px;
+        }
+        .hero-headline {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--clean-white);
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+        .hero-subheadline {
+            font-size: 18px;
+            font-weight: 400;
+            color: var(--corporate-gray);
+            margin-bottom: 40px;
+        }
+        .value-box {
+            background-color: var(--professional-blue);
+            color: var(--clean-white);
+            padding: 20px;
+            border-radius: 6px;
+            flex: 1;
+            margin-right: 20px;
+        }
+        .value-box:last-child {
+            margin-right: 0;
+        }
+        .value-box-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .value-box-desc {
+            font-size: 13px;
+            font-weight: 400;
+        }
+        .featured-program {
+            background-color: var(--accent-teal);
+            color: var(--clean-white);
+            padding: 15px 20px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+        }
+        .program-title {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .program-details span {
+            margin-right: 15px;
+            font-size: 13px;
+        }
+
+        /* Department Navigation */
+        .dept-nav {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        .dept-pill {
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s, color 0.2s;
+            white-space: nowrap;
+        }
+        .dept-pill-active {
+            background-color: var(--professional-blue);
+            color: var(--clean-white);
+            font-weight: 600;
+        }
+        .dept-pill-inactive {
+            background-color: var(--corporate-gray);
+            color: var(--corporate-navy);
+            font-weight: 500;
+        }
+        .dept-pill-inactive:hover {
+            background-color: #D3D6DB;
+        }
+
+        /* Main Browse Section */
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+        .sidebar {
+            background-color: var(--corporate-gray);
+            padding: 20px;
+            border-radius: 6px;
+        }
+        .filter-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--corporate-navy);
+            margin-bottom: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #C0C0C0;
+        }
+        .filter-header:first-child {
+            border-top: none;
+            padding-top: 0;
+        }
+        .filter-list, .radio-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        .filter-item {
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--corporate-navy);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        .filter-item input[type="checkbox"], .filter-item input[type="radio"] {
+            margin-right: 8px;
+            accent-color: var(--professional-blue);
+        }
+        .filter-item-selected {
+            color: var(--professional-blue);
+        }
+        .role-section-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--corporate-navy);
+            margin-top: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+
+        .ebook-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* eBook Card */
+        .ebook-card {
+            background-color: var(--clean-white);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(12, 30, 60, 0.08);
+            border: 1px solid var(--clean-white);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            height: fit-content;
+        }
+        .ebook-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(30, 90, 150, 0.2);
+            border-color: var(--professional-blue);
+        }
+
+        .card-cover {
+            height: 200px; /* 70% est. visual area */
+            background-color: #c0c0c0; /* Placeholder */
+            position: relative;
+            overflow: hidden;
+        }
+        .card-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .role-badge, .cert-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            color: var(--clean-white);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+        .cert-badge {
+            top: 35px;
+            font-size: 9px;
+            background-color: var(--warning-orange);
+        }
+
+        .card-content {
+            padding: 15px;
+            height: 30%; /* 30% est. visual area */
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+        .card-author {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--corporate-gray);
+            margin-bottom: 10px;
+        }
+        .card-desc {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--corporate-gray);
+            margin-bottom: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .card-metadata {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--corporate-gray);
+            margin-bottom: 15px;
+        }
+        .card-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .bookmark-icon {
+            border: 1px solid var(--corporate-gray);
+            color: var(--corporate-gray);
+            padding: 8px 10px;
+            border-radius: 4px;
+            transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+        .bookmark-icon:hover {
+            color: var(--accent-teal);
+            border-color: var(--accent-teal);
+        }
+        .bookmark-icon.active {
+            background-color: var(--accent-teal);
+            color: var(--clean-white);
+            border-color: var(--accent-teal);
+        }
+        .quick-view-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(30, 90, 150, 0.8);
+            color: var(--clean-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .ebook-card:hover .quick-view-overlay {
+            opacity: 1;
+        }
+
+        /* Quick View Modal (Simplified Styling) */
+        .modal-backdrop {
+            /* Full screen overlay for modal */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 30, 60, 0.8);
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+        }
+        .quick-view-modal {
+            background-color: var(--clean-white);
+            width: 80%;
+            max-width: 1000px;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            border-left: 5px solid var(--professional-blue);
+        }
+        .modal-left {
+            width: 35%;
+            padding: 30px;
+            text-align: center;
+        }
+        .modal-right {
+            width: 65%;
+            padding: 30px;
+        }
+        .modal-cover {
+            height: 350px;
+            background-color: #c0c0c0;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            margin-bottom: 10px;
+        }
+        .modal-badges span {
+            display: inline-block;
+            background-color: var(--professional-blue);
+            color: var(--clean-white);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+        .modal-stats-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+        .modal-stats-table td {
+            padding: 8px 0;
+        }
+        .modal-stats-table .label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--corporate-gray);
+            text-transform: uppercase;
+        }
+        .modal-stats-table .value {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--corporate-navy);
+        }
+        .modal-section-header {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--corporate-navy);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .modal-desc-text, .modal-role-text {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--corporate-navy);
+            line-height: 1.7;
+        }
+        .modal-objectives ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .modal-objectives li {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--corporate-navy);
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .modal-objectives li::before {
+            content: '•';
+            color: var(--professional-blue);
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--corporate-gray);
+        }
+        .modal-buttons .btn {
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Learning Programs Section */
+        .program-section {
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid var(--corporate-gray);
+        }
+        .program-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .program-card {
+            background-color: var(--clean-white);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(12, 30, 60, 0.08);
+            padding: 25px;
+            border-left: 3px solid var(--professional-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .program-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(30, 90, 150, 0.15);
+        }
+        .program-card-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            margin-bottom: 10px;
+        }
+        .program-card-desc {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--corporate-gray);
+            margin-bottom: 15px;
+        }
+        .program-card-audience {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--professional-blue);
+            margin-bottom: 20px;
+        }
+        .program-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .program-stat-item {
+            text-align: center;
+        }
+        .program-stat-number {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--professional-blue);
+            display: block;
+        }
+        .program-stat-label {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--corporate-gray);
+            display: block;
+        }
+
+        /* Certification Tracking */
+        .cert-track-section {
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid var(--corporate-gray);
+        }
+        .cert-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .cert-card {
+            background-color: var(--clean-white);
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(12, 30, 60, 0.08);
+            padding: 20px;
+        }
+        .cert-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--corporate-navy);
+            margin-bottom: 10px;
+        }
+        .cert-progress-text {
+            font-size: 13px;
+            color: var(--professional-blue);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .progress-bar-container {
+            height: 10px;
+            background-color: var(--corporate-gray);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 70%; /* Example progress */
+            background-color: var(--professional-blue);
+            transition: width 0.5s;
+        }
+        .view-path-link {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--professional-blue);
+            text-decoration: none;
+        }
+        .compliance-list {
+            margin-top: 30px;
+        }
+        .compliance-item {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--corporate-gray);
+            font-size: 14px;
+            font-weight: 400;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .compliance-item strong {
+            font-weight: 600;
+            color: var(--corporate-navy);
+        }
+
+        /* Trending Section */
+        .trending-section {
+            margin-top: 50px;
+            padding-top: 50px;
+            border-top: 1px solid var(--corporate-gray);
+        }
+        .trending-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .trending-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--corporate-gray);
+            transition: background-color 0.2s;
+            cursor: pointer;
+        }
+        .trending-item:hover {
+            background-color: #F8F9FA;
+        }
+        .trending-rank {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--professional-blue);
+            margin-right: 20px;
+            width: 40px;
+            text-align: center;
+        }
+        .trending-details {
+            flex-grow: 1;
+        }
+        .trending-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--corporate-navy);
+            margin-bottom: 3px;
+        }
+        .trending-count {
+            font-size: 12px;
+            color: var(--corporate-gray);
+        }
+
+        /* Advanced Search */
+        .advanced-search-bar {
+            background-color: var(--clean-white);
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(12, 30, 60, 0.1);
+            margin-bottom: 30px;
+        }
+        .search-input-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .search-input {
+            flex-grow: 1;
+            padding: 12px;
+            border: 1px solid var(--corporate-gray);
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: var(--inter);
+        }
+        .search-input:focus {
+            outline: none;
+            border-color: var(--professional-blue);
+            box-shadow: 0 0 0 2px rgba(30, 90, 150, 0.2);
+        }
+        .search-filter-dropdown {
+            padding: 12px;
+            border: 1px solid var(--corporate-gray);
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: var(--inter);
+            background-color: var(--clean-white);
+            color: var(--corporate-navy);
+        }
+        .advanced-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--professional-blue);
+            text-decoration: none;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="hero-section">
+            <div class="container" style="max-width: 1200px;">
+                <h1 class="hero-headline">Enterprise IT Knowledge Management</h1>
+                <p class="hero-subheadline">Structured learning resources for organizational skill development and compliance</p>
+
+                <div class="flex gap-4" style="margin-bottom: 40px;">
+                    <div class="value-box">
+                        <div class="value-box-title"><span style="margin-right: 8px;">🏢</span>Organization Management</div>
+                        <div class="value-box-desc">Create teams, track progress, manage access</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-box-title"><span style="margin-right: 8px;">✅</span>Compliance Training</div>
+                        <div class="value-box-desc">Meet regulatory requirements, certifications, audit trails</div>
+                    </div>
+                    <div class="value-box">
+                        <div class="value-box-title"><span style="margin-right: 8px;">📈</span>Performance Tracking</div>
+                        <div class="value-box-desc">Monitor skill acquisition, employee development, ROI</div>
+                    </div>
+                </div>
+
+                <div class="featured-program">
+                    <div class="flex items-center">
+                        <div class="program-title">Featured Program: Cloud Infrastructure Mastery</div>
+                        <div class="program-details" style="margin-left: 30px;">
+                            <span>Duration: 40h</span>
+                            <span>Employees: 120</span>
+                            <span>Completion %: 78%</span>
+                            <span>Certification: Yes</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" style="background-color: var(--clean-white); color: var(--accent-teal); font-weight: 700;">Enroll Team</button>
+                </div>
+
+                <p style="text-align: right; margin-top: 20px;">
+                    <a href="#" class="advanced-link text-white" style="font-size: 14px;">Management Dashboard (Admin View) &rarr;</a>
+                </p>
+            </div>
+        </div>
+        <div class="advanced-search-bar">
+            <div class="search-input-group">
+                <input type="text" class="search-input" placeholder="Search eBooks, Authors, Skills, or Certifications...">
+                <select class="search-filter-dropdown">
+                    <option value="">Department</option>
+                    <option value="engineering">Engineering</option>
+                    <option value="security">Security</option>
+                </select>
+                <select class="search-filter-dropdown">
+                    <option value="">Role</option>
+                    <option value="architect">Architect</option>
+                    <option value="developer">Developer</option>
+                </select>
+                <button class="btn btn-primary">Search</button>
+                <a href="#" class="advanced-link">Advanced Search</a>
+            </div>
+        </div>
+        <div class="dept-nav">
+            <div class="dept-pill dept-pill-active">All Departments</div>
+            <div class="dept-pill dept-pill-inactive">Engineering</div>
+            <div class="dept-pill dept-pill-inactive">Infrastructure</div>
+            <div class="dept-pill dept-pill-inactive">DevOps</div>
+            <div class="dept-pill dept-pill-inactive">Security</div>
+            <div class="dept-pill dept-pill-inactive">Architecture</div>
+            <div class="dept-pill dept-pill-inactive">Database Administration</div>
+            <div class="dept-pill dept-pill-inactive">Cloud Operations</div>
+        </div>
+        <div class="main-content-grid">
+            
+            <div class="sidebar">
+                <div class="filter-header">Filter by Role/Function</div>
+
+                <div class="role-section-header">Engineering Roles <span style="float: right;">&darr;</span></div>
+                <ul class="filter-list">
+                    <li class="filter-item"><input type="checkbox">Software Developer (Backend, Frontend, Full-Stack)</li>
+                    <li class="filter-item"><input type="checkbox">Solutions Architect</li>
+                    <li class="filter-item"><input type="checkbox">Technical Lead / Engineering Manager</li>
+                    <li class="filter-item"><input type="checkbox">Staff Engineer</li>
+                </ul>
+
+                <div class="role-section-header">Infrastructure Roles <span style="float: right;">&darr;</span></div>
+                <ul class="filter-list" style="display: none;">
+                    <li class="filter-item"><input type="checkbox">System Administrator</li>
+                    <li class="filter-item"><input type="checkbox">Infrastructure Engineer</li>
+                    <li class="filter-item"><input type="checkbox">Cloud Architect</li>
+                    <li class="filter-item"><input type="checkbox">Platform Engineer</li>
+                </ul>
+
+                <div class="role-section-header">DevOps & Operations <span style="float: right;">&darr;</span></div>
+                <ul class="filter-list">
+                    <li class="filter-item"><input type="checkbox" checked class="filter-item-selected">DevOps Engineer</li>
+                    <li class="filter-item"><input type="checkbox">Release Manager</li>
+                    <li class="filter-item"><input type="checkbox">Site Reliability Engineer (SRE)</li>
+                    <li class="filter-item"><input type="checkbox">Operations Manager</li>
+                </ul>
+
+                <div class="role-section-header">Security <span style="float: right;">&darr;</span></div>
+                <ul class="filter-list">
+                    <li class="filter-item"><input type="checkbox">Security Engineer</li>
+                    <li class="filter-item"><input type="checkbox">Security Architect</li>
+                    <li class="filter-item"><input type="checkbox">Compliance Officer</li>
+                    <li class="filter-item"><input type="checkbox">Penetration Tester</li>
+                </ul>
+                
+                <div class="filter-header">Filter by Skill Level</div>
+                <ul class="radio-list">
+                    <li class="filter-item"><input type="radio" name="skill">Foundation</li>
+                    <li class="filter-item"><input type="radio" name="skill" checked>Intermediate</li>
+                    <li class="filter-item"><input type="radio" name="skill">Advanced</li>
+                    <li class="filter-item"><input type="radio" name="skill">Expert</li>
+                    <li class="filter-item"><input type="radio" name="skill">Executive</li>
+                </ul>
+
+                <div class="filter-header">Filter by Technology</div>
+                <ul class="filter-list">
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Backend Frameworks (e.g., Spring, Django)</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox" checked>Databases (e.g., PostgreSQL, MongoDB)</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Cloud Platforms (e.g., AWS, Azure, GCP)</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Networking & Security Tools</li>
+                </ul>
+
+                <div class="filter-header">Filter by Duration</div>
+                <ul class="radio-list">
+                    <li class="filter-item"><input type="radio" name="duration">Quick Read (< 4 hours)</li>
+                    <li class="filter-item"><input type="radio" name="duration" checked>Comprehensive (4-8 hours)</li>
+                    <li class="filter-item"><input type="radio" name="duration">Deep Dive (8+ hours)</li>
+                </ul>
+
+                <div class="filter-header">Filter by Certification</div>
+                <ul class="filter-list">
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox" checked>AWS Certified Solutions Architect</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Kubernetes Certified Application Developer (CKAD)</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Certified Kubernetes Administrator (CKA)</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">HashiCorp Certified Terraform Associate</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Microsoft Azure Administrator</li>
+                    <li class="filter-item" style="font-size: 12px;"><input type="checkbox">Google Cloud Professional Architect</li>
+                </ul>
+
+            </div>
+            <div class="ebook-grid">
+
+                <div class="ebook-card" data-book-id="1">
+                    <div class="card-cover">
+                        <div class="role-badge bg-teal">Architects</div>
+                        <div class="cert-badge bg-orange">AWS Certified</div>
+                        
+                        <div class="quick-view-overlay">Quick View</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Modern AWS Solutions Architecture Handbook</div>
+                        <div class="card-author">By: Jane Doe</div>
+                        <div class="card-desc">A deep dive into advanced, resilient, and cost-optimized cloud infrastructure patterns.</div>
+                        <div class="card-metadata">
+                            <span>Pub: 2024</span>
+                            <span>Pages: 450</span>
+                            <span>Hours: 7.5</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Download</button>
+                            <span class="bookmark-icon"><span style="font-size: 14px;">★</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ebook-card" data-book-id="2">
+                    <div class="card-cover">
+                        <div class="role-badge bg-teal">DevOps Engineers</div>
+                        
+                        <div class="quick-view-overlay">Quick View</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Kubernetes: Zero Downtime Deployments</div>
+                        <div class="card-author">By: Alex Smith</div>
+                        <div class="card-desc">Mastering advanced deployment strategies, service mesh, and GitOps workflows in K8s.</div>
+                        <div class="card-metadata">
+                            <span>Pub: 2023</span>
+                            <span>Pages: 320</span>
+                            <span>Hours: 5</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Download</button>
+                            <span class="bookmark-icon active" style="border-color: var(--accent-teal);"><span style="font-size: 14px;">★</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ebook-card" data-book-id="3">
+                    <div class="card-cover">
+                        <div class="role-badge bg-teal">Security</div>
+                        <div class="cert-badge bg-orange">CISSP Prep</div>
+                        
+                        <div class="quick-view-overlay">Quick View</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Enterprise-Grade Threat Modeling and Defense</div>
+                        <div class="card-author">By: Chris Lee</div>
+                        <div class="card-desc">From penetration testing to establishing a robust, modern corporate security posture.</div>
+                        <div class="card-metadata">
+                            <span>Pub: 2024</span>
+                            <span>Pages: 610</span>
+                            <span>Hours: 12+</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Download</button>
+                            <span class="bookmark-icon"><span style="font-size: 14px;">★</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ebook-card" data-book-id="4">
+                    <div class="card-cover">
+                        <div class="role-badge bg-teal">Data Admin</div>
+                        
+                        <div class="quick-view-overlay">Quick View</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Advanced Database Performance Tuning & Replication</div>
+                        <div class="card-author">By: David Chen</div>
+                        <div class="card-desc">Strategies for high-availability, sharding, and optimizing complex SQL queries at scale.</div>
+                        <div class="card-metadata">
+                            <span>Pub: 2023</span>
+                            <span>Pages: 400</span>
+                            <span>Hours: 6.5</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Download</button>
+                            <span class="bookmark-icon"><span style="font-size: 14px;">★</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ebook-card" data-book-id="5">
+                    <div class="card-cover">
+                        <div class="role-badge bg-teal">Technical Lead</div>
+                        
+                        <div class="quick-view-overlay">Quick View</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Scaling Engineering Teams: Metrics & Management</div>
+                        <div class="card-author">By: Emily White</div>
+                        <div class="card-desc">Techniques for organizational growth, process improvement, and technical decision-making.</div>
+                        <div class="card-metadata">
+                            <span>Pub: 2024</span>
+                            <span>Pages: 280</span>
+                            <span>Hours: 4</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Download</button>
+                            <span class="bookmark-icon"><span style="font-size: 14px;">★</span></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ebook-card" data-book-id="6">
+                    <div class="card-cover">
+                        <div class="role-badge bg-teal">Platform Engineer</div>
+                        <div class="cert-badge bg-orange">Terraform Prep</div>
+                        
+                        <div class="quick-view-overlay">Quick View</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-title">Infrastructure as Code: Terraform & Enterprise Scale</div>
+                        <div class="card-author">By: Robert Brown</div>
+                        <div class="card-desc">Managing large-scale cloud environments with state management, modules, and security policies.</div>
+                        <div class="card-metadata">
+                            <span>Pub: 2024</span>
+                            <span>Pages: 380</span>
+                            <span>Hours: 6</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Download</button>
+                            <span class="bookmark-icon"><span style="font-size: 14px;">★</span></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        <div class="program-section">
+            <h2 style="font-size: 28px; font-weight: 700; color: var(--corporate-navy); margin-bottom: 5px;">Learning Programs by Department</h2>
+            <p style="font-size: 14px; font-weight: 400; color: var(--corporate-gray); margin-bottom: 30px;">Curated resource collections aligned with organizational objectives</p>
+
+            <div class="program-card-grid">
+                <div class="program-card">
+                    <div class="program-card-title">Cloud Infrastructure Modernization Initiative</div>
+                    <div class="program-card-desc">A multi-eBook, video, and lab pathway to migrate legacy systems and adopt serverless technologies.</div>
+                    <div class="program-card-audience">Target audience: Infrastructure Engineers, Cloud Architects, DevOps Teams</div>
+                    <div class="program-stats">
+                        <div class="program-stat-item"><span class="program-stat-number">12</span><span class="program-stat-label">Total eBooks</span></div>
+                        <div class="program-stat-item"><span class="program-stat-number">65</span><span class="program-stat-label">Est. Completion (Hours)</span></div>
+                        <div class="program-stat-item"><span class="program-stat-number">340</span><span class="program-stat-label">Employees Enrolled</span></div>
+                        <div class="program-stat-item"><span class="program-stat-number">62%</span><span class="program-stat-label">Completion Rate</span></div>
+                    </div>
+                    <button class="btn btn-primary">Enroll Team</button>
+                </div>
+
+                <div class="program-card">
+                    <div class="program-card-title">Security & Compliance Onboarding for New Hires</div>
+                    <div class="program-card-desc">Essential reading and training materials to ensure all new employees meet foundational security and regulatory standards.</div>
+                    <div class="program-card-audience">Target audience: All New Hires, Compliance Officers, HR</div>
+                    <div class="program-stats">
+                        <div class="program-stat-item"><span class="program-stat-number">5</span><span class="program-stat-label">Total eBooks</span></div>
+                        <div class="program-stat-item"><span class="program-stat-number">10</span><span class="program-stat-label">Est. Completion (Hours)</span></div>
+                        <div class="program-stat-item"><span class="program-stat-number">980</span><span class="program-stat-label">Employees Enrolled</span></div>
+                        <div class="program-stat-item"><span class="program-stat-number">95%</span><span class="program-stat-label">Completion Rate</span></div>
+                    </div>
+                    <button class="btn btn-primary">Enroll Team</button>
+                </div>
+            </div>
+        </div>
+        <div class="cert-track-section">
+            <h2 style="font-size: 28px; font-weight: 700; color: var(--corporate-navy); margin-bottom: 5px;">Certification Preparation & Compliance</h2>
+
+            <div class="cert-card-grid">
+                <div class="cert-card">
+                    <div class="cert-title">AWS Solutions Architect Professional</div>
+                    <div class="cert-progress-text">Required eBooks: 5 out of 8 completed</div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 62%;"></div></div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-blue font-700">62% Complete</span>
+                        <a href="#" class="view-path-link">View Path &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-title">Certified Kubernetes Administrator (CKA)</div>
+                    <div class="cert-progress-text">Required eBooks: 2 out of 5 completed</div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 40%;"></div></div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-blue font-700">40% Complete</span>
+                        <a href="#" class="view-path-link">View Path &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-title">HashiCorp Certified Terraform Associate</div>
+                    <div class="cert-progress-text">Required eBooks: 3 out of 3 completed</div>
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 100%; background-color: var(--accent-teal);"></div></div>
+                    <div class="flex justify-between items-center">
+                        <span style="color: var(--accent-teal);" class="font-700">100% Complete</span>
+                        <a href="#" class="view-path-link">Review Path &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="modal-section-header" style="margin-top: 40px; border-top: 1px solid var(--corporate-gray); padding-top: 20px;">Mandatory Corporate Compliance Training</h3>
+            <div class="compliance-list">
+                <div class="compliance-item">
+                    <span>Security Compliance Training (Annual)</span>
+                    <span style="color: var(--accent-teal);">Required: <strong style="color: var(--accent-teal);">Completed</strong></span>
+                </div>
+                <div class="compliance-item">
+                    <span>GDPR Compliance: Regulatory Training eBooks</span>
+                    <span style="color: var(--warning-orange);">Required: <strong style="color: var(--warning-orange);">Pending</strong></span>
+                </div>
+                <div class="compliance-item">
+                    <span>SOC 2 Audit Prep: Specific Resource Collections</span>
+                    <span style="color: var(--accent-teal);">Required: <strong style="color: var(--accent-teal);">Completed</strong></span>
+                </div>
+            </div>
+        </div>
+        <div class="trending-section">
+            <h2 style="font-size: 28px; font-weight: 700; color: var(--corporate-navy); margin-bottom: 30px;">Trending in Your Organization</h2>
+            
+            <div class="grid gap-4" style="grid-template-columns: repeat(3, 1fr);">
+                <div>
+                    <h3 class="modal-section-header" style="border-top: none; padding-top: 0;">Most Downloaded This Month (All Staff)</h3>
+                    <ul class="trending-list">
+                        <li class="trending-item">
+                            <span class="trending-rank">1</span>
+                            <div class="trending-details">
+                                <div class="trending-title">Enterprise-Grade Threat Modeling and Defense</div>
+                                <div class="trending-count">1,245 Downloads</div>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="trending-rank">2</span>
+                            <div class="trending-details">
+                                <div class="trending-title">Modern AWS Solutions Architecture Handbook</div>
+                                <div class="trending-count">980 Downloads</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="modal-section-header" style="border-top: none; padding-top: 0;">Top in Engineering</h3>
+                    <ul class="trending-list">
+                        <li class="trending-item">
+                            <span class="trending-rank">1</span>
+                            <div class="trending-details">
+                                <div class="trending-title">Scaling Engineering Teams: Metrics & Management</div>
+                                <div class="trending-count">510 Downloads</div>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="trending-rank">2</span>
+                            <div class="trending-details">
+                                <div class="trending-title">Advanced Go Programming for Microservices</div>
+                                <div class="trending-count">480 Downloads</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="modal-section-header" style="border-top: none; padding-top: 0;">Top in Infrastructure</h3>
+                    <ul class="trending-list">
+                        <li class="trending-item">
+                            <span class="trending-rank">1</span>
+                            <div class="trending-details">
+                                <div class="trending-title">Infrastructure as Code: Terraform & Enterprise Scale</div>
+                                <div class="trending-count">350 Downloads</div>
+                            </div>
+                        </li>
+                        <li class="trending-item">
+                            <span class="trending-rank">2</span>
+                            <div class="trending-details">
+                                <div class="trending-title">Kubernetes: Zero Downtime Deployments</div>
+                                <div class="trending-count">320 Downloads</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="quickViewModal" class="modal-backdrop">
+            <div class="quick-view-modal">
+                <div class="modal-left">
+                    <div class="modal-cover">
+                        
+                    </div>
+                    <div style="text-align: left;">
+                        <h4 class="modal-section-header" style="margin-top: 0;">Author & Role</h4>
+                        <p style="font-size: 14px; font-weight: 500; color: var(--corporate-navy);">Jane Doe</p>
+                        <div class="modal-badges">
+                            <span>Solutions Architect</span>
+                            <span style="background-color: var(--warning-orange);">AWS Certified</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-right">
+                    <span style="float: right; cursor: pointer; color: var(--corporate-gray);" id="closeModalBtn">✖</span>
+                    <h2 class="modal-title">Modern AWS Solutions Architecture Handbook</h2>
+                    
+                    <h4 class="modal-section-header">Resource Statistics</h4>
+                    <table class="modal-stats-table">
+                        <tr>
+                            <td class="label">Pages</td>
+                            <td class="value">450</td>
+                            <td class="label">Format</td>
+                            <td class="value">eBook (PDF/EPUB)</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Language</td>
+                            <td class="value">English</td>
+                            <td class="label">Published</td>
+                            <td class="value">Q1 2024</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Skill Level</td>
+                            <td class="value">Advanced</td>
+                            <td class="label">Estimated Hours</td>
+                            <td class="value">7.5 Hours</td>
+                        </tr>
+                        <tr>
+                            <td class="label">Target Roles</td>
+                            <td class="value">Cloud Architects, Lead Engineers</td>
+                            <td class="label">Certification Value</td>
+                            <td class="value">AWS Pro (High)</td>
+                        </tr>
+                    </table>
+
+                    <h4 class="modal-section-header">About This Resource</h4>
+                    <p class="modal-desc-text">This comprehensive guide moves beyond foundational concepts to explore complex, real-world cloud architecture challenges. It focuses on resilience, disaster recovery planning, cost optimization strategies, and multi-region deployment patterns crucial for enterprise-grade applications.</p>
+
+                    <h4 class="modal-section-header">Learning Objectives</h4>
+                    <div class="modal-objectives">
+                        <ul>
+                            <li>Design highly available, fault-tolerant systems in AWS.</li>
+                            <li>Implement advanced security controls and compliance checks.</li>
+                            <li>Master cost governance and optimization techniques.</li>
+                            <li>Architect serverless and containerized solutions at scale.</li>
+                            <li>Develop automated infrastructure deployment strategies.</li>
+                            <li>Prepare for the AWS Certified Solutions Architect Professional exam.</li>
+                        </ul>
+                    </div>
+
+                    <h4 class="modal-section-header">Who Should Read</h4>
+                    <p class="modal-role-text">Primary for **Solutions Architects** and **Technical Leads** aiming for an expert understanding of AWS. Also valuable for **Staff Engineers** and **Platform Engineers** responsible for production environment stability and cost management.</p>
+
+                    <h4 class="modal-section-header" style="margin-top: 30px;">Organizational Impact & Assignment</h4>
+                    <div class="flex gap-4">
+                        <p style="font-size: 13px; color: var(--corporate-gray);">**345** Employees have read this.</p>
+                        <p style="font-size: 13px; color: var(--corporate-gray);">**90%** Completion rate in Infrastructure Dept.</p>
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button class="btn btn-primary" style="font-size: 14px;">Download eBook</button>
+                        <button class="btn btn-secondary" style="font-size: 14px;">Add to Team Collection</button>
+                        <button class="btn btn-warning" style="font-size: 14px;">Assign to Department (Manager)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div> <div class="bg-navy" style="padding: 20px 0; margin-top: 50px;">
+        <div class="container" style="max-width: 1200px;">
+            <div class="flex justify-between items-center text-white" style="font-size: 13px;">
+                <div class="flex gap-4">
+                    <span>Total eBooks Available: <strong class="text-blue">485</strong></span>
+                    <span>Employees with Access: <strong class="text-blue">12,500</strong></span>
+                    <span>Reading Hours This Month: <strong class="text-blue">1,890</strong></span>
+                </div>
+                <div class="flex gap-4">
+                    <span>Top 3 Depts by Usage: <strong class="text-blue">Engineering, Infra, Security</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Book data for the quick view modal
+        const bookData = {
+            1: {
+                title: "Modern AWS Solutions Architecture Handbook",
+                author: "Jane Doe",
+                description: "A deep dive into advanced, resilient, and cost-optimized cloud infrastructure patterns.",
+                pages: 450,
+                hours: 7.5,
+                year: 2024,
+                skillLevel: "Advanced",
+                targetRoles: "Cloud Architects, Lead Engineers",
+                certificationValue: "AWS Pro (High)",
+                learningObjectives: [
+                    "Design highly available, fault-tolerant systems in AWS.",
+                    "Implement advanced security controls and compliance checks.",
+                    "Master cost governance and optimization techniques.",
+                    "Architect serverless and containerized solutions at scale.",
+                    "Develop automated infrastructure deployment strategies.",
+                    "Prepare for the AWS Certified Solutions Architect Professional exam."
+                ],
+                authorRole: "Solutions Architect",
+                badges: ["Solutions Architect", "AWS Certified"],
+                employeesRead: 345,
+                completionRate: "90%"
+            },
+            2: {
+                title: "Kubernetes: Zero Downtime Deployments",
+                author: "Alex Smith",
+                description: "Mastering advanced deployment strategies, service mesh, and GitOps workflows in K8s.",
+                pages: 320,
+                hours: 5,
+                year: 2023,
+                skillLevel: "Intermediate",
+                targetRoles: "DevOps Engineers, SREs",
+                certificationValue: "CKA (Medium)",
+                learningObjectives: [
+                    "Implement blue-green and canary deployment strategies.",
+                    "Configure service mesh for microservices communication.",
+                    "Set up GitOps workflows with ArgoCD or Flux.",
+                    "Monitor and troubleshoot Kubernetes clusters effectively.",
+                    "Optimize resource allocation and autoscaling."
+                ],
+                authorRole: "DevOps Engineer",
+                badges: ["DevOps Engineer"],
+                employeesRead: 280,
+                completionRate: "85%"
+            },
+            3: {
+                title: "Enterprise-Grade Threat Modeling and Defense",
+                author: "Chris Lee",
+                description: "From penetration testing to establishing a robust, modern corporate security posture.",
+                pages: 610,
+                hours: 12,
+                year: 2024,
+                skillLevel: "Expert",
+                targetRoles: "Security Engineers, Security Architects",
+                certificationValue: "CISSP (High)",
+                learningObjectives: [
+                    "Conduct comprehensive threat modeling for enterprise systems.",
+                    "Implement defense-in-depth security strategies.",
+                    "Perform penetration testing and vulnerability assessments.",
+                    "Develop incident response and recovery plans.",
+                    "Establish security governance and compliance frameworks."
+                ],
+                authorRole: "Security Engineer",
+                badges: ["Security Engineer", "CISSP Prep"],
+                employeesRead: 420,
+                completionRate: "78%"
+            },
+            4: {
+                title: "Advanced Database Performance Tuning & Replication",
+                author: "David Chen",
+                description: "Strategies for high-availability, sharding, and optimizing complex SQL queries at scale.",
+                pages: 400,
+                hours: 6.5,
+                year: 2023,
+                skillLevel: "Advanced",
+                targetRoles: "Database Administrators, Data Engineers",
+                certificationValue: "Oracle Certified Professional (Medium)",
+                learningObjectives: [
+                    "Optimize database performance through indexing and query tuning.",
+                    "Implement high-availability solutions with replication.",
+                    "Design and manage database sharding strategies.",
+                    "Monitor and troubleshoot database performance issues.",
+                    "Implement backup and recovery strategies for critical data."
+                ],
+                authorRole: "Database Administrator",
+                badges: ["Data Admin"],
+                employeesRead: 195,
+                completionRate: "82%"
+            },
+            5: {
+                title: "Scaling Engineering Teams: Metrics & Management",
+                author: "Emily White",
+                description: "Techniques for organizational growth, process improvement, and technical decision-making.",
+                pages: 280,
+                hours: 4,
+                year: 2024,
+                skillLevel: "Executive",
+                targetRoles: "Technical Leads, Engineering Managers",
+                certificationValue: "N/A",
+                learningObjectives: [
+                    "Develop effective team structures for scaling organizations.",
+                    "Implement metrics-driven engineering management.",
+                    "Foster technical excellence and innovation culture.",
+                    "Manage technical debt and legacy systems effectively.",
+                    "Lead organizational change and digital transformation."
+                ],
+                authorRole: "Technical Lead",
+                badges: ["Technical Lead"],
+                employeesRead: 310,
+                completionRate: "88%"
+            },
+            6: {
+                title: "Infrastructure as Code: Terraform & Enterprise Scale",
+                author: "Robert Brown",
+                description: "Managing large-scale cloud environments with state management, modules, and security policies.",
+                pages: 380,
+                hours: 6,
+                year: 2024,
+                skillLevel: "Intermediate",
+                targetRoles: "Platform Engineers, DevOps Engineers",
+                certificationValue: "Terraform Associate (Medium)",
+                learningObjectives: [
+                    "Design and implement Terraform modules for reusability.",
+                    "Manage Terraform state in enterprise environments.",
+                    "Implement security best practices for infrastructure code.",
+                    "Automate infrastructure testing and validation.",
+                    "Scale infrastructure deployments across multiple environments."
+                ],
+                authorRole: "Platform Engineer",
+                badges: ["Platform Engineer", "Terraform Prep"],
+                employeesRead: 265,
+                completionRate: "79%"
+            }
+        };
+
+        // Initialize the application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up department navigation
+            setupDepartmentNavigation();
+            
+            // Set up filter section toggles
+            setupFilterSections();
+            
+            // Set up eBook card interactions
+            setupEbookCards();
+            
+            // Set up modal functionality
+            setupModal();
+            
+            // Set up search functionality
+            setupSearch();
+            
+            // Set up bookmark functionality
+            setupBookmarks();
+            
+            // Set up download buttons
+            setupDownloadButtons();
+        });
+
+        // Department navigation functionality
+        function setupDepartmentNavigation() {
+            const deptPills = document.querySelectorAll('.dept-pill');
+            
+            deptPills.forEach(pill => {
+                pill.addEventListener('click', function() {
+                    // Remove active class from all pills
+                    deptPills.forEach(p => {
+                        p.classList.remove('dept-pill-active');
+                        p.classList.add('dept-pill-inactive');
+                    });
+                    
+                    // Add active class to clicked pill
+                    this.classList.remove('dept-pill-inactive');
+                    this.classList.add('dept-pill-active');
+                    
+                    // In a real application, you would filter content based on the selected department
+                    console.log(`Department selected: ${this.textContent}`);
+                });
+            });
+        }
+
+        // Filter section toggle functionality
+        function setupFilterSections() {
+            const roleHeaders = document.querySelectorAll('.role-section-header');
+            
+            roleHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const list = this.nextElementSibling;
+                    const arrow = this.querySelector('span');
+                    
+                    if (list.style.display === 'none') {
+                        list.style.display = 'block';
+                        arrow.innerHTML = '&darr;';
+                    } else {
+                        list.style.display = 'none';
+                        arrow.innerHTML = '&rarr;';
+                    }
+                });
+            });
+        }
+
+        // eBook card interactions
+        function setupEbookCards() {
+            const ebookCards = document.querySelectorAll('.ebook-card');
+            
+            ebookCards.forEach(card => {
+                // Quick view on card click
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on download button or bookmark
+                    if (e.target.closest('.btn') || e.target.closest('.bookmark-icon')) {
+                        return;
+                    }
+                    
+                    const bookId = this.getAttribute('data-book-id');
+                    openQuickViewModal(bookId);
+                });
+                
+                // Quick view on overlay click
+                const overlay = card.querySelector('.quick-view-overlay');
+                overlay.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const bookId = card.getAttribute('data-book-id');
+                    openQuickViewModal(bookId);
+                });
+            });
+        }
+
+        // Modal functionality
+        function setupModal() {
+            const modal = document.getElementById('quickViewModal');
+            const closeBtn = document.getElementById('closeModalBtn');
+            
+            // Close modal when clicking the close button
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close modal when clicking outside the modal content
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Open quick view modal with book data
+        function openQuickViewModal(bookId) {
+            const modal = document.getElementById('quickViewModal');
+            const book = bookData[bookId];
+            
+            if (!book) return;
+            
+            // Update modal content with book data
+            document.querySelector('.modal-title').textContent = book.title;
+            document.querySelector('.modal-left p').textContent = book.author;
+            
+            // Update badges
+            const badgesContainer = document.querySelector('.modal-badges');
+            badgesContainer.innerHTML = '';
+            book.badges.forEach(badge => {
+                const badgeEl = document.createElement('span');
+                badgeEl.textContent = badge;
+                if (badge.includes('AWS') || badge.includes('CISSP') || badge.includes('Terraform')) {
+                    badgeEl.style.backgroundColor = 'var(--warning-orange)';
+                }
+                badgesContainer.appendChild(badgeEl);
+            });
+            
+            // Update stats table
+            document.querySelector('.modal-stats-table tr:nth-child(1) td:nth-child(2)').textContent = book.pages;
+            document.querySelector('.modal-stats-table tr:nth-child(2) td:nth-child(2)').textContent = 'English';
+            document.querySelector('.modal-stats-table tr:nth-child(2) td:nth-child(4)').textContent = `Q1 ${book.year}`;
+            document.querySelector('.modal-stats-table tr:nth-child(3) td:nth-child(2)').textContent = book.skillLevel;
+            document.querySelector('.modal-stats-table tr:nth-child(3) td:nth-child(4)').textContent = `${book.hours} Hours`;
+            document.querySelector('.modal-stats-table tr:nth-child(4) td:nth-child(2)').textContent = book.targetRoles;
+            document.querySelector('.modal-stats-table tr:nth-child(4) td:nth-child(4)').textContent = book.certificationValue;
+            
+            // Update description
+            document.querySelector('.modal-desc-text').textContent = book.description;
+            
+            // Update learning objectives
+            const objectivesList = document.querySelector('.modal-objectives ul');
+            objectivesList.innerHTML = '';
+            book.learningObjectives.forEach(objective => {
+                const li = document.createElement('li');
+                li.textContent = objective;
+                objectivesList.appendChild(li);
+            });
+            
+            // Update target audience
+            document.querySelector('.modal-role-text').textContent = `Primary for ${book.targetRoles} aiming for an expert understanding. Also valuable for engineers responsible for production environment stability and management.`;
+            
+            // Update organizational impact
+            const impactContainer = document.querySelector('.modal-buttons').previousElementSibling;
+            impactContainer.innerHTML = `
+                <div class="flex gap-4">
+                    <p style="font-size: 13px; color: var(--corporate-gray);"><strong>${book.employeesRead}</strong> Employees have read this.</p>
+                    <p style="font-size: 13px; color: var(--corporate-gray);"><strong>${book.completionRate}</strong> Completion rate in relevant departments.</p>
+                </div>
+            `;
+            
+            // Show the modal
+            modal.style.display = 'flex';
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchInput = document.querySelector('.search-input');
+            const searchButton = document.querySelector('.advanced-search-bar .btn-primary');
+            
+            searchButton.addEventListener('click', function() {
+                performSearch(searchInput.value);
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch(this.value);
+                }
+            });
+        }
+        
+        function performSearch(query) {
+            if (!query.trim()) return;
+            
+            console.log(`Searching for: ${query}`);
+            // In a real application, you would filter the eBook grid based on the search query
+            // For this demo, we'll just log to the console
+        }
+
+        // Bookmark functionality
+        function setupBookmarks() {
+            const bookmarkIcons = document.querySelectorAll('.bookmark-icon');
+            
+            bookmarkIcons.forEach(icon => {
+                icon.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    
+                    const bookId = this.closest('.ebook-card').getAttribute('data-book-id');
+                    const isBookmarked = this.classList.contains('active');
+                    
+                    console.log(`Book ${bookId} ${isBookmarked ? 'bookmarked' : 'unbookmarked'}`);
+                    
+                    // In a real application, you would save this preference to a database
+                });
+            });
+        }
+
+        // Download button functionality
+        function setupDownloadButtons() {
+            const downloadButtons = document.querySelectorAll('.ebook-card .btn-primary');
+            
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const bookId = this.closest('.ebook-card').getAttribute('data-book-id');
+                    const bookTitle = this.closest('.ebook-card').querySelector('.card-title').textContent;
+                    
+                    console.log(`Downloading: ${bookTitle} (ID: ${bookId})`);
+                    
+                    // In a real application, you would initiate a download
+                    // For this demo, we'll show a confirmation message
+                    alert(`Initiating download for: ${bookTitle}`);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
