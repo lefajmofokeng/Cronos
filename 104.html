@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Solutions</title>
+    <style>
+        .it-hero-section-custom {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x1080/000000/FFFFFF?text=IT+Background'); /* Placeholder for your background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .it-hero-section-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, #4a00e0, #8e2de2); /* Bottom color overlay */
+            opacity: 0.6; /* Adjust opacity as needed */
+            z-index: 1;
+        }
+
+        .it-hero-content-wrapper-custom {
+            position: relative;
+            z-index: 2;
+            padding: 40px 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            text-align: right;
+            height: 100%;
+        }
+
+        .it-hero-main-title-custom {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        .it-hero-nav-links-custom {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 30px 0;
+            display: flex;
+            gap: 25px;
+            font-size: 1.1em;
+        }
+
+        .it-hero-nav-link-item-custom a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .it-hero-nav-link-item-custom a:hover {
+            color: #e0e0e0;
+        }
+
+        .it-hero-learn-more-btn-custom {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 15px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .it-hero-learn-more-btn-custom:hover {
+            background-color: #fff;
+            color: #4a00e0;
+        }
+
+        .it-hero-image-source-custom {
+            font-size: 0.9em;
+            margin-top: 20px;
+            opacity: 0.7;
+        }
+
+        /* Abstract shapes as seen in the image - you'd likely use SVG or more complex CSS for exact replication */
+        .it-abstract-shape-1-custom {
+            position: absolute;
+            top: 20%;
+            left: 10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle at center, rgba(236, 0, 140, 0.7) 0%, rgba(142, 45, 226, 0) 70%);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+        }
+
+        .it-abstract-shape-2-custom {
+            position: absolute;
+            bottom: 15%;
+            left: 30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle at center, rgba(0, 204, 255, 0.7) 0%, rgba(142, 45, 226, 0) 70%);
+            border-radius: 50%;
+            filter: blur(70px);
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="it-hero-section-custom">
+        <div class="it-abstract-shape-1-custom"></div>
+        <div class="it-abstract-shape-2-custom"></div>
+
+        <div class="it-hero-content-wrapper-custom">
+            <h1 class="it-hero-main-title-custom">We craft innovative IT solutions to empower your business growth</h1>
+            <ul class="it-hero-nav-links-custom">
+                <li class="it-hero-nav-link-item-custom"><a href="#">our studio</a></li>
+                <li class="it-hero-nav-link-item-custom"><a href="#">news</a></li>
+                <li class="it-hero-nav-link-item-custom"><a href="#">web design</a></li>
+                <li class="it-hero-nav-link-item-custom"><a href="#">articles</a></li>
+                <li class="it-hero-nav-link-item-custom"><a href="#">#future</a></li>
+            </ul>
+            <button class="it-hero-learn-more-btn-custom">LEARN MORE</button>
+            <p class="it-hero-image-source-custom">Image from Freepik</p>
+        </div>
+    </div>
+</body>
+</html>

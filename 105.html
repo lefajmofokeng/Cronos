@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Solutions</title>
+    <style>
+        .it-comparison-section-custom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 70vh; /* Adjusted height for this layout */
+            background-color: #f7d7e3; /* Bottom color */
+            position: relative;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            padding: 40px 120px; /* Padding for content */
+        }
+
+        .it-comparison-section-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-width: 1200px;
+            height: 100%;
+            background-image: url('https://via.placeholder.com/1200x600/f7d7e3/555555?text=IT+Devices+Background'); /* Placeholder for the background image */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.2; /* Adjust opacity of the image over the solid color */
+            z-index: 1;
+        }
+
+        .it-comparison-content-custom {
+            position: relative;
+            z-index: 2;
+            flex: 1;
+            padding-right: 40px; /* Space between text and image */
+        }
+
+        .it-comparison-title-custom {
+            font-size: 5.5em;
+            font-weight: bold;
+            color: #fff; /* White text for contrast */
+            margin-bottom: 30px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for readability */
+        }
+
+        .it-comparison-read-more-btn-custom {
+            background-color: #f2a742; /* Orange button color */
+            color: #fff;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .it-comparison-read-more-btn-custom:hover {
+            background-color: #e0983a;
+        }
+
+        .it-comparison-image-container-custom {
+            position: relative;
+            z-index: 2;
+            flex-shrink: 0; /* Prevent the image container from shrinking */
+            width: 400px; /* Adjust as needed */
+            height: 300px; /* Adjust as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Placeholder for the actual comparison image */
+            background-image: url('https://via.placeholder.com/400x300/e0e0e0/333333?text=Compare+IT+Solutions');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        /* Specific styling for the content within the image placeholder to mimic the money rolls */
+        .it-comparison-image-container-custom::after {
+            content: "IT\nA vs B"; /* Example text to mimic the comparison aspect */
+            white-space: pre-wrap;
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="it-comparison-section-custom">
+        <div class="it-comparison-content-custom">
+            <h1 class="it-comparison-title-custom">COMPARE IT<br>SOLUTIONS</h1>
+            <button class="it-comparison-read-more-btn-custom">READ MORE</button>
+        </div>
+        <div class="it-comparison-image-container-custom">
+            </div>
+    </div>
+</body>
+</html>

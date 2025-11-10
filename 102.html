@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Solutions Showcase</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles for the IT Solutions design */
+        .it-solutions-body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #1a1a1a; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+            min-height: 100vh;
+            display: flex; /* Use flexbox for layout */
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            overflow: hidden; /* Hide any overflow, especially from the rotated image */
+            position: relative;
+        }
+
+        .it-solutions-main-container {
+            display: flex;
+            width: 100%;
+            max-width: 1400px; /* Max width for the entire content area */
+            height: 70vh; /* Adjust height as needed */
+            background-color: transparent; /* Main container has no explicit background */
+            position: relative;
+        }
+
+        /* Left section with the laptop image */
+        .it-solutions-left-section {
+            flex: 0 0 50%; /* Take 50% width */
+            position: relative;
+            overflow: hidden; /* Ensure rotated image doesn't break layout */
+        }
+
+        .it-solutions-laptop-image {
+            width: 120%; /* Make image slightly larger to fill space after rotation */
+            height: 120%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-20deg); /* Rotate and center */
+            filter: brightness(0.8); /* Slightly dim the image */
+        }
+
+        /* Right section with text and icons */
+        .it-solutions-right-section {
+            flex: 0 0 50%; /* Take 50% width */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+            background-color: #1a1a1a; /* Explicit dark background for this section */
+        }
+
+        .it-solutions-icon-group {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 50px;
+            justify-content: flex-start; /* Align icons to the left */
+        }
+
+        .it-solutions-icon-item {
+            text-align: center;
+            color: #e0e0e0;
+        }
+
+        .it-solutions-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .it-solutions-headline {
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .it-solutions-description {
+            font-size: 1em;
+            line-height: 1.8;
+            max-width: 450px;
+            margin-bottom: 60px;
+            color: #ccc;
+        }
+
+        .it-solutions-social-links {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start; /* Align social icons to the left */
+        }
+
+        .it-solutions-social-icon {
+            font-size: 1.8em;
+            color: #e0e0e0;
+            transition: color 0.3s ease;
+        }
+
+        .it-solutions-social-icon:hover {
+            color: #007bff; /* Example hover color */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .it-solutions-main-container {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .it-solutions-left-section,
+            .it-solutions-right-section {
+                flex: 0 0 100%; /* Take full width */
+            }
+
+            .it-solutions-left-section {
+                height: 350px; /* Shorter height for laptop image on smaller screens */
+            }
+
+            .it-solutions-right-section {
+                padding: 30px;
+                text-align: center; /* Center content on smaller screens */
+                align-items: center; /* Center items in flex column */
+            }
+
+            .it-solutions-icon-group,
+            .it-solutions-social-links {
+                justify-content: center; /* Center icons */
+            }
+
+            .it-solutions-laptop-image {
+                transform: translate(-50%, -50%) rotate(-10deg); /* Less rotation */
+                width: 100%; /* Adjust size */
+                height: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .it-solutions-left-section {
+                height: 250px;
+            }
+
+            .it-solutions-icon-group {
+                flex-wrap: wrap; /* Allow icons to wrap */
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .it-solutions-icon-item {
+                flex: 0 0 calc(33% - 20px); /* Adjust width for wrapping */
+                max-width: 100px;
+            }
+
+            .it-solutions-description {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body class="it-solutions-body">
+
+    <div class="it-solutions-main-container">
+        <div class="it-solutions-left-section">
+            <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Open Laptop" class="it-solutions-laptop-image">
+        </div>
+
+        <div class="it-solutions-right-section">
+            <div class="it-solutions-icon-group">
+                <div class="it-solutions-icon-item">
+                    <i class="fas fa-mobile-alt it-solutions-icon"></i>
+                    <p class="it-solutions-headline">Sample Headline</p>
+                </div>
+                <div class="it-solutions-icon-item">
+                    <i class="fas fa-calendar-alt it-solutions-icon"></i>
+                    <p class="it-solutions-headline">Sample Headline</p>
+                </div>
+                <div class="it-solutions-icon-item">
+                    <i class="fas fa-lightbulb it-solutions-icon"></i>
+                    <p class="it-solutions-headline">Sample Headline</p>
+                </div>
+            </div>
+
+            <p class="it-solutions-description">
+                SAMPLE TEXT. CLICK TO SELECT THE TEXT BOX. CLICK AGAIN OR DOUBLE CLICK TO
+                START EDITING THE TEXT.
+            </p>
+
+            <div class="it-solutions-social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f it-solutions-social-icon"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter it-solutions-social-icon"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram it-solutions-social-icon"></i></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -3,206 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Services Showcase</title>
+    <title>IT Consulting Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Base styles for the section */
-        .it-services-showcase-section {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f7e9e9; /* Light pink background from the image */
-            padding-top: 0; /* Remove top padding if background image goes all the way up */
-            padding-bottom: 50px; /* Padding for the bottom */
+        /* Base styles for the IT Consulting design */
+        .it-consulting-body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #2c2c2c; /* Dark background color */
+            color: #f0f0f0; /* Light text color */
+            line-height: 1.6;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end; /* Push content to the bottom */
-            min-height: 700px; /* Ensure enough height for the background image and content */
-            position: relative; /* For background image positioning */
-            overflow: hidden; /* Hide any overflow from absolute positioning */
+            min-height: 100vh;
+            padding: 50px 20px;
         }
 
-        /* Background image for the cityscape */
-        .it-services-background-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 60%; /* Adjust height to match the image's split */
-            background-image: url('https://images.unsplash.com/photo-1519782806542-a7f45b59714e?fit=crop&w=1400&h=800'); /* Replace with a real cityscape image URL */
-            background-size: cover;
-            background-position: center bottom; /* Adjust to show city skyline */
-            z-index: 1;
-            /* Optional: Add a subtle overlay to darken the image slightly for better text contrast if text were on it */
-            /* &::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.2); } */
-        }
-
-        /* Container for the 4 service boxes */
-        .it-services-content-wrapper {
-            position: relative; /* Position relative to allow z-index for content */
-            z-index: 2; /* Ensure content is above the background image */
-            display: flex;
-            justify-content: center;
-            align-items: stretch; /* Make items stretch to equal height */
-            gap: 20px; /* Space between boxes */
-            width: 100%;
-            max-width: 1200px; /* Limit width */
-            padding: 0 20px; /* Inner padding */
-            margin-top: auto; /* Push content to bottom when combined with flex-end on parent */
-        }
-
-        /* Individual service box styling */
-        .it-services-box {
-            flex: 1; /* Distribute space equally */
-            background-color: #4b446f; /* Dark purple background from the image */
-            padding: 30px;
-            color: #fff;
+        .it-consulting-header {
             text-align: center;
-            border-radius: 4px; /* Slight rounding on corners */
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 50px;
+            max-width: 800px;
+        }
+
+        .it-consulting-title {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .it-consulting-subtitle {
+            font-size: 1.1em;
+            color: #ccc;
+        }
+
+        .it-consulting-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three columns for the layout */
+            gap: 25px;
+            max-width: 1200px;
+            align-items: center; /* Vertically align items in the grid */
+            justify-content: center;
+        }
+
+        .it-consulting-feature-box {
+            background-color: #383838; /* Slightly lighter dark for feature boxes */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align content to the top within the box */
+            justify-content: center;
+            align-items: flex-start;
+            text-align: left;
+            min-height: 200px; /* Ensure boxes have a consistent height */
+            box-sizing: border-box;
         }
 
-        .it-services-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .it-services-icon {
-            font-size: 3em; /* Large icon size */
+        .it-consulting-feature-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #ff5722; /* Orange color for icons */
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-bottom: 20px;
-            color: #d1c4e9; /* Lighter purple for icon */
         }
 
-        .it-services-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            margin-bottom: 15px;
+        .it-consulting-feature-icon {
+            font-size: 1.8em;
+            color: #fff;
+        }
+
+        .it-consulting-feature-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        .it-consulting-feature-description {
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        .it-consulting-center-image-container {
+            width: 100%; /* Take full grid column width */
+            height: fit-content; /* Fixed height for the image container */
+            overflow: hidden; /* Hide overflowing parts of the image */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .it-consulting-center-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the container while maintaining aspect ratio */
+            
+        }
+
+        .it-consulting-image-credit {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7em;
+            color: #eee;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 3px 8px;
+            border-radius: 3px;
+            z-index: 2; /* Ensure credit is visible */
+        }
+
+        /* Grid layout positioning */
+        .it-consulting-feature-box:nth-child(1) { grid-area: 1 / 1 / 2 / 2; } /* Top-left */
+        .it-consulting-feature-box:nth-child(2) { grid-area: 1 / 3 / 2 / 4; } /* Top-right */
+        .it-consulting-center-image-container { grid-area: 1 / 2 / 3 / 3; } /* Center, spans two rows */
+        .it-consulting-feature-box:nth-child(3) { grid-area: 2 / 1 / 3 / 2; } /* Bottom-left */
+        .it-consulting-feature-box:nth-child(4) { grid-area: 2 / 3 / 3 / 4; } /* Bottom-right */
+
+        .it-consulting-button-container {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .it-consulting-view-more-button {
+            background-color: #ff5722; /* Orange button */
+            color: #fff;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
             text-transform: uppercase;
         }
 
-        .it-services-description {
-            font-size: 0.95em;
-            line-height: 1.6;
-            color: #e0e0e0; /* Lighter text color */
-            margin-top: auto; /* Push description to bottom if title is short */
-        }
-
-        /* "Image from Freepik" text */
-        .it-services-credit {
-            position: relative; /* Relative to flow */
-            z-index: 2; /* Above background image */
-            font-size: 0.8em;
-            color: #888;
-            margin-top: 30px; /* Space from the boxes */
+        .it-consulting-view-more-button:hover {
+            background-color: #e64a19; /* Darker orange on hover */
         }
 
         /* Responsive adjustments */
         @media (max-width: 992px) {
-            .it-services-content-wrapper {
-                flex-wrap: wrap; /* Allow boxes to wrap */
-                justify-content: center;
-                gap: 15px; /* Adjust gap for smaller screens */
+            .it-consulting-grid {
+                grid-template-columns: 1fr 1fr; /* Two columns for tablet screens */
+                grid-template-areas:
+                    "feature1 feature2"
+                    "image image"
+                    "feature3 feature4";
             }
 
-            .it-services-box {
-                flex: 0 0 calc(50% - 10px); /* Two boxes per row */
-                max-width: 400px; /* Max width for individual boxes */
-            }
+            .it-consulting-feature-box:nth-child(1) { grid-area: feature1; }
+            .it-consulting-feature-box:nth-child(2) { grid-area: feature2; }
+            .it-consulting-center-image-container { grid-area: image; height: auto; min-height: 300px; }
+            .it-consulting-feature-box:nth-child(3) { grid-area: feature3; }
+            .it-consulting-feature-box:nth-child(4) { grid-area: feature4; }
 
-            .it-services-background-image {
-                height: 50%; /* Adjust background image height */
-            }
-
-            .it-services-showcase-section {
-                min-height: 650px;
+            .it-consulting-feature-box {
+                min-height: unset; /* Remove fixed height on smaller screens */
             }
         }
 
-        @media (max-width: 576px) {
-            .it-services-content-wrapper {
-                flex-direction: column; /* Stack boxes vertically */
-                align-items: center;
-                gap: 10px;
+        @media (max-width: 768px) {
+            .it-consulting-title {
+                font-size: 2em;
+            }
+            .it-consulting-subtitle {
+                font-size: 1em;
             }
 
-            .it-services-box {
-                flex: 0 0 auto; /* No flex grow, take natural width */
-                width: 90%; /* Almost full width */
-                max-width: 350px;
-                padding: 25px;
+            .it-consulting-grid {
+                grid-template-columns: 1fr; /* Single column for mobile screens */
+                grid-template-areas:
+                    "image"
+                    "feature1"
+                    "feature2"
+                    "feature3"
+                    "feature4";
             }
 
-            .it-services-title {
-                font-size: 1.3em;
+            .it-consulting-feature-box {
+                width: 100%;
+                margin-bottom: 20px;
             }
 
-            .it-services-icon {
-                font-size: 2.5em;
-            }
-
-            .it-services-background-image {
-                height: 40%;
-            }
-
-            .it-services-showcase-section {
-                min-height: 800px; /* More height when stacked */
+            .it-consulting-center-image-container {
+                min-height: 250px; /* Adjust image height for mobile */
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
-<body>
+<body class="it-consulting-body">
 
-    <section class="it-services-showcase-section">
-        <div class="it-services-background-image" style="background-image: url('https://images.unsplash.com/photo-1519782806542-a7f45b59714e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTMzNXwwfDF8c2VhcmNofDEzfHxjaXR5c2NhcGUlMjBza3lsaW5lfGVufDB8fHx8MTcwMTg4MzA3NHww&ixlib=rb-4.0.3&q=80&w=1080');"></div>
+    <header class="it-consulting-header">
+        <h1 class="it-consulting-title">IT Consulting Services</h1>
+        <p class="it-consulting-subtitle">
+            For many businesses, management consulting offers an outside perspective and "best practice" solutions both in terms of strategy and operations.
+        </p>
+    </header>
 
-        <div class="it-services-content-wrapper">
-            
-            <div class="it-services-box">
-                <div class="it-services-icon">
-                    &#x1F4B0; 
-                </div>
-                <h3 class="it-services-title">IT CONSULTING</h3>
-                <p class="it-services-description">
-                    Expert guidance for your digital transformation. From strategy to implementation, we lead the way.
-                </p>
+    <div class="it-consulting-grid">
+        <div class="it-consulting-feature-box">
+            <div class="it-consulting-feature-icon-wrapper">
+                <i class="fas fa-handshake it-consulting-feature-icon"></i>
             </div>
-
-            <div class="it-services-box">
-                <div class="it-services-icon">
-                    &#x2694; 
-                </div>
-                <h3 class="it-services-title">TECH STRATEGY</h3>
-                <p class="it-services-description">
-                    Crafting robust technology roadmaps that align with your business objectives and future growth.
-                </p>
-            </div>
-
-            <div class="it-services-box">
-                <div class="it-services-icon">
-                    &#x1F3C1; 
-                </div>
-                <h3 class="it-services-title">OUR MISSION</h3>
-                <p class="it-services-description">
-                    Empowering businesses with innovative IT solutions to achieve efficiency and competitive advantage.
-                </p>
-            </div>
-
-            <div class="it-services-box">
-                <div class="it-services-icon">
-                    &#x1F4B2; 
-                </div>
-                <h3 class="it-services-title">R&D INVESTMENT</h3>
-                <p class="it-services-description">
-                    Investing in cutting-edge research and development to bring you the next generation of IT tools.
-                </p>
-            </div>
-
+            <h3 class="it-consulting-feature-title">FRIENDLY CUSTOMER SERVICE</h3>
+            <p class="it-consulting-feature-description">
+                We build services for you from initial sketches to the final production.
+            </p>
         </div>
 
-        <p class="it-services-credit">Image from Unsplash</p>
-    </section>
+        <div class="it-consulting-center-image-container">
+            <img src="thumbnails/pexels-dominick-davis.jpg" alt="Consulting Professional" class="it-consulting-center-image">
+            
+        </div>
+
+        <div class="it-consulting-feature-box">
+            <div class="it-consulting-feature-icon-wrapper">
+                <i class="fas fa-lightbulb it-consulting-feature-icon"></i>
+            </div>
+            <h3 class="it-consulting-feature-title">UNIQUE IDEAS & SOLUTIONS</h3>
+            <p class="it-consulting-feature-description">
+                Experience in all the major geographies, meaning we understand all underlying drivers
+            </p>
+        </div>
+
+        <div class="it-consulting-feature-box">
+            <div class="it-consulting-feature-icon-wrapper">
+                <i class="fas fa-bullseye it-consulting-feature-icon"></i>
+            </div>
+            <h3 class="it-consulting-feature-title">TARGETING & POSITIONING</h3>
+            <p class="it-consulting-feature-description">
+                Generate new products with higher potential and lower risks of failure.
+            </p>
+        </div>
+
+        <div class="it-consulting-feature-box">
+            <div class="it-consulting-feature-icon-wrapper">
+                <i class="fas fa-clipboard-list it-consulting-feature-icon"></i>
+            </div>
+            <h3 class="it-consulting-feature-title">STRENGTHEN OPERATIONS</h3>
+            <p class="it-consulting-feature-description">
+                But one size doesn't fit all. We understand that every business is different, that's why we
+            </p>
+        </div>
+    </div>
+
+    <div class="it-consulting-button-container">
+        <a href="#" class="it-consulting-view-more-button">View More</a>
+    </div>
 
 </body>
 </html>

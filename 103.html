@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Solutions Insights</title>
+    <style>
+        /* Base styles for the IT Solutions Insights design */
+        .it-insights-body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f8f8f8; /* Light background for the whole page */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Container for the entire section */
+        .it-insights-section {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 1200px; /* Limit overall width */
+            margin: 0 auto; /* Center the section */
+        }
+
+        /* Top content area with white background */
+        .it-insights-top-content {
+            background-color: #ffffff;
+            padding: 80px 40px; /* Adjust padding as needed */
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Optional subtle shadow */
+        }
+
+        .it-insights-text-wrapper {
+            max-width: 900px; /* Max width for the text content */
+            margin: 0 auto; /* Center the text block */
+        }
+
+        .it-insights-main-headline {
+            font-size: 3.5em; /* Larger headline */
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+            letter-spacing: -0.02em; /* Tighter letter spacing for impact */
+        }
+
+        .it-insights-sub-headline {
+            font-size: 1.8em;
+            font-weight: normal;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .it-insights-description {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Bottom image showcase area with light blue background */
+        .it-insights-bottom-showcase {
+            background-color: #e0eaf2; /* Light blue/grey background color */
+            padding: 60px 40px; /* Adjust padding */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap; /* Allow images to wrap on smaller screens */
+        }
+
+        .it-insights-image-container {
+            display: flex;
+            gap: 30px; /* Space between images */
+            max-width: 1000px; /* Limit width of image row */
+            justify-content: center;
+        }
+
+        .it-insights-single-image {
+            width: 100%;
+            max-width: 450px; /* Max width for each image */
+            height: auto;
+            background-color: #ffffff; /* White background for the image frame */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        .it-insights-single-image img {
+            width: 100%;
+            height: auto;
+            display: block; /* Remove extra space below image */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .it-insights-top-content {
+                padding: 60px 25px;
+            }
+
+            .it-insights-main-headline {
+                font-size: 2.8em;
+            }
+
+            .it-insights-sub-headline {
+                font-size: 1.5em;
+            }
+
+            .it-insights-description {
+                font-size: 1em;
+            }
+
+            .it-insights-image-container {
+                flex-direction: column; /* Stack images vertically */
+                align-items: center;
+                gap: 25px;
+            }
+
+            .it-insights-single-image {
+                max-width: 90%; /* Take more width on smaller screens */
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .it-insights-top-content {
+                padding: 40px 20px;
+            }
+
+            .it-insights-main-headline {
+                font-size: 2.2em;
+            }
+
+            .it-insights-sub-headline {
+                font-size: 1.2em;
+            }
+
+            .it-insights-description {
+                font-size: 0.9em;
+            }
+
+            .it-insights-bottom-showcase {
+                padding: 40px 20px;
+            }
+
+            .it-insights-single-image {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body class="it-insights-body">
+
+    <div class="it-insights-section">
+        <div class="it-insights-top-content">
+            <div class="it-insights-text-wrapper">
+                <h1 class="it-insights-main-headline">IT Innovation Hub</h1>
+                <h2 class="it-insights-sub-headline">Forward-thinking, reliable, and secure solutions</h2>
+                <p class="it-insights-description">
+                    At our IT Innovation Hub, we develop cutting-edge solutions using the latest technologies and methodologies.
+                    Our focus is on creating scalable, efficient, and user-friendly systems.
+                    Your options for modern IT infrastructure include: cloud computing, AI-driven analytics, robust cybersecurity protocols, microservices architecture, and more!
+                </p>
+            </div>
+        </div>
+
+        <div class="it-insights-bottom-showcase">
+            <div class="it-insights-image-container">
+                <div class="it-insights-single-image">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Cloud Server Architecture">
+                </div>
+                <div class="it-insights-single-image">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Secure Network Diagram">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
