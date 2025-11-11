@@ -1360,7 +1360,6 @@ document.addEventListener('DOMContentLoaded', function() {
             font-family: var(--defcon-font-family);
             background-color: var(--defcon-section-dark-bg); /* Overall dark theme */
             color: var(--defcon-white);
-            line-height: 1.6;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
@@ -1570,6 +1569,7 @@ document.addEventListener('DOMContentLoaded', function() {
             text-align: left;
             transition: var(--defcon-transition);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for premium feel */
+            line-height: 1.6;
         }
 
         
@@ -1593,12 +1593,14 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #86cdff;
             margin-bottom: 20px;
             display: block;
+            line-height: 1.6;
         }
         
         /* Style for the 'Key Features' sub-heading */
         .defcon-mobile-product-card h4 {
             font-size: 1.1rem;
             font-weight: 600;
+            line-height: 1.6;
             color: var(--defcon-accent); /* Use accent color to distinguish */
             margin-top: 15px;
             margin-bottom: 10px;
@@ -1752,6 +1754,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .defcon-mobile-getting-started p {
             max-width: 600px;
             margin: 0 auto 40px;
+            font-weight: 500;
+            font-size: 1.4rem;
             color: var(--defcon-light-gray);
         }
 
@@ -2180,7 +2184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="defcon-mobile-product-card" data-package="businesses" style="display: none;">
                     <h3>Enterprise Mobile Solution</h3>
                     <div class="defcon-price">
-                        <span class="defcon-monthly">R4,999 /month</span>
+                        <span class="defcon-monthly">R4,999 <span style="font-size: 0.95rem; color: grey;">/month</span></span>
                         <span class="defcon-yearly" style="display: none;">R59,999 <span style="font-size: 0.95rem; color: grey;">/year</span></span>
                     </div>
                     <span class="defcon-installment-plan">Billed Monthly or Annually</span>
@@ -2318,27 +2322,324 @@ document.addEventListener('DOMContentLoaded', function() {
             <button class="defcon-mobile-cta-button">Schedule Consultation</button>
         </section>
 
-        <section class="defcon-mobile-section defcon-mobile-benefits">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Benefits Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --defcon-accent: #1199FA;
+            --defcon-dark-bg: #001023;
+            --defcon-section-dark-bg: #010119;
+            --defcon-white: #fff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-medium-gray: #e5e5e5;
+            --defcon-font-family: 'Inter', sans-serif;
+            --defcon-glow: 0 0 15px rgba(17, 153, 250, 0.3);
+            --defcon-transition: all 0.3s ease;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--defcon-font-family);
+            background-color: var(--defcon-section-dark-bg);
+            color: var(--defcon-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-mobile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .defcon-mobile-section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .defcon-mobile-benefits h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+
+        .benefits-container {
+            display: flex;
+            gap: 40px;
+            min-height: 400px;
+        }
+
+        .benefits-nav {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .benefit-tab {
+            padding: 20px 25px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        
+        .benefit-tab.active {
+            border-left: 4px solid #858992;
+            background-color: rgba(17, 153, 250, 0.1);
+        }
+
+        .benefit-tab h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefit-tab.active h3::before {
+            width: 12px;
+            height: 12px;
+            box-shadow: 0 0 10px var(--defcon-accent);
+        }
+
+        .benefits-content {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .benefit-description {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .benefit-description.active {
+            display: block;
+        }
+
+        .benefit-description h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--defcon-accent);
+        }
+
+        .benefit-description p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--defcon-light-gray);
+            margin-bottom: 25px;
+        }
+
+        .benefit-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .benefit-features li {
+            margin-bottom: 12px;
+            color: var(--defcon-light-gray);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .benefit-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--defcon-accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .benefits-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .benefits-nav {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .benefit-tab {
+                min-width: 200px;
+                flex-shrink: 0;
+            }
+            
+            .benefits-content {
+                padding: 30px;
+            }
+            
+            .benefit-description h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .defcon-mobile-section {
+                padding: 60px 0;
+            }
+            
+            .defcon-mobile-benefits h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            
+            .benefits-content {
+                padding: 25px;
+            }
+            
+            .benefit-tab {
+                padding: 15px 20px;
+            }
+            
+            .benefit-tab h3 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="defcon-mobile-section defcon-mobile-benefits">
+        <div class="defcon-mobile-container">
             <h2>Benefits of Choosing Defcon</h2>
-            <div class="defcon-mobile-benefits-list">
-                <div class="defcon-mobile-benefit-item">
-                    <h3>Innovative Solutions</h3>
-                    <p>Leverage the latest technologies for future-proof apps.</p>
+            <div class="benefits-container">
+                <div class="benefits-nav">
+                    <div class="benefit-tab active" data-tab="innovative">
+                        <h3>Innovative Solutions</h3>
+                    </div>
+                    <div class="benefit-tab" data-tab="cost">
+                        <h3>Cost-Effective</h3>
+                    </div>
+                    <div class="benefit-tab" data-tab="expert">
+                        <h3>Expert Team</h3>
+                    </div>
+                    <div class="benefit-tab" data-tab="scalable">
+                        <h3>Scalable Growth</h3>
+                    </div>
+                    <div class="benefit-tab" data-tab="support">
+                        <h3>Ongoing Support</h3>
+                    </div>
                 </div>
-                <div class="defcon-mobile-benefit-item">
-                    <h3>Cost-Effective</h3>
-                    <p>Flexible pricing models to fit your budget without compromising quality.</p>
-                </div>
-                <div class="defcon-mobile-benefit-item">
-                    <h3>Expert Team</h3>
-                    <p>Experienced developers dedicated to your success.</p>
-                </div>
-                <div class="defcon-mobile-benefit-item">
-                    <h3>Scalable Growth</h3>
-                    <p>Apps designed to grow with your business.</p>
+                <div class="benefits-content">
+                    <div class="benefit-description active" id="innovative">
+                        <h3>Innovative Solutions</h3>
+                        <p>At Defcon, we leverage the latest technologies and methodologies to create future-proof mobile applications that stand out in today's competitive market. Our approach combines cutting-edge development frameworks with user-centered design principles to deliver apps that not only meet but exceed user expectations.</p>
+                        <p>We specialize in integrating advanced features like AI and machine learning capabilities, real-time data synchronization, and offline functionality. Our team stays ahead of industry trends to ensure your application incorporates the most current and effective solutions available.</p>
+                    </div>
+                    <div class="benefit-description" id="cost">
+                        <h3>Cost-Effective Development</h3>
+                        <p>We understand the importance of maximizing your return on investment, which is why we've developed flexible pricing models and efficient development processes that deliver high-quality results while staying within your budget constraints. Our transparent pricing structure ensures no hidden costs or surprises along the way.</p>
+                        <p>By utilizing reusable code components and following agile methodologies, we significantly reduce development time and costs without compromising on quality. We offer various payment plans, including installment options, to make our services accessible to businesses of all sizes.</p>
+                    </div>
+                    <div class="benefit-description" id="expert">
+                        <h3>Expert Development Team</h3>
+                        <p>When you choose Defcon, you're working with a team of seasoned professionals who bring years of experience and specialized knowledge to your mobile application project. Our developers hold certifications in their respective fields and maintain an average of 5+ years of industry experience.</p>
+                        <p>We've assembled specialists across iOS, Android, and cross-platform development to ensure we have the right expertise for your specific needs. Each project is assigned a dedicated project manager who ensures smooth communication and timely delivery, while our quality assurance specialists conduct thorough testing at every stage.</p>
+                    </div>
+                    <div class="benefit-description" id="scalable">
+                        <h3>Scalable Growth Solutions</h3>
+                        <p>We build applications designed to grow with your business, capable of handling increased users and functionality without performance issues. Our modular architecture approach allows for easy addition of new features as your requirements evolve, while our cloud-based infrastructure provides elastic scaling to accommodate fluctuating demand.</p>
+                        <p>From the initial planning stages, we consider future growth scenarios to ensure the technology stack and architecture we implement can support your long-term vision. We conduct performance optimization specifically targeting high user loads and design database architectures that can scale seamlessly as your user base expands.</p>
+                        <div class="benefit-highlight">
+                            <p>Applications we've developed have successfully scaled to support user bases growing from thousands to millions without major architectural changes.</p>
+                    </div>
+                    <div class="benefit-description" id="support">
+                        <h3>Comprehensive Ongoing Support</h3>
+                        <p>Our relationship doesn't end at launch. We provide continuous assistance and maintenance to keep your application running smoothly long after deployment. Our 24/7 monitoring systems track application performance in real-time, allowing us to proactively address potential issues before they impact your users.</p>
+                        <p>We handle all necessary updates including security patches, OS compatibility updates as new versions release, and feature enhancements to keep your application current and competitive. Our dedicated support team maintains quick response times to address any concerns that may arise, ensuring minimal downtime and optimal performance.</p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const benefitTabs = document.querySelectorAll('.benefit-tab');
+            const benefitDescriptions = document.querySelectorAll('.benefit-description');
+            
+            benefitTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs and descriptions
+                    benefitTabs.forEach(t => t.classList.remove('active'));
+                    benefitDescriptions.forEach(d => d.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding description
+                    const tabId = this.getAttribute('data-tab');
+                    const targetDescription = document.getElementById(tabId);
+                    if (targetDescription) {
+                        targetDescription.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
 
         <section class="defcon-mobile-section defcon-mobile-faqs">
             <h2>Frequently Asked Questions</h2>
