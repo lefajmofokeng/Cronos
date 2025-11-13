@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Comprehensive Services</title>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           A. GLOBAL & BASE STYLES
+           ========================================= */
+        :root {
+            --qa-color-primary-text: #010119;
+            --qa-color-accent: #1199fA;
+            --qa-color-light-bg: #f4f4f4;
+            --qa-color-white: #fff;
+            --qa-color-line: #e5e5e5;
+            --qa-font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--qa-font-family);
+            background-color: var(--qa-color-white);
+            color: var(--qa-color-primary-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .qa-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .qa-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            line-height: 1.1;
+        }
+
+        /* =========================================
+           B. LAYOUT (Two-Column Grid)
+           ========================================= */
+
+        .qa-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns on desktop */
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .qa-text-column {
+            font-size: 1.1rem;
+            padding-right: 2rem;
+        }
+        
+        /* Specific styling for the list of services in the accordion body */
+        .qa-accordion-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0 0;
+        }
+        .qa-accordion-body ul li {
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed var(--qa-color-line);
+            font-size: 0.95rem;
+            color: #555;
+        }
+        .qa-accordion-body ul li:last-child {
+            border-bottom: none;
+        }
+        .qa-accordion-body p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        /* =========================================
+           C. ACCORDION STYLES (Right Column)
+           ========================================= */
+
+        .qa-accordion-item {
+            border-bottom: 1px solid var(--qa-color-line);
+            padding: 1.5rem 0;
+            cursor: pointer;
+        }
+
+        .qa-accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--qa-color-primary-text);
+            transition: color 0.2s ease;
+        }
+        
+        .qa-accordion-header:hover {
+            color: var(--qa-color-accent);
+        }
+
+        .qa-toggle-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--qa-color-accent);
+            line-height: 1;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+        
+        /* State change for active (open) accordion */
+        .qa-accordion-item.qa-active .qa-toggle-icon {
+            transform: rotate(45deg); /* Plus becomes an 'X' or rotates */
+        }
+        .qa-accordion-item.qa-active .qa-accordion-header {
+            color: var(--qa-color-accent);
+        }
+        
+
+        .qa-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            padding-top: 0;
+            transition: max-height 0.3s ease-out, padding-top 0.3s ease-out;
+            color: #444; /* Slightly lighter text for body */
+            font-size: 1rem;
+        }
+
+        .qa-accordion-item.qa-active .qa-accordion-body {
+            max-height: 600px; /* Increased max height to fit long lists */
+            padding-top: 1rem;
+            transition: max-height 0.5s ease-in, padding-top 0.3s ease-in;
+        }
+        
+        /* =========================================
+           D. MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 900px) {
+            .qa-content-wrapper {
+                grid-template-columns: 1fr; /* Stack columns on mobile */
+                gap: 3rem;
+            }
+            .qa-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            .qa-text-column {
+                padding-right: 0;
+            }
+            .qa-accordion-header {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="qa-container">
+        
+        <!-- MAIN TITLE (Aligned with the left text column) -->
+        <h1 class="qa-title">
+            Our Comprehensive Technology & Creative Services
+        </h1>
+
+        <div class="qa-content-wrapper">
+            
+            <!-- LEFT COLUMN: Introductory Text -->
+            <div class="qa-text-column">
+                <p class="qa-intro-text">
+                    We offer an **integrated suite of services** designed to launch, scale, and secure your business from idea to market. Our expertise spans foundational technology development, robust IT infrastructure management, and powerful digital marketing.
+                </p>
+
+                <p class="qa-intro-text">
+                    This **holistic approach** ensures every aspect of your enterprise is optimized for efficiency and primed for growth, allowing you to focus purely on innovation and execution.
+                </p>
+            </div>
+
+            <!-- RIGHT COLUMN: Interactive Accordion/FAQ -->
+            <div class="qa-accordion-column">
+                
+                <!-- ACCORDION ITEM 1: Software Development -->
+                <div class="qa-accordion-item" data-index="1">
+                    <div class="qa-accordion-header">
+                        Software Development Services
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>We build **bespoke digital products** tailored to your needs, focusing on performance, scalability, and user experience across all platforms.</p>
+                        <ul>
+                            <li>Web Applications & Mobile Applications</li>
+                            <li>API & Microservices Architecture</li>
+                            <li>E-commerce Solutions & Integration</li>
+                            <li>AI & Machine Learning Implementation</li>
+                            <li>Blockchain & Web3 Solutions</li>
+                            <li>Database Engineering & Management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ACCORDION ITEM 2: IT Infrastructure -->
+                <div class="qa-accordion-item" data-index="2">
+                    <div class="qa-accordion-header">
+                        IT Infrastructure & Support
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>Ensure your operations are always secure, efficient, and up-to-date. We provide the **foundational stability** required for uninterrupted business growth.</p>
+                        <ul>
+                            <li>Managed IT Support & Help Desk</li>
+                            <li>IT Consulting & Strategic Planning</li>
+                            <li>Cloud Computing (Setup, Migration & Management)</li>
+                            <li>Data Center Management</li>
+                            <li>Smart Technology Solutions (POS, Queue Systems, Ambient Lights, etc.)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ACCORDION ITEM 3: Marketing & Creative Studio -->
+                <div class="qa-accordion-item" data-index="3">
+                    <div class="qa-accordion-header">
+                        Marketing & Creative Studio
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>Elevate your brand and accelerate customer acquisition. Our team combines strategic planning with stunning visual execution for **maximum market impact**.</p>
+                        <ul>
+                            <li>Digital Marketing Strategy & Execution</li>
+                            <li>Graphic Design & Branding</li>
+                            <li>Content Management & SEO Optimization</li>
+                            <li>Multimedia Production (Video, Animation, Photography)</li>
+                            <li>Advertising Campaigns (PPC, Social Media)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================
+        // JAVASCRIPT: ACCORDION INTERACTIVITY
+        // =========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.qa-accordion-item');
+
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Check if the current item is already active
+                    const isActive = item.classList.contains('qa-active');
+
+                    // Close all other items (enforcing single item open at a time)
+                    items.forEach(i => {
+                        if (i !== item) {
+                            i.classList.remove('qa-active');
+                            i.querySelector('.qa-accordion-body').style.maxHeight = 0;
+                        }
+                    });
+
+                    // Toggle the clicked item
+                    if (!isActive) {
+                        item.classList.add('qa-active');
+                        // Calculate content height dynamically for smooth transition
+                        const body = item.querySelector('.qa-accordion-body');
+                        // Set maxHeight to scrollHeight to ensure content fits
+                        body.style.maxHeight = body.scrollHeight + "px"; 
+                    } else {
+                        item.classList.remove('qa-active');
+                        item.querySelector('.qa-accordion-body').style.maxHeight = 0;
+                    }
+                });
+            });
+            
+            // To ensure the max-height works correctly on load/resize,
+            // we initialize the closed state visually:
+            items.forEach(item => {
+                item.querySelector('.qa-accordion-body').style.maxHeight = 0;
+            });
+        });
+    </script>
+</body>
+</html>

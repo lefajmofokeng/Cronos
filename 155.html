@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto.com Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-dark: #010119;
+            --primary-accent: #1199fa;
+            --text-light: #e5e5e5;
+            --text-lighter: #f4f4f4;
+            --text-white: #fff;
+            --text-dark: #000;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --section-spacing: 100px;
+            --card-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .capital-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .capital-heading {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-white);
+        }
+
+        .capital-subheading {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin-bottom: 30px;
+            color: var(--text-lighter);
+        }
+
+        .capital-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .capital-section-title {
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--text-white);
+        }
+
+        .capital-section-subtitle {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: var(--text-lighter);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .capital-hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+        }
+
+        .capital-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(1, 1, 25, 0.9), rgba(1, 1, 25, 0.95));
+            z-index: -2;
+        }
+
+        .capital-hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.15) 0%, rgba(17, 153, 250, 0) 70%);
+            top: 20%;
+            right: 10%;
+            z-index: -1;
+            filter: blur(60px);
+        }
+
+        .capital-hero-content {
+            max-width: 800px;
+        }
+
+        .capital-hero-highlight {
+            color: var(--primary-accent);
+        }
+
+        .capital-hero-stats {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .capital-stat {
+            margin-right: 60px;
+        }
+
+        .capital-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+        }
+
+        .capital-stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-top: 5px;
+        }
+
+        /* ===== FOUNDERS SECTION ===== */
+        .capital-founders {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(to bottom, rgba(1, 1, 25, 0.9), rgba(5, 10, 40, 0.9));
+        }
+
+        .capital-founders-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .capital-founders-image {
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .capital-founders-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .capital-founders-content {
+            padding-left: 20px;
+        }
+
+        .capital-founder-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: var(--text-white);
+        }
+
+        .capital-founder-title {
+            font-size: 1.1rem;
+            color: var(--primary-accent);
+            margin-bottom: 30px;
+        }
+
+        .capital-feature-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .capital-feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .capital-feature-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            margin-top: 3px;
+            color: var(--primary-accent);
+        }
+
+        .capital-feature-text {
+            flex: 1;
+        }
+
+        /* ===== PARTNERSHIP SECTION ===== */
+        .capital-partnership {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(to bottom, rgba(5, 10, 40, 0.9), rgba(1, 1, 25, 0.9));
+        }
+
+        .capital-partnership-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .capital-partnership-content {
+            padding-right: 20px;
+        }
+
+        .capital-partnership-image {
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .capital-partnership-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== INVESTMENTS SECTION ===== */
+        .capital-investments {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(to bottom, rgba(1, 1, 25, 0.9), rgba(5, 10, 40, 0.9));
+        }
+
+        .capital-investments-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .capital-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            margin-bottom: 80px;
+        }
+
+        .capital-category {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: var(--card-radius);
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .capital-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(17, 153, 250, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .capital-category-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--text-white);
+            position: relative;
+            display: inline-block;
+        }
+
+        .capital-category-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary-accent);
+            border-radius: 2px;
+        }
+
+        .capital-logos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .capital-logo-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            transition: var(--transition);
+        }
+
+        .capital-logo-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+        }
+
+        .capital-logo-item img {
+            max-width: 100%;
+            max-height: 50px;
+            filter: brightness(0) invert(1);
+        }
+
+        .capital-logo-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-white);
+            text-align: center;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1200px) {
+            .capital-heading {
+                font-size: 3.5rem;
+            }
+            
+            .capital-section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .capital-founders-container,
+            .capital-partnership-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .capital-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .capital-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .capital-heading {
+                font-size: 2.8rem;
+            }
+            
+            .capital-section-title {
+                font-size: 2.2rem;
+            }
+            
+            .capital-hero-stats {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .capital-stat {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .capital-logos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .capital-heading {
+                font-size: 2.2rem;
+            }
+            
+            .capital-subheading {
+                font-size: 1.5rem;
+            }
+            
+            .capital-section-title {
+                font-size: 1.8rem;
+            }
+            
+            .capital-container {
+                padding: 0 15px;
+            }
+            
+            .capital-category {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Crypto.com Capital Page -->
+    <section class="capital-page">
+        <!-- Hero Section -->
+        <section class="capital-hero">
+            <div class="capital-hero-bg"></div>
+            <div class="capital-hero-glow"></div>
+            <div class="capital-container">
+                <div class="capital-hero-content">
+                    <h1 class="capital-heading">CRYPTO.COM CAPITAL</h1>
+                    <h2 class="capital-subheading">Accelerating the growth of <span class="capital-hero-highlight">early-stage Web3</span> companies</h2>
+                    <p class="capital-text">With US$500 million earmarked for investment, our venture arm leads early-stage token and equity rounds.</p>
+                    
+                    <div class="capital-hero-stats">
+                        <div class="capital-stat">
+                            <div class="capital-stat-value">$500M</div>
+                            <div class="capital-stat-label">Fund Size</div>
+                        </div>
+                        <div class="capital-stat">
+                            <div class="capital-stat-value">50+</div>
+                            <div class="capital-stat-label">Portfolio Companies</div>
+                        </div>
+                        <div class="capital-stat">
+                            <div class="capital-stat-value">Global</div>
+                            <div class="capital-stat-label">Investment Reach</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Founders Section -->
+        <section class="capital-founders">
+            <div class="capital-container">
+                <div class="capital-founders-container">
+                    <div class="capital-founders-content">
+                        <h2 class="capital-section-title">OUR FOUNDERS FIRST APPROACH</h2>
+                        <h3 class="capital-section-subtitle">Your business, your growth</h3>
+                        <p class="capital-text">Led by Bobby Bao, Co-Founder of Crypto.com and Managing Director of Crypto.com Capital—we are a founder-first fund that supports early-stage companies as they build the future of Web3.</p>
+                        
+                        <div class="capital-founder-name">Bobby Bao</div>
+                        <div class="capital-founder-title">Co-Founder of Crypto.com & Managing Director of Crypto.com Capital</div>
+                        
+                        <p class="capital-text">Founders can count on us to provide key value-adds: our institutional network, liquidity, operating expertise, and access to a global user base.</p>
+                        
+                        <ul class="capital-feature-list">
+                            <li class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Institutional network and partnerships</div>
+                            </li>
+                            <li class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Liquidity and capital support</div>
+                            </li>
+                            <li class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Operating expertise and guidance</div>
+                            </li>
+                            <li class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Access to global user base</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="capital-founders-image">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Bobby Bao">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership Section -->
+        <section class="capital-partnership">
+            <div class="capital-container">
+                <div class="capital-partnership-container">
+                    <div class="capital-partnership-image">
+                        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Partnership">
+                    </div>
+                    <div class="capital-partnership-content">
+                        <h2 class="capital-section-title">LONG-TERM PARTNERSHIP</h2>
+                        <h3 class="capital-section-subtitle">Advancing the crypto category together</h3>
+                        <p class="capital-text">We invest in long-term partnerships with founders who drive the development of Web3 across chains and sectors.</p>
+                        <p class="capital-text">With Crypto.com Capital, start-ups choose a reputable lead investor with a strong portfolio and priority of launch on the world's fastest-growing crypto platform.</p>
+                        
+                        <div class="capital-feature-list">
+                            <div class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Long-term strategic partnerships</div>
+                            </div>
+                            <div class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Cross-chain and cross-sector investments</div>
+                            </div>
+                            <div class="capital-feature-item">
+                                <svg class="capital-feature-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                                <div class="capital-feature-text">Priority launch on Crypto.com platform</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investments Section -->
+        <section class="capital-investments">
+            <div class="capital-container">
+                <div class="capital-investments-header">
+                    <h2 class="capital-section-title">FEATURED INVESTMENTS</h2>
+                    <h3 class="capital-section-subtitle">Supporting category leaders across Web3 ecosystems</h3>
+                </div>
+                
+                <div class="capital-categories">
+                    <!-- Infrastructure Category -->
+                    <div class="capital-category">
+                        <h3 class="capital-category-title">INFRASTRUCTURE</h3>
+                        <div class="capital-logos-grid">
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">EFINITY</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">Ledger</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">deBridge</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">zkSync</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">DeBank</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">ASTAR</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">DoraHacks</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">AURORA</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">03Sys</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">Braavos</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">GOPLUS</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">Magic Square</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- DeFi Category -->
+                    <div class="capital-category">
+                        <h3 class="capital-category-title">DEFI</h3>
+                        <div class="capital-logos-grid">
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">krystal</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">PENDLE</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">STRIPS</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">NAOS Finance</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">WOO NETWORK</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">THETA</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">NUTS FINANCE</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">Orderly Network</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">Bastion</div>
+                            </div>
+                            <div class="capital-logo-item">
+                                <div class="capital-logo-text">Headquarters</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            const elementsToAnimate = document.querySelectorAll('.capital-heading, .capital-subheading, .capital-text, .capital-section-title, .capital-category');
+            
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Technology Partner Ecosystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Reset & Fonts --- */
+        .it-ecosystem-body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 5rem 0;
+            background-color: #f8f9fb; /* Very light gray background */
+            color: #1f2937;
+            text-align: center;
+        }
+
+        /* --- Layout Container --- */
+        .it-ecosystem-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Section Heading and Subtitle --- */
+        .it-ecosystem-subtitle {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #3b82f6; /* Soft blue color for the label */
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .it-ecosystem-headline {
+            font-size: 2.25rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .it-ecosystem-headline {
+                font-size: 3rem;
+            }
+        }
+
+        /* --- Category Divider --- */
+        .it-ecosystem-divider {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        .it-ecosystem-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: #e5e7eb; /* Light gray line */
+        }
+
+        .it-ecosystem-category-label {
+            padding: 0 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #3b82f6;
+            text-transform: uppercase;
+        }
+
+        /* --- Logo Grid --- */
+        .it-ecosystem-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .it-ecosystem-logo-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .it-ecosystem-logo-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4rem;
+            }
+        }
+
+        .it-ecosystem-logo-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem; /* Fixed height for consistent look */
+            padding: 0.5rem;
+        }
+
+        .it-ecosystem-logo-item img {
+            width: 100%;
+            height: auto;
+            max-width: 150px;
+            filter: grayscale(100%); /* Simulating the black/white logos */
+            opacity: 0.7;
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .it-ecosystem-logo-item img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body class="it-ecosystem-body">
+
+    <div class="it-ecosystem-container">
+
+        <!-- Top Section: Headline -->
+        <div class="it-ecosystem-subtitle">FEATURED PARTNERSHIPS</div>
+        <h1 class="it-ecosystem-headline">
+            Supporting technology leaders across cloud and infrastructure ecosystems
+        </h1>
+
+        <!-- Category 1: CLOUD & INFRASTRUCTURE -->
+        <div class="it-ecosystem-divider">
+            <div class="it-ecosystem-line"></div>
+            <div class="it-ecosystem-category-label">CLOUD & INFRASTRUCTURE</div>
+            <div class="it-ecosystem-line"></div>
+        </div>
+
+        <div class="it-ecosystem-logo-grid">
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Azure" alt="Microsoft Azure Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=AWS+Cloud" alt="AWS Cloud Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Google+Cloud" alt="Google Cloud Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Red+Hat" alt="Red Hat Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=VMware" alt="VMware Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Cisco" alt="Cisco Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Palo+Alto" alt="Palo Alto Networks Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=NetApp" alt="NetApp Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Oracle" alt="Oracle Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=IBM" alt="IBM Logo">
+            </div>
+        </div>
+
+        <!-- Category 2: CYBERSECURITY & COMPLIANCE -->
+        <div class="it-ecosystem-divider">
+            <div class="it-ecosystem-line"></div>
+            <div class="it-ecosystem-category-label">CYBERSECURITY & COMPLIANCE</div>
+            <div class="it-ecosystem-line"></div>
+        </div>
+
+        <div class="it-ecosystem-logo-grid">
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=CrowdStrike" alt="CrowdStrike Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Fortinet" alt="Fortinet Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Splunk" alt="Splunk Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Mandiant" alt="Mandiant Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Tenable" alt="Tenable Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=RSA" alt="RSA Security Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Veritas" alt="Veritas Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Okta" alt="Okta Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=F5+Labs" alt="F5 Labs Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://placehold.co/150x50/FFFFFF/000000?text=Snyk" alt="Snyk Logo">
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

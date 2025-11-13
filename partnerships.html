@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Partnerships | SynergyTech Solutions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <style>
+        /* CSS Variables for consistent theming */
+        :root {
+            --primary-blue: #1199fa;
+            --dark-blue: #010119;
+            --white: #fff;
+            --light-gray: #f4f4f4;
+            --black: #000;
+            --off-white: #e5e5e5;
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Base Styles */
+        .partnerships-page-wrapper {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .partnerships-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Typography */
+        .partnerships-heading-primary {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .partnerships-heading-secondary {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .partnerships-heading-secondary::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        .partnerships-heading-tertiary {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .partnerships-text-lead {
+            font-size: 1.25rem;
+            color: var(--off-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .partnerships-text-body {
+            color: var(--off-white);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Hero Section - Asymmetrical Layout */
+        .partnerships-hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(17, 153, 250, 0.2) 100%);
+        }
+
+        .partnerships-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.4;
+            z-index: -1;
+        }
+
+        .partnerships-hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .partnerships-hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .partnerships-hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .partnerships-hero-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, var(--primary-blue) 0%, rgba(17, 153, 250, 0) 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            z-index: 1;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 0.4;
+            }
+        }
+
+        .partnerships-hero-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Partnership Types Section - Z Layout */
+        .partnerships-types {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark-blue) 0%, #020230 100%);
+        }
+
+        .partnerships-types-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .partnerships-type-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partnerships-type-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .partnerships-type-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .partnerships-type-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .partnerships-type-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Benefits Section - F Layout */
+        .partnerships-benefits {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #020230 0%, var(--dark-blue) 100%);
+        }
+
+        .partnerships-benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .partnerships-benefit-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .partnerships-benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .partnerships-benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+
+        /* How It Works Section - Asymmetrical Layout */
+        .partnerships-process {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark-blue) 0%, #020230 100%);
+        }
+
+        .partnerships-process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            position: relative;
+        }
+
+        .partnerships-process-steps::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 30px;
+            width: 4px;
+            height: 100%;
+            background: rgba(17, 153, 250, 0.3);
+            border-radius: 2px;
+        }
+
+        .partnerships-process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .partnerships-step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .partnerships-step-content {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* CTA Section */
+        .partnerships-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1) 0%, rgba(1, 1, 25, 0.9) 100%);
+            text-align: center;
+        }
+
+        .partnerships-cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .partnerships-cta-button {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid var(--primary-blue);
+            margin-top: 1.5rem;
+        }
+
+        .partnerships-cta-button:hover {
+            background: transparent;
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .partnerships-hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .partnerships-types-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partnerships-benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partnerships-heading-primary {
+                font-size: 2.5rem;
+            }
+
+            .partnerships-heading-secondary {
+                font-size: 2rem;
+            }
+
+            .partnerships-benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .partnerships-process-steps::before {
+                left: 25px;
+            }
+
+            .partnerships-step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .partnerships-container {
+                padding: 0 15px;
+            }
+
+            .partnerships-heading-primary {
+                font-size: 2rem;
+            }
+
+            .partnerships-type-card,
+            .partnerships-benefit-item,
+            .partnerships-step-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="partnerships-page-wrapper">
+        <!-- Hero Section -->
+        <section class="partnerships-hero">
+            <div class="partnerships-container">
+                <div class="partnerships-hero-content">
+                    <div class="partnerships-hero-text">
+                        <h1 class="partnerships-heading-primary">Building Smarter Solutions Through Strategic Partnerships</h1>
+                        <p class="partnerships-text-lead">We believe that collaboration is the key to innovation. By joining forces with industry leaders, we create powerful solutions that drive digital transformation.</p>
+                        <a href="#partnerships-types" class="partnerships-cta-button">Explore Partnership Opportunities</a>
+                    </div>
+                    <div class="partnerships-hero-visual">
+                        <div class="partnerships-hero-glow"></div>
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Partnership Collaboration" class="partnerships-hero-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership Types Section -->
+        <section class="partnerships-types" id="partnerships-types">
+            <div class="partnerships-container">
+                <h2 class="partnerships-heading-secondary">Our Partnership Models</h2>
+                <div class="partnerships-types-grid">
+                    <div class="partnerships-type-card">
+                        <div class="partnerships-type-icon">🤝</div>
+                        <h3 class="partnerships-heading-tertiary">Strategic Alliances</h3>
+                        <p class="partnerships-text-body">Formal partnerships with leading technology providers like Microsoft, AWS, and Google Cloud to deliver comprehensive solutions that leverage the best platforms in the industry.</p>
+                    </div>
+                    <div class="partnerships-type-card">
+                        <div class="partnerships-type-icon">🚀</div>
+                        <h3 class="partnerships-heading-tertiary">Tech Collaborations</h3>
+                        <p class="partnerships-text-body">Joint development initiatives where we co-create innovative products, platforms, and research projects with technology innovators and industry experts.</p>
+                    </div>
+                    <div class="partnerships-type-card">
+                        <div class="partnerships-type-icon">🔄</div>
+                        <h3 class="partnerships-heading-tertiary">Reseller Programs</h3>
+                        <p class="partnerships-text-body">Partnership opportunities for agencies, MSPs, and consultants to resell our solutions, creating new revenue streams while expanding our market reach.</p>
+                    </div>
+                    <div class="partnerships-type-card">
+                        <div class="partnerships-type-icon">🌍</div>
+                        <h3 class="partnerships-heading-tertiary">Community Initiatives</h3>
+                        <p class="partnerships-text-body">Collaborations with educational institutions, startups, and local organizations to expand digital access and foster technology education in our communities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="partnerships-benefits">
+            <div class="partnerships-container">
+                <h2 class="partnerships-heading-secondary">Why Partner With Us</h2>
+                <div class="partnerships-benefits-grid">
+                    <div class="partnerships-benefit-item">
+                        <div class="partnerships-benefit-icon">💡</div>
+                        <h3 class="partnerships-heading-tertiary">Innovation</h3>
+                        <p class="partnerships-text-body">Access cutting-edge technology and innovative solutions that keep you ahead of the competition.</p>
+                    </div>
+                    <div class="partnerships-benefit-item">
+                        <div class="partnerships-benefit-icon">📈</div>
+                        <h3 class="partnerships-heading-tertiary">Growth</h3>
+                        <p class="partnerships-text-body">Expand your service offerings and revenue streams with our comprehensive partnership programs.</p>
+                    </div>
+                    <div class="partnerships-benefit-item">
+                        <div class="partnerships-benefit-icon">🛡️</div>
+                        <h3 class="partnerships-heading-tertiary">Security</h3>
+                        <p class="partnerships-text-body">Benefit from enterprise-grade security protocols and compliance standards that protect your business.</p>
+                    </div>
+                    <div class="partnerships-benefit-item">
+                        <div class="partnerships-benefit-icon">🔧</div>
+                        <h3 class="partnerships-heading-tertiary">Support</h3>
+                        <p class="partnerships-text-body">Receive dedicated technical support, training, and resources to ensure your success.</p>
+                    </div>
+                    <div class="partnerships-benefit-item">
+                        <div class="partnerships-benefit-icon">🌐</div>
+                        <h3 class="partnerships-heading-tertiary">Global Reach</h3>
+                        <p class="partnerships-text-body">Leverage our global presence and market expertise to expand your business internationally.</p>
+                    </div>
+                    <div class="partnerships-benefit-item">
+                        <div class="partnerships-benefit-icon">🤲</div>
+                        <h3 class="partnerships-heading-tertiary">Trust</h3>
+                        <p class="partnerships-text-body">Build on a foundation of transparency, reliability, and mutual respect that defines our partnerships.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="partnerships-process">
+            <div class="partnerships-container">
+                <h2 class="partnerships-heading-secondary">Our Partnership Process</h2>
+                <div class="partnerships-process-steps">
+                    <div class="partnerships-process-step">
+                        <div class="partnerships-step-number">1</div>
+                        <div class="partnerships-step-content">
+                            <h3 class="partnerships-heading-tertiary">Discovery & Alignment</h3>
+                            <p class="partnerships-text-body">We begin by understanding your business goals, technical requirements, and partnership expectations to ensure strategic alignment.</p>
+                        </div>
+                    </div>
+                    <div class="partnerships-process-step">
+                        <div class="partnerships-step-number">2</div>
+                        <div class="partnerships-step-content">
+                            <h3 class="partnerships-heading-tertiary">Solution Design</h3>
+                            <p class="partnerships-text-body">Our experts collaborate with your team to design a customized partnership model that addresses your specific needs and objectives.</p>
+                        </div>
+                    </div>
+                    <div class="partnerships-process-step">
+                        <div class="partnerships-step-number">3</div>
+                        <div class="partnerships-step-content">
+                            <h3 class="partnerships-heading-tertiary">Agreement & Onboarding</h3>
+                            <p class="partnerships-text-body">We formalize the partnership with clear terms and provide comprehensive onboarding to set you up for success from day one.</p>
+                        </div>
+                    </div>
+                    <div class="partnerships-process-step">
+                        <div class="partnerships-step-number">4</div>
+                        <div class="partnerships-step-content">
+                            <h3 class="partnerships-heading-tertiary">Growth & Optimization</h3>
+                            <p class="partnerships-text-body">We continuously monitor performance, provide ongoing support, and identify opportunities to optimize and expand our collaboration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="partnerships-cta">
+            <div class="partnerships-container">
+                <div class="partnerships-cta-content">
+                    <h2 class="partnerships-heading-secondary">Ready to Build Something Extraordinary Together?</h2>
+                    <p class="partnerships-text-lead">Let's explore how our partnership can drive innovation, create value, and transform industries.</p>
+                    <a href="#" class="partnerships-cta-button">Start the Conversation</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll animation to partnership cards
+            const partnershipCards = document.querySelectorAll('.partnerships-type-card, .partnerships-benefit-item');
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            partnershipCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

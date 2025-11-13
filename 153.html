@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Expert Hero Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Reset & Fonts --- */
+        .it-hero-body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+        }
+
+        /* --- Full-Screen Container --- */
+        .it-hero-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative; /* Needed for absolute positioning of text overlays */
+        }
+
+        /* --- Image/Background Area (The Consultant) --- */
+        .it-hero-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0; /* Match the gray background */
+            background-size: cover;
+            background-position: center 20%; /* Center the person higher in the frame */
+            background-repeat: no-repeat;
+            z-index: 1;
+            /* Using a placeholder image similar to the original */
+            background-image: url('thumbnails/pexels-altabena-10142683.jpg');
+        }
+
+        /* --- Custom Styles for the Placeholder Image to Match the Look --- */
+        .it-hero-image-overlay {
+            /* For the sake of replication, the placeholder needs to simulate the actual image look */
+            background-image: url('thumbnails/pexels-resourceboy-18541715.jpg');
+            /* Due to placeholder limitations, we rely on the gray background color */
+        }
+        
+        /* Fallback for the image. Use a specific image if available. */
+        /* For a slightly better visual, we can use a mock image of a consultant */
+        .it-hero-image-overlay {
+            background-image: url('thumbnails/pexels-shvetsa-5614119.jpg');
+        }
+
+        /* --- Content Overlays --- */
+        .it-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- Large Left Headline --- */
+        .it-hero-headline {
+            position: absolute;
+            top: 5%; /* Vertically aligned with the image */
+            left: 5%;
+            font-size: 3.5vw; /* Fluid size for responsiveness */
+            font-weight: 900;
+            line-height: 1.1;
+            color: #ffffff;
+            text-transform: uppercase;
+            max-width: 40%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            /* Ensure text is clearly visible on the image */
+            mix-blend-mode: overlay;
+        }
+
+        /* --- Small Right Label --- */
+        .it-hero-label {
+            position: absolute;
+            top: 5%;
+            right: 5%;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #c04040; /* Red/Coral color from the image */
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- Mobile Adjustments --- */
+        @media (max-width: 768px) {
+            .it-hero-headline {
+                font-size: 7vw;
+                top: 5%;
+                left: 5%;
+                max-width: 90%;
+            }
+
+            .it-hero-label {
+                top: 2%;
+                right: 5%;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="it-hero-body">
+
+    <div class="it-hero-container">
+
+        <!-- Background Image/Overlay -->
+        <div class="it-hero-image-overlay"></div>
+
+        <!-- Text Content -->
+        <div class="it-hero-content">
+
+            <!-- Top Left Headline -->
+            <h1 class="it-hero-headline">
+                WE ARE THE EXPERTS IN DIGITAL QUALITY
+            </h1>
+
+            <!-- Top Right Label -->
+            <div class="it-hero-label">
+                IT CONSULTING FIRM
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1420,22 +1420,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Web Applications | Premium Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome for consistent icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary: #1199fa;
+            --dark: #010119;
+            --light: #f4f4f4;
+            --white: #fff;
+            --black: #000;
+            --gray: #e5e5e5;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+
         /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
@@ -1443,1974 +1453,1159 @@ document.addEventListener('DOMContentLoaded', function() {
             box-sizing: border-box;
         }
 
-        :root {
-            --defcon-primary-dark: #0a192f;
-            --defcon-secondary-dark: #112240;
-            --defcon-accent: #0091ff;
-            --defcon-text-primary: #e6f1ff;
-            --defcon-text-secondary: #8892b0;
-            --defcon-card-bg: #112240;
-            --values-primary-blue: #0091ff;
-            --values-black: #000;
-            --values-white: #fff;
-            --values-dark-blue-bg: #03111b;
-            --values-light-gray-bg: #f4f4f4;
-            --values-text-color: #fff;
-            --values-heading-color: #fff;
-        }
-
-        .aboutus-page-wrapper {
+        body {
             font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
             overflow-x: hidden;
         }
 
-        .aboutus-top-header {
-            color: #0091ff;
-            font-size: 19px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        /* ===== HERO SECTIONS ===== */
-
-        /* About Us Hero Section */
-        .aboutus-hero-section {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.626) 100%, rgba(0, 145, 255, 0.85) 0%),
-                        url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169') center/cover;
-            min-height: 95vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            color: #fff;
-        }
-
-        .aboutus-hero-container {
+        .wa-container {
             max-width: 1200px;
-            width: 60%;
-            padding: 80px 40px;
-            text-align: center;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .aboutus-hero-heading {
-            font-size: 54px;
-            font-weight: 700;
-            margin-top: 24px;
-            margin-bottom: 24px;
-            letter-spacing: -0.04em;
-            animation: aboutusFadeInUp 1s ease;
-        }
-
-        .aboutus-hero-subheading {
-            font-size: 28px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            color: #f4f4f4;
-            animation: aboutusFadeInUp 1.2s ease;
-        }
-
-        .aboutus-stats-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 100px;
-            animation: aboutusFadeInUp 1.6s ease;
-        }
-
-        .aboutus-stat-item {
-            text-align: center;
-        }
-
-        .aboutus-stat-number {
-            font-size: 100px;
-            font-weight: 700;
-            color: #0091ff;
-            margin-bottom: 8px;
-        }
-
-        .aboutus-stat-label {
-            font-size: 16px;
-            font-weight: 500;
-            color: #f4f4f4;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Video Hero Section */
-        .hero {
-            padding-top: 10rem;
+        /* ===== HERO SECTION ===== */
+        .wa-hero {
             position: relative;
             min-height: 90vh;
-            width: 100%;
-            max-width: 100%;
-            overflow: hidden;
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-            text-align: center;
-            max-width: 90%;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.85) 0%, rgba(17, 153, 250, 0.2) 100%);
+            color: var(--white);
         }
 
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
-            color: #ecf0f1;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            max-width: 90%;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
-        }
-
-        .hero video {
+        .wa-hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: 0;
+            z-index: -1;
+            background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.4);
+        .wa-hero-content {
+            max-width: 700px;
+            padding: 40px 0;
+            position: relative;
             z-index: 1;
         }
 
-        .hero-content {
-            flex-direction: column;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 0 1rem;
-            width: 100%;
-        }
-
-        .hero .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 30px;
-            border: 1px solid white;
-            color: #ffffff;
-            font-weight: 500;
-            margin: 0.7rem 0;
-            font-size: clamp(0.9rem, 2vw, 1.1rem);
-            cursor: pointer;
-            border-radius: 60px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s, background 0.3s ease;
-        }
-
-        .hero .btn:hover {
-            background: #f4f4f42f;
-        }
-
-        .hero .btn svg {
-            transition: transform 0.3s ease;
-        }
-
-        .hero .btn:hover svg {
-            transform: translateX(4px);
-        }
-
-        /* Animation classes */
-        .fade-in {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
-        /* ===== FOUNDER SECTION ===== */
-        .defcon-section {
-            padding: 100px 20px;
-            position: relative;
-        }
-        
-        .defcon-section-title {
-            font-size: clamp(2rem, 5vw, 3.4rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: white;
-            margin-bottom: 60px;
-            text-align: center;
-            position: relative;
-        }
-        
-        .defcon-founder-card {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            display: flex;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .defcon-founder-image {
-            flex: 1;
-            min-width: 300px;
-            max-height: 600px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .defcon-founder-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .defcon-founder-info {
-            flex: 1.5;
-            padding: 40px;
-            min-width: 300px;
-        }
-        
-        .defcon-founder-name {
-            font-size: 2rem;
-            color: var(--dc-color-menu-bg);
-            margin-bottom: 10px;
-        }
-        
-        .defcon-founder-title {
-            color: var(--dc-color-accent);
-            font-size: 1.2rem;
-            margin-bottom: 25px;
-            display: block;
+        .wa-hero-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.875rem;
             font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
         }
 
-        .defcon-founder-info p {
-            color: #333;
-            line-height: 1.7;
-            padding: 10px 0;
-        }
-
-        /* ===== EXECUTIVE TEAM SECTION ===== */
-        .aboutus-team-section {
-            background-color: #f4f4f4;
-            padding: 120px 40px;
-            position: relative;
-            transition: filter 0.5s ease;
-        }
-
-        .aboutus-team-section.aboutus-blurred {
-            filter: blur(5px);
-            pointer-events: none;
-        }
-
-        .aboutus-team-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .aboutus-section-title {
-            font-size: 54px;
+        .wa-hero-title {
+            font-size: 3.5rem;
             font-weight: 700;
-            letter-spacing: -0.04em;
-            text-align: center;
-            margin-bottom: 80px;
-            color: #06273e;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
-        .aboutus-team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 5px;
+        .wa-hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
         }
 
-        .aboutus-team-card {
-            text-align: center;
-            transition: transform 0.4s ease;
+        .wa-hero-cta {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .wa-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
             cursor: pointer;
-            position: relative;
-            margin: 25px 0;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
         }
 
-        .aboutus-team-card:hover {
-            transform: translateY(-10px);
+        .wa-btn-primary {
+            background: var(--primary);
+            color: var(--white);
         }
 
-        .aboutus-team-image-wrapper {
-            width: 260px;
-            height: 260px;
-            margin: 0 auto 20px;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
+        .wa-btn-primary:hover {
+            background: #0d8ae5;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .aboutus-team-image-wrapper::after {
-            content: '';
+        .wa-btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .wa-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .wa-glow {
             position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, rgba(17, 153, 250, 0) 70%);
+            filter: blur(40px);
+            z-index: 0;
+        }
+
+        .wa-glow-1 {
+            top: 10%;
+            right: 10%;
+        }
+
+        .wa-glow-2 {
+            bottom: 10%;
+            left: 10%;
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .wa-products {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .wa-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .wa-section-subtitle {
+            font-size: 1.125rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            color: #555;
+        }
+
+        .wa-product-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 8px;
+            max-width: 400px;
+            margin: 0 auto 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .wa-nav-btn {
+            flex: 1;
+            padding: 12px 20px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark);
+        }
+
+        .wa-nav-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .wa-billing-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .wa-toggle-label {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .wa-toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .wa-toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .wa-toggle-slider {
+            position: absolute;
+            cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 145, 255, 0.2) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            background-color: #ccc;
+            transition: var(--transition);
+            border-radius: 34px;
         }
 
-        .aboutus-team-card:hover .aboutus-team-image-wrapper::after {
-            opacity: 1;
-        }
-
-        .aboutus-team-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .aboutus-team-name {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #06273e;
-        }
-
-        .aboutus-team-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #0091ff;
-        }
-
-        /* Show More Button Styles */
-        .aboutus-show-more-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .aboutus-show-more-btn {
-            background: transparent;
-            border: 2px solid #0091ff;
-            color: #0091ff;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0 auto;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .aboutus-show-more-btn:hover {
-            background: #0091ff;
-            color: white;
-        }
-
-        .aboutus-show-more-btn svg {
-            transition: transform 0.3s ease;
-        }
-
-        .aboutus-show-more-btn.active svg {
-            transform: rotate(180deg);
-        }
-
-        /* Hidden cards style */
-        .aboutus-team-card.hidden {
-            display: none;
-        }
-
-        /* ===== EXECUTIVE DETAIL MODAL ===== */
-        .aboutus-executive-detail {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(6, 39, 62, 0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 40px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .aboutus-executive-detail.aboutus-active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .aboutus-detail-container {
-            background: white;
-            max-width: 1000px;
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            display: flex;
-            min-height: 500px;
-            transform: scale(0.9);
-            transition: transform 0.5s ease;
-        }
-
-        .aboutus-executive-detail.aboutus-active .aboutus-detail-container {
-            transform: scale(1);
-        }
-
-        .aboutus-detail-image {
-            flex: 0 0 40%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .aboutus-detail-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .aboutus-detail-content {
-            flex: 1;
-            padding: 60px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .aboutus-detail-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #f4f4f4;
-            padding-bottom: 30px;
-        }
-
-        .aboutus-detail-name {
-            font-size: 36px;
-            font-weight: 700;
-            color: #06273e;
-            margin-bottom: 8px;
-        }
-
-        .aboutus-detail-title {
-            font-size: 20px;
-            font-weight: 600;
-            color: #0091ff;
-        }
-
-        .aboutus-detail-description {
-            font-size: 18px;
-            line-height: 1.8;
-            color: #06273e;
-            flex-grow: 1;
-        }
-
-        .aboutus-close-button {
+        .wa-toggle-slider:before {
             position: absolute;
-            top: 30px;
-            right: 30px;
-            background: #0091ff;
-            color: white;
-            width: 50px;
-            height: 50px;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: var(--transition);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            border: none;
-            transition: all 0.3s ease;
-            z-index: 1001;
         }
 
-        .aboutus-close-button:hover {
-            background: #06273e;
-            transform: rotate(90deg);
+        input:checked + .wa-toggle-slider {
+            background-color: var(--primary);
         }
 
-        /* ===== VALUES SECTION ===== */
-        .values-section-container {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--values-dark-blue-bg);
-            color: var(--values-text-color);
-            padding: 120px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        input:checked + .wa-toggle-slider:before {
+            transform: translateX(30px);
         }
 
-        .values-section-title {
-            font-size: 54px;
-            letter-spacing: -0.04em;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 50px;
-            text-align: center;
+        .wa-savings-badge {
+            background: rgba(17, 153, 250, 0.1);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
         }
 
-        .values-content-wrapper {
-            display: flex;
-            max-width: 1200px;
-            width: 100%;
-            border-radius: 8px;
+        .wa-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .wa-product-card {
+            background: var(--white);
+            border-radius: var(--radius);
             overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
         }
 
-        .values-headings-nav {
-            flex: 1;
-            padding: 60px 0;
+        .wa-product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .values-heading-item {
-            padding: 25px 30px;
-            font-size: 1.6em;
+        .wa-product-card.popular {
+            border: 2px solid var(--primary);
+        }
+
+        .wa-product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
             font-weight: 600;
-            color: grey;
-            cursor: pointer;
-            transition: all 0s ease;
-            border-left: 4px solid transparent;
         }
 
-        .values-heading-item:hover {
-            color: grey;
+        .wa-product-header {
+            padding: 30px 30px 20px;
+            border-bottom: 1px solid var(--gray);
         }
 
-        .values-heading-item.values-active {
-            color: hsl(225, 36%, 83%);
-            font-weight: 600;
-            border-left-color: #b0bac3;
+        .wa-product-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
         }
 
-        .values-description-display {
-            flex: 2;
-            padding: 40px;
+        .wa-product-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .wa-product-price {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 300px;
-        }
-        
-        .values-description-display p {
-            font-size: 1.6em;
-            line-height: 1.6;
-            font-weight: 600;
-            color: hsl(225, 36%, 83%);
-            margin: 0 0 1em 0;
+            align-items: baseline;
+            margin-bottom: 10px;
         }
 
-        .values-description-display p:last-child {
-            margin-bottom: 0;
+        .wa-price-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark);
         }
 
-        /* ===== CAREER CTA SECTION ===== */
-        .aboutus-career-section {
-            background-image: url(https://images.unsplash.com/photo-1630699293470-83d8406ffd31?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170);
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            padding: 300px 40px;
+        .wa-price-period {
+            color: #666;
+            margin-left: 5px;
+        }
+
+        .wa-product-features {
+            padding: 25px 30px;
+        }
+
+        .wa-feature-list {
+            list-style: none;
+        }
+
+        .wa-feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .wa-feature-icon {
+            color: var(--primary);
+            margin-right: 12px;
+            font-size: 0.9rem;
+            width: 20px;
             text-align: center;
         }
 
-        .aboutus-career-container {
-            max-width: 1200px;
+        /* FIXED: Using Font Awesome icons for consistent rendering */
+        .wa-feature-icon.fa-check {
+            color: var(--primary);
+            font-size: 0.9rem;
+            width: 20px;
+        }
+
+        .wa-product-footer {
+            padding: 0 30px 30px;
+        }
+
+        .wa-note {
+            text-align: center;
+            color: #666;
+            font-size: 0.875rem;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .aboutus-career-heading {
-            font-size: 54px;
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            margin-bottom: 50px;
-            color: #000;
+        /* Product categories - initially hidden */
+        .wa-product-category {
+            display: none;
         }
 
-        .aboutus-career-button {
-            display: inline-block;
-            padding: 9px 30px;
-            border: 1px solid #000;
-            color: #000;
-            font-size: 20px;
-            font-weight: 600;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .aboutus-career-button:hover {
-            background-color: white;
-            color: #06273e;
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 145, 255, 0.4);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes aboutusFadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes aboutusCountUp {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .aboutus-team-card.show {
+        .wa-product-category.active {
             display: block;
-            animation: fadeIn 0.5s ease forwards;
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
-        @media (max-width: 1024px) {
-            .aboutus-hero-container {
-                width: 80%;
+        /* ===== COMPARE PLANS SECTION ===== */
+        .wa-compare {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .wa-compare-table {
+            overflow-x: auto;
+            margin-top: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .wa-compare-table table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+
+        .wa-compare-table th,
+        .wa-compare-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .wa-compare-table th {
+            background: var(--light);
+            font-weight: 600;
+        }
+
+        .wa-compare-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .wa-feature-category {
+            background: var(--dark);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .wa-feature-name {
+            font-weight: 500;
+        }
+
+        .wa-checkmark {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .wa-cross {
+            color: #ccc;
+        }
+
+        /* ===== ADD-ONS SECTION ===== */
+        .wa-addons {
+            padding: 100px 0;
+            background: var(--light);
+        }
+
+        .wa-addons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .wa-addon-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .wa-addon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .wa-addon-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(17, 153, 250, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .wa-addon-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .wa-addon-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .wa-addon-price {
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .wa-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #0a0a2a 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .wa-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .wa-cta-subtitle {
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .wa-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+            .wa-hero-title {
+                font-size: 2.8rem;
             }
             
-            .aboutus-stats-wrapper {
-                gap: 60px;
+            .wa-products-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
         @media (max-width: 768px) {
-            /* Hero Sections */
-            .aboutus-hero-heading {
-                font-size: 48px;
-            }
-
-            .aboutus-hero-subheading {
-                font-size: 20px;
-            }
-
-            .aboutus-stats-wrapper {
-                flex-direction: column;
-                gap: 40px;
-            }
-
-            .aboutus-stat-number {
-                font-size: 80px;
-            }
-
-            .hero {
-                padding-top: 8rem;
-                min-height: 80vh;
+            .wa-hero-title {
+                font-size: 2.2rem;
             }
             
-            .hero-content {
-                padding: 0 1.5rem;
+            .wa-hero-subtitle {
+                font-size: 1.1rem;
             }
-
-            /* Founder Section */
-            .defcon-founder-card {
+            
+            .wa-section-title {
+                font-size: 2rem;
+            }
+            
+            .wa-hero-cta, .wa-cta-buttons {
                 flex-direction: column;
-                height: auto;
+                align-items: center;
             }
-
-            .defcon-founder-image {
-                min-width: 100%;
-                height: 350px;
+            
+            .wa-btn {
+                width: 100%;
+                max-width: 300px;
             }
-
-            .defcon-founder-info {
-                padding: 30px;
-            }
-
-            /* Team Section */
-            .aboutus-section-title,
-            .aboutus-values-title,
-            .aboutus-career-heading {
-                font-size: 36px;
-            }
-
-            .aboutus-team-section {
-                padding: 80px 20px;
-            }
-
-            /* Values Section */
-            .values-content-wrapper {
+            
+            .wa-product-nav {
                 flex-direction: column;
-            }
-
-            .values-headings-nav {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                padding: 20px 0;
-            }
-
-            .values-heading-item {
-                padding: 12px 20px;
-                font-size: 1em;
-                border-left: none;
-                border-bottom: 2px solid transparent;
-            }
-
-            .values-heading-item.values-active {
-                border-bottom-color: var(--values-primary-blue);
-                border-left-color: transparent;
-            }
-
-            .values-description-display {
-                padding: 30px 20px;
-                min-height: auto;
-            }
-
-            .values-description-display p {
-                font-size: 1em;
-            }
-
-            /* Modal */
-            .aboutus-detail-container {
-                flex-direction: column;
-                max-height: 90vh;
-                overflow-y: auto;
-            }
-
-            .aboutus-detail-image {
-                flex: 0 0 300px;
-            }
-
-            .aboutus-detail-header {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .aboutus-detail-name {
-                font-size: 28px;
-            }
-
-            .aboutus-detail-content {
-                padding: 30px;
-            }
-
-            /* Career Section */
-            .aboutus-career-section {
-                padding: 200px 20px;
+                max-width: 300px;
             }
         }
 
-        @media (max-width: 480px) {
-            .hero {
-                padding-top: 6rem;
-                min-height: 70vh;
+        @media (max-width: 576px) {
+            .wa-hero-title {
+                font-size: 1.8rem;
             }
-
-            .aboutus-hero-container {
-                width: 90%;
-                padding: 60px 20px;
+            
+            .wa-section-title {
+                font-size: 1.7rem;
             }
-
-            .aboutus-hero-heading {
-                font-size: 36px;
+            
+            .wa-addons-grid {
+                grid-template-columns: 1fr;
             }
-
-            .aboutus-stat-number {
-                font-size: 60px;
-            }
-
-            .aboutus-team-section {
-                padding: 60px 15px;
-            }
-
-            .aboutus-team-image-wrapper {
-                width: 220px;
-                height: 220px;
-            }
-
-            .values-section-container {
-                padding: 80px 15px;
-            }
-
-            .values-section-title {
-                font-size: 36px;
-            }
-
-            .aboutus-career-section {
-                padding: 150px 15px;
-            }
-
-            .aboutus-career-heading {
-                font-size: 36px;
+            
+            .wa-product-header, .wa-product-features, .wa-product-footer {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="aboutus-page-wrapper">
-        <!-- About Us Hero Section -->
-        <section class="aboutus-hero-section">
-            <div class="aboutus-hero-container">
-                <span class="aboutus-top-header">Our Team</span>
-                <h1 class="aboutus-hero-heading">One Vision, One Global Team</h1>
-                <h2 class="aboutus-hero-subheading">Building world-changing platforms is a <br>monumental task. These are the people behind it.</h2>
-                <div class="aboutus-stats-wrapper">
-                    <div class="aboutus-stat-item">
-                        <div class="aboutus-stat-number" data-aboutus-target="2025">0</div>
-                        <div class="aboutus-stat-label">Year Founded</div>
-                    </div>
-                    <div class="aboutus-stat-item">
-                        <div class="aboutus-stat-number" data-aboutus-target="180">0</div>
-                        <div class="aboutus-stat-label">Happy Clients</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Video Hero Section -->
-        <section class="hero">
-            <video autoplay muted loop playsinline>
-                <source src="https://www.pexels.com/download/video/34597127/" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-
-            <div class="hero-content">
-                <h1>Achieve the extraordinary.</h1>
-                <h1>Make Everything possible.</h1>
-                <div>
-                    <a href="#services" class="btn">See Our Partners
-                        <span style="vertical-align: middle; justify-content: center; align-items: center;">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#fff" height="24">
-                                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-                            </svg>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Founder Section -->
-        <section class="defcon-section defcon-founder" id="defcon-founder" style="background-color: #03111c;">
-            <div class="defcon-container">
-                <span class="aboutus-top-header">Executive Leadership</span>
-                <h2 class="defcon-section-title">The Leader Behind Hyperion</h2>
-                <div class="defcon-founder-card">
-                    <div class="defcon-founder-image">
-                        <img src="thumbnails/Untitled.png" alt="Alexander Sterling - Founder of Defcon">
-                    </div>
-                    <div class="defcon-founder-info">
-                        <h3 class="defcon-founder-name" style="color: #06273e;">Lefa Mofokeng J.</h3>
-                        <span class="defcon-founder-title" style="color: #0091fa;">Founder & Chief Executive Officer</span>
-                        <p>Alexander Sterling founded Defcon in 2010 with a mission to transform the cybersecurity landscape. With a background in cryptography and artificial intelligence, Alexander saw the growing need for proactive security measures in an increasingly digital world.</p>
-                        <p>Prior to Defcon, Alexander led security initiatives at multiple Fortune 500 companies, where he identified critical gaps in enterprise security approaches. This experience inspired him to create a company that would address these vulnerabilities through innovation and expertise.</p>
-                        <p>Under Alexander's leadership, Defcon has pioneered several industry-first technologies, including our patented predictive threat analytics platform and adaptive defense systems.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Executive Team Section -->
-        <section class="aboutus-team-section" id="aboutus-team-section">
-            <div class="aboutus-team-container">
-                <span class="aboutus-top-header">Our Team</span>
-                <h2 class="aboutus-section-title">Meet Our Executive Team</h2>
-                <div class="aboutus-team-grid" id="team-grid">
-                    <!-- Initial visible cards -->
-                    <div class="aboutus-team-card" data-aboutus-executive="michael">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_c3fhy0c3fhy0c3fh.png" alt="Michael Reynolds" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">Michael Reynolds</h3>
-                        <p class="aboutus-team-title">Chief Executive Officer</p>
-                    </div>
-                    <div class="aboutus-team-card" data-aboutus-executive="sarah">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_e1cpzre1cpzre1cp.png" alt="Sarah Mitchell" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">Sarah Mitchell</h3>
-                        <p class="aboutus-team-title">Chief Technology Officer, Head of Hyperion Retailers Corp.</p>
-                    </div>
-                    <div class="aboutus-team-card" data-aboutus-executive="david">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_f28r1ef28r1ef28r.png" alt="David Chen" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">David Chen</h3>
-                        <p class="aboutus-team-title">Chief Operating Officer</p>
-                    </div>
-                    <div class="aboutus-team-card" data-aboutus-executive="david">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_ttsmggttsmggttsm.png" alt="David Chen" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">David Chen</h3>
-                        <p class="aboutus-team-title">Chief Operating Officer</p>
-                    </div>
-                    
-                    <!-- Hidden cards initially -->
-                    <div class="aboutus-team-card hidden" data-aboutus-executive="emily">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_hji0m8hji0m8hji0.png" alt="Emily Watson" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">Emily Watson</h3>
-                        <p class="aboutus-team-title">Chief Marketing Officer</p>
-                    </div>
-                    <div class="aboutus-team-card hidden" data-aboutus-executive="leo">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_giou3sgiou3sgiou.png" alt="Leo Richard" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">Leo Richard</h3>
-                        <p class="aboutus-team-title">Chief Finance Manager</p>
-                    </div>
-                    <div class="aboutus-team-card hidden" data-aboutus-executive="reginald">
-                        <div class="aboutus-team-image-wrapper">
-                            <img src="team/Gemini_Generated_Image_u07cs8u07cs8u07c.png" alt="Reginald Mokoena" class="aboutus-team-image">
-                        </div>
-                        <h3 class="aboutus-team-name">Reginald Mokoena</h3>
-                        <p class="aboutus-team-title">Hardware & Software Administrator</p>
-                    </div>
-                </div>
-
-                <!-- Show More Button -->
-                <div class="aboutus-show-more-container">
-                    <button class="aboutus-show-more-btn" id="show-more-btn">
-                        See All Team Members
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M6 9l6 6 6-6"/>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Executive Detail Modal -->
-        <div class="aboutus-executive-detail" id="aboutus-executive-detail">
-            <button class="aboutus-close-button" id="aboutus-close-detail">&times;</button>
-            <div class="aboutus-detail-container">
-                <div class="aboutus-detail-image">
-                    <img src="" alt="Executive" id="aboutus-detail-img">
-                </div>
-                <div class="aboutus-detail-content">
-                    <div class="aboutus-detail-header">
-                        <div>
-                            <h2 class="aboutus-detail-name" id="aboutus-detail-name"></h2>
-                            <p class="aboutus-detail-title" id="aboutus-detail-title"></p>
-                        </div>
-                    </div>
-                    <div class="aboutus-detail-description" id="aboutus-detail-description"></div>
+    <!-- Web Applications Hero Section -->
+    <section class="wa-hero">
+        <div class="wa-hero-bg"></div>
+        <div class="wa-glow wa-glow-1"></div>
+        <div class="wa-glow wa-glow-2"></div>
+        <div class="wa-container">
+            <div class="wa-hero-content">
+                <span class="wa-hero-badge">NEW FEATURE LAUNCH</span>
+                <h1 class="wa-hero-title">Premium Web Applications for Modern Businesses</h1>
+                <p class="wa-hero-subtitle">Transform your digital presence with our cutting-edge web applications. Scalable, secure, and designed for performance.</p>
+                <div class="wa-hero-cta">
+                    <a href="#products" class="wa-btn wa-btn-primary">Explore Products</a>
+                    <a href="#compare" class="wa-btn wa-btn-secondary">Compare Plans</a>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Values Section -->
-        <section class="values-section-container">
-            <span class="aboutus-top-header">Our Values</span>   
-            <h2 class="values-section-title">Values, and Everything Inspirational</h2>
-            <div class="values-content-wrapper">
-                <nav class="values-headings-nav">
-                    <div class="values-heading-item values-active" data-description-id="think-clearly">Think Clearly</div>
-                    <div class="values-heading-item" data-description-id="be-resourceful">Be Resourceful</div>
-                    <div class="values-heading-item" data-description-id="stay-determined">Stay Determined</div>
-                    <div class="values-heading-item" data-description-id="dream-big">Dream Big</div>
-                    <div class="values-heading-item" data-description-id="take-ownership">Take Ownership and Be Decisive</div>
-                    <div class="values-heading-item" data-description-id="remain-humble">Remain Humble</div>
-                </nav>
-                <div class="values-description-display"></div>
+    <!-- Web Applications Products Section -->
+    <section class="wa-products" id="products">
+        <div class="wa-container">
+            <h2 class="wa-section-title">Powerful Web Applications</h2>
+            <p class="wa-section-subtitle">Choose the perfect solution for your needs with flexible pricing and comprehensive features.</p>
+            
+            <div class="wa-product-nav">
+                <button class="wa-nav-btn active" data-target="individual">For Individuals</button>
+                <button class="wa-nav-btn" data-target="business">For Businesses</button>
             </div>
-        </section>
+            
+            <div class="wa-billing-toggle">
+                <span class="wa-toggle-label">Monthly</span>
+                <label class="wa-toggle-switch">
+                    <input type="checkbox" id="wa-billing-toggle">
+                    <span class="wa-toggle-slider"></span>
+                </label>
+                <span class="wa-toggle-label">Yearly <span class="wa-savings-badge">Save 20%</span></span>
+            </div>
+            
+            <!-- Individual Products -->
+            <div class="wa-product-category active" id="individual-products">
+                <div class="wa-products-grid">
+                    <!-- Individual Product Card 1 -->
+                    <div class="wa-product-card">
+                        <div class="wa-product-header">
+                            <h3 class="wa-product-name">Personal</h3>
+                            <p class="wa-product-description">Perfect for personal projects and portfolios</p>
+                            <div class="wa-product-price">
+                                <span class="wa-price-amount">$9</span>
+                                <span class="wa-price-period">/month</span>
+                            </div>
+                            <p class="wa-installment">or $97 yearly</p>
+                        </div>
+                        <div class="wa-product-features">
+                            <ul class="wa-feature-list">
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>1 project</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>5GB storage</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Basic templates</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Email support</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wa-product-footer">
+                            <a href="#" class="wa-btn wa-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Individual Product Card 2 -->
+                    <div class="wa-product-card popular">
+                        <div class="wa-product-badge">MOST POPULAR</div>
+                        <div class="wa-product-header">
+                            <h3 class="wa-product-name">Freelancer</h3>
+                            <p class="wa-product-description">Ideal for freelancers and small businesses</p>
+                            <div class="wa-product-price">
+                                <span class="wa-price-amount">$19</span>
+                                <span class="wa-price-period">/month</span>
+                            </div>
+                            <p class="wa-installment">or $205 yearly</p>
+                        </div>
+                        <div class="wa-product-features">
+                            <ul class="wa-feature-list">
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Up to 5 projects</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>20GB storage</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Advanced templates</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Priority support</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Custom domain</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wa-product-footer">
+                            <a href="#" class="wa-btn wa-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Individual Product Card 3 -->
+                    <div class="wa-product-card">
+                        <div class="wa-product-header">
+                            <h3 class="wa-product-name">Professional</h3>
+                            <p class="wa-product-description">For professionals with advanced needs</p>
+                            <div class="wa-product-price">
+                                <span class="wa-price-amount">$39</span>
+                                <span class="wa-price-period">/month</span>
+                            </div>
+                            <p class="wa-installment">or $421 yearly</p>
+                        </div>
+                        <div class="wa-product-features">
+                            <ul class="wa-feature-list">
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Unlimited projects</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>100GB storage</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Premium templates</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>24/7 support</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Advanced analytics</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>API access</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wa-product-footer">
+                            <a href="#" class="wa-btn wa-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Business Products -->
+            <div class="wa-product-category" id="business-products">
+                <div class="wa-products-grid">
+                    <!-- Business Product Card 1 -->
+                    <div class="wa-product-card">
+                        <div class="wa-product-header">
+                            <h3 class="wa-product-name">Startup</h3>
+                            <p class="wa-product-description">Perfect for startups and small teams</p>
+                            <div class="wa-product-price">
+                                <span class="wa-price-amount">$49</span>
+                                <span class="wa-price-period">/month</span>
+                            </div>
+                            <p class="wa-installment">or $529 yearly</p>
+                        </div>
+                        <div class="wa-product-features">
+                            <ul class="wa-feature-list">
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Up to 10 projects</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>100GB storage</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Team collaboration</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Priority support</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wa-product-footer">
+                            <a href="#" class="wa-btn wa-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Product Card 2 -->
+                    <div class="wa-product-card popular">
+                        <div class="wa-product-badge">MOST POPULAR</div>
+                        <div class="wa-product-header">
+                            <h3 class="wa-product-name">Business</h3>
+                            <p class="wa-product-description">Ideal for growing businesses</p>
+                            <div class="wa-product-price">
+                                <span class="wa-price-amount">$99</span>
+                                <span class="wa-price-period">/month</span>
+                            </div>
+                            <p class="wa-installment">or $1,069 yearly</p>
+                        </div>
+                        <div class="wa-product-features">
+                            <ul class="wa-feature-list">
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Unlimited projects</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>500GB storage</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Advanced team features</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>24/7 priority support</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Custom branding</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wa-product-footer">
+                            <a href="#" class="wa-btn wa-btn-primary" style="width: 100%; text-align: center;">Get Started</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Business Product Card 3 -->
+                    <div class="wa-product-card">
+                        <div class="wa-product-header">
+                            <h3 class="wa-product-name">Enterprise</h3>
+                            <p class="wa-product-description">For large organizations with complex needs</p>
+                            <div class="wa-product-price">
+                                <span class="wa-price-amount">$199</span>
+                                <span class="wa-price-period">/month</span>
+                            </div>
+                            <p class="wa-installment">or $2,149 yearly</p>
+                        </div>
+                        <div class="wa-product-features">
+                            <ul class="wa-feature-list">
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Unlimited everything</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>1TB storage</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Custom analytics</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>24/7 dedicated support</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Advanced security</span>
+                                </li>
+                                <li class="wa-feature-item">
+                                    <i class="wa-feature-icon fas fa-check"></i>
+                                    <span>Custom integrations</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wa-product-footer">
+                            <a href="#" class="wa-btn wa-btn-primary" style="width: 100%; text-align: center;">Contact Sales</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="wa-note">All plans include a 14-day free trial. No credit card required. Installment payments available for annual plans.</p>
+        </div>
+    </section>
 
-        <!-- Career CTA Section -->
-        <section class="aboutus-career-section">
-            <div class="aboutus-career-container">
-                <span class="aboutus-top-header">Join Our Team</span>
-                <h2 class="aboutus-career-heading">Be part of something extraordinary<br>and shape the future with us</h2>
-                <a href="#careers" class="aboutus-career-button">Explore Careers
-                    <span style="vertical-align: middle; justify-items: center; align-items: center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24" width="24" fill="#000" height="24">
-                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-                        </svg>
-                    </span>
-                </a>
+    <!-- Compare Plans Section -->
+    <section class="wa-compare" id="compare">
+        <div class="wa-container">
+            <h2 class="wa-section-title">Compare Plans</h2>
+            <p class="wa-section-subtitle">See how our plans stack up against each other to find the perfect fit for your needs.</p>
+            
+            <div class="wa-compare-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Starter</th>
+                            <th>Professional</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="wa-feature-category" colspan="4">Core Features</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Number of Projects</td>
+                            <td>Up to 5</td>
+                            <td>Unlimited</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Storage Space</td>
+                            <td>10GB</td>
+                            <td>100GB</td>
+                            <td>1TB</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">User Accounts</td>
+                            <td>1</td>
+                            <td>Up to 10</td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">API Access</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="wa-feature-category" colspan="4">Analytics & Reporting</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Basic Analytics</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Advanced Analytics</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Custom Reports</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Real-time Data</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="wa-feature-category" colspan="4">Support & Security</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Email Support</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Priority Support</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">24/7 Phone Support</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Advanced Security</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">SLA Guarantee</td>
+                            <td class="wa-cross">—</td>
+                            <td>99.5%</td>
+                            <td>99.9%</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="wa-feature-category" colspan="4">Integrations & Customization</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Third-party Integrations</td>
+                            <td>Limited</td>
+                            <td>Extended</td>
+                            <td>Full Access</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Custom Branding</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">White-label Solutions</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                        <tr>
+                            <td class="wa-feature-name">Custom Development</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-cross">—</td>
+                            <td class="wa-checkmark">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
+
+    <!-- Add-ons Section -->
+    <section class="wa-addons">
+        <div class="wa-container">
+            <h2 class="wa-section-title">Enhance Your Experience</h2>
+            <p class="wa-section-subtitle">Add these powerful features to any plan to customize your web application experience.</p>
+            
+            <div class="wa-addons-grid">
+                <!-- Add-on 1 -->
+                <div class="wa-addon-card">
+                    <div class="wa-addon-icon">🔒</div>
+                    <h3 class="wa-addon-name">Advanced Security</h3>
+                    <p class="wa-addon-description">Enhanced security features including two-factor authentication and advanced threat detection.</p>
+                    <p class="wa-addon-price">+$15/month</p>
+                    <a href="#" class="wa-btn wa-btn-primary">Add to Plan</a>
+                </div>
+                
+                <!-- Add-on 2 -->
+                <div class="wa-addon-card">
+                    <div class="wa-addon-icon">📊</div>
+                    <h3 class="wa-addon-name">Advanced Analytics</h3>
+                    <p class="wa-addon-description">Dive deeper into your data with custom reports and advanced analytics capabilities.</p>
+                    <p class="wa-addon-price">+$20/month</p>
+                    <a href="#" class="wa-btn wa-btn-primary">Add to Plan</a>
+                </div>
+                
+                <!-- Add-on 3 -->
+                <div class="wa-addon-card">
+                    <div class="wa-addon-icon">🔌</div>
+                    <h3 class="wa-addon-name">API Access</h3>
+                    <p class="wa-addon-description">Connect our platform with your existing tools and workflows through our robust API.</p>
+                    <p class="wa-addon-price">+$25/month</p>
+                    <a href="#" class="wa-btn wa-btn-primary">Add to Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="wa-cta">
+        <div class="wa-container">
+            <h2 class="wa-cta-title">Ready to Transform Your Digital Presence?</h2>
+            <p class="wa-cta-subtitle">Join thousands of satisfied customers who have elevated their business with our premium web applications.</p>
+            <div class="wa-cta-buttons">
+                <a href="#" class="wa-btn wa-btn-primary">Start Free Trial</a>
+                <a href="#" class="wa-btn wa-btn-secondary">Schedule a Demo</a>
+            </div>
+        </div>
+    </section>
 
     <script>
-        // ===== VALUES SECTION FUNCTIONALITY =====
-        document.addEventListener('DOMContentLoaded', function() {
-            const headingItems = document.querySelectorAll('.values-heading-item');
-            const descriptionContainer = document.querySelector('.values-description-display');
+        // Toggle between monthly and yearly billing
+        document.getElementById('wa-billing-toggle').addEventListener('change', function() {
+            const individualMonthlyPrices = [9, 19, 39];
+            const individualYearlyPrices = [7, 15, 31];
+            const businessMonthlyPrices = [49, 99, 199];
+            const businessYearlyPrices = [39, 79, 159];
             
-            // Store descriptions as HTML strings with <p> tags
-            const descriptions = {
-                'think-clearly': `
-                    <p>Clarity of thought is the bedrock of our approach. It means we dissect complex problems into their fundamental components, allowing us to build solutions from a place of deep understanding.</p>
-                    <p>We prioritize clear communication, ensuring that ideas are conveyed concisely and effectively. This reduces ambiguity and aligns everyone towards a common goal, fostering an environment of efficiency and precision.</p>
-                    <p>Before acting, we take the time to think strategically. This involves considering second-order consequences and planning for various scenarios, ensuring our decisions are robust and well-informed.</p>
-                `,
-                'be-resourceful': `
-                    <p>Resourcefulness is our superpower. We believe in achieving maximum impact with the resources at hand, finding clever and unconventional ways to overcome constraints and solve problems.</p>
-                    <p>This mindset encourages a culture of innovation and creativity. We don't see limitations as stop signs; we see them as invitations to think differently and pioneer new methods.</p>
-                    <p>Being resourceful also means being proactive. We anticipate needs and act on them, leveraging our collective skills and knowledge to turn challenges into opportunities for growth.</p>
-                `,
-                'stay-determined': `
-                    <p>Determination is the engine that drives us forward. We embrace challenges with a resilient spirit, understanding that persistence is key to achieving meaningful breakthroughs.</p>
-                    <p>We maintain a long-term perspective, refusing to be discouraged by short-term setbacks. Our focus remains fixed on our ultimate goals, and we apply consistent effort to reach them.</p>
-                    <p>This value is about more than just hard work; it's about a deep-seated belief in our mission and the grit to see it through, no matter the obstacles.</p>
-                `,
-                'dream-big': `
-                    <p>We are not here to make incremental improvements; we are here to redefine what's possible. Dreaming big means setting audacious goals that inspire us to push beyond our comfort zones.</p>
-                    <p>This ambition fuels our innovation and propels us to explore uncharted territories. We encourage bold ideas and are not afraid to take calculated risks in pursuit of transformative outcomes.</p>
-                    <p>By aiming for the extraordinary, we create a dynamic environment where everyone is motivated to contribute their best work and make a lasting impact on the world.</p>
-                `,
-                'take-ownership': `
-                    <p>Ownership is about accountability and empowerment. Every team member is a leader, responsible for their contributions and empowered to make decisions that drive progress.</p>
-                    <p>We act with a sense of urgency and decisiveness. We don't wait for permission to solve a problem; we take the initiative, own the outcome, and learn from our experiences.</p>
-                    <p>This culture of responsibility fosters trust and reliability. When everyone takes ownership, the entire team operates at a higher level of performance and commitment.</p>
-                `,
-                'remain-humble': `
-                    <p>Humility is the foundation of our growth. We recognize that we don't have all the answers and that the best ideas can come from anyone, anywhere, at any time.</p>
-                    <p>We listen actively, value diverse perspectives, and are open to constructive feedback. This allows us to learn continuously from our colleagues, our customers, and our mistakes.</p>
-                    <p>Staying humble means we celebrate our successes as a team and focus on the mission rather than individual egos. It keeps us grounded, collaborative, and always striving to be better.</p>
-                `
-            };
-
-            function updateDescription(activeId) {
-                if (descriptions[activeId]) {
-                    descriptionContainer.innerHTML = descriptions[activeId];
-                }
-            }
-
-            // Initialize with the active item's description on page load
-            const initialActiveItem = document.querySelector('.values-heading-item.values-active');
-            if (initialActiveItem) {
-                const initialId = initialActiveItem.dataset.descriptionId;
-                updateDescription(initialId);
-            }
-
-            // Add click event listeners to all heading items
-            headingItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    headingItems.forEach(h => h.classList.remove('values-active'));
-                    this.classList.add('values-active');
-                    const descriptionId = this.dataset.descriptionId;
-                    updateDescription(descriptionId);
-                });
-            });
-
-            // ===== SHOW MORE TEAM FUNCTIONALITY =====
-            const showMoreBtn = document.getElementById('show-more-btn');
-            const hiddenCards = document.querySelectorAll('.aboutus-team-card.hidden');
-            let isExpanded = false;
-
-            showMoreBtn.addEventListener('click', function() {
-                isExpanded = !isExpanded;
-                
-                hiddenCards.forEach((card, index) => {
-                    setTimeout(() => {
-                        if (isExpanded) {
-                            card.classList.remove('hidden');
-                            card.classList.add('show');
-                        } else {
-                            card.classList.remove('show');
-                            card.classList.add('hidden');
-                        }
-                    }, index * 100);
-                });
-
-                // Update button text and icon
-                this.classList.toggle('active');
-                this.innerHTML = isExpanded ? 
-                    `Show Less Team Members <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>` : 
-                    `Show All Team Members <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>`;
-            });
-
-            // ===== HERO SCROLL ANIMATION =====
-            const heroSection = document.querySelector('.hero');
-            const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .btn');
+            const priceElements = document.querySelectorAll('.wa-price-amount');
+            const installmentElements = document.querySelectorAll('.wa-installment');
             
-            function isInViewport(element) {
-                const rect = element.getBoundingClientRect();
-                return (
-                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) * 0.8 &&
-                    rect.bottom >= 0
-                );
-            }
+            // Determine which category is active
+            const activeCategory = document.querySelector('.wa-product-category.active').id;
             
-            function handleScrollAnimation() {
-                if (isInViewport(heroSection)) {
-                    heroElements.forEach(element => {
-                        element.classList.add('fade-in');
+            if (activeCategory === 'individual-products') {
+                if (this.checked) {
+                    // Yearly pricing for individuals
+                    priceElements.forEach((element, index) => {
+                        element.textContent = `$${individualYearlyPrices[index]}`;
+                    });
+                    installmentElements.forEach((element, index) => {
+                        element.textContent = `or $${individualMonthlyPrices[index] * 12} yearly`;
                     });
                 } else {
-                    heroElements.forEach(element => {
-                        element.classList.remove('fade-in');
+                    // Monthly pricing for individuals
+                    priceElements.forEach((element, index) => {
+                        element.textContent = `$${individualMonthlyPrices[index]}`;
+                    });
+                    installmentElements.forEach((element, index) => {
+                        element.textContent = `or $${individualYearlyPrices[index] * 12} yearly`;
                     });
                 }
-            }
-            
-            handleScrollAnimation();
-            window.addEventListener('scroll', handleScrollAnimation);
-        });
-
-        // ===== EXECUTIVE DATA AND FUNCTIONALITY =====
-        const aboutusExecutives = {
-            michael: {
-                name: "Michael Reynolds",
-                title: "Chief Executive Officer",
-                image: "thumbnails/Screenshot 2025-10-24 113746.png",
-                description: "Michael brings over 15 years of executive leadership experience in the technology sector. Under his guidance, our company has grown from a startup to an industry leader with global presence. His strategic vision focuses on sustainable growth and innovation-driven solutions that create lasting impact for our clients and stakeholders."
-            },
-            sarah: {
-                name: "Sarah Mitchell",
-                title: "Chief Technology Officer",
-                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=600&fit=crop",
-                description: "Sarah is a visionary technologist with expertise in AI, machine learning, and cloud infrastructure. She leads our R&D initiatives and ensures our technological solutions remain at the forefront of innovation. Her commitment to technical excellence has been instrumental in developing our award-winning platform architecture."
-            },
-            david: {
-                name: "David Chen",
-                title: "Chief Operating Officer",
-                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&h=600&fit=crop",
-                description: "David oversees our global operations with a focus on efficiency, scalability, and quality assurance. His operational expertise has streamlined our processes across multiple continents, resulting in 40% improved delivery times while maintaining our commitment to exceptional quality standards."
-            },
-            emily: {
-                name: "Emily Watson",
-                title: "Chief Marketing Officer",
-                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop",
-                description: "Emily leads our global marketing strategy with a data-driven approach that has consistently delivered exceptional ROI. Her innovative campaigns have positioned our brand as an industry thought leader while driving sustainable customer acquisition and retention across all market segments."
-            },
-            leo: {
-                name: "Leo Richard",
-                title: "Chief Finance Manager",
-                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop",
-                description: "Emily leads our global marketing strategy with a data-driven approach that has consistently delivered exceptional ROI. Her innovative campaigns have positioned our brand as an industry thought leader while driving sustainable customer acquisition and retention across all market segments."
-            },
-            reginald: {
-                name: "Reginald Mokoena",
-                title: "Hardware & Software Administrator",
-                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&h=600&fit=crop",
-                description: "Emily leads our global marketing strategy with a data-driven approach that has consistently delivered exceptional ROI. Her innovative campaigns have positioned our brand as an industry thought leader while driving sustainable customer acquisition and retention across all market segments."
-            },
-        };
-
-        // Animated Counter for Stats
-        function aboutusAnimateCounter(element, target, duration) {
-            let start = 0;
-            const increment = target / (duration / 16);
-            const timer = setInterval(() => {
-                start += increment;
-                if (start >= target) {
-                    element.textContent = target;
-                    clearInterval(timer);
+            } else {
+                if (this.checked) {
+                    // Yearly pricing for businesses
+                    priceElements.forEach((element, index) => {
+                        element.textContent = `$${businessYearlyPrices[index]}`;
+                    });
+                    installmentElements.forEach((element, index) => {
+                        element.textContent = `or $${businessMonthlyPrices[index] * 12} yearly`;
+                    });
                 } else {
-                    element.textContent = Math.floor(start);
-                }
-            }, 16);
-        }
-
-        // Initialize counters when hero section is visible
-        const aboutusObserverStats = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const aboutusStatNumbers = document.querySelectorAll('.aboutus-stat-number');
-                    aboutusStatNumbers.forEach(stat => {
-                        const target = parseInt(stat.getAttribute('data-aboutus-target'));
-                        aboutusAnimateCounter(stat, target, 2000);
+                    // Monthly pricing for businesses
+                    priceElements.forEach((element, index) => {
+                        element.textContent = `$${businessMonthlyPrices[index]}`;
                     });
-                    aboutusObserverStats.unobserve(entry.target);
+                    installmentElements.forEach((element, index) => {
+                        element.textContent = `or $${businessYearlyPrices[index] * 12} yearly`;
+                    });
                 }
-            });
-        }, { threshold: 0.5 });
-
-        const aboutusHeroSection = document.querySelector('.aboutus-hero-section');
-        if (aboutusHeroSection) {
-            aboutusObserverStats.observe(aboutusHeroSection);
-        }
-
-        // Executive Detail Modal
-        const aboutusTeamSection = document.getElementById('aboutus-team-section');
-        const aboutusExecutiveDetail = document.getElementById('aboutus-executive-detail');
-        const aboutusCloseDetail = document.getElementById('aboutus-close-detail');
-
-        // Add click events to team cards
-        document.querySelectorAll('.aboutus-team-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const executiveId = this.getAttribute('data-aboutus-executive');
-                const executive = aboutusExecutives[executiveId];
-                
-                if (executive) {
-                    document.getElementById('aboutus-detail-img').src = executive.image;
-                    document.getElementById('aboutus-detail-name').textContent = executive.name;
-                    document.getElementById('aboutus-detail-title').textContent = executive.title;
-                    document.getElementById('aboutus-detail-description').textContent = executive.description;
-                    
-                    aboutusExecutiveDetail.classList.add('aboutus-active');
-                    aboutusTeamSection.classList.add('aboutus-blurred');
-                    document.body.style.overflow = 'hidden';
-                }
-            });
-        });
-
-        // Close modal
-        aboutusCloseDetail.addEventListener('click', function() {
-            aboutusExecutiveDetail.classList.remove('aboutus-active');
-            aboutusTeamSection.classList.remove('aboutus-blurred');
-            document.body.style.overflow = 'auto';
-        });
-
-        // Close modal when clicking outside
-        aboutusExecutiveDetail.addEventListener('click', function(e) {
-            if (e.target === this) {
-                aboutusExecutiveDetail.classList.remove('aboutus-active');
-                aboutusTeamSection.classList.remove('aboutus-blurred');
-                document.body.style.overflow = 'auto';
             }
         });
 
-        // Smooth scroll for career button
-        document.querySelector('.aboutus-career-button')?.addEventListener('click', (e) => {
-            e.preventDefault();
-            console.log('Explore Careers clicked');
+        // Toggle between individual and business plans
+        document.querySelectorAll('.wa-nav-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.wa-nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get the target category
+                const target = this.getAttribute('data-target');
+                const targetId = `${target}-products`;
+                
+                // Hide all product categories
+                document.querySelectorAll('.wa-product-category').forEach(category => {
+                    category.classList.remove('active');
+                });
+                
+                // Show the selected category
+                document.getElementById(targetId).classList.add('active');
+                
+                // Reset billing toggle for new category
+                document.getElementById('wa-billing-toggle').checked = false;
+                
+                // Trigger change event to update prices
+                document.getElementById('wa-billing-toggle').dispatchEvent(new Event('change'));
+            });
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============================================
-     *** FOOTER ***
-     ============================================= -->
-<style>
-  /* =============================================
-     *** FOOTER STYLES ***
-     ============================================= */
-  
-  /* Main container for the footer */
-  .pc-footer-container {
-    font-family: 'Inter', sans-serif;
-    background-color: #07071e;
-    color: #7b849b;
-    width: 100%;
-    padding: 5rem 0;
-    box-sizing: border-box;
-  }
-
-  .pc-footer-wrapper {
-    max-width: 1300px;
-    margin: 0 auto;
-    
-  }
-
-  /* Top section: logo, line, and icons */
-  .pc-footer-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .image-logo {
-    height: 45px;
-    align-items: center;
-    align-self: center;
-    vertical-align: middle;
-    cursor: pointer;
-  }
-
-  .pc-footer-logo span {
-    font-size: 25px;
-    font-weight: 600;
-    align-items: center;
-    align-self: center;
-    vertical-align: middle;
-    color: white;
-  }
-
-  /* The decorative line between logo and icons */
-  .pc-footer-line {
-    flex-grow: 1;
-    height: 1.2px;
-    background-color: #303c55;
-    min-width: 50px;
-    border: none;
-    margin: 0;
-  }
-
-  /* Social Icons */ 
-  .social-icons-container {
-    display: flex;
-    column-gap: 18px;
-    padding: 0;
-    margin: 0;
-  }
-
-  .social-icon {
-    display: inline-flex;
-    width: 35px;
-    height: 35px;
-    text-decoration: none;
-    font-size: 12px;
-    background-color: #a4aaae38;
-    border-radius: 50%;
-    transition-property: outline-offset, outline-color, background-color;
-    transition-duration: 0.25s;
-    color: #fff;
-    vertical-align: middle;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .social-icon:hover {
-    outline-offset: 4px;
-    color: #f4f4f4;
-    background-color: #cdcdcd7d;
-  }
-
-  .social-icon img {
-    display: block;
-    width: 19px;
-    height: 19px;
-  }
-
-  .social-icon svg {
-    margin: auto;
-    width: 19px;
-  }
-
-  .social-icon:hover svg,
-  .social-icon:hover img {
-    animation: shake 0.25s;
-  }
-
-  @keyframes shake {
-    10% {
-      transform: rotate(15deg);
-    }
-    20% {
-      transform: rotate(-15deg);
-    }
-    30% {
-      transform: rotate(15deg);
-    }
-    40% {
-      transform: rotate(-15deg);
-    }
-    50%, 100% {
-      transform: rotate(0deg);
-    }
-  }
-
-  /* Footer content with columns */
-  .footer-content {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 30px;
-    margin-bottom: 30px;
-    padding-top: 3.5rem;
-    width: 100%;
-  }
-
-  .footer-column h3 {
-    color: #858992;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 20px;
-    text-transform: none;
-    letter-spacing: 0.1px;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-column h3::after {
-    content: '+';
-    font-size: 18px;
-    display: none;
-  }
-
-  .footer-column.active h3::after {
-    content: '‒';
-    font-size: 18px;
-  }
-
-  .footer-column ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .footer-column ul li {
-    margin-bottom: 12px;
-  }
-
-  .footer-column ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    min-width: fit-content;
-  }
-
-  .footer-column ul li a:hover {
-    color: #62b8fa;
-  }
-
-  /* Middle content section with paragraphs */
-  .pc-footer-content {
-    margin-top: 2.5rem;
-    margin-bottom: 1.25rem;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #a0a9be;
-  }
-
-  .pc-footer-content p {
-    margin-bottom: 1rem;
-  }
-
-  .footer-columns {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
-  }
-
-  .footer-left {
-    flex-basis: 100%;
-  }
-
-  /* Bottom section with copyright */
-.pc-footer-bottom {
-    margin-top: 15px;
-    padding-top: 0;
-    margin-bottom: 2rem;
-    display: flex;
-    text-align: right;
-    align-items: center;
-    justify-content: flex-end; /* This is the key change */
-    gap: 1.5rem;
-    font-size: 0.826rem;
-    font-weight: 400;
-    color: #a0a9be;
-    flex-wrap: wrap;
-}
-
-.pc-footer-bottom span {
-    flex-shrink: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .pc-footer-bottom {
-        justify-content: center; /* Center on mobile */
-        text-align: center;
-        padding: 1rem 0;
-    }
-}
-
-  /* =============================================
-     *** RESPONSIVE STYLES ***
-     ============================================= */
-  @media (max-width: 1024px) {
-    .footer-content {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-    }
-
-    .pc-footer-wrapper {
-      padding: 0 20px;
-    }
-
-    .footer-columns {
-      flex-direction: column;
-    }
-
-    .footer-left, .footer-right {
-      flex-basis: 100%;
-    }
-
-    .footer-right {
-      text-align: left;
-      justify-content: flex-start;
-      margin-top: 20px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .pc-footer-container {
-      padding: 3rem 0;
-    }
-
-    .logo-ft {
-      font-size: 10px;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .pc-footer-top {
-      justify-content: center;
-      flex-direction: column;
-    }
-    
-    .pc-footer-line {
-      display: none;
-    }
-    
-    .pc-footer-bottom .footer-kv {
-      justify-content: center;
-      text-align: center; 
-      padding: 1rem 0;
-    }
-    
-    .footer-content {
-      grid-template-columns: 1fr;
-      gap: 0;
-      padding-top: 2rem;
-    }
-    
-    .footer-column {
-      border-bottom: 1px solid #303c55;
-      padding: 15px 0;
-    }
-
-    .footer-column:last-child {
-      border-bottom: none;
-    }
-    
-    .footer-column h3 {
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .footer-column h3::after {
-      display: block;
-    }
-    
-    .footer-column ul {
-      display: none;
-      margin-top: 10px;
-      padding-left: 10px;
-    }
-    
-    .footer-column.active ul {
-      display: block;
-    }
-    
-    .footer-columns {
-      flex-direction: column;
-    }
-    
-    .footer-left {
-      flex-basis: 100%;
-      border-top: 1px solid #303c55;
-      padding-top: 2rem;
-    }
-    
-    .footer-right {
-      text-align: left;
-      justify-content: flex-start;
-      margin-top: 20px;
-    }
-
-    .social-icons-container {
-      justify-content: center;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .pc-footer-container {
-      padding: 2rem 0;
-    }
-
-    .footer-content {
-      grid-template-columns: 1fr;
-      gap: 0;
-    }
-
-    .social-icons-container {
-      column-gap: 12px;
-    }
-
-    .social-icon {
-      width: 32px;
-      height: 32px;
-    }
-
-    .social-icon img {
-      width: 16px;
-      height: 16px;
-    }
-
-    .footer-right {
-      gap: 10px;
-    }
-
-    .footer-image {
-      height: 40px;
-    }
-
-    .defcon-qr-code {
-      height: 88px;
-      padding: 8px;
-    }
-
-    .defcon-qr-image {
-      width: 70px;
-      height: 70px;
-    }
-
-    .defcon-footer-qr-section {
-      margin-top: 40px;
-    }
-  }
-
-  /* Add top padding for nested columns on desktop */
-@media (min-width: 769px) {
-    .footer-content > div > .footer-column:not(:first-child) {
-        padding-top: 2rem; /* Adjust this value as needed */
-    }
-}
-
-
-@media (max-width: 768px) {
-    .footer-content > div > .footer-column {
-        border-bottom: 1px solid #303c55;
-        padding: 15px 0;
-    }
-    
-    .footer-content > div > .footer-column:last-child {
-        border-bottom: 1px solid #303c55;
-    }
-}
-</style>
-
-<div style="background-color: #080d1b; margin: 0; padding: 2rem 0;">
-  <primecapital-footer class="pc-footer-container">
-    <div class="pc-footer-wrapper">
-      <!-- *** TOP SECTION: LOGO AND SOCIAL ICONS *** -->
-      <div class="pc-footer-top">
-        <div class="pc-footer-logo">
-          <a href="index.html">
-            <img src="thumbnails/Screenshot_2025-10-01_192823-removebg-preview.png" class="image-logo" alt="Logo">
-          </a>
-        </div>
-
-        <hr class="pc-footer-line">
-
-        <div class="social-icons-container">
-                <a href="https://x.com/defcon.com" class="social-icons twitter" aria-label="Twitter">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
-                      </svg>
-                </a>
-
-                <a href="https://facebook.com/defcon" class="social-icons" aria-label="Twitter">
-                    <i class="fab fa-facebook"></i>
-                </a>
-
-                <a href="https://youtube.com/defconplaylists" class="social-icons" aria-label="Twitter">
-                    <i class="fab fa-youtube"></i>
-                </a>
-
-                <a href="https://linkedin.com/in/defcon" class="social-icons linkedin" aria-label="LinkedIn">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="htts://github.com/thisislefa" class="social-icons github" aria-label="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-            </div>
-      </div>
-
-      <!-- *** MIDDLE CONTENT SECTION *** -->
-      <div class="pc-footer-content">
-        <div class="footer-columns">
-          <div class="footer-left">
-            <p>
-              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
-            </p>
-
-            <p>
-              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
-      <div class="footer-content">
-        <!-- Resources Column -->
-        <div>
-        <div class="footer-column">
-          <h3>Resources</h3>
-          <ul>
-            <li><a href="page.html">Blog</a></li>
-            <li><a href="page.html">Learn</a></li>
-            <li><a href="page.html">eBooks</a></li>
-            <li><a href="page.html">Podcasts</a></li>
-            <li><a href="page.html">Webinars</a></li>
-            <li><a href="page.html">YouTube Playlists</a></li>
-            <li><a href="page.html">Recommendations</a></li>
-            <li><a href="page.html">Training & Certification</a></li>
-          </ul>
-        </div>
-
-        </div>
-
-        <div>
-          <!-- Services Column -->
-          <div class="footer-column">
-            <h3>Solutions</h3>
-            <ul>
-              <li><a href="page.html">Software Development</a></li>
-              <li><a href="page.html">IT Infrastructure</a></li>
-              <li><a href="page.html">Communicative Media</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>Developers</h3>
-            <ul>
-              <li><a href="page.html">API Docs</a></li>
-              <li><a href="page.html">Github</a></li>
-              <li><a href="page.html">SDKs & Libraries</a></li>
-              <li><a href="page.html">Developer Guides</a></li>
-              <li><a href="page.html">Code of Conduct</a></li>
-              <li><a href="page.html">Support</a></li>
-              <li><a href="page.html">Community</a></li>
-              <li><a href="page.html">Open Source</a></li>
-            
-              
-            </ul>
-          </div>
-        </div>
-
-        <!-- Help Column -->
-        <div class="footer-column">
-          <h3>Help</h3>
-          <ul>
-            <li><a href="page.html">Contact Support</a></li>
-            <li><a href="page.html">Plan Comparison</a></li>
-            <li><a href="page.html">Glossary</a></li>
-            <li><a href="page.html">FAQs</a></li>
-            <li><a href="page.html">Account & Billing</a></li>
-            <li><a href="page.html">Feedback</a></li>
-            <li><a href="page.html">knowledge Base</a></li>
-          </ul>
-        </div>
-
-        <!-- Updates Column -->
-          <div class="footer-column">
-            <h3>Business</h3>
-            <ul>
-              <li><a href="page.html">Partnership</a></li>
-              <li><a href="page.html">Industries</a></li>
-              <li><a href="page.html">Investment</a></li>
-              <li><a href="page.html">Corporate Responsibility</a></li>
-              <li><a href="page.html">Global Network</a></li>
-              <li><a href="page.html">Market Insights</a></li>
-              <li><a href="page.html">Startup Collaboration</a></li>
-            </ul>
-          </div>
-
-        <!-- Company Column -->
-        <div class="footer-column">
-          <h3>Company</h3>
-          <ul>
-            <li><a href="page.html">About Us</a></li>
-            <li><a href="page.html">Roadmap</a></li>
-            <li><a href="page.html">Innovations</a></li>
-            <li><a href="page.html">Careers</a></li>
-            <li><a href="page.html">Legal</a></li>
-            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-            <li><a href="partners.html">Partners</a></li>
-            <li><a href="affiliates.html">Affiliate</a></li>
-            <li><a href="security.html">Security</a></li>
-            <li><a href="page.html">Capital</a></li>
-            <li><a href="page.html">Verify</a></li>
-          </ul>
-        </div>
-
-        
-        <div>
-          <!-- Updates Column -->
-          <div class="footer-column">
-            <h3>Updates</h3>
-            <ul>
-              <li><a href="#">X</a></li>
-              <li><a href="page.html">Company News</a></li>
-              <li><a href="page.html">Product Updates</a></li>
-              <li><a href="page.html">Events</a></li>
-              <li><a href="page.html">Facebook</a></li>
-              <li><a href="page.html">Youtube</a></li>
-              <li><a href="page.html">LinkedIn</a></li>
-              <li><a href="page.html">Github</a></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <hr class="pc-footer-line">
-      
-      <!-- *** COPYRIGHT SECTION *** -->
-      <div class="pc-footer-bottom">
-
-        <style>
-          .footer-kv {
-            display: inline-flex;
-            align-items: center;
-            justify-content: flex-start;
-            flex-grow: 1;
-            line-height: 0.9;
-            gap: 12px;
-          }
-          .footer-kv a {
-            color: inherit;
-            text-decoration: none;
-            padding: 0;
-            font-weight: 500;
-          }
-          .footer-kv a + a {
-            padding-left: 12px;
-            border-left: 1px solid #7b849b;
-            margin-left: 8px;
-          }
-
-          @media (max-width: 768px) {
-            .footer-kv {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center;
-              width: 100%;
-              gap: 6px;
-              padding: 8px 0;
-              order: 1;
-            }
-            .footer-kv a + a {
-              border-left: none;
-              padding-left: 0;
-              margin-left: 0;
-            }
-          }
-        </style>
-
-        <div class="footer-kv">
-          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
-          <a href="page.html" aria-label="Status">Status</a>
-        </div>
-
-        <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
-      </div>
-    </div>
-  </primecapital-footer>
-</div>
-
-<script>
-  // Mobile accordion functionality
-  document.addEventListener('DOMContentLoaded', function() {
-    const footerColumns = document.querySelectorAll('.footer-column');
-    
-    footerColumns.forEach(column => {
-      const header = column.querySelector('h3');
-      if (header) {
-        header.addEventListener('click', function() {
-          if (window.innerWidth <= 768) {
-            column.classList.toggle('active');
-          }
-        });
-      }
-    });
-
-    // Close accordion on resize to desktop
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-        footerColumns.forEach(column => {
-          column.classList.remove('active');
-        });
-      }
-    });
-  });
-</script>

@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Invest in Innovation | Internal R&D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* === CSS VARIABLES FOR CONSISTENT THEMING === */
+        :root {
+            --primary: #1199fa;
+            --dark: #010119;
+            --light: #f4f4f4;
+            --white: #fff;
+            --black: #000;
+            --gray: #e5e5e5;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+        }
+
+        /* === RESET AND BASE STYLES === */
+        .innovation-page-wrapper * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .innovation-page-wrapper {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        .innovation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* === HERO SECTION (ASYMMETRICAL LAYOUT) === */
+        .innovation-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.85) 0%, rgba(17, 153, 250, 0.15) 100%), 
+                        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80') no-repeat center center/cover;
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .innovation-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, rgba(17, 153, 250, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .innovation-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.2) 0%, rgba(17, 153, 250, 0) 70%);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .innovation-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            padding: 0 5%;
+        }
+
+        .innovation-hero-text {
+            max-width: 600px;
+            margin-left: auto;
+        }
+
+        .innovation-hero-badge {
+            display: inline-block;
+            background: rgba(17, 153, 250, 0.2);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            border: 1px solid rgba(17, 153, 250, 0.3);
+        }
+
+        .innovation-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .innovation-hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 500px;
+        }
+
+        .innovation-cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--white);
+            padding: 14px 32px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .innovation-cta-button:hover {
+            background: #0d8ae5;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.3);
+        }
+
+        /* === MISSION SECTION (F-LAYOUT) === */
+        .innovation-mission {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .innovation-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .innovation-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .innovation-mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .innovation-mission-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .innovation-mission-highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .innovation-mission-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .innovation-mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .innovation-mission-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* === PILLARS SECTION (Z-LAYOUT) === */
+        .innovation-pillars {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+        }
+
+        .innovation-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .innovation-pillar-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .innovation-pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+        }
+
+        .innovation-pillar-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .innovation-pillar-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .innovation-pillar-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--primary);
+        }
+
+        .innovation-pillar-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .innovation-pillar-text {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* === RESEARCH SECTION (ASYMMETRICAL LAYOUT) === */
+        .innovation-research {
+            padding: 100px 0;
+            background-color: var(--white);
+        }
+
+        .innovation-research-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .innovation-research-image {
+            order: 2;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .innovation-research-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .innovation-research-text {
+            order: 1;
+        }
+
+        .innovation-research-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .innovation-research-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .innovation-research-item::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            margin-right: 15px;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        /* === STATS SECTION (CLEAN LAYOUT) === */
+        .innovation-stats {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #0a0a2a 100%);
+            color: var(--white);
+        }
+
+        .innovation-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .innovation-stat-item {
+            text-align: center;
+        }
+
+        .innovation-stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .innovation-stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* === CTA SECTION (CLEAN LAYOUT) === */
+        .innovation-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+            text-align: center;
+        }
+
+        .innovation-cta-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .innovation-cta-text {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: #555;
+        }
+
+        /* === RESPONSIVE STYLES === */
+        @media (max-width: 1024px) {
+            .innovation-hero-title {
+                font-size: 3rem;
+            }
+            
+            .innovation-pillars-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .innovation-stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .innovation-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .innovation-mission-content,
+            .innovation-research-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .innovation-research-image {
+                order: 1;
+            }
+            
+            .innovation-research-text {
+                order: 2;
+            }
+            
+            .innovation-pillars-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .innovation-section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .innovation-hero-title {
+                font-size: 2rem;
+            }
+            
+            .innovation-hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .innovation-stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .innovation-stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- STARTUP COLLABORATION PAGE -->
+    <div class="innovation-page-wrapper">
+        <!-- HERO SECTION -->
+        <section class="innovation-hero">
+            <div class="innovation-container">
+                <div class="innovation-hero-content">
+                    <div class="innovation-hero-text">
+                        <span class="innovation-hero-badge">Internal R&D Initiative</span>
+                        <h1 class="innovation-hero-title">We Invest in Innovation</h1>
+                        <p class="innovation-hero-subtitle">Reinvesting our resources to pioneer tomorrow's technologies, cultivate exceptional talent, and drive meaningful research that shapes the future.</p>
+                        <a href="#innovation-mission" class="innovation-cta-button">Explore Our Approach</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION SECTION -->
+        <section class="innovation-mission" id="innovation-mission">
+            <div class="innovation-container">
+                <h2 class="innovation-section-title">Our Innovation Mission</h2>
+                <div class="innovation-mission-content">
+                    <div class="innovation-mission-text">
+                        <p>At the core of our business philosophy is a steadfast commitment to <span class="innovation-mission-highlight">reinvesting profits into innovation</span>, rather than focusing solely on sales and marketing. We believe that sustainable growth comes from continuously pushing boundaries and exploring new frontiers.</p>
+                        <p>Our Internal R&D program dedicates significant resources to developing cutting-edge technologies, nurturing exceptional talent, and conducting groundbreaking research that addresses tomorrow's challenges today.</p>
+                        <p>This forward-thinking approach ensures we remain at the forefront of our industry while building lasting value for all stakeholders.</p>
+                    </div>
+                    <div class="innovation-mission-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Innovation lab with researchers collaborating">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PILLARS SECTION -->
+        <section class="innovation-pillars">
+            <div class="innovation-container">
+                <h2 class="innovation-section-title">Our Innovation Pillars</h2>
+                <div class="innovation-pillars-grid">
+                    <div class="innovation-pillar-card">
+                        <div class="innovation-pillar-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M21 16.5c0 .83-.67 1.5-1.5 1.5h-15c-.83 0-1.5-.67-1.5-1.5v-9c0-.83.67-1.5 1.5-1.5h15c.83 0 1.5.67 1.5 1.5v9zM2 20h20c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2H2C.9 4 0 4.9 0 6v12c0 1.1.9 2 2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="innovation-pillar-title">Technology</h3>
+                        <p class="innovation-pillar-text">We allocate substantial resources to developing proprietary technologies, infrastructure, and digital solutions that give us a competitive edge while advancing our industry.</p>
+                    </div>
+                    <div class="innovation-pillar-card">
+                        <div class="innovation-pillar-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="innovation-pillar-title">People</h3>
+                        <p class="innovation-pillar-text">Our greatest asset is our team. We invest heavily in talent development, continuous learning, and creating an environment where innovation thrives.</p>
+                    </div>
+                    <div class="innovation-pillar-card">
+                        <div class="innovation-pillar-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+                            </svg>
+                        </div>
+                        <h3 class="innovation-pillar-title">Research</h3>
+                        <p class="innovation-pillar-text">We dedicate significant funding to exploratory research, market analysis, and development of new methodologies that drive industry advancement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH SECTION -->
+        <section class="innovation-research">
+            <div class="innovation-container">
+                <h2 class="innovation-section-title">Forward-Thinking Research</h2>
+                <div class="innovation-research-content">
+                    <div class="innovation-research-image">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Data visualization and research analysis">
+                    </div>
+                    <div class="innovation-research-text">
+                        <p>Our research initiatives are designed to anticipate future market needs and technological shifts. By investing in comprehensive R&D today, we're building the foundation for tomorrow's breakthroughs.</p>
+                        <ul class="innovation-research-list">
+                            <li class="innovation-research-item">Dedicated research teams exploring emerging technologies</li>
+                            <li class="innovation-research-item">Partnerships with academic institutions and industry leaders</li>
+                            <li class="innovation-research-item">Regular innovation sprints and hackathons to foster creativity</li>
+                            <li class="innovation-research-item">Allocation of 20% of resources to experimental projects</li>
+                            <li class="innovation-research-item">Continuous market analysis to identify future opportunities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="innovation-stats">
+            <div class="innovation-container">
+                <div class="innovation-stats-grid">
+                    <div class="innovation-stat-item">
+                        <div class="innovation-stat-number">30%</div>
+                        <div class="innovation-stat-label">Profits Reinvested</div>
+                    </div>
+                    <div class="innovation-stat-item">
+                        <div class="innovation-stat-number">15+</div>
+                        <div class="innovation-stat-label">Research Projects</div>
+                    </div>
+                    <div class="innovation-stat-item">
+                        <div class="innovation-stat-number">5</div>
+                        <div class="innovation-stat-label">Innovation Labs</div>
+                    </div>
+                    <div class="innovation-stat-item">
+                        <div class="innovation-stat-number">100+</div>
+                        <div class="innovation-stat-label">Team Members</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="innovation-cta">
+            <div class="innovation-container">
+                <h2 class="innovation-cta-title">Join Our Innovation Journey</h2>
+                <p class="innovation-cta-text">We're building the future through strategic investment in technology, talent, and research. Connect with us to explore collaboration opportunities or learn more about our innovation initiatives.</p>
+                <a href="#" class="innovation-cta-button">Get in Touch</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            anchorLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Animation on scroll for pillar cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe pillar cards for animation
+            const pillarCards = document.querySelectorAll('.innovation-pillar-card');
+            pillarCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+
+            // Stats counter animation
+            const statNumbers = document.querySelectorAll('.innovation-stat-number');
+            const statsSection = document.querySelector('.innovation-stats');
+            
+            const statsObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        statNumbers.forEach(stat => {
+                            const target = parseInt(stat.textContent);
+                            let current = 0;
+                            const increment = target / 50;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    stat.textContent = target + (stat.textContent.includes('+') ? '+' : '');
+                                    clearInterval(timer);
+                                } else {
+                                    stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
+                                }
+                            }, 30);
+                        });
+                        statsObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            statsObserver.observe(statsSection);
+        });
+    </script>
+</body>
+</html>

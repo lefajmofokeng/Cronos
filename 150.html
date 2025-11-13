@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Service Delivery Pipeline</title>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           A. GLOBAL & BASE STYLES (ITP Prefix)
+           ========================================= */
+        :root {
+            /* Palette matching the image */
+            --itp-color-background: #dedede;     /* Slate Gray Background */
+            --itp-color-primary: #123C5E;        /* Dark Blue Primary Card */
+            --itp-color-secondary: #487C80;      /* Teal/Sage Secondary Card */
+            --itp-color-light-icon: #A9D1C7;     /* Light accent for icons (teal/light blue) */
+            --itp-color-light-text: #E6E6E6;     /* Off-white text */
+            --itp-color-heading: #1B293A;        /* Very dark blue/black for main heading */
+            
+            /* Typography */
+            --itp-font-family: 'Inter', sans-serif;
+            --itp-border-radius: 8px;
+            --itp-padding: 1.5rem;
+        }
+
+        body {
+            font-family: var(--itp-font-family);
+            background-color: var(--itp-color-background);
+            color: var(--itp-color-light-text);
+            margin: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .itp-container {
+            width: 90%;
+            max-width: 1100px;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* =========================================
+           B. HEADER
+           ========================================= */
+        .itp-header {
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .itp-main-heading {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: var(--itp-color-heading);
+            line-height: 1.2;
+            margin: 0;
+        }
+        
+        /* =========================================
+           C. FEATURE GRID (2x3)
+           ========================================= */
+        .itp-process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .itp-card {
+            border-radius: var(--itp-border-radius);
+            padding: 2.5rem;
+            text-align: left;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .itp-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Applying the alternating colors */
+        .itp-card:nth-child(even) {
+            background-color: var(--itp-color-secondary);
+        }
+        .itp-card:nth-child(odd) {
+            background-color: var(--itp-color-primary);
+        }
+
+        /* =========================================
+           D. CARD ELEMENTS
+           ========================================= */
+        .itp-icon-container {
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .itp-icon-container svg {
+            width: 48px;
+            height: 48px;
+            stroke: var(--itp-color-light-icon);
+            stroke-width: 1.5;
+            fill: none;
+            transition: stroke 0.3s ease;
+        }
+        
+        .itp-card:hover .itp-icon-container svg {
+            stroke: var(--itp-color-white); /* Slightly brighter on hover */
+        }
+
+        .itp-card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--itp-color-light-text);
+        }
+
+        .itp-card-description {
+            font-size: 0.9rem;
+            color: var(--itp-color-light-text);
+            opacity: 0.9;
+        }
+
+        /* =========================================
+           E. MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 950px) {
+            .itp-process-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+            }
+        }
+        
+        @media (max-width: 650px) {
+            .itp-process-grid {
+                grid-template-columns: 1fr; /* 1 column on mobile */
+                gap: 1rem;
+            }
+            .itp-card {
+                padding: 2rem;
+            }
+            .itp-header {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="itp-container">
+        
+        <header class="itp-header">
+            <h1 class="itp-main-heading">
+                The Enterprise IT Service Delivery Pipeline
+            </h1>
+        </header>
+
+        <div class="itp-process-grid">
+            
+            <!-- STEP 1: Research & Discovery (Dark Blue) -->
+            <div class="itp-card">
+                <div class="itp-icon-container">
+                    <!-- Target/Scope Icon -->
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/></svg>
+                </div>
+                <h3 class="itp-card-title">1. Requirements Discovery</h3>
+                <p class="itp-card-description">
+                    Conduct thorough business analysis to define scope, objectives, technical needs, and critical success factors.
+                </p>
+            </div>
+
+            <!-- STEP 2: Architecture (Teal/Sage) -->
+            <div class="itp-card">
+                <div class="itp-icon-container">
+                    <!-- Lightbulb/Idea Icon -->
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M14.4 14.4L9.6 9.6"/><path d="M17 17l-4.2-4.2"/><path d="M7.8 7.8L3.6 3.6"/><path d="M17 7l-4.2 4.2"/><path d="M7.8 16.2L3.6 20.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M12 2v2"/><path d="M12 20v2"/><circle cx="12" cy="12" r="8"/></svg>
+                </div>
+                <h3 class="itp-card-title">2. Solution Architecture</h3>
+                <p class="itp-card-description">
+                    Design the optimal cloud, network, and application architecture, ensuring scalability, security, and integration points.
+                </p>
+            </div>
+
+            <!-- STEP 3: Development (Dark Blue) -->
+            <div class="itp-card">
+                <div class="itp-icon-container">
+                    <!-- Code Icon -->
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                </div>
+                <h3 class="itp-card-title">3. Agile Development/Build</h3>
+                <p class="itp-card-description">
+                    Iterative development and configuration using DevOps practices, continuous integration, and rapid prototyping.
+                </p>
+            </div>
+
+            <!-- STEP 4: Deployment & Testing (Teal/Sage) -->
+            <div class="itp-card">
+                <div class="itp-icon-container">
+                    <!-- Stacks/Layers Icon -->
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5l10-5L12 2z"/><path d="M2 17l10 5l10-5"/><path d="M2 12l10 5l10-5"/></svg>
+                </div>
+                <h3 class="itp-card-title">4. Test and Deploy</h3>
+                <p class="itp-card-description">
+                    Rigorous testing, security hardening, and phased rollout to production environments following zero-downtime protocols.
+                </p>
+            </div>
+
+            <!-- STEP 5: Optimization (Dark Blue) -->
+            <div class="itp-card">
+                <div class="itp-icon-container">
+                    <!-- Settings/Gear Icon -->
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06 .06a2 2 0 0 1 0 2.83a2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2a2 2 0 0 1-2-2v-.09a1.65 1.65 0 0 0-1-1.51a1.65 1.65 0 0 0-1.82 .33l-.06 .06a2 2 0 0 1-2.83 0a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2a2 2 0 0 1 2-2h.09a1.65 1.65 0 0 0 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83a2 2 0 0 1 2.83 0l.06 .06a1.65 1.65 0 0 0 1.82 .33a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2a2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0a2 2 0 0 1 0 2.83l-.06 .06a1.65 1.65 0 0 0-.33 1.82a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2a2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </div>
+                <h3 class="itp-card-title">5. Monitoring & Optimization</h3>
+                <p class="itp-card-description">
+                    Establish performance baselines and continuous monitoring for proactive issue detection and cost optimization.
+                </p>
+            </div>
+
+            <!-- STEP 6: Support (Teal/Sage) -->
+            <div class="itp-card">
+                <div class="itp-icon-container">
+                    <!-- Rocket/Launch Icon -->
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M15 12V3a1 1 0 0 0-2 0v9m2 0a2 2 0 0 1-2 2H9.5L5 20l3-5a2 2 0 0 1 2-2h3"/><path d="M12 3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg>
+                </div>
+                <h3 class="itp-card-title">6. Ongoing Support</h3>
+                <p class="itp-card-description">
+                    Dedicated, 24/7 managed support and maintenance to ensure service stability and end-user satisfaction.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

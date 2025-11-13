@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Strategy Hero Section</title>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           A. GLOBAL & BASE STYLES (GFS Prefix)
+           ========================================= */
+        :root {
+            /* Colors */
+            --gfs-color-dark: #1e1e2d;         /* Primary Dark Background for Cards */
+            --gfs-color-accent: #ffc107;       /* Yellow/Gold for Highlight/Text */
+            --gfs-color-white: #ffffff;
+            --gfs-color-text-light: #cccccc;   /* Light gray for body text */
+            
+            /* Typography */
+            --gfs-font-family: 'Inter', sans-serif;
+            
+            /* Other */
+            --gfs-transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: var(--gfs-font-family);
+            background-color: var(--gfs-color-dark);
+            margin: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            /* Ensures section fills the top of the viewport and doesn't center vertically */
+            min-height: 100vh; 
+        }
+
+        /* =========================================
+           B. HERO CONTAINER AND BACKGROUND
+           ========================================= */
+        .gfs-hero-container {
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            /* The height is set by the combination of padding and content */
+            padding-top: 10rem; 
+            padding-bottom: 5rem;
+            color: var(--gfs-color-white);
+            overflow: hidden;
+        }
+
+        /* Background Image with Overlay */
+        .gfs-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('thumbnails/pexels-altabena-10142683.jpg');
+            background-size: cover;
+            background-position: center;
+            /* Dark transparent overlay to make text pop */
+            background-color: rgba(0, 0, 0, 0.75); 
+            background-blend-mode: darken;
+            /* Skewed glass effect using a linear gradient mask */
+            mask-image: linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0) 100%);
+            z-index: -1;
+        }
+
+        /* =========================================
+           C. HEADER CONTENT
+           ========================================= */
+        .gfs-header-content {
+            padding: 0 5%;
+            margin-bottom: 5rem;
+            max-width: 600px;
+            text-align: left;
+        }
+
+        .gfs-main-heading {
+            font-size: clamp(2.5rem, 6vw, 4rem); /* Responsive font size */
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0;
+            color: var(--gfs-color-accent); /* Highlighted text color */
+        }
+        
+        /* =========================================
+           D. FEATURE CARDS GRID
+           ========================================= */
+        .gfs-cards-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0 5%;
+        }
+
+        .gfs-feature-card {
+            flex: 1 1 300px; /* Flexible width for responsiveness */
+            background-color: var(--gfs-color-dark);
+            border-top: 3px solid var(--gfs-color-accent); /* Yellow top border */
+            border-radius: 4px;
+            padding: 2.5rem 2rem;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform var(--gfs-transition-speed), box-shadow var(--gfs-transition-speed);
+        }
+
+        .gfs-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 193, 7, 0.3);
+        }
+        
+        .gfs-card-icon-title {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .gfs-card-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: var(--gfs-color-accent);
+            flex-shrink: 0;
+        }
+
+        .gfs-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gfs-color-white);
+        }
+
+        .gfs-card-description {
+            font-size: 0.95rem;
+            color: var(--gfs-color-text-light);
+            margin-bottom: 1.5rem;
+            min-height: 45px; /* Ensures consistent height if descriptions vary */
+        }
+
+        .gfs-card-link {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--gfs-color-accent);
+            color: var(--gfs-color-accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: background-color var(--gfs-transition-speed), color var(--gfs-transition-speed);
+        }
+
+        .gfs-card-link:hover {
+            background-color: var(--gfs-color-accent);
+            color: var(--gfs-color-dark);
+        }
+        
+        /* =========================================
+           E. MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 900px) {
+            .gfs-hero-container {
+                padding-top: 6rem;
+                padding-bottom: 3rem;
+            }
+            .gfs-cards-grid {
+                flex-direction: column; /* Stack cards vertically */
+                gap: 1rem;
+            }
+            .gfs-feature-card {
+                flex: 1 1 100%;
+            }
+            .gfs-header-content {
+                margin-bottom: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gfs-hero-container">
+        <!-- The visual background element -->
+        <div class="gfs-background"></div>
+
+        <!-- Header/Title Content -->
+        <header class="gfs-header-content">
+            <h1 class="gfs-main-heading">
+                Secure, adaptable, and innovative technology partnerships
+            </h1>
+        </header>
+
+        <!-- Feature Cards -->
+        <div class="gfs-cards-grid">
+            
+            <!-- Card 1: Cloud & Data Services -->
+            <div class="gfs-feature-card">
+                <div class="gfs-card-icon-title">
+                    <div class="gfs-card-icon">
+                        <!-- Server/Data Center Icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                    </div>
+                    <h3 class="gfs-card-title">Cloud & Data</h3>
+                </div>
+                <p class="gfs-card-description">
+                    Scalable, secure public, private, and hybrid cloud solutions designed for high-availability workloads.
+                </p>
+                <a href="#" class="gfs-card-link">More</a>
+            </div>
+
+            <!-- Card 2: Digital Transformation -->
+            <div class="gfs-feature-card">
+                <div class="gfs-card-icon-title">
+                    <div class="gfs-card-icon">
+                        <!-- Code/Development Icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+                    </div>
+                    <h3 class="gfs-card-title">Digital Strategy</h3>
+                </div>
+                <p class="gfs-card-description">
+                    Leverage DevOps and Agile methodologies to rapidly deploy new services and modernize legacy systems.
+                </p>
+                <a href="#" class="gfs-card-link">More</a>
+            </div>
+
+            <!-- Card 3: Enterprise Security -->
+            <div class="gfs-feature-card">
+                <div class="gfs-card-icon-title">
+                    <div class="gfs-card-icon">
+                        <!-- Shield/Security Icon -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 22s8-4 8-10V5l-8-3l-8 3v7c0 6 8 10 8 10z"/><path d="M12 11h.01"/><path d="M12 15h.01"/><path d="M12 11v4"/></svg>
+                    </div>
+                    <h3 class="gfs-card-title">Enterprise Security</h3>
+                </div>
+                <p class="gfs-card-description">
+                    Full-stack cyber protection, compliance audits, and 24/7 threat monitoring for complete peace of mind.
+                </p>
+                <a href="#" class="gfs-card-link">More</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Feature Highlight Section</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- General Reset & Fonts --- */
+        .it-feat-body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #1f2937;
+            overflow-x: hidden;
+            padding: 4rem 0;
+        }
+
+        /* --- Layout Container --- */
+        .it-feat-container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* --- Main Heading --- */
+        .it-feat-main-heading {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1f2937;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .it-feat-main-heading {
+                font-size: 3.5rem;
+                margin-bottom: 4rem;
+            }
+        }
+
+        /* --- Feature Grid --- */
+        .it-feat-grid {
+            display: grid;
+            gap: 2rem;
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .it-feat-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        /* --- Feature Card Styling --- */
+        .it-feat-card {
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .it-feat-image-wrapper {
+            background-color: #008080; /* Teal/Cyan background to match the style */
+            padding: 1rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .it-feat-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* --- Card Headline and Description --- */
+        .it-feat-card-headline {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .it-feat-card-description {
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        /* --- Responsive Adjustments for Images --- */
+        @media (max-width: 767px) {
+            .it-feat-image-wrapper {
+                height: 250px;
+            }
+        }
+        @media (min-width: 768px) {
+            .it-feat-image-wrapper {
+                height: 350px;
+            }
+        }
+
+        /* Optional: Add a subtle geometric background pattern to mimic the original image's texture */
+        .it-feat-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
+            /* Placeholder for geometric pattern */
+            background-image: radial-gradient(#d1d5db 1px, transparent 1px), radial-gradient(#d1d5db 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+    </style>
+</head>
+<body class="it-feat-body">
+
+    <!-- Feature Section Wrapper -->
+    <div class="it-feat-container">
+
+        <!-- Main Headline -->
+        <h1 class="it-feat-main-heading">
+            Connect to everything important in your digital life
+        </h1>
+
+        <!-- Two-Column Feature Grid -->
+        <div class="it-feat-grid">
+
+            <!-- Feature Card 1: Cloud Infrastructure -->
+            <div class="it-feat-card">
+                <div class="it-feat-image-wrapper">
+                    <img
+                        src="thumbnails/pexels-altabena-10142683.jpg"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/008080/FFFFFF?text=Cloud+Infrastructure';"
+                        alt="A close-up of a server or network device, symbolizing cloud infrastructure."
+                    >
+                </div>
+                <h2 class="it-feat-card-headline">An untethered cloud for an agile infrastructure.</h2>
+                <p class="it-feat-card-description">
+                    Our resilient hybrid cloud solutions connect your legacy systems with modern, scalable resources via secure VPN and dedicated fiber lines, so you can access, scale, and run your data from anywhere.
+                </p>
+            </div>
+
+            <!-- Feature Card 2: Cybersecurity -->
+            <div class="it-feat-card">
+                <div class="it-feat-image-wrapper">
+                    <img
+                        src="thumbnails/pexels-altabena-10142683.jpg"
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/FACC15/1F2937?text=Threat+Management';"
+                        alt="A person checking their phone/wallet, symbolizing secure payments and data protection."
+                    >
+                </div>
+                <h2 class="it-feat-card-headline">Turn your data into your fortress.</h2>
+                <p class="it-feat-card-description">
+                    Forgot about security gaps? No problem—with 24/7 Managed Threat Detection right on your network, you're always ready to secure your sensitive assets and prevent breaches instantly.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

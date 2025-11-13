@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Resource Library</title>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           A. GLOBAL & BASE STYLES
+           ========================================= */
+        :root {
+            --it-color-primary-text: #010119;
+            --it-color-accent: #1199fA;
+            --it-color-light-bg: #f4f4f4;
+            --it-color-white: #fff;
+            --it-color-line: #e5e5e5;
+            --it-font-family: 'Inter', sans-serif;
+            --it-transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: var(--it-font-family);
+            background-color: var(--it-color-white);
+            color: var(--it-color-primary-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .it-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .it-section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3.5rem;
+            color: var(--it-color-primary-text);
+            padding: 2rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--it-color-line);
+        }
+
+        /* =========================================
+           B. RESOURCE LIST STYLES
+           ========================================= */
+
+        .it-resource-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .it-article-card {
+            /* Now using a 3-column grid layout */
+            display: grid;
+            grid-template-columns: 280px 1fr 280px; /* Title | Description | Image */
+            align-items: center;
+            padding: 2rem 0; /* Vertical padding */
+            border-bottom: 1px solid var(--it-color-line);
+            transition: background-color var(--it-transition-speed);
+        }
+
+        .it-article-card:last-child {
+            border-bottom: none;
+        }
+
+        /* Hover Effect for the entire card row */
+        .it-article-card:hover {
+            background-color: var(--it-color-light-bg);
+            border-radius: 8px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: -1rem;
+            margin-right: -1rem;
+        }
+        
+        /* Ensure hover effect transitions properly */
+        .it-article-card:hover .it-read-more-arrow {
+            transform: translateX(5px);
+            color: var(--it-color-primary-text);
+        }
+
+        /* ------------------
+           COLUMN 1: TITLE & ACTION
+           ------------------ */
+        .it-title-column {
+            display: flex-start;
+            flex-direction: column;
+            padding-right: 2rem;
+        }
+
+        .it-card-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        
+        .it-card-title a {
+            color: var(--it-color-primary-text);
+            text-decoration: none;
+            transition: color var(--it-transition-speed);
+        }
+
+        .it-card-title a:hover {
+            color: var(--it-color-accent);
+        }
+
+        .it-read-more {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--it-color-accent);
+            text-decoration: none;
+            width: fit-content;
+            margin-top: 0.5rem;
+        }
+
+        .it-read-more-arrow {
+            margin-left: 0.5rem;
+            font-size: 1.1rem;
+            transition: transform var(--it-transition-speed);
+            color: var(--it-color-accent);
+        }
+
+        /* ------------------
+           COLUMN 2: SUMMARY
+           ------------------ */
+        .it-summary-column {
+            padding-right: 2rem;
+            width: 500px;
+        }
+
+        .it-card-summary {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #666;
+            margin: 0;
+        }
+
+        /* ------------------
+           COLUMN 3: IMAGE
+           ------------------ */
+        .it-image-container {
+            width: fit-content;
+            height: 180px; /* Slightly shorter image for compact row */
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--it-color-line);
+            position: relative;
+        }
+
+        .it-image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #888;
+            background-color: var(--it-color-light-bg);
+            border: 1px solid var(--it-color-line); 
+        }
+
+        /* =========================================
+           C. MOBILE RESPONSIVENESS (Stacks everything)
+           ========================================= */
+        @media (max-width: 768px) {
+            .it-article-card {
+                grid-template-columns: 1fr; /* Stack all columns */
+                padding: 1.5rem 0;
+            }
+
+            .it-title-column, .it-summary-column {
+                padding-right: 0;
+            }
+            
+            /* Order the elements: Title > Summary > Image (optional image top, depending on style) */
+            .it-title-column { order: 1; }
+            .it-summary-column { order: 2; margin-top: 1rem; }
+            .it-image-container { order: 3; margin-top: 1.5rem; height: 160px;}
+
+            .it-section-title {
+                font-size: 2rem;
+            }
+            
+            .it-article-card:hover {
+                 padding-left: 0.5rem;
+                 padding-right: 0.5rem;
+                 margin-left: -0.5rem;
+                 margin-right: -0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="it-container">
+        
+        <h1 class="it-section-title">
+            Essential IT Infrastructure & Software Guides
+        </h1>
+
+        <div class="it-resource-list">
+            
+            <!-- RESOURCE CARD 1: Cloud Computing -->
+            <div class="it-article-card">
+                <div class="it-title-column">
+                    <h2 class="it-card-title">
+                        <a href="#">The Startup's Guide to Multi-Cloud</a>
+                    </h2>
+                    <a href="#" class="it-read-more">
+                        Read all <span class="it-read-more-arrow">→</span>
+                    </a>
+                </div>
+                <div class="it-summary-column">
+                    <p class="it-card-summary">
+                        Learn how to leverage AWS, Azure, and Google Cloud simultaneously for redundancy, cost optimization, and maximum performance.
+                    </p>
+                </div>
+                <div class="it-image-container">
+                    <div class="it-image-placeholder">
+                        <img src="thumbnails/pexels-altabena-10142683.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESOURCE CARD 2: Cybersecurity/Managed IT -->
+            <div class="it-article-card">
+                <div class="it-title-column">
+                    <h2 class="it-card-title">
+                        <a href="#">7 Critical Security Protocols for Remote Teams</a>
+                    </h2>
+                    <a href="#" class="it-read-more">
+                        Read all <span class="it-read-more-arrow">→</span>
+                    </a>
+                </div>
+                <div class="it-summary-column">
+                    <p class="it-card-summary">
+                        A quick checklist for early-stage companies to establish robust managed IT security and help desk protocols without expensive hardware.
+                    </p>
+                </div>
+                <div class="it-image-container">
+                    <div class="it-image-placeholder">
+                        <img src="thumbnails/pexels-altabena-10142683.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESOURCE CARD 3: Microservices/APIs -->
+            <div class="it-article-card">
+                <div class="it-title-column">
+                    <h2 class="it-card-title">
+                        <a href="#">Designing Scalable APIs & Microservices</a>
+                    </h2>
+                    <a href="#" class="it-read-more">
+                        Read all <span class="it-read-more-arrow">→</span>
+                    </a>
+                </div>
+                <div class="it-summary-column">
+                    <p class="it-card-summary">
+                        A deep dive into REST vs. GraphQL and how to structure your internal APIs for maximum flexibility and future expansion.
+                    </p>
+                </div>
+                <div class="it-image-container">
+                    <div class="it-image-placeholder">
+                        <img src="thumbnails/pexels-altabena-10142683.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESOURCE CARD 4: Data Center Management -->
+            <div class="it-article-card">
+                <div class="it-title-column">
+                    <h2 class="it-card-title">
+                        <a href="#">Optimizing Data Center Power Efficiency</a>
+                    </h2>
+                    <a href="#" class="it-read-more">
+                        Read all <span class="it-read-more-arrow">→</span>
+                    </a>
+                </div>
+                <div class="it-summary-column">
+                    <p class="it-card-summary">
+                        Best practices for maintaining physical infrastructure, maximizing uptime, and reducing operational costs in your data center.
+                    </p>
+                </div>
+                <div class="it-image-container">
+                    <div class="it-image-placeholder">
+                        <img src="thumbnails/pexels-altabena-10142683.jpg" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

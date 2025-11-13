@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startup Collaboration Hub | Resource Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary: #1199fa;
+            --dark: #010119;
+            --light: #f4f4f4;
+            --white: #fff;
+            --black: #000;
+            --gray: #e5e5e5;
+            --transition: all 0.3s ease;
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        .startup-collab-reset {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .startup-collab-body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* ===== UTILITY CLASSES ===== */
+        .startup-collab-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .startup-collab-section {
+            padding: 80px 0;
+        }
+
+        .startup-collab-text-center {
+            text-align: center;
+        }
+
+        .startup-collab-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .startup-collab-btn:hover {
+            background: #0d8ae6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.2);
+        }
+
+        .startup-collab-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .startup-collab-section-subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* ===== HERO SECTION (Asymmetrical Layout) ===== */
+        .startup-collab-hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(1, 1, 25, 0.7) 100%), url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+        }
+
+        .startup-collab-hero-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .startup-collab-hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .startup-collab-hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .startup-collab-hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, rgba(17, 153, 250, 0) 70%);
+            filter: blur(40px);
+            z-index: 1;
+        }
+
+        .startup-collab-hero-glow-1 {
+            top: -100px;
+            right: -100px;
+        }
+
+        .startup-collab-hero-glow-2 {
+            bottom: -150px;
+            left: -150px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+        }
+
+        /* ===== FEATURED RESOURCES (Z-Layout) ===== */
+        .startup-collab-featured {
+            background-color: var(--light);
+        }
+
+        .startup-collab-featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .startup-collab-featured-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .startup-collab-featured-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .startup-collab-featured-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .startup-collab-featured-content {
+            padding: 25px;
+        }
+
+        .startup-collab-featured-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .startup-collab-featured-desc {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .startup-collab-featured-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(17, 153, 250, 0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ===== RESOURCE CATEGORIES (F-Layout) ===== */
+        .startup-collab-categories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .startup-collab-category-card {
+            display: flex;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .startup-collab-category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .startup-collab-category-icon {
+            width: 80px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        .startup-collab-category-content {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .startup-collab-category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .startup-collab-category-desc {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .startup-collab-category-link {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .startup-collab-category-link:hover {
+            color: #0d8ae6;
+        }
+
+        /* ===== TOOLS & TEMPLATES (Split Layout) ===== */
+        .startup-collab-tools {
+            background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+        }
+
+        .startup-collab-tools-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .startup-collab-tools-content {
+            padding-right: 20px;
+        }
+
+        .startup-collab-tools-list {
+            list-style: none;
+            padding: 0;
+            margin: 30px 0;
+        }
+
+        .startup-collab-tools-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .startup-collab-tools-item:last-child {
+            border-bottom: none;
+        }
+
+        .startup-collab-tools-check {
+            color: var(--primary);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .startup-collab-tools-visual {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary) 0%, #0d8ae6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .startup-collab-tools-visual::before {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            top: -50px;
+            right: -50px;
+        }
+
+        .startup-collab-tools-visual::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            bottom: -30px;
+            left: -30px;
+        }
+
+        .startup-collab-tools-box {
+            width: 80%;
+            height: 80%;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .startup-collab-tools-box-header {
+            height: 40px;
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .startup-collab-tools-box-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .startup-collab-tools-box-dot-red {
+            background: #ff5f57;
+        }
+
+        .startup-collab-tools-box-dot-yellow {
+            background: #ffbd2e;
+        }
+
+        .startup-collab-tools-box-dot-green {
+            background: #28ca42;
+        }
+
+        .startup-collab-tools-box-content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .startup-collab-tools-box-line {
+            height: 8px;
+            background: var(--gray);
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .startup-collab-tools-box-line-short {
+            width: 60%;
+        }
+
+        /* ===== SECURITY BEST PRACTICES (Card Grid) ===== */
+        .startup-collab-security {
+            background-color: var(--dark);
+            color: var(--white);
+        }
+
+        .startup-collab-security .startup-collab-section-title {
+            color: var(--white);
+        }
+
+        .startup-collab-security .startup-collab-section-subtitle {
+            color: var(--gray);
+        }
+
+        .startup-collab-security-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .startup-collab-security-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .startup-collab-security-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .startup-collab-security-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            line-height: 1;
+        }
+
+        .startup-collab-security-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .startup-collab-security-desc {
+            color: #ccc;
+        }
+
+        /* ===== CTA SECTION (Centered Layout) ===== */
+        .startup-collab-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d8ae6 100%);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .startup-collab-cta .startup-collab-section-title {
+            color: var(--white);
+        }
+
+        .startup-collab-cta .startup-collab-section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .startup-collab-cta-btn {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .startup-collab-cta-btn:hover {
+            background: var(--light);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+            .startup-collab-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .startup-collab-featured-grid,
+            .startup-collab-security-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .startup-collab-categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .startup-collab-tools-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .startup-collab-tools-content {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .startup-collab-section {
+                padding: 60px 0;
+            }
+            
+            .startup-collab-section-title {
+                font-size: 2rem;
+            }
+            
+            .startup-collab-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .startup-collab-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .startup-collab-featured-grid,
+            .startup-collab-security-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .startup-collab-category-card {
+                flex-direction: column;
+            }
+            
+            .startup-collab-category-icon {
+                width: 100%;
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .startup-collab-hero-title {
+                font-size: 1.8rem;
+            }
+            
+            .startup-collab-section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body class="startup-collab-body startup-collab-reset">
+    <!-- Hero Section (Asymmetrical Layout) -->
+    <section class="startup-collab-hero">
+        <div class="startup-collab-hero-glow startup-collab-hero-glow-1"></div>
+        <div class="startup-collab-hero-glow startup-collab-hero-glow-2"></div>
+        <div class="startup-collab-hero-content">
+            <h1 class="startup-collab-hero-title">Startup Collaboration Hub</h1>
+            <p class="startup-collab-hero-subtitle">Your comprehensive resource center for tech guides, funding advice, security practices, and tools to accelerate your startup journey.</p>
+            <a href="#resources" class="startup-collab-btn">Explore Resources</a>
+        </div>
+    </section>
+
+    <!-- Featured Resources (Z-Layout) -->
+    <section id="resources" class="startup-collab-section startup-collab-featured">
+        <div class="startup-collab-container">
+            <div class="startup-collab-text-center">
+                <h2 class="startup-collab-section-title">Featured Resources</h2>
+                <p class="startup-collab-section-subtitle">Handpicked guides and templates to help you build, secure, and scale your startup</p>
+            </div>
+            <div class="startup-collab-featured-grid">
+                <div class="startup-collab-featured-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Tech Guide" class="startup-collab-featured-img">
+                    <div class="startup-collab-featured-content">
+                        <span class="startup-collab-featured-tag">Tech Guide</span>
+                        <h3 class="startup-collab-featured-title">Modern Web Architecture</h3>
+                        <p class="startup-collab-featured-desc">Learn how to build scalable and maintainable web applications using modern technologies and best practices.</p>
+                        <a href="#" class="startup-collab-btn">Read Guide</a>
+                    </div>
+                </div>
+                <div class="startup-collab-featured-card">
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Funding Advice" class="startup-collab-featured-img">
+                    <div class="startup-collab-featured-content">
+                        <span class="startup-collab-featured-tag">Funding</span>
+                        <h3 class="startup-collab-featured-title">Seed Funding Strategies</h3>
+                        <p class="startup-collab-featured-desc">Navigate the complex world of startup funding with our comprehensive guide to securing seed capital.</p>
+                        <a href="#" class="startup-collab-btn">Explore</a>
+                    </div>
+                </div>
+                <div class="startup-collab-featured-card">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Security" class="startup-collab-featured-img">
+                    <div class="startup-collab-featured-content">
+                        <span class="startup-collab-featured-tag">Security</span>
+                        <h3 class="startup-collab-featured-title">Infrastructure Security</h3>
+                        <p class="startup-collab-featured-desc">Protect your digital assets with our security framework designed specifically for early-stage companies.</p>
+                        <a href="#" class="startup-collab-btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resource Categories (F-Layout) -->
+    <section class="startup-collab-section">
+        <div class="startup-collab-container">
+            <div class="startup-collab-text-center">
+                <h2 class="startup-collab-section-title">Resource Categories</h2>
+                <p class="startup-collab-section-subtitle">Browse our comprehensive collection of resources organized by topic</p>
+            </div>
+            <div class="startup-collab-categories-grid">
+                <div class="startup-collab-category-card">
+                    <div class="startup-collab-category-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="startup-collab-category-content">
+                        <h3 class="startup-collab-category-title">Tech Guides</h3>
+                        <p class="startup-collab-category-desc">Step-by-step technical guides covering everything from architecture to deployment.</p>
+                        <a href="#" class="startup-collab-category-link">Browse Guides →</a>
+                    </div>
+                </div>
+                <div class="startup-collab-category-card">
+                    <div class="startup-collab-category-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="startup-collab-category-content">
+                        <h3 class="startup-collab-category-title">Funding Advice</h3>
+                        <p class="startup-collab-category-desc">Strategies and templates for securing funding at every stage of your startup.</p>
+                        <a href="#" class="startup-collab-category-link">Explore Funding →</a>
+                    </div>
+                </div>
+                <div class="startup-collab-category-card">
+                    <div class="startup-collab-category-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="startup-collab-category-content">
+                        <h3 class="startup-collab-category-title">Security Practices</h3>
+                        <p class="startup-collab-category-desc">Best practices to secure your infrastructure, data, and applications from day one.</p>
+                        <a href="#" class="startup-collab-category-link">Learn Security →</a>
+                    </div>
+                </div>
+                <div class="startup-collab-category-card">
+                    <div class="startup-collab-category-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="startup-collab-category-content">
+                        <h3 class="startup-collab-category-title">Tools & Templates</h3>
+                        <p class="startup-collab-category-desc">Ready-to-use templates and tools to accelerate your development process.</p>
+                        <a href="#" class="startup-collab-category-link">Get Tools →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Templates (Split Layout) -->
+    <section class="startup-collab-section startup-collab-tools">
+        <div class="startup-collab-container">
+            <div class="startup-collab-tools-grid">
+                <div class="startup-collab-tools-content">
+                    <h2 class="startup-collab-section-title">Tools & Templates</h2>
+                    <p>Accelerate your development with our collection of pre-built templates, security configurations, and infrastructure blueprints.</p>
+                    <ul class="startup-collab-tools-list">
+                        <li class="startup-collab-tools-item">
+                            <span class="startup-collab-tools-check">✓</span>
+                            <span>Secure infrastructure templates for AWS, Azure, and GCP</span>
+                        </li>
+                        <li class="startup-collab-tools-item">
+                            <span class="startup-collab-tools-check">✓</span>
+                            <span>CI/CD pipeline configurations for popular frameworks</span>
+                        </li>
+                        <li class="startup-collab-tools-item">
+                            <span class="startup-collab-tools-check">✓</span>
+                            <span>Data protection and compliance checklists</span>
+                        </li>
+                        <li class="startup-collab-tools-item">
+                            <span class="startup-collab-tools-check">✓</span>
+                            <span>Team collaboration and project management templates</span>
+                        </li>
+                        <li class="startup-collab-tools-item">
+                            <span class="startup-collab-tools-check">✓</span>
+                            <span>Security audit and penetration testing frameworks</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="startup-collab-btn">Access All Tools</a>
+                </div>
+                <div class="startup-collab-tools-visual">
+                    <div class="startup-collab-tools-box">
+                        <div class="startup-collab-tools-box-header">
+                            <div class="startup-collab-tools-box-dot startup-collab-tools-box-dot-red"></div>
+                            <div class="startup-collab-tools-box-dot startup-collab-tools-box-dot-yellow"></div>
+                            <div class="startup-collab-tools-box-dot startup-collab-tools-box-dot-green"></div>
+                        </div>
+                        <div class="startup-collab-tools-box-content">
+                            <div class="startup-collab-tools-box-line"></div>
+                            <div class="startup-collab-tools-box-line startup-collab-tools-box-line-short"></div>
+                            <div class="startup-collab-tools-box-line"></div>
+                            <div class="startup-collab-tools-box-line startup-collab-tools-box-line-short"></div>
+                            <div class="startup-collab-tools-box-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Best Practices (Card Grid) -->
+    <section class="startup-collab-section startup-collab-security">
+        <div class="startup-collab-container">
+            <div class="startup-collab-text-center">
+                <h2 class="startup-collab-section-title">Security Best Practices</h2>
+                <p class="startup-collab-section-subtitle">Essential security measures for early-stage companies to protect their digital assets</p>
+            </div>
+            <div class="startup-collab-security-grid">
+                <div class="startup-collab-security-card">
+                    <div class="startup-collab-security-number">01</div>
+                    <h3 class="startup-collab-security-title">Infrastructure Security</h3>
+                    <p class="startup-collab-security-desc">Implement secure cloud configurations, network segmentation, and access controls from day one.</p>
+                </div>
+                <div class="startup-collab-security-card">
+                    <div class="startup-collab-security-number">02</div>
+                    <h3 class="startup-collab-security-title">Data Protection</h3>
+                    <p class="startup-collab-security-desc">Encrypt sensitive data, implement backup strategies, and establish data retention policies.</p>
+                </div>
+                <div class="startup-collab-security-card">
+                    <div class="startup-collab-security-number">03</div>
+                    <h3 class="startup-collab-security-title">Access Management</h3>
+                    <p class="startup-collab-security-desc">Implement role-based access control, multi-factor authentication, and regular access reviews.</p>
+                </div>
+                <div class="startup-collab-security-card">
+                    <div class="startup-collab-security-number">04</div>
+                    <h3 class="startup-collab-security-title">Secure Development</h3>
+                    <p class="startup-collab-security-desc">Integrate security into your development lifecycle with code reviews and security testing.</p>
+                </div>
+                <div class="startup-collab-security-card">
+                    <div class="startup-collab-security-number">05</div>
+                    <h3 class="startup-collab-security-title">Incident Response</h3>
+                    <p class="startup-collab-security-desc">Prepare for security incidents with documented response plans and regular drills.</p>
+                </div>
+                <div class="startup-collab-security-card">
+                    <div class="startup-collab-security-number">06</div>
+                    <h3 class="startup-collab-security-title">Compliance Framework</h3>
+                    <p class="startup-collab-security-desc">Build compliance into your processes for regulations like GDPR, CCPA, and industry standards.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section (Centered Layout) -->
+    <section class="startup-collab-section startup-collab-cta">
+        <div class="startup-collab-container">
+            <div class="startup-collab-text-center">
+                <h2 class="startup-collab-section-title">Ready to Accelerate Your Startup?</h2>
+                <p class="startup-collab-section-subtitle">Join our community of founders and access all our resources, tools, and expert guidance in one place.</p>
+                <a href="#" class="startup-collab-btn startup-collab-cta-btn">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll animation to cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all cards for animation
+            const cards = document.querySelectorAll('.startup-collab-featured-card, .startup-collab-category-card, .startup-collab-security-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+
+            // Add hover effect to security cards
+            const securityCards = document.querySelectorAll('.startup-collab-security-card');
+            securityCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Insights | Hyperion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-blue: #1199fa;
+            --deep-navy: #010119;
+            --pure-white: #fff;
+            --light-gray: #f4f4f4;
+            --pure-black: #000;
+            --medium-gray: #e5e5e5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .hyperion-insights-container {
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        /* Section Spacing */
+        .hyperion-section {
+            padding: 100px 0;
+        }
+        
+        .hyperion-section-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+        
+        .hyperion-section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--pure-white);
+        }
+        
+        .hyperion-section-subtitle {
+            font-size: 1.3rem;
+            color: var(--medium-gray);
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+        
+        /* Hero Section - Asymmetrical Layout */
+        .hyperion-hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hyperion-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(1, 1, 25, 0.85), rgba(1, 1, 25, 0.9)), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            z-index: -2;
+        }
+        
+        .hyperion-hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, rgba(17, 153, 250, 0) 70%);
+            top: 50%;
+            right: -100px;
+            transform: translateY(-50%);
+            z-index: -1;
+            filter: blur(40px);
+        }
+        
+        .hyperion-hero-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .hyperion-hero-text {
+            max-width: 700px;
+        }
+        
+        .hyperion-hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hyperion-hero-title span {
+            color: var(--primary-blue);
+        }
+        
+        .hyperion-hero-description {
+            font-size: 1.3rem;
+            color: var(--medium-gray);
+            margin-bottom: 2.5rem;
+        }
+        
+        .hyperion-hero-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hyperion-data-sphere {
+            position: relative;
+            width: 450px;
+            height: 450px;
+        }
+        
+        .hyperion-sphere {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, var(--primary-blue) 0%, transparent 70%);
+            box-shadow: 0 0 100px rgba(17, 153, 250, 0.5);
+            position: relative;
+            overflow: hidden;
+            animation: rotate 30s infinite linear;
+        }
+        
+        .hyperion-sphere-inner {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1865&q=80') center/cover no-repeat;
+            opacity: 0.7;
+        }
+        
+        .hyperion-data-points {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .hyperion-data-point {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 15px var(--primary-blue);
+            transform: translate(-50%, -50%);
+        }
+        
+        .hyperion-data-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
+            transform-origin: left center;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Key Trends Section - F Layout */
+        .hyperion-trends-section {
+            background-color: var(--pure-white);
+            color: var(--deep-navy);
+        }
+        
+        .hyperion-trends-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        
+        .hyperion-trends-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hyperion-trends-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .hyperion-trends-description {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        
+        .hyperion-trends-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .hyperion-trend-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        
+        .hyperion-trend-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-blue);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .hyperion-trend-text h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--deep-navy);
+        }
+        
+        .hyperion-trend-text p {
+            color: #666;
+        }
+        
+        .hyperion-trends-visual {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a7cc9 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hyperion-chart-container {
+            width: 90%;
+            height: 90%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+        }
+        
+        /* Market Data Section - Z Layout */
+        .hyperion-data-section {
+            background-color: var(--deep-navy);
+        }
+        
+        .hyperion-data-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .hyperion-data-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+        
+        .hyperion-data-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hyperion-data-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(17, 153, 250, 0.2);
+        }
+        
+        .hyperion-data-card-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--pure-white);
+        }
+        
+        .hyperion-data-card-chart {
+            height: 250px;
+            margin-bottom: 20px;
+        }
+        
+        .hyperion-data-card-stats {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .hyperion-stat {
+            text-align: center;
+        }
+        
+        .hyperion-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .hyperion-stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+        
+        /* Industry Shifts Section - Grid Layout */
+        .hyperion-shifts-section {
+            background-color: var(--light-gray);
+            color: var(--deep-navy);
+        }
+        
+        .hyperion-shifts-title {
+            color: var(--deep-navy);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hyperion-shifts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .hyperion-shift-card {
+            background-color: var(--pure-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hyperion-shift-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .hyperion-shift-visual {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .hyperion-shift-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+        }
+        
+        .hyperion-shift-content {
+            padding: 30px;
+        }
+        
+        .hyperion-shift-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .hyperion-shift-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--deep-navy);
+        }
+        
+        .hyperion-shift-description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .hyperion-shift-stats {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--medium-gray);
+            padding-top: 20px;
+        }
+        
+        .hyperion-shift-stat {
+            text-align: center;
+        }
+        
+        .hyperion-shift-stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+        
+        .hyperion-shift-stat-label {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Video Section */
+        .hyperion-video-section {
+            background-color: var(--deep-navy);
+            padding: 100px 0;
+        }
+        
+        .hyperion-video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hyperion-video-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .hyperion-video-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--pure-white);
+        }
+        
+        .hyperion-video-description {
+            font-size: 1.2rem;
+            color: var(--medium-gray);
+            margin-bottom: 2rem;
+        }
+        
+        .hyperion-video-features {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .hyperion-video-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .hyperion-video-feature i {
+            color: var(--primary-blue);
+            font-size: 1.2rem;
+        }
+        
+        .hyperion-video-feature span {
+            color: var(--medium-gray);
+        }
+        
+        .hyperion-video-player {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hyperion-video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a7cc9 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+        }
+        
+        .hyperion-video-play-button {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .hyperion-video-play-button:hover {
+            transform: scale(1.1);
+            background-color: white;
+        }
+        
+        .hyperion-video-play-button i {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-left: 5px;
+        }
+        
+        .hyperion-video-placeholder-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Interactive Infographic Section */
+        .hyperion-infographic-section {
+            background-color: var(--deep-navy);
+            padding: 100px 0;
+        }
+        
+        .hyperion-infographic-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .hyperion-infographic {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+        
+        .hyperion-infographic-step {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+        
+        .hyperion-infographic-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .hyperion-step-visual {
+            flex: 1;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hyperion-step-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1) 0%, rgba(17, 153, 250, 0.05) 100%);
+        }
+        
+        .hyperion-step-content {
+            flex: 1;
+        }
+        
+        .hyperion-step-number {
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            line-height: 1;
+        }
+        
+        .hyperion-step-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--pure-white);
+        }
+        
+        .hyperion-step-description {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+        }
+        
+        /* CTA Section */
+        .hyperion-cta-section {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #0a0a2a 100%);
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .hyperion-cta-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hyperion-cta-description {
+            font-size: 1.3rem;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .hyperion-cta-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background-color: var(--primary-blue);
+            color: var(--pure-white);
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(17, 153, 250, 0.3);
+            font-size: 1.1rem;
+        }
+        
+        .hyperion-cta-button:hover {
+            background-color: #0d8ae6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(17, 153, 250, 0.4);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hyperion-hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 50px;
+            }
+            
+            .hyperion-hero-title {
+                font-size: 3.5rem;
+            }
+            
+            .hyperion-trends-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hyperion-data-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .hyperion-video-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hyperion-infographic-step {
+                flex-direction: column !important;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hyperion-section {
+                padding: 80px 0;
+            }
+            
+            .hyperion-section-inner {
+                padding: 0 20px;
+            }
+            
+            .hyperion-section-title {
+                font-size: 2.5rem;
+            }
+            
+            .hyperion-hero-title {
+                font-size: 2.8rem;
+            }
+            
+            .hyperion-data-sphere {
+                width: 300px;
+                height: 300px;
+            }
+            
+            .hyperion-trends-visual {
+                height: 400px;
+            }
+            
+            .hyperion-shifts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hyperion-cta-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hyperion-section {
+                padding: 60px 0;
+            }
+            
+            .hyperion-hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hyperion-data-sphere {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .hyperion-cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hyperion-insights-container">
+        <!-- Hero Section - Asymmetrical Layout -->
+        <section class="hyperion-hero-section">
+            <div class="hyperion-hero-bg"></div>
+            <div class="hyperion-hero-glow"></div>
+            <div class="hyperion-hero-content">
+                <div class="hyperion-hero-text">
+                    <h1 class="hyperion-hero-title">Market <span>Insights</span> & Digital Intelligence</h1>
+                    <p class="hyperion-hero-description">Data-driven analysis of technology trends, market shifts, and digital transformation patterns. Uncover opportunities with our comprehensive market intelligence.</p>
+                    <a href="#trends" class="hyperion-cta-button">Explore Trends</a>
+                </div>
+                <div class="hyperion-hero-visual">
+                    <div class="hyperion-data-sphere">
+                        <div class="hyperion-sphere">
+                            <div class="hyperion-sphere-inner"></div>
+                        </div>
+                        <div class="hyperion-data-points" id="hyperionDataPoints"></div>
+                        <div class="hyperion-data-connections" id="hyperionDataConnections"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Key Trends Section - F Layout -->
+        <section class="hyperion-section hyperion-trends-section" id="trends">
+            <div class="hyperion-section-inner">
+                <h2 class="hyperion-section-title hyperion-trends-title">Key Digital Transformation Trends</h2>
+                <p class="hyperion-section-subtitle" style="color: #666;">Understanding the forces shaping tomorrow's technology landscape</p>
+                
+                <div class="hyperion-trends-grid">
+                    <div class="hyperion-trends-text">
+                        <p class="hyperion-trends-description">The digital landscape is evolving at an unprecedented pace. Our research identifies the critical trends that will define the next decade of technological innovation and business transformation.</p>
+                        
+                        <div class="hyperion-trends-list">
+                            <div class="hyperion-trend-item">
+                                <div class="hyperion-trend-icon">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="hyperion-trend-text">
+                                    <h3>AI Integration Acceleration</h3>
+                                    <p>Enterprise AI adoption has increased by 270% in the past two years, with 68% of large organizations implementing AI solutions.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="hyperion-trend-item">
+                                <div class="hyperion-trend-icon">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M19.4 15C19.2669 15.3042 19.1333 15.6081 19 15.9115C18.438 17.1494 17.7471 18.3219 16.936 19.406C15.67 21.135 13.971 22.365 12 22.365C10.029 22.365 8.33 21.135 7.064 19.406C5.798 17.677 5 15.635 5 13.365C5 11.095 5.798 9.053 7.064 7.324C8.33 5.595 10.029 4.365 12 4.365C13.971 4.365 15.67 5.595 16.936 7.324C17.747 8.408 18.438 9.5806 19 10.8185C19.1333 11.1219 19.2669 11.4258 19.4 11.73" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="hyperion-trend-text">
+                                    <h3>Edge Computing Expansion</h3>
+                                    <p>By 2025, 75% of enterprise data will be processed outside traditional centralized data centers, up from less than 10% in 2021.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="hyperion-trend-item">
+                                <div class="hyperion-trend-icon">
+                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="hyperion-trend-text">
+                                    <h3>Sustainable Technology</h3>
+                                    <p>Green IT initiatives are projected to reduce global carbon emissions by 15% by 2030, with 82% of organizations prioritizing sustainability.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-trends-visual">
+                        <div class="hyperion-chart-container">
+                            <canvas id="hyperionTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Market Data Section - Z Layout -->
+        <section class="hyperion-section hyperion-data-section">
+            <div class="hyperion-section-inner">
+                <h2 class="hyperion-section-title">Market Data & Analytics</h2>
+                <p class="hyperion-section-subtitle">Quantitative insights into technology adoption and market dynamics</p>
+                
+                <div class="hyperion-data-cards">
+                    <div class="hyperion-data-card">
+                        <h3 class="hyperion-data-card-title">Cloud Computing Growth</h3>
+                        <div class="hyperion-data-card-chart">
+                            <canvas id="hyperionCloudChart"></canvas>
+                        </div>
+                        <div class="hyperion-data-card-stats">
+                            <div class="hyperion-stat">
+                                <div class="hyperion-stat-value">87%</div>
+                                <div class="hyperion-stat-label">Enterprise Adoption</div>
+                            </div>
+                            <div class="hyperion-stat">
+                                <div class="hyperion-stat-value">$832B</div>
+                                <div class="hyperion-stat-label">Market Value 2024</div>
+                            </div>
+                            <div class="hyperion-stat">
+                                <div class="hyperion-stat-value">18.5%</div>
+                                <div class="hyperion-stat-label">Annual Growth</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-data-card">
+                        <h3 class="hyperion-data-card-title">AI Investment Trends</h3>
+                        <div class="hyperion-data-card-chart">
+                            <canvas id="hyperionAIChart"></canvas>
+                        </div>
+                        <div class="hyperion-data-card-stats">
+                            <div class="hyperion-stat">
+                                <div class="hyperion-stat-value">$154B</div>
+                                <div class="hyperion-stat-label">Global Investment</div>
+                            </div>
+                            <div class="hyperion-stat">
+                                <div class="hyperion-stat-value">42%</div>
+                                <div class="hyperion-stat-label">ROI Increase</div>
+                            </div>
+                            <div class="hyperion-stat">
+                                <div class="hyperion-stat-value">3.2M</div>
+                                <div class="hyperion-stat-label">AI Jobs Created</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Video Section -->
+        <section class="hyperion-section hyperion-video-section">
+            <div class="hyperion-section-inner">
+                <div class="hyperion-video-container">
+                    <div class="hyperion-video-content">
+                        <h2 class="hyperion-video-title">Tech Market Explained by Our Experts</h2>
+                        <p class="hyperion-video-description">Gain valuable insights from our industry specialists as they break down complex market dynamics and emerging opportunities in the technology sector.</p>
+                        
+                        <div class="hyperion-video-features">
+                            <div class="hyperion-video-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Analysis of current market conditions</span>
+                            </div>
+                            <div class="hyperion-video-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Emerging technology opportunities</span>
+                            </div>
+                            <div class="hyperion-video-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Strategic investment recommendations</span>
+                            </div>
+                            <div class="hyperion-video-feature">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Future market projections</span>
+                            </div>
+                        </div>
+                        
+                        <a href="#" class="hyperion-cta-button">Watch Full Analysis</a>
+                    </div>
+                    
+                    <div class="hyperion-video-player">
+                        <div class="hyperion-video-placeholder">
+                            <div class="hyperion-video-play-button" id="hyperionVideoPlayButton">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="hyperion-video-placeholder-text">Tech Market Analysis 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Industry Shifts Section - Grid Layout -->
+        <section class="hyperion-section hyperion-shifts-section">
+            <div class="hyperion-section-inner">
+                <h2 class="hyperion-section-title hyperion-shifts-title">Industry Transformation Snapshots</h2>
+                <p class="hyperion-section-subtitle" style="color: #666; text-align: center;">Visualizing the impact of digital disruption across sectors</p>
+                
+                <div class="hyperion-shifts-grid">
+                    <div class="hyperion-shift-card">
+                        <div class="hyperion-shift-visual" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <div class="hyperion-shift-overlay">
+                                <span class="hyperion-shift-tag">FINANCIAL SERVICES</span>
+                            </div>
+                        </div>
+                        <div class="hyperion-shift-content">
+                            <h3 class="hyperion-shift-name">Digital Banking Revolution</h3>
+                            <p class="hyperion-shift-description">Traditional banking models are being disrupted by fintech innovations, with digital-only banks capturing 25% of new accounts globally.</p>
+                            <div class="hyperion-shift-stats">
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">64%</div>
+                                    <div class="hyperion-shift-stat-label">Digital Transactions</div>
+                                </div>
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">$1.2T</div>
+                                    <div class="hyperion-shift-stat-label">Fintech Valuation</div>
+                                </div>
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">3.5x</div>
+                                    <div class="hyperion-shift-stat-label">Growth Rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-shift-card">
+                        <div class="hyperion-shift-visual" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <div class="hyperion-shift-overlay">
+                                <span class="hyperion-shift-tag">HEALTHCARE</span>
+                            </div>
+                        </div>
+                        <div class="hyperion-shift-content">
+                            <h3 class="hyperion-shift-name">Telemedicine Expansion</h3>
+                            <p class="hyperion-shift-description">Virtual healthcare services have grown by 380% since 2020, with AI diagnostics improving accuracy by 32%.</p>
+                            <div class="hyperion-shift-stats">
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">76%</div>
+                                    <div class="hyperion-shift-stat-label">Adoption Rate</div>
+                                </div>
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">$280B</div>
+                                    <div class="hyperion-shift-stat-label">Market Value</div>
+                                </div>
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">2.1B</div>
+                                    <div class="hyperion-shift-stat-label">Virtual Consultations</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-shift-card">
+                        <div class="hyperion-shift-visual" style="background-image: url('https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2052&q=80');">
+                            <div class="hyperion-shift-overlay">
+                                <span class="hyperion-shift-tag">RETAIL</span>
+                            </div>
+                        </div>
+                        <div class="hyperion-shift-content">
+                            <h3 class="hyperion-shift-name">E-commerce Evolution</h3>
+                            <p class="hyperion-shift-description">Augmented reality and AI personalization are transforming online shopping, with AR increasing conversion rates by 40%.</p>
+                            <div class="hyperion-shift-stats">
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">$6.5T</div>
+                                    <div class="hyperion-shift-stat-label">Global E-commerce</div>
+                                </div>
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">58%</div>
+                                    <div class="hyperion-shift-stat-label">Mobile Sales</div>
+                                </div>
+                                <div class="hyperion-shift-stat">
+                                    <div class="hyperion-shift-stat-value">22%</div>
+                                    <div class="hyperion-shift-stat-label">Annual Growth</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Interactive Infographic Section -->
+        <section class="hyperion-infographic-section">
+            <div class="hyperion-section-inner">
+                <h2 class="hyperion-section-title">The Digital Transformation Journey</h2>
+                <p class="hyperion-section-subtitle">A visual guide to organizational digital maturity</p>
+                
+                <div class="hyperion-infographic">
+                    <div class="hyperion-infographic-step">
+                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');">
+                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
+                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Digital Foundation</h3>
+                                <p>Establishing core infrastructure</p>
+                            </div>
+                        </div>
+                        <div class="hyperion-step-content">
+                            <div class="hyperion-step-number">01</div>
+                            <h3 class="hyperion-step-title">Digital Foundation</h3>
+                            <p class="hyperion-step-description">Establishing core digital infrastructure, cloud migration, and basic automation. Organizations at this stage see 15-25% efficiency gains through process digitization.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-infographic-step">
+                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');">
+                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
+                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Data Integration</h3>
+                                <p>Implementing advanced analytics</p>
+                            </div>
+                        </div>
+                        <div class="hyperion-step-content">
+                            <div class="hyperion-step-number">02</div>
+                            <h3 class="hyperion-step-title">Data Integration</h3>
+                            <p class="hyperion-step-description">Implementing advanced analytics, data lakes, and AI-driven insights. Companies achieve 30-50% better decision-making with integrated data systems.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-infographic-step">
+                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
+                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
+                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Intelligent Automation</h3>
+                                <p>Deploying AI and machine learning</p>
+                            </div>
+                        </div>
+                        <div class="hyperion-step-content">
+                            <div class="hyperion-step-number">03</div>
+                            <h3 class="hyperion-step-title">Intelligent Automation</h3>
+                            <p class="hyperion-step-description">Deploying AI, machine learning, and robotic process automation. Organizations report 40-60% cost reduction in automated processes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="hyperion-infographic-step">
+                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');">
+                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
+                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Ecosystem Integration</h3>
+                                <p>Creating connected digital ecosystems</p>
+                            </div>
+                        </div>
+                        <div class="hyperion-step-content">
+                            <div class="hyperion-step-number">04</div>
+                            <h3 class="hyperion-step-title">Ecosystem Integration</h3>
+                            <p class="hyperion-step-description">Creating connected digital ecosystems with partners, suppliers, and customers. Businesses achieve 2-3x faster innovation cycles through collaboration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="hyperion-section hyperion-cta-section">
+            <div class="hyperion-section-inner">
+                <h2 class="hyperion-cta-title">Access Deeper Market Intelligence</h2>
+                <p class="hyperion-cta-description">Get customized insights and strategic analysis tailored to your industry and business objectives. Our advanced analytics platform delivers actionable intelligence for informed decision-making.</p>
+                <a href="#" class="hyperion-cta-button">Request Custom Report</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Data Sphere Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataPoints = document.getElementById('hyperionDataPoints');
+            const dataConnections = document.getElementById('hyperionDataConnections');
+            const pointCount = 25;
+            const connectionCount = 15;
+            
+            // Create data points
+            for (let i = 0; i < pointCount; i++) {
+                const point = document.createElement('div');
+                point.className = 'hyperion-data-point';
+                
+                // Random position on sphere surface
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos((Math.random() * 2) - 1);
+                
+                const x = 50 + 45 * Math.sin(phi) * Math.cos(theta);
+                const y = 50 + 45 * Math.sin(phi) * Math.sin(theta);
+                
+                point.style.left = `${x}%`;
+                point.style.top = `${y}%`;
+                
+                // Random animation delay
+                point.style.animationDelay = `${Math.random() * 5}s`;
+                
+                dataPoints.appendChild(point);
+            }
+            
+            // Create connections between points
+            for (let i = 0; i < connectionCount; i++) {
+                const connection = document.createElement('div');
+                connection.className = 'hyperion-data-connection';
+                
+                // Random start and end points
+                const startX = 20 + Math.random() * 60;
+                const startY = 20 + Math.random() * 60;
+                const endX = 20 + Math.random() * 60;
+                const endY = 20 + Math.random() * 60;
+                
+                // Calculate distance and angle
+                const dx = endX - startX;
+                const dy = endY - startY;
+                const length = Math.sqrt(dx * dx + dy * dy);
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                
+                connection.style.width = `${length}%`;
+                connection.style.left = `${startX}%`;
+                connection.style.top = `${startY}%`;
+                connection.style.transform = `rotate(${angle}deg)`;
+                
+                // Random animation
+                connection.style.animation = `pulse ${3 + Math.random() * 4}s infinite`;
+                
+                dataConnections.appendChild(connection);
+            }
+            
+            // Add pulsing animation for connections
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes pulse {
+                    0%, 100% { opacity: 0.2; }
+                    50% { opacity: 0.8; }
+                }
+                
+                .hyperion-data-point {
+                    animation: pulse 3s infinite;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Video Play Button Functionality
+            const videoPlayButton = document.getElementById('hyperionVideoPlayButton');
+            videoPlayButton.addEventListener('click', function() {
+                // In a real implementation, this would trigger a video modal or player
+                alert('Video player would open here with tech market analysis content');
+            });
+            
+            // Initialize Charts
+            initializeCharts();
+            
+            // Scroll animations
+            initializeScrollAnimations();
+        });
+        
+        function initializeCharts() {
+            // Trend Chart
+            const trendCtx = document.getElementById('hyperionTrendChart').getContext('2d');
+            const trendChart = new Chart(trendCtx, {
+                type: 'line',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [
+                        {
+                            label: 'AI Adoption',
+                            data: [15, 22, 35, 48, 62, 78],
+                            borderColor: '#1199fa',
+                            backgroundColor: 'rgba(17, 153, 250, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'Cloud Migration',
+                            data: [42, 51, 59, 68, 76, 87],
+                            borderColor: '#0d8ae6',
+                            backgroundColor: 'rgba(13, 138, 230, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        },
+                        {
+                            label: 'IoT Implementation',
+                            data: [28, 35, 43, 52, 61, 73],
+                            borderColor: '#0a7cc9',
+                            backgroundColor: 'rgba(10, 124, 201, 0.1)',
+                            tension: 0.4,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        title: {
+                            display: true,
+                            text: 'Technology Adoption Trends (%)'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // Cloud Chart
+            const cloudCtx = document.getElementById('hyperionCloudChart').getContext('2d');
+            const cloudChart = new Chart(cloudCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
+                    datasets: [{
+                        label: 'Cloud Market Value ($B)',
+                        data: [272, 371, 482, 574, 682, 832],
+                        backgroundColor: [
+                            'rgba(17, 153, 250, 0.7)',
+                            'rgba(17, 153, 250, 0.7)',
+                            'rgba(17, 153, 250, 0.7)',
+                            'rgba(17, 153, 250, 0.7)',
+                            'rgba(17, 153, 250, 0.7)',
+                            'rgba(17, 153, 250, 0.7)'
+                        ],
+                        borderColor: [
+                            '#1199fa',
+                            '#1199fa',
+                            '#1199fa',
+                            '#1199fa',
+                            '#1199fa',
+                            '#1199fa'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // AI Chart
+            const aiCtx = document.getElementById('hyperionAIChart').getContext('2d');
+            const aiChart = new Chart(aiCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['North America', 'Europe', 'Asia Pacific', 'Other Regions'],
+                    datasets: [{
+                        data: [42, 28, 24, 6],
+                        backgroundColor: [
+                            'rgba(17, 153, 250, 0.8)',
+                            'rgba(13, 138, 230, 0.8)',
+                            'rgba(10, 124, 201, 0.8)',
+                            'rgba(7, 109, 172, 0.8)'
+                        ],
+                        borderColor: [
+                            '#1199fa',
+                            '#0d8ae6',
+                            '#0a7cc9',
+                            '#076dac'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initializeScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            document.querySelectorAll('.hyperion-trend-item, .hyperion-data-card, .hyperion-shift-card, .hyperion-infographic-step').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+        }
+    </script>
+</body>
+</html>

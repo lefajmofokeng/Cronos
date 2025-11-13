@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account & Billing | Your Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1199fa;
+            --dark-blue: #010119;
+            --white: #fff;
+            --light-gray: #f4f4f4;
+            --black: #000;
+            --off-white: #e5e5e5;
+            --section-padding: 5rem 1.5rem;
+            --container-max-width: 1200px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-blue);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Account Billing Page Styles */
+        .account-billing-page {
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .account-billing-hero {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--section-padding);
+            background: linear-gradient(rgba(1, 1, 25, 0.85), rgba(1, 1, 25, 0.9)), 
+                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') no-repeat center center/cover;
+            text-align: center;
+        }
+
+        .account-billing-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(17, 153, 250, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .account-billing-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .account-billing-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--white), var(--primary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .account-billing-hero p {
+            font-size: 1.2rem;
+            color: var(--off-white);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .account-billing-hero-badge {
+            display: inline-block;
+            background: rgba(17, 153, 250, 0.2);
+            color: var(--primary-blue);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(17, 153, 250, 0.3);
+        }
+
+        /* Section Common Styles */
+        .account-billing-section {
+            padding: var(--section-padding);
+        }
+
+        .account-billing-container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+        }
+
+        .account-billing-section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .account-billing-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        /* Account Management Section - Asymmetrical Layout */
+        .account-management-section {
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.95) 0%, rgba(5, 15, 45, 0.9) 100%);
+        }
+
+        .account-management-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .account-management-content {
+            padding-right: 2rem;
+        }
+
+        .account-management-image {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            height: 400px;
+            background: linear-gradient(45deg, var(--primary-blue), #0d7ac9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .account-management-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80') no-repeat center center/cover;
+            opacity: 0.7;
+        }
+
+        .account-management-features {
+            margin-top: 2rem;
+        }
+
+        .account-management-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .account-management-feature-icon {
+            background: rgba(17, 153, 250, 0.1);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(17, 153, 250, 0.2);
+        }
+
+        .account-management-feature-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .account-management-feature-content p {
+            color: var(--off-white);
+            font-size: 0.95rem;
+        }
+
+        /* Billing & Payments Section - Z Layout */
+        .billing-payments-section {
+            background: var(--dark-blue);
+        }
+
+        .billing-payments-zlayout {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .billing-payments-row {
+            display: flex;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+
+        .billing-payments-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .billing-payments-content {
+            flex: 1;
+            padding: 0 3rem;
+        }
+
+        .billing-payments-visual {
+            flex: 1;
+            position: relative;
+            height: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, rgba(17, 153, 250, 0.1), rgba(17, 153, 250, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .billing-payments-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80') no-repeat center center/cover;
+            opacity: 0.6;
+        }
+
+        .billing-payments-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .billing-payments-content p {
+            color: var(--off-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .billing-payments-list {
+            list-style: none;
+        }
+
+        .billing-payments-list li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .billing-payments-list li::before {
+            content: '✓';
+            color: var(--primary-blue);
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        /* Package Plans Section - F Layout with Accordion */
+        .package-plans-section {
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.95) 0%, rgba(5, 15, 45, 0.9) 100%);
+        }
+
+        .package-plans-flayout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .package-plans-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .package-plans-content p {
+            color: var(--off-white);
+            margin-bottom: 2rem;
+        }
+
+        .package-plans-accordion {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .package-plans-accordion-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .package-plans-accordion-item:last-child {
+            border-bottom: none;
+        }
+
+        .package-plans-accordion-header {
+            padding: 1.5rem;
+            background: rgba(17, 153, 250, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .package-plans-accordion-header:hover {
+            background: rgba(17, 153, 250, 0.15);
+        }
+
+        .package-plans-accordion-header h4 {
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        .package-plans-accordion-icon {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .package-plans-accordion-content {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .package-plans-accordion-content.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .package-plans-accordion-content p {
+            color: var(--off-white);
+            margin-bottom: 1rem;
+        }
+
+        .package-plans-accordion-content ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+
+        .package-plans-accordion-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--off-white);
+        }
+
+        .package-plans-accordion-content li::before {
+            content: '•';
+            color: var(--primary-blue);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        /* Support Section - Card Layout */
+        .support-section {
+            background: var(--dark-blue);
+        }
+
+        .support-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .support-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(17, 153, 250, 0.3);
+        }
+
+        .support-card-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            border: 1px solid rgba(17, 153, 250, 0.2);
+        }
+
+        .support-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .support-card p {
+            color: var(--off-white);
+            margin-bottom: 1.5rem;
+        }
+
+        .support-card-button {
+            display: inline-block;
+            background: transparent;
+            color: var(--primary-blue);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .support-card-button:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Security Section - Split Layout */
+        .security-section {
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.95) 0%, rgba(5, 15, 45, 0.9) 100%);
+        }
+
+        .security-split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .security-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .security-content p {
+            color: var(--off-white);
+            margin-bottom: 2rem;
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .security-feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .security-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(17, 153, 250, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            border: 1px solid rgba(17, 153, 250, 0.2);
+        }
+
+        .security-feature h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .security-feature p {
+            font-size: 0.9rem;
+            color: var(--off-white);
+            margin-bottom: 0;
+        }
+
+        .security-visual {
+            position: relative;
+            height: 400px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, rgba(17, 153, 250, 0.1), rgba(17, 153, 250, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .security-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80') no-repeat center center/cover;
+            opacity: 0.6;
+        }
+
+        /* CTA Section */
+        .account-billing-cta {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0d7ac9 100%);
+            padding: 5rem 1.5rem;
+            text-align: center;
+        }
+
+        .account-billing-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .account-billing-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--light-gray);
+        }
+
+        .account-billing-cta-button {
+            display: inline-block;
+            background: var(--white);
+            color: var(--primary-blue);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .account-billing-cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .account-management-grid,
+            .package-plans-flayout,
+            .security-split-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .account-management-content {
+                padding-right: 0;
+            }
+
+            .billing-payments-row,
+            .billing-payments-row:nth-child(even) {
+                flex-direction: column;
+                margin-bottom: 3rem;
+            }
+
+            .billing-payments-content {
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+
+            .security-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .account-billing-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .account-billing-section-title {
+                font-size: 2rem;
+            }
+
+            .support-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .account-billing-hero h1 {
+                font-size: 2rem;
+            }
+
+            .account-billing-section {
+                padding: 3rem 1rem;
+            }
+
+            .account-billing-section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="account-billing-page">
+        <!-- Hero Section -->
+        <section class="account-billing-hero">
+            <div class="account-billing-hero-content">
+                <span class="account-billing-hero-badge">NEW FEATURE</span>
+                <h1>Account & Billing Management</h1>
+                <p>Take control of your account, payments, and subscriptions with our intuitive management platform. Designed for clarity and efficiency.</p>
+                <a href="#account-management" class="account-billing-cta-button">Get Started</a>
+            </div>
+        </section>
+
+        <!-- Account Management Section -->
+        <section id="account-management" class="account-billing-section account-management-section">
+            <div class="account-billing-container">
+                <h2 class="account-billing-section-title">Account Management</h2>
+                <div class="account-management-grid">
+                    <div class="account-management-content">
+                        <p>Easily manage your profile, update contact information, and control your service subscriptions from one centralized dashboard.</p>
+                        <div class="account-management-features">
+                            <div class="account-management-feature">
+                                <div class="account-management-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <div class="account-management-feature-content">
+                                    <h3>Profile Management</h3>
+                                    <p>Update your personal information, contact details, and preferences anytime.</p>
+                                </div>
+                            </div>
+                            <div class="account-management-feature">
+                                <div class="account-management-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 6H12L10 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V8C22 6.9 21.1 6 20 6ZM20 18H4V8H20V18Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <div class="account-management-feature-content">
+                                    <h3>Subscription Control</h3>
+                                    <p>Activate, pause, or cancel your service subscriptions with a single click.</p>
+                                </div>
+                            </div>
+                            <div class="account-management-feature">
+                                <div class="account-management-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM11 16H13V18H11V16ZM12 6C9.79 6 8 7.79 8 10H10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10C14 12 11 11.75 11 15H13C13 12.75 16 12.5 16 10C16 7.79 14.21 6 12 6Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <div class="account-management-feature-content">
+                                    <h3>Usage Analytics</h3>
+                                    <p>Monitor your service usage and access detailed reports on your activity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="account-management-image">
+                        <!-- Background image applied via CSS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Billing & Payments Section -->
+        <section class="account-billing-section billing-payments-section">
+            <div class="account-billing-container">
+                <h2 class="account-billing-section-title">Billing & Payments</h2>
+                <div class="billing-payments-zlayout">
+                    <div class="billing-payments-row">
+                        <div class="billing-payments-content">
+                            <h3>Invoice Management</h3>
+                            <p>Access all your invoices in one place, download PDF copies, and track payment history with our comprehensive billing system.</p>
+                            <ul class="billing-payments-list">
+                                <li>View and download past invoices</li>
+                                <li>Automated payment receipts</li>
+                                <li>Detailed billing history</li>
+                                <li>Tax documentation access</li>
+                            </ul>
+                        </div>
+                        <div class="billing-payments-visual">
+                            <!-- Background image applied via CSS -->
+                        </div>
+                    </div>
+                    <div class="billing-payments-row">
+                        <div class="billing-payments-content">
+                            <h3>Payment Methods</h3>
+                            <p>Securely manage your payment options with support for multiple credit cards, bank transfers, and digital wallets.</p>
+                            <ul class="billing-payments-list">
+                                <li>Credit & debit card support</li>
+                                <li>Bank transfer options</li>
+                                <li>Digital wallet integration</li>
+                                <li>Auto-pay configuration</li>
+                            </ul>
+                        </div>
+                        <div class="billing-payments-visual">
+                            <!-- Background image applied via CSS -->
+                        </div>
+                    </div>
+                    <div class="billing-payments-row">
+                        <div class="billing-payments-content">
+                            <h3>Recurring Billing</h3>
+                            <p>Set up automatic payments for your subscriptions and never worry about manual payments or service interruptions.</p>
+                            <ul class="billing-payments-list">
+                                <li>Flexible billing cycles</li>
+                                <li>Prorated charges for upgrades</li>
+                                <li>Payment failure notifications</li>
+                                <li>Billing date customization</li>
+                            </ul>
+                        </div>
+                        <div class="billing-payments-visual">
+                            <!-- Background image applied via CSS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Package Plans Section -->
+        <section class="account-billing-section package-plans-section">
+            <div class="account-billing-container">
+                <h2 class="account-billing-section-title">Package Plans</h2>
+                <div class="package-plans-flayout">
+                    <div class="package-plans-content">
+                        <h3>What is your installment package plan?</h3>
+                        <p>We offer flexible payment options to suit your business needs. Choose from our installment plans designed to provide financial flexibility while accessing our premium services.</p>
+                        <p>All plans include full access to our service features, with the option to upgrade or downgrade at any time. Billing cycles are customizable to match your cash flow requirements.</p>
+                    </div>
+                    <div class="package-plans-accordion">
+                        <div class="package-plans-accordion-item">
+                            <div class="package-plans-accordion-header">
+                                <h4>Basic Plan</h4>
+                                <span class="package-plans-accordion-icon">+</span>
+                            </div>
+                            <div class="package-plans-accordion-content">
+                                <p>Our entry-level package perfect for small businesses and startups.</p>
+                                <ul>
+                                    <li>Essential features only</li>
+                                    <li>Monthly billing at $29/month</li>
+                                    <li>Standard support</li>
+                                    <li>Up to 5 user accounts</li>
+                                    <li>Basic analytics</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="package-plans-accordion-item">
+                            <div class="package-plans-accordion-header">
+                                <h4>Professional Plan</h4>
+                                <span class="package-plans-accordion-icon">+</span>
+                            </div>
+                            <div class="package-plans-accordion-content">
+                                <p>Our most popular plan for growing businesses with advanced needs.</p>
+                                <ul>
+                                    <li>All Basic features plus:</li>
+                                    <li>Quarterly billing at $79/quarter</li>
+                                    <li>Priority support</li>
+                                    <li>Up to 25 user accounts</li>
+                                    <li>Advanced analytics</li>
+                                    <li>Custom reporting</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="package-plans-accordion-item">
+                            <div class="package-plans-accordion-header">
+                                <h4>Enterprise Plan</h4>
+                                <span class="package-plans-accordion-icon">+</span>
+                            </div>
+                            <div class="package-plans-accordion-content">
+                                <p>Our comprehensive solution for large organizations with complex requirements.</p>
+                                <ul>
+                                    <li>All Professional features plus:</li>
+                                    <li>Annual billing at $299/year</li>
+                                    <li>24/7 dedicated support</li>
+                                    <li>Unlimited user accounts</li>
+                                    <li>Custom integrations</li>
+                                    <li>API access</li>
+                                    <li>Personal account manager</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section class="account-billing-section support-section">
+            <div class="account-billing-container">
+                <h2 class="account-billing-section-title">Billing Support</h2>
+                <div class="support-cards">
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H5.17L4 17.17V4H20V16Z" fill="#1199fa"/>
+                                <path d="M12 15H14V17H12V15ZM12 7H14V13H12V7Z" fill="#1199fa"/>
+                            </svg>
+                        </div>
+                        <h3>Billing Questions</h3>
+                        <p>Have questions about your invoice or payment method? Our support team is here to help clarify any billing concerns.</p>
+                        <a href="#" class="support-card-button">Contact Support</a>
+                    </div>
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#1199fa"/>
+                            </svg>
+                        </div>
+                        <h3>Payment Issues</h3>
+                        <p>Experiencing problems with a payment? Report the issue directly to our billing specialists for quick resolution.</p>
+                        <a href="#" class="support-card-button">Report Issue</a>
+                    </div>
+                    <div class="support-card">
+                        <div class="support-card-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 11.99H19C18.47 16.11 15.72 19.78 12 20.93V12H5V6.3L12 3.19V11.99Z" fill="#1199fa"/>
+                            </svg>
+                        </div>
+                        <h3>Service Changes</h3>
+                        <p>Need to upgrade, downgrade, or modify your service? Request changes to your subscription plan.</p>
+                        <a href="#" class="support-card-button">Request Change</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section class="account-billing-section security-section">
+            <div class="account-billing-container">
+                <h2 class="account-billing-section-title">Security & Privacy</h2>
+                <div class="security-split-layout">
+                    <div class="security-content">
+                        <h3>Your Data is Protected</h3>
+                        <p>We implement industry-leading security measures to ensure your financial and personal information remains safe and confidential.</p>
+                        <div class="security-features">
+                            <div class="security-feature">
+                                <div class="security-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM12 7C13.1 7 14 7.9 14 9C14 10.1 13.1 11 12 11C10.9 11 10 10.1 10 9C10 7.9 10.9 7 12 7ZM16 17.2C16 18.2 15.2 19 14.2 19H9.8C8.8 19 8 18.2 8 17.2V16.2C8 15.2 8.8 14.4 9.8 14.4H14.2C15.2 14.4 16 15.2 16 16.2V17.2Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <h4>Data Encryption</h4>
+                                <p>All sensitive data is encrypted using bank-level security protocols.</p>
+                            </div>
+                            <div class="security-feature">
+                                <div class="security-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 17C14.2091 17 16 15.2091 16 13C16 10.7909 14.2091 9 12 9C9.79086 9 8 10.7909 8 13C8 15.2091 9.79086 17 12 17Z" fill="#1199fa"/>
+                                        <path d="M18 8H20C20.55 8 21 8.45 21 9V21C21 21.55 20.55 22 20 22H4C3.45 22 3 21.55 3 21V9C3 8.45 3.45 8 4 8H6C6 5.79 7.79 4 10 4H14C16.21 4 18 5.79 18 8ZM12 6C10.9 6 10 6.9 10 8H14C14 6.9 13.1 6 12 6Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <h4>PCI Compliance</h4>
+                                <p>We maintain PCI DSS compliance for all payment processing activities.</p>
+                            </div>
+                            <div class="security-feature">
+                                <div class="security-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20Z" fill="#1199fa"/>
+                                        <path d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <h4>Two-Factor Auth</h4>
+                                <p>Optional two-factor authentication adds an extra layer of account security.</p>
+                            </div>
+                            <div class="security-feature">
+                                <div class="security-feature-icon">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 18H4V6H20V18Z" fill="#1199fa"/>
+                                        <path d="M11 15H13V17H11V15ZM8 15H10V17H8V15ZM14 8H16V14H14V8ZM11 11H13V14H11V11ZM8 11H10V14H8V11ZM17 11H19V14H17V11Z" fill="#1199fa"/>
+                                    </svg>
+                                </div>
+                                <h4>Activity Monitoring</h4>
+                                <p>Continuous monitoring detects and prevents unauthorized access attempts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="security-visual">
+                        <!-- Background image applied via CSS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="account-billing-cta">
+            <div class="account-billing-container">
+                <h2>Ready to Simplify Your Account Management?</h2>
+                <p>Join thousands of businesses that trust our platform for their billing and account management needs.</p>
+                <a href="#" class="account-billing-cta-button">Create Your Account</a>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Accordion functionality for package plans
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.package-plans-accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    const icon = this.querySelector('.package-plans-accordion-icon');
+                    
+                    // Close all other accordion items
+                    document.querySelectorAll('.package-plans-accordion-content').forEach(item => {
+                        if (item !== content && item.classList.contains('active')) {
+                            item.classList.remove('active');
+                            item.previousElementSibling.querySelector('.package-plans-accordion-icon').textContent = '+';
+                        }
+                    });
+                    
+                    // Toggle current accordion item
+                    content.classList.toggle('active');
+                    icon.textContent = content.classList.contains('active') ? '−' : '+';
+                });
+            });
+            
+            // Open the first accordion by default
+            if (accordionHeaders.length > 0) {
+                accordionHeaders[0].click();
+            }
+        });
+    </script>
+</body>
+</html>

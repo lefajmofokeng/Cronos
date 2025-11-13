@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detailed Feature Breakdown</title>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           A. GLOBAL & BASE STYLES
+           ========================================= */
+        :root {
+            --qa-color-primary-text: #010119;
+            --qa-color-accent: #1199fA;
+            --qa-color-light-bg: #f4f4f4;
+            --qa-color-white: #fff;
+            --qa-color-line: #e5e5e5;
+            --qa-font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--qa-font-family);
+            background-color: var(--qa-color-white);
+            color: var(--qa-color-primary-text);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .qa-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 2rem 0;
+        }
+
+        .qa-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            line-height: 1.1;
+        }
+
+        /* =========================================
+           B. LAYOUT (Two-Column Grid)
+           ========================================= */
+
+        .qa-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two equal columns on desktop */
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .qa-text-column {
+            font-size: 1.1rem;
+            padding-right: 2rem;
+        }
+
+        /* =========================================
+           C. ACCORDION STYLES (Right Column)
+           ========================================= */
+
+        .qa-accordion-item {
+            border-bottom: 1px solid var(--qa-color-line);
+            padding: 1.5rem 0;
+            cursor: pointer;
+        }
+
+        .qa-accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--qa-color-primary-text);
+            transition: color 0.2s ease;
+        }
+        
+        .qa-accordion-header:hover {
+            color: var(--qa-color-accent);
+        }
+
+        .qa-toggle-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--qa-color-accent);
+            line-height: 1;
+            transform: rotate(0deg);
+            transition: transform 0.3s ease;
+        }
+        
+        /* State change for active (open) accordion */
+        .qa-accordion-item.qa-active .qa-toggle-icon {
+            transform: rotate(45deg); /* Plus becomes an 'X' or rotates */
+        }
+        .qa-accordion-item.qa-active .qa-accordion-header {
+            color: var(--qa-color-accent);
+        }
+        
+
+        .qa-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            padding-top: 0;
+            transition: max-height 0.3s ease-out, padding-top 0.3s ease-out;
+            color: #444; /* Slightly lighter text for body */
+            font-size: 1rem;
+        }
+
+        .qa-accordion-item.qa-active .qa-accordion-body {
+            max-height: 300px; /* Adjust based on max content size */
+            padding-top: 1rem;
+            transition: max-height 0.5s ease-in, padding-top 0.3s ease-in;
+        }
+        
+        /* =========================================
+           D. MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 900px) {
+            .qa-content-wrapper {
+                grid-template-columns: 1fr; /* Stack columns on mobile */
+                gap: 3rem;
+            }
+            .qa-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            .qa-text-column {
+                padding-right: 0;
+            }
+            .qa-accordion-header {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="qa-container">
+        
+        <!-- MAIN TITLE (Aligned with the left text column) -->
+        <h1 class="qa-title">
+            What is on-chain staking?
+        </h1>
+
+        <div class="qa-content-wrapper">
+            
+            <!-- LEFT COLUMN: Introductory Text -->
+            <div class="qa-text-column">
+                <p class="qa-intro-text">
+                    On-chain Staking is a great way for you to passively generate rewards from your cryptocurrency holdings, which might otherwise be sitting idle in your Crypto wallet.
+                </p>
+
+                <p class="qa-intro-text">
+                    When you stake your cryptocurrency on a blockchain protocol, you are participating in maintaining the protocol's security and are incentivized to do so by receiving rewards from the protocol in the form of staking yields.
+                </p>
+            </div>
+
+            <!-- RIGHT COLUMN: Interactive Accordion/FAQ -->
+            <div class="qa-accordion-column">
+                
+                <!-- ACCORDION ITEM 1 -->
+                <div class="qa-accordion-item" data-index="1">
+                    <div class="qa-accordion-header">
+                        Benefits of staking your crypto on-chain
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>Staking provides network security, earns passive income, and is generally more environmentally friendly than traditional Proof-of-Work mining. It allows you to contribute directly to the decentralized governance and operation of the protocol.</p>
+                    </div>
+                </div>
+
+                <!-- ACCORDION ITEM 2 -->
+                <div class="qa-accordion-item" data-index="2">
+                    <div class="qa-accordion-header">
+                        How staking works
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>In a Proof-of-Stake system, validators lock up (stake) a certain amount of the cryptocurrency as collateral. The protocol then randomly selects validators to propose and attest to new blocks, rewarding them with new coins or transaction fees for their honest work.</p>
+                    </div>
+                </div>
+
+                <!-- ACCORDION ITEM 3 -->
+                <div class="qa-accordion-item" data-index="3">
+                    <div class="qa-accordion-header">
+                        Considerations when staking crypto on-chain
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>Key considerations include the 'lock-up' period (the time your funds are inaccessible), the risk of 'slashing' (losing staked funds due to validator misconduct), and the liquidity of your staked asset. Always research the protocol's reputation and underlying security mechanisms.</p>
+                    </div>
+                </div>
+
+                <!-- ACCORDION ITEM 4 -->
+                <div class="qa-accordion-item" data-index="4">
+                    <div class="qa-accordion-header">
+                        Is on-chain staking for you?
+                        <span class="qa-toggle-icon">+</span>
+                    </div>
+                    <div class="qa-accordion-body">
+                        <p>Staking is ideal for long-term holders comfortable with the volatility of crypto assets and willing to commit their holdings for periods of time to earn rewards. If you require instant access to your funds, liquid staking solutions or other investment methods might be preferable.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =========================================
+        // JAVASCRIPT: ACCORDION INTERACTIVITY
+        // =========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const items = document.querySelectorAll('.qa-accordion-item');
+
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Check if the current item is already active
+                    const isActive = item.classList.contains('qa-active');
+
+                    // Close all other items (optional: uncomment to allow only one open at a time)
+                    items.forEach(i => {
+                        if (i !== item) {
+                            i.classList.remove('qa-active');
+                            i.querySelector('.qa-accordion-body').style.maxHeight = 0;
+                        }
+                    });
+
+                    // Toggle the clicked item
+                    if (!isActive) {
+                        item.classList.add('qa-active');
+                        // Calculate content height dynamically for smooth transition
+                        const body = item.querySelector('.qa-accordion-body');
+                        // Set maxHeight to scrollHeight to ensure content fits
+                        body.style.maxHeight = body.scrollHeight + "px"; 
+                    } else {
+                        item.classList.remove('qa-active');
+                        item.querySelector('.qa-accordion-body').style.maxHeight = 0;
+                    }
+                });
+            });
+            
+            // To ensure the max-height works correctly on load/resize,
+            // we initialize the closed state visually:
+            items.forEach(item => {
+                item.querySelector('.qa-accordion-body').style.maxHeight = 0;
+            });
+        });
+    </script>
+</body>
+</html>

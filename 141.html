@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Applications - Premium Solutions</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap">
+    <style>
+        /* CSS will be inserted here */
+    </style>
+</head>
+<body>
+
+    <main class="web-app-main-content-wrapper">
+
+        <section class="web-app-hero-section">
+            <div class="web-app-hero-background-layer"></div>
+            <div class="web-app-hero-content-container">
+                <h1 class="web-app-hero-main-title">
+                    <span class="web-app-title-glow">Elevate</span> Your Digital Presence. <br> Next-Gen Web Applications.
+                </h1>
+                <p class="web-app-hero-subtitle">
+                    Discover cutting-edge, secure, and scalable web solutions designed to drive growth and efficiency for your business.
+                </p>
+                <a href="#web-app-products-pricing" class="web-app-hero-cta-button">
+                    View Pricing & Plans
+                </a>
+            </div>
+            </section>
+
+        <section id="web-app-products-pricing" class="web-app-products-pricing-section">
+            <div class="web-app-section-header">
+                <h2 class="web-app-section-title">Our Premium Web Solutions</h2>
+                <p class="web-app-section-description">Choose the perfect application and plan designed for your specific goals.</p>
+            </div>
+
+            <div class="web-app-product-navigation-bar">
+                <button class="web-app-nav-button active" data-target="individuals">For Individuals</button>
+                <button class="web-app-nav-button" data-target="businesses">For Businesses</button>
+            </div>
+
+            <div class="web-app-payment-toggle-wrapper">
+                <span class="web-app-toggle-label">Paid Monthly</span>
+                <label class="web-app-toggle-switch">
+                    <input type="checkbox" id="payment-toggle-input">
+                    <span class="web-app-slider round"></span>
+                </label>
+                <span class="web-app-toggle-label yearly-label">Paid Yearly</span>
+                <span class="web-app-yearly-save-tag">SAVE 15%</span>
+            </div>
+
+            <div class="web-app-product-cards-container" id="product-cards-container">
+                <div class="web-app-product-card individual business">
+                    <div class="web-app-card-header">
+                        <span class="web-app-card-tag">Standard</span>
+                        <h3 class="web-app-product-name">Nexus Core</h3>
+                        <p class="web-app-product-summary">Essential tools for modern task management and collaboration.</p>
+                    </div>
+                    <div class="web-app-card-pricing">
+                        <p class="web-app-price-monthly web-app-price-display">
+                            $<span class="web-app-price-value">29</span>/mo
+                        </p>
+                        <p class="web-app-price-yearly web-app-price-display hidden">
+                            $<span class="web-app-price-value">295</span>/yr
+                        </p>
+                        <p class="web-app-installment-note">or $10/month for 3 installments</p>
+                    </div>
+                    <ul class="web-app-product-features-list">
+                        <li><span class="web-app-feature-icon">✓</span> 5,000 Monthly Active Users</li>
+                        <li><span class="web-app-feature-icon">✓</span> Standard API Access</li>
+                        <li><span class="web-app-feature-icon">✓</span> Email Support (48hr response)</li>
+                    </ul>
+                    <button class="web-app-select-plan-button">Select Nexus Core</button>
+                </div>
+
+                <div class="web-app-product-card individual business web-app-card-highlight">
+                    <div class="web-app-card-header">
+                        <span class="web-app-card-tag web-app-tag-accent">Recommended</span>
+                        <h3 class="web-app-product-name">Zenith Pro</h3>
+                        <p class="web-app-product-summary">The complete platform for scaling teams and high-demand applications.</p>
+                    </div>
+                    <div class="web-app-card-pricing">
+                        <p class="web-app-price-monthly web-app-price-display">
+                            $<span class="web-app-price-value">79</span>/mo
+                        </p>
+                        <p class="web-app-price-yearly web-app-price-display hidden">
+                            $<span class="web-app-price-value">806</span>/yr
+                        </p>
+                        <p class="web-app-installment-note">or $26.50/month for 3 installments</p>
+                    </div>
+                    <ul class="web-app-product-features-list">
+                        <li><span class="web-app-feature-icon">✓</span> Unlimited Monthly Active Users</li>
+                        <li><span class="web-app-feature-icon">✓</span> Advanced API & Webhooks</li>
+                        <li><span class="web-app-feature-icon">✓</span> Priority 24/7 Chat Support</li>
+                        <li><span class="web-app-feature-icon">✓</span> Advanced Analytics Suite</li>
+                    </ul>
+                    <button class="web-app-select-plan-button web-app-button-accent">Select Zenith Pro</button>
+                </div>
+
+                <div class="web-app-product-card business">
+                    <div class="web-app-card-header">
+                        <span class="web-app-card-tag">Enterprise</span>
+                        <h3 class="web-app-product-name">Aegis Custom</h3>
+                        <p class="web-app-product-summary">Fully customized solution for large organizations and complex needs.</p>
+                    </div>
+                    <div class="web-app-card-pricing">
+                        <p class="web-app-price-monthly web-app-price-display">
+                            $<span class="web-app-price-value">Contact</span>
+                        </p>
+                        <p class="web-app-price-yearly web-app-price-display hidden">
+                            $<span class="web-app-price-value">Contact</span>
+                        </p>
+                        <p class="web-app-installment-note web-app-installment-invisible">Custom Quote Required</p>
+                    </div>
+                    <ul class="web-app-product-features-list">
+                        <li><span class="web-app-feature-icon">✓</span> Dedicated Account Manager</li>
+                        <li><span class="web-app-feature-icon">✓</span> Custom Integrations & SLA</li>
+                        <li><span class="web-app-feature-icon">✓</span> On-Premise / Private Cloud Option</li>
+                    </ul>
+                    <button class="web-app-select-plan-button">Get Custom Quote</button>
+                </div>
+            </div>
+
+            <div class="web-app-product-note">
+                <p>
+                    <span class="web-app-note-label">Note:</span> All plans come with a **14-day free trial**. Annual payments include a **significant 15% discount**.
+                </p>
+            </div>
+        </section>
+
+        <section id="web-app-compare-plans" class="web-app-compare-plans-section">
+            <div class="web-app-section-header">
+                <h2 class="web-app-section-title">Compare All Features</h2>
+                <p class="web-app-section-description">A detailed look at what powers each application plan.</p>
+            </div>
+
+            <div class="web-app-comparison-table-wrapper">
+                <table class="web-app-comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="web-app-feature-column-header">Feature</th>
+                            <th>Nexus Core</th>
+                            <th class="web-app-highlight-column">Zenith Pro</th>
+                            <th>Aegis Custom</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="web-app-feature-group-row">
+                            <td colspan="4" class="web-app-feature-group-title">Core Platform Functionality</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Real-Time Sync</td>
+                            <td><span class="web-app-check">✓</span></td>
+                            <td class="web-app-highlight-column"><span class="web-app-check">✓</span></td>
+                            <td><span class="web-app-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Data Storage Limit</td>
+                            <td data-label="Nexus Core">100 GB</td>
+                            <td class="web-app-highlight-column" data-label="Zenith Pro">Unlimited</td>
+                            <td data-label="Aegis Custom">Custom</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">User Roles & Permissions</td>
+                            <td>3 Roles</td>
+                            <td class="web-app-highlight-column">Unlimited Roles</td>
+                            <td>Customized</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name web-app-feature-desc-toggle" data-desc="Enables automatic, recurring workflows to save time.">
+                                Workflow Automation
+                                <span class="web-app-desc-icon">i</span>
+                            </td>
+                            <td>Limited</td>
+                            <td class="web-app-highlight-column">Advanced</td>
+                            <td>Fully Configurable</td>
+                        </tr>
+
+                        <tr class="web-app-feature-group-row">
+                            <td colspan="4" class="web-app-feature-group-title">Security & Reliability</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Uptime SLA</td>
+                            <td>99.9%</td>
+                            <td class="web-app-highlight-column">99.99%</td>
+                            <td>Custom (up to 99.999%)</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Two-Factor Authentication (2FA)</td>
+                            <td><span class="web-app-check">✓</span></td>
+                            <td class="web-app-highlight-column"><span class="web-app-check">✓</span></td>
+                            <td><span class="web-app-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Data Encryption (At Rest & In Transit)</td>
+                            <td><span class="web-app-check">✓</span></td>
+                            <td class="web-app-highlight-column"><span class="web-app-check">✓</span></td>
+                            <td><span class="web-app-check">✓</span></td>
+                        </tr>
+
+                        <tr class="web-app-feature-group-row">
+                            <td colspan="4" class="web-app-feature-group-title">Support & Integrations</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Dedicated Account Manager</td>
+                            <td><span class="web-app-cross">✗</span></td>
+                            <td class="web-app-highlight-column">Add-On</td>
+                            <td><span class="web-app-check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">API Request Limit</td>
+                            <td>50,000/day</td>
+                            <td class="web-app-highlight-column">Unlimited</td>
+                            <td>Custom</td>
+                        </tr>
+                        <tr>
+                            <td class="web-app-feature-name">Single Sign-On (SSO)</td>
+                            <td><span class="web-app-cross">✗</span></td>
+                            <td class="web-app-highlight-column"><span class="web-app-check">✓</span></td>
+                            <td><span class="web-app-check">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="web-app-table-info-box">
+                <p>Need a feature not listed? The **Aegis Custom** plan is built from the ground up to match your exact specifications.</p>
+            </div>
+        </section>
+
+        <section id="web-app-add-ons-section" class="web-app-add-ons-section">
+            <div class="web-app-section-header">
+                <h2 class="web-app-section-title">Boost Your Application with Add-Ons</h2>
+                <p class="web-app-section-description">Enhance any core plan with powerful complementary features.</p>
+            </div>
+
+            <div class="web-app-addons-grid-container">
+                <div class="web-app-addon-card">
+                    <h3 class="web-app-addon-title">Advanced Security Audit</h3>
+                    <p class="web-app-addon-description">Weekly penetration testing and comprehensive security logs for ultimate peace of mind.</p>
+                    <div class="web-app-addon-pricing">
+                        <span class="web-app-addon-price">$50/mo</span>
+                        <span class="web-app-addon-compatibility">Compatible with Nexus Core & Zenith Pro</span>
+                    </div>
+                    <button class="web-app-addon-cta">Add to Plan</button>
+                </div>
+                <div class="web-app-addon-card">
+                    <h3 class="web-app-addon-title">Managed Data Backups</h3>
+                    <p class="web-app-addon-description">Automated, geo-redundant daily backups with one-click restore functionality.</p>
+                    <div class="web-app-addon-pricing">
+                        <span class="web-app-addon-price">$30/mo</span>
+                        <span class="web-app-addon-compatibility">Compatible with All Plans</span>
+                    </div>
+                    <button class="web-app-addon-cta">Add to Plan</button>
+                </div>
+                <div class="web-app-addon-card web-app-addon-highlight">
+                    <h3 class="web-app-addon-title">Dedicated Onboarding Specialist</h3>
+                    <p class="web-app-addon-description">Personalized, 1-on-1 consultation for setup, data migration, and team training (30 days).</p>
+                    <div class="web-app-addon-pricing">
+                        <span class="web-app-addon-price web-app-text-accent">$499 One-Time</span>
+                        <span class="web-app-addon-compatibility">Recommended for new Zenith Pro users.</span>
+                    </div>
+                    <button class="web-app-addon-cta web-app-button-accent">Purchase Service</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="web-app-faqs-launch" class="web-app-faqs-launch-section">
+            <div class="web-app-faqs-container">
+                <div class="web-app-section-header web-app-faqs-header">
+                    <h2 class="web-app-section-title web-app-title-light">Frequently Asked Questions</h2>
+                </div>
+
+                <div class="web-app-faq-item">
+                    <button class="web-app-faq-question">What is the difference between Nexus Core and Zenith Pro?</button>
+                    <div class="web-app-faq-answer">
+                        <p><strong>Nexus Core</strong> is an excellent starting point for individuals and small teams focusing on core task management. <strong>Zenith Pro</strong> provides significant upgrades in scalability (unlimited users), priority support, advanced analytics, and full API access, making it ideal for high-growth businesses.</p>
+                    </div>
+                </div>
+
+                <div class="web-app-faq-item">
+                    <button class="web-app-faq-question">How does the installment payment option work?</button>
+                    <div class="web-app-faq-answer">
+                        <p>Installment payments are available for our **Monthly** plans via a third-party service, allowing you to split the first 3 months' subscription cost into smaller, more manageable payments. This option is not available for annual payments due to the already discounted price.</p>
+                    </div>
+                </div>
+
+                <div class="web-app-faq-item">
+                    <button class="web-app-faq-question">Can I upgrade or downgrade my plan at any time?</button>
+                    <div class="web-app-faq-answer">
+                        <p>Yes, you can upgrade or downgrade your plan anytime from your account dashboard. Upgrades are immediate, and downgrades take effect at the beginning of your next billing cycle.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="web-app-launch-cta-box">
+                <h3 class="web-app-launch-title">Ready to Launch Your Success?</h3>
+                <p class="web-app-launch-subtitle">Start your 14-day free trial today. No credit card required.</p>
+                <a href="#web-app-products-pricing" class="web-app-launch-cta-button">
+                    Start Free Trial Now
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // JavaScript will be inserted here
+    </script>
+</body>
+</html>
+
+<style>
+    /* ============================================== */
+/* GLOBAL STYLES & VARIABLES */
+/* ============================================== */
+:root {
+    /* Color Palette */
+    --web-app-color-accent: #1199fa;
+    --web-app-color-dark-primary: #010119;
+    --web-app-color-light: #fff;
+    --web-app-color-background-light: #f4f4f4;
+    --web-app-color-black: #000;
+    --web-app-color-border-light: #e5e5e5;
+    
+    /* Font */
+    --web-app-font-family: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --web-app-spacing-xxl: 8rem;
+    --web-app-spacing-xl: 4rem;
+    --web-app-spacing-lg: 3rem;
+    --web-app-spacing-md: 2rem;
+    --web-app-spacing-sm: 1rem;
+}
+
+.web-app-main-content-wrapper {
+    font-family: var(--web-app-font-family);
+    color: var(--web-app-color-dark-primary);
+    line-height: 1.6;
+    background-color: var(--web-app-color-light);
+    overflow-x: hidden;
+}
+
+/* Base resets */
+.web-app-main-content-wrapper * {
+    box-sizing: border-box;
+}
+
+.web-app-main-content-wrapper section {
+    padding: var(--web-app-spacing-xxl) 5%;
+    position: relative;
+    z-index: 1; /* Ensure content is above any background layers */
+}
+
+.web-app-section-header {
+    text-align: center;
+    margin-bottom: var(--web-app-spacing-xl);
+}
+
+.web-app-section-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.web-app-section-description {
+    font-size: 1.15rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* General Buttons/CTAs */
+.web-app-select-plan-button, .web-app-hero-cta-button, .web-app-launch-cta-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--web-app-color-dark-primary);
+    background-color: var(--web-app-color-light);
+    color: var(--web-app-color-dark-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.web-app-select-plan-button:hover, .web-app-hero-cta-button:hover, .web-app-launch-cta-button:hover {
+    background-color: var(--web-app-color-dark-primary);
+    color: var(--web-app-color-light);
+}
+
+.web-app-button-accent {
+    border-color: var(--web-app-color-accent) !important;
+    background-color: var(--web-app-color-accent) !important;
+    color: var(--web-app-color-light) !important;
+}
+
+.web-app-button-accent:hover {
+    background-color: #0d7fcf !important; /* Slightly darker accent */
+    border-color: #0d7fcf !important;
+}
+
+/* ============================================== */
+/* SECTION 1: HERO SECTION */
+/* ============================================== */
+.web-app-hero-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    padding: var(--web-app-spacing-xxl) 5%;
+    color: var(--web-app-color-light);
+    text-align: center;
+    overflow: hidden;
+    background-color: var(--web-app-color-dark-primary);
+}
+
+.web-app-hero-background-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Creative Background: Linear Gradient + Image Placeholder Effect */
+    background-image: 
+        /* Subtle texture/noise */
+        radial-gradient(circle at 10% 20%, rgba(20, 20, 40, 0.5) 0%, transparent 50%),
+        /* Central glow effect */
+        radial-gradient(circle at 50% 50%, rgba(17, 153, 250, 0.2) 0%, transparent 60%),
+        /* Main dark background with slight gradient */
+        linear-gradient(135deg, #010119 0%, #030330 100%);
+    background-size: cover;
+    opacity: 1;
+    z-index: 0;
+}
+
+/* Glow Effect for Text */
+.web-app-title-glow {
+    color: var(--web-app-color-accent);
+    text-shadow: 0 0 15px rgba(17, 153, 250, 0.7);
+    font-weight: 900;
+}
+
+.web-app-hero-content-container {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+}
+
+.web-app-hero-main-title {
+    font-size: 3.8rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.web-app-hero-subtitle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+}
+
+.web-app-hero-cta-button {
+    display: inline-block;
+    width: auto;
+    padding: 1rem 3rem;
+    background-color: var(--web-app-color-accent);
+    border-color: var(--web-app-color-accent);
+    color: var(--web-app-color-light);
+}
+
+.web-app-hero-cta-button:hover {
+    background-color: #0d7fcf;
+    border-color: #0d7fcf;
+    transform: translateY(-2px);
+}
+
+/* ============================================== */
+/* SECTION 2: PRODUCTS & PRICING */
+/* ============================================== */
+.web-app-products-pricing-section {
+    background-color: var(--web-app-color-background-light);
+}
+
+/* Navigation Bar (Individuals/Businesses) */
+.web-app-product-navigation-bar {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: var(--web-app-spacing-md);
+}
+
+.web-app-nav-button {
+    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #888;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.web-app-nav-button.active {
+    color: var(--web-app-color-accent);
+    border-bottom: 3px solid var(--web-app-color-accent);
+}
+
+/* Payment Toggle (Monthly/Yearly) */
+.web-app-payment-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: var(--web-app-spacing-xl);
+}
+
+.web-app-toggle-label {
+    font-weight: 600;
+    color: #555;
+    transition: color 0.3s ease;
+}
+
+.web-app-toggle-label.active {
+    color: var(--web-app-color-dark-primary);
+}
+
+.web-app-toggle-label.yearly-label.active {
+    color: var(--web-app-color-accent);
+}
+
+.web-app-yearly-save-tag {
+    background-color: var(--web-app-color-accent);
+    color: var(--web-app-color-light);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Toggle Switch Style */
+.web-app-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.web-app-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.web-app-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.web-app-slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .web-app-slider {
+    background-color: var(--web-app-color-accent);
+}
+
+input:checked + .web-app-slider:before {
+    transform: translateX(26px);
+}
+
+.web-app-slider.round {
+    border-radius: 34px;
+}
+
+.web-app-slider.round:before {
+    border-radius: 50%;
+}
+
+/* Product Cards */
+.web-app-product-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--web-app-spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.web-app-product-card {
+    background-color: var(--web-app-color-light);
+    border-radius: 12px;
+    padding: var(--web-app-spacing-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--web-app-color-border-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.web-app-product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.web-app-card-highlight {
+    border-color: var(--web-app-color-accent);
+    background: linear-gradient(180deg, var(--web-app-color-light) 80%, rgba(17, 153, 250, 0.05) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.web-app-card-header {
+    margin-bottom: var(--web-app-spacing-md);
+}
+
+.web-app-card-tag {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #666;
+    background-color: var(--web-app-color-background-light);
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+}
+
+.web-app-tag-accent {
+    background-color: var(--web-app-color-accent);
+    color: var(--web-app-color-light);
+}
+
+.web-app-product-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin: 0.25rem 0;
+}
+
+.web-app-product-summary {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Pricing */
+.web-app-card-pricing {
+    margin: var(--web-app-spacing-sm) 0 var(--web-app-spacing-md);
+    border-bottom: 1px solid var(--web-app-color-border-light);
+    padding-bottom: var(--web-app-spacing-md);
+}
+
+.web-app-price-display {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--web-app-color-dark-primary);
+    line-height: 1;
+}
+
+.web-app-price-value {
+    font-size: 1em;
+}
+
+.web-app-installment-note {
+    font-size: 0.9rem;
+    color: var(--web-app-color-accent);
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+.web-app-installment-invisible {
+    visibility: hidden; /* Placeholder to keep layout consistent */
+}
+
+.hidden {
+    display: none;
+}
+
+/* Features List */
+.web-app-product-features-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--web-app-spacing-lg);
+    flex-grow: 1;
+}
+
+.web-app-product-features-list li {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+.web-app-feature-icon {
+    color: var(--web-app-color-accent);
+    margin-right: 0.5rem;
+    font-weight: 700;
+}
+
+/* Note Below Products */
+.web-app-product-note {
+    text-align: center;
+    margin-top: var(--web-app-spacing-xl);
+    padding: 1.5rem;
+    background-color: var(--web-app-color-light);
+    border: 1px solid var(--web-app-color-border-light);
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.web-app-note-label {
+    font-weight: 700;
+    color: var(--web-app-color-accent);
+}
+
+/* Filter control for JS */
+.web-app-product-card.hidden-by-filter {
+    display: none !important;
+}
+
+
+/* ============================================== */
+/* SECTION 3: COMPARE PLANS (Table) */
+/* ============================================== */
+.web-app-compare-plans-section {
+    background-color: var(--web-app-color-light);
+}
+
+.web-app-comparison-table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid var(--web-app-color-border-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.web-app-comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 700px; /* Ensures table is readable on smaller screens before wrapping */
+}
+
+.web-app-comparison-table th,
+.web-app-comparison-table td {
+    padding: 1rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--web-app-color-border-light);
+}
+
+.web-app-comparison-table th {
+    background-color: var(--web-app-color-background-light);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--web-app-color-dark-primary);
+    border-top: none;
+}
+
+.web-app-comparison-table td {
+    font-weight: 500;
+    color: #333;
+}
+
+.web-app-feature-column-header {
+    text-align: left !important;
+    background-color: #e8e8f2;
+}
+
+.web-app-feature-name {
+    text-align: left !important;
+    font-weight: 600;
+    color: var(--web-app-color-dark-primary);
+}
+
+.web-app-feature-group-row td {
+    background-color: var(--web-app-color-background-light);
+    font-weight: 700;
+    text-align: left;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.1em;
+    border-bottom: none;
+}
+
+.web-app-highlight-column {
+    background-color: rgba(17, 153, 250, 0.05); /* Light accent background for Pro */
+    font-weight: 700;
+}
+
+.web-app-check {
+    color: var(--web-app-color-accent);
+    font-size: 1.2rem;
+}
+
+.web-app-cross {
+    color: #ccc;
+    font-size: 1.2rem;
+}
+
+/* Feature Description Popover */
+.web-app-feature-desc-toggle {
+    cursor: help;
+    position: relative;
+    border-bottom: 1px dashed #999;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.web-app-desc-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--web-app-color-accent);
+    color: var(--web-app-color-light);
+    font-size: 0.7rem;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.web-app-feature-desc-toggle::after {
+    content: attr(data-desc);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--web-app-color-dark-primary);
+    color: var(--web-app-color-light);
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.web-app-feature-desc-toggle:hover::after {
+    opacity: 1;
+}
+
+.web-app-table-info-box {
+    margin-top: var(--web-app-spacing-md);
+    text-align: center;
+    color: #666;
+    font-style: italic;
+}
+
+
+/* ============================================== */
+/* SECTION 4: ADD-ONS & SERVICES */
+/* ============================================== */
+.web-app-add-ons-section {
+    background-color: var(--web-app-color-background-light);
+}
+
+.web-app-addons-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--web-app-spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.web-app-addon-card {
+    background-color: var(--web-app-color-light);
+    padding: var(--web-app-spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--web-app-color-border-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.web-app-addon-highlight {
+    border-left: 5px solid var(--web-app-color-accent);
+}
+
+.web-app-addon-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--web-app-color-accent);
+}
+
+.web-app-addon-description {
+    color: #666;
+    margin-bottom: var(--web-app-spacing-md);
+    flex-grow: 1;
+}
+
+.web-app-addon-pricing {
+    margin-bottom: var(--web-app-spacing-md);
+    padding-top: var(--web-app-spacing-sm);
+    border-top: 1px solid var(--web-app-color-border-light);
+}
+
+.web-app-addon-price {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--web-app-color-dark-primary);
+    margin-bottom: 0.25rem;
+}
+
+.web-app-text-accent {
+    color: var(--web-app-color-accent);
+}
+
+.web-app-addon-compatibility {
+    display: block;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.web-app-addon-cta {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--web-app-color-light);
+    color: var(--web-app-color-dark-primary);
+    border: 1px solid var(--web-app-color-dark-primary);
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.web-app-addon-cta:hover {
+    background-color: var(--web-app-color-dark-primary);
+    color: var(--web-app-color-light);
+}
+
+
+/* ============================================== */
+/* SECTION 5: FAQs & LAUNCH CTA */
+/* ============================================== */
+.web-app-faqs-launch-section {
+    background-color: var(--web-app-color-dark-primary);
+    padding-top: var(--web-app-spacing-xxl);
+    padding-bottom: var(--web-app-spacing-xxl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--web-app-spacing-xxl);
+}
+
+.web-app-faqs-container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.web-app-faqs-header .web-app-section-title {
+    color: var(--web-app-color-light);
+}
+
+.web-app-faq-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 0;
+}
+
+.web-app-faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 1.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--web-app-color-light);
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.web-app-faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.web-app-faq-question.active::after {
+    content: '—';
+    transform: rotate(0deg);
+}
+
+.web-app-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+    color: #ccc;
+    padding-bottom: 0;
+}
+
+.web-app-faq-answer.open {
+    max-height: 500px; /* Arbitrarily large value */
+    padding-bottom: 1.5rem;
+}
+
+.web-app-faq-answer p {
+    margin: 0;
+}
+
+/* Launch CTA Box */
+.web-app-launch-cta-box {
+    text-align: center;
+    background-color: var(--web-app-color-light);
+    padding: var(--web-app-spacing-lg);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(17, 153, 250, 0.2);
+    width: 100%;
+    max-width: 600px;
+}
+
+.web-app-launch-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--web-app-color-dark-primary);
+    margin-bottom: 0.5rem;
+}
+
+.web-app-launch-subtitle {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: var(--web-app-spacing-md);
+}
+
+.web-app-launch-cta-button {
+    display: inline-block;
+    width: auto;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    background-color: var(--web-app-color-accent);
+    color: var(--web-app-color-light);
+    border-color: var(--web-app-color-accent);
+}
+
+/* ============================================== */
+/* MOBILE RESPONSIVENESS (Max Width 768px) */
+/* ============================================== */
+@media (max-width: 768px) {
+    
+    .web-app-main-content-wrapper section {
+        padding: 4rem 5%; /* Reduced vertical padding for mobile */
+    }
+
+    .web-app-hero-main-title {
+        font-size: 2.5rem;
+    }
+
+    .web-app-hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .web-app-section-title {
+        font-size: 2rem;
+    }
+
+    /* Pricing Cards */
+    .web-app-product-cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Comparison Table - Mobile Styling */
+    .web-app-comparison-table {
+        min-width: 100%; /* Allows table to fill container */
+    }
+
+    .web-app-comparison-table th,
+    .web-app-comparison-table td {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .web-app-feature-group-row td {
+        padding-top: 1rem;
+        font-size: 1em;
+    }
+    
+    .web-app-comparison-table thead {
+        display: none; /* Hide standard header */
+    }
+    
+    /* Simulate table rows for comparison on mobile */
+    .web-app-comparison-table tr {
+        display: block;
+        border: 1px solid var(--web-app-color-border-light);
+        margin-bottom: 1rem;
+    }
+    
+    .web-app-comparison-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        border-bottom: 1px dotted #ccc;
+    }
+
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:first-child {
+        /* This is the feature name - it should look like a label */
+        font-weight: 700;
+        color: var(--web-app-color-dark-primary);
+        text-align: left;
+        flex-basis: 50%;
+    }
+    
+    /* Labels for mobile (using data-label) */
+    .web-app-comparison-table td::before {
+        content: attr(data-label) ": ";
+        font-weight: 500;
+        text-align: left;
+        color: #666;
+        display: none; /* Hiding this for a cleaner comparison on mobile, relying on feature name */
+    }
+
+    .web-app-feature-column-header, .web-app-feature-name {
+        display: block !important;
+        text-align: left !important;
+        width: 100%;
+        font-weight: 700 !important;
+    }
+
+    /* Specific mobile overrides for feature data cells */
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(2),
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(3),
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(4) {
+        /* These are the plan values */
+        text-align: right;
+        display: flex;
+        justify-content: space-between;
+        padding-left: 25%;
+        position: relative;
+    }
+    
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(2)::before { content: "Nexus Core: "; flex-basis: 50%; text-align: left; color: var(--web-app-color-dark-primary); }
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(3)::before { content: "Zenith Pro: "; flex-basis: 50%; text-align: left; color: var(--web-app-color-accent); }
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(4)::before { content: "Aegis Custom: "; flex-basis: 50%; text-align: left; color: var(--web-app-color-dark-primary); }
+
+    /* Hide the individual feature name in the data cells on mobile */
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(2),
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(3),
+    .web-app-comparison-table tr:not(.web-app-feature-group-row) td:nth-child(4) {
+        display: none; /* Hide the raw data cells on mobile, use JS to create a better view if needed, but for now, rely on desktop view for comparison details or simplify. Reverting to simpler table view for mobile: */
+    }
+
+    /* Re-enabling the standard feature/value pair for mobile, making it scrollable */
+    .web-app-comparison-table th,
+    .web-app-comparison-table td {
+        display: table-cell;
+    }
+    .web-app-comparison-table tr {
+        display: table-row;
+        margin-bottom: 0;
+        border: none;
+    }
+    
+    .web-app-compare-plans-section {
+        padding: 4rem 0.5rem; /* reduce horizontal padding for small screens */
+    }
+    
+    /* FAQ Section */
+    .web-app-faqs-launch-section {
+        padding: 4rem 5%;
+    }
+
+    .web-app-launch-title {
+        font-size: 1.5rem;
+    }
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+    // ==============================================
+    // 1. PRODUCT NAVIGATION (Individuals vs. Businesses)
+    // ==============================================
+    const navButtons = document.querySelectorAll('.web-app-nav-button');
+    const productCards = document.querySelectorAll('.web-app-product-card');
+
+    const filterProducts = (target) => {
+        productCards.forEach(card => {
+            // Check if the card has the class corresponding to the active filter
+            if (card.classList.contains(target)) {
+                card.classList.remove('hidden-by-filter');
+            } else {
+                card.classList.add('hidden-by-filter');
+            }
+        });
+    }
+
+    navButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove 'active' from all buttons
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            // Add 'active' to the clicked button
+            this.classList.add('active');
+
+            const target = this.getAttribute('data-target');
+            filterProducts(target);
+        });
+    });
+
+    // Initialize: Set 'For Individuals' as active and filter products
+    const initialTarget = document.querySelector('.web-app-nav-button.active')?.getAttribute('data-target');
+    if (initialTarget) {
+        filterProducts(initialTarget);
+    }
+    
+    // ==============================================
+    // 2. PAYMENT TOGGLE (Monthly vs. Yearly)
+    // ==============================================
+    const paymentToggle = document.getElementById('payment-toggle-input');
+    const monthlyPrices = document.querySelectorAll('.web-app-price-monthly');
+    const yearlyPrices = document.querySelectorAll('.web-app-price-yearly');
+    const installmentNotes = document.querySelectorAll('.web-app-installment-note');
+    const monthlyLabel = document.querySelector('.web-app-toggle-label:not(.yearly-label)');
+    const yearlyLabel = document.querySelector('.web-app-toggle-label.yearly-label');
+
+    const updatePricingDisplay = () => {
+        const isYearly = paymentToggle.checked;
+
+        monthlyPrices.forEach(el => {
+            el.classList.toggle('hidden', isYearly);
+        });
+
+        yearlyPrices.forEach(el => {
+            el.classList.toggle('hidden', !isYearly);
+        });
+        
+        installmentNotes.forEach(el => {
+             // Hide installment note when yearly is selected, unless it's the 'Contact' note
+            const isContactNote = el.classList.contains('web-app-installment-invisible');
+            el.classList.toggle('hidden', isYearly && !isContactNote);
+        });
+
+        // Update active label style
+        monthlyLabel.classList.toggle('active', !isYearly);
+        yearlyLabel.classList.toggle('active', isYearly);
+    }
+
+    paymentToggle.addEventListener('change', updatePricingDisplay);
+
+    // Initialize pricing display
+    updatePricingDisplay(); 
+    document.querySelector('.web-app-toggle-label:not(.yearly-label)').classList.add('active');
+
+
+    // ==============================================
+    // 3. FAQ ACCORDION INTERACTIVITY
+    // ==============================================
+    const faqQuestions = document.querySelectorAll('.web-app-faq-question');
+
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            const answer = this.nextElementSibling;
+            
+            // Close other open answers
+            document.querySelectorAll('.web-app-faq-answer.open').forEach(openAnswer => {
+                if (openAnswer !== answer) {
+                    openAnswer.classList.remove('open');
+                    openAnswer.previousElementSibling.classList.remove('active');
+                }
+            });
+
+            // Toggle the clicked answer
+            answer.classList.toggle('open');
+            this.classList.toggle('active');
+        });
+    });
+
+});
+</script>

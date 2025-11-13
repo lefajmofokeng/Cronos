@@ -1,329 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
-    
-    <title>Hyperion</title>
-
-    <!-- WEB TAB ICON -->
-    <link rel="icon" type="image/png" href="thumbnails/02.png">
-
-    <!-- FONTS FILES -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Arbutus&family=Bitcount+Grid+Double:wght@100..900&family=Caprasimo&family=Changa+One:ital@0;1&family=Devonshire&family=Francois+One&family=Freckle+Face&family=Fruktur:ital@0;1&family=Gorditas:wght@400;700&family=Kavoon&family=Londrina+Sketch&family=Mogra&family=Patua+One&family=Piedra&family=Protest+Riot&family=Rubik+Beastly&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Glitch&family=Rubik+Maze&family=Rubik+Scribble&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Satisfy&display=swap" rel="stylesheet">
-        
-    <link rel="stylesheet" href="https://cndjs.cloudflare.com/ajax/libs/fomt-awesome/6.2.1/css/all.min.css">
-
-    <!-- CSS FILES -->
-    
-    <link rel="stylesheet" href="css/global-styling.css">
-    <link rel="stylesheet" href="css/scroll-progress.css">
-    
-    <link rel="stylesheet" href="css/page-video.css">
-    <link rel="stylesheet" href="css/contact-page.css">
-    
-    <link rel="stylesheet" href="#">
-    <link rel="stylesheet" href="css/about-us-page.css">
-    
-    <link rel="stylesheet" href="future-of-infrastructure.css">
-
-    <!-- JAVASCRIPT FILES -->
-    
-    <script src="js/scroll-progress.js"></script>
-    
-    <script src="js/page-video.js"></script>
-   
-    <script src="js/about-us-page.js"></script>
-    
-    <script src="feature-page.js"></script>
-</head>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
-
-<!-- =============================================
-     SCROLL PROGRESS BACK-TO-TOP
-     ============================================= -->
-<!-- Back to Top Button with Progress Circle -->
-<div class="scroll-progress-container" id="backToTopContainer">
-  <svg class="progress-circle-svg">
-    <circle class="progress-circle-bg"></circle>
-    <circle class="progress-circle-fill" id="progressCircle"></circle>
-  </svg>
-  <button class="back-to-top-btn" id="backToTopBtn">
-    <svg class="arrow-icon-svg" viewBox="0 0 24 24">
-      <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-    </svg>
-  </button>
-</div>
-<!-- Scroll Progress End -->
-
-<style>
-  .scroll-progress-container {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  width: 60px;
-  height: 60px;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.scroll-progress-container.show-button {
-  opacity: 1;
-  visibility: visible;
-}
-
-.progress-circle-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60px;
-  height: 60px;
-  transform: rotate(-90deg);
-}
-
-.progress-circle-bg {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.2);
-  stroke-width: 3;
-  r: 27;
-  cx: 30;
-  cy: 30;
-}
-
-.progress-circle-fill {
-  fill: none;
-  stroke: #007bff;
-  stroke-width: 3;
-  stroke-linecap: round;
-  r: 27;
-  cx: 30;
-  cy: 30;
-  stroke-dasharray: 169.65;
-  stroke-dashoffset: 169.65;
-  transition: stroke-dashoffset 0.1s ease;
-}
-
-.back-to-top-btn {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background-color: #007bff;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.back-to-top-btn:hover {
-  background-color: #0056b3;
-  transform: translate(-50%, -50%) scale(1.1);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-}
-
-.back-to-top-btn:active {
-  transform: translate(-50%, -50%) scale(0.95);
-}
-
-.arrow-icon-svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-}
-
-.demo-content-section {
-  padding: 40px 20px;
-  margin: 20px 0;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-}
-
-.demo-title {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.demo-paragraph {
-  font-size: 16px;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-.demo-header {
-  font-size: 32px;
-  font-weight: bold;
-  color: #007bff;
-  text-align: center;
-  margin: 40px 0;
-}
-</style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-  const backToTopContainer = document.getElementById('backToTopContainer');
-  const backToTopBtn = document.getElementById('backToTopBtn');
-  const progressCircle = document.getElementById('progressCircle');
-  
-  // Circle circumference for progress calculation
-  const radius = 27;
-  const circumference = 2 * Math.PI * radius;
-  
-  // Set initial stroke-dasharray
-  progressCircle.style.strokeDasharray = circumference;
-  progressCircle.style.strokeDashoffset = circumference;
-  
-  // Show/hide button and update progress on scroll
-  window.addEventListener('scroll', function() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollProgress = scrollTop / scrollHeight;
-    
-    // Show button after scrolling 100px
-    if (scrollTop > 100) {
-      backToTopContainer.classList.add('show-button');
-    } else {
-      backToTopContainer.classList.remove('show-button');
-    }
-    
-    // Update progress circle
-    const offset = circumference - (scrollProgress * circumference);
-    progressCircle.style.strokeDashoffset = offset;
-  });
-  
-  // Smooth scroll to top when button is clicked
-  backToTopBtn.addEventListener('click', function() {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  });
-});
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!-- HYPERION-HEADER START -->
 <style>
@@ -1669,2594 +1343,409 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="defcon-premium-showcase">
-  <div class="defcon-header-container-hd">
-    <div class="defcon-main-heading-hd">Trusted Local Technology Partner in South Africa.</div>
-  </div>
-
-  <button class="defcon-crypto-cta" onclick="window.location.href='page.html'">
-    <span class="defcon-crypto-text">Discover Why Hyperion</span>
-    <span class="defcon-crypto-icon">
-      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </span>
-  </button>
-
-</section>
-
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-  
-
-/* Base Styles */
-.defcon-premium-showcase {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 60px 5%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: linear-gradient(rgba(6, 39, 62, 0.5), rgba(6, 39, 62, 0.2)), url('thumbnails/Gemini_Generated_Image_ap7ly1ap7ly1ap7l.png') no-repeat center center/cover;
-  box-sizing: border-box;
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; 
-}
-
-/* Header Container: Ensures full width and animation works */
-.defcon-header-container-hd {
-  max-width: 800px;
-  width: 100%;
-  text-align: center;
-  animation: defconFadeInUp 1s ease-out forwards;
-}
-
-/* Main Heading Fixes: Removed fixed 'width: 800px' for responsiveness */
-.defcon-main-heading-hd {
-  font-size: 51px;
-  font-weight: 700;
-  text-transform: none;
-  max-width: 800px; /* Constrains width for readability on large screens */
-  letter-spacing: -0.04em;
-  line-height: 1.2;
-  color: white;
-  text-align: center;
-  margin: 0 auto 3rem auto; /* Centered and set bottom margin */
-}
-
-/* CTA Button Styles - This padding is now maintained on all devices */
-.defcon-crypto-cta {
-  display: inline-flex;
-  align-items: center;
-  background: #dedede;
-  color: #06273e;
-  border: none;
-  padding: 5px 6px 5px 25px;
-  font-size: 17px;
-  font-weight: 600;
-  border-radius: 60px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  margin-bottom: 4rem;
-  margin-top: 1rem;
-}
-
-.defcon-crypto-cta:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 145, 255, 0.4);
-}
-
-.defcon-crypto-cta:active {
-  transform: translateY(1px);
-}
-
-.defcon-crypto-text {
-  margin-right: 15px;
-}
-
-.defcon-crypto-icon {
-  width: 40px;
-  height: 40px;
-  background: #0091ff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.defcon-crypto-cta:hover .defcon-crypto-icon {
-  background: #0066ff;
-  transform: translateX(3px);
-}
-
-
-/* --- Responsive Adjustments --- */
-
-/* Laptops / Large Tablets (Max-width 1024px) */
-@media (max-width: 1024px) {
-  .defcon-main-heading-hd {
-    font-size: 44px; /* Scale down for smaller screens */
-  }
-}
-
-/* Tablets (Max-width 767px) */
-@media (max-width: 767px) {
-  .defcon-premium-showcase {
-    min-height: 70vh; /* Reduced height on smaller devices */
-  }
-  .defcon-main-heading-hd {
-    font-size: 38px;
-    line-height: 1.25;
-  }
-}
-
-/* Mobile Devices (Max-width 480px) */
-@media (max-width: 480px) {
-  .defcon-premium-showcase {
-    padding: 40px 5%;
-    min-height: 60vh; /* Reduced height on small phones */
-  }
-  
-  /* Heading size reduced significantly for small screens */
-  .defcon-main-heading-hd {
-    font-size: 30px; 
-    line-height: 1.3;
-    margin-bottom: 2rem;
-  }
-  
-  /* CTA button adjustments: Removed padding override */
-  .defcon-crypto-cta {
-    /* **FIXED: Removed mobile padding override to keep original shape** */
-    font-size: 15px; /* Text size still scales down */
-    margin-top: 0.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* Icon size is still reduced to prevent overflow */
-  .defcon-crypto-icon {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .defcon-crypto-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .defcon-crypto-text {
-    margin-right: 10px;
-  }
-}
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="hero-section-dv">
-    <div class="container-dv">
-      <div class="content-left">
-        <p style="text-transform: uppercase; color: #001023; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px;">Future of Infrastructure</p>
-        <h1 class="main-heading">
-            Innovate, Integrate <br> and 
-            <span class="highlight-word">
-                Elevate.
-                <svg class="underline-svg" viewBox="0 0 196 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 16.9998C30.4988 9.39999 91.2223 -6.38075 193 11.0002"/>
-                </svg>
-            </span>
-        </h1>
-            
-        <div class="description">
-            <p>We're more than just developers – we're your trusted digital partner. From smart design to solid delivery, every detail is handled with care, precision, and a commitment to excellence.</p>
-        </div>
-
-        <button class="learn-more" onclick="window.location.href='page.html'">
-          <span class="circle" aria-hidden="true">
-          <span class="icon arrow"></span>
-          </span>
-          <span class="button-text">Learn More</span>
-        </button>
-      </div>
-
-      <div class="image-container">
-          <div class="main-image">
-            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Happy team celebrating together" />
-          </div>
-          
-          <div class="stats-card">
-            <div class="stats-number">53%</div>
-            <div class="stats-text">High Conversions<br>Everything</div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .hero-section-dv {
-    position: relative;
-    min-height: 100vh;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 100px;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-    line-height: 1.7;
-  }
-
-  .container-dv {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    padding: 0 20px;
-  }
-
-  .content-left {
-    flex: 1;
-    max-width: 600px;
-    z-index: 2;
-    /* Font Visibility Fix */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  .main-heading {
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #001023;
-    margin-bottom: 30px;
-    letter-spacing: -0.03em;
-    /* Font Visibility Fix */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  .description {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.6;
-    color: #757575;
-    margin-bottom: 40px;
-    max-width: 480px;
-  }
-
-  .image-container {
-    position: relative;
-    flex: 1;
-    max-width: 600px;
-    /* The fixed height on the image container is a responsiveness issue, but it must be kept as requested */
-    height: 400px; 
-  }
-
-  /* --- NEW CREATIVE ADDITION: Dot Pattern Overlay --- */
-  .image-container::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: -40px;
-    width: 50%;
-    height: 50%;
-    background-image: radial-gradient(circle at 1.5px 1.5px, #0066ff 1.5px, transparent 0);
-    background-size: 20px 20px;
-    opacity: 0.4;
-    z-index: 1;
-  }
-
-  .main-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-
-  .main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%; /* Focus on the people in the image */
-    display: block; /* Remove any default inline spacing */
-  }
-
-  .stats-card {
-    position: absolute;
-    bottom: -40px;
-    left: -50px;
-    background: #ffd700;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-    min-width: 150px;
-  }
-
-  .stats-number {
-    font-size: 40px;
-    font-weight: 800;
-    color: #001023;
-    line-height: 1;
-    margin-bottom: 5px;
-    text-align: left;
-  }
-
-  .stats-text {
-    font-size: 18px;
-    color: #001023;
-    line-height: 1.3;
-    text-align: left;
-  }
-
-  /* --- NEW CREATIVE ADDITION: Underline Scribble --- */
-  .highlight-word {
-    position: relative;
-    color: #0091ff;
-  }
-
-  .underline-svg {
-    position: absolute;
-    bottom: -15px;
-    left: -5%;
-    width: 110%;
-    height: 25px;
-    overflow: visible;
-  }
-
-  .underline-svg path {
-    stroke: #0091ff;
-    stroke-width: 5;
-    stroke-linecap: round;
-    fill: none;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw 1.5s ease-out 0.5s forwards;
-  }
-
-   @keyframes draw {
-    to {
-        stroke-dashoffset: 0;
-    }
-  }
-
-  /* Tablet Styles */
-  @media (max-width: 1024px) {
-    .container-dv {
-        flex-direction: column;
-        text-align: center;
-        gap: 50px;
-    }
-
-    .main-heading {
-        font-size: 3.5rem;
-    }
-
-    .content-left {
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .description {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .image-container {
-      width: 100%;
-      max-width: 500px;
-      height: 350px;
-      margin-top: 2rem;
-    }
-
-    /* Adjust dot pattern for tablet */
-    .image-container::after {
-        width: 100%;
-        height: 50%;
-        left: 0;
-        
-    }
-  }
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    .hero-section-dv {
-      padding: 60px 20px 80px;
-      min-height: auto;
-    }
-
-    .container-dv {
-      gap: 40px;
-      padding: 0 15px;
-    }
-
-    .main-heading {
-        font-size: 2.5rem;
-    }
-
-    .content-left {
-      text-align: left;
-    }
-
-    .description {
-      font-size: 15px;
-      max-width: 100%;
-    }
-
-    .image-container {
-      height: 300px;
-    }
-
-    .main-image img {
-      object-position: center 30%; /* Adjust focus for mobile */
-    }
-
-    .stats-card {
-      bottom: -15px;
-      left: -15px;
-      padding: 15px;
-      min-width: 130px;
-    }
-
-    .stats-number {
-      font-size: 28px;
-    }
-
-    .stats-text {
-      font-size: 13px;
-    }
-
-    .learm-more {
-      padding-bottom: 2rem;
-    }
-  }
-
-  /* Small Phone Styles */
-  @media (max-width: 480px) {
-    .hero-section-dv {
-      padding: 40px 15px 60px;
-    }
-
-    .container-dv {
-      gap: 30px;
-    }
-
-    .main-heading {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-
-    .description {
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-    .image-container {
-      height: 250px;
-    }
-
-    .main-image img {
-      object-position: center 35%; /* Further adjust focus for small screens */
-    }
-
-    .stats-card {
-      bottom: -10px;
-      left: -10px;
-      padding: 12px;
-      min-width: 120px;
-    }
-
-    .stats-number {
-      font-size: 24px;
-    }
-
-    .stats-text {
-      font-size: 12px;
-    }
-  }
-
-  /* Extra Small Phone Styles */
-  @media (max-width: 360px) {
-    .main-heading {
-        font-size: 1.8rem;
-    }
-
-    .image-container {
-      height: 220px;
-    }
-
-    .main-image img {
-      object-position: center 40%; /* Final adjustment for extra small screens */
-    }
-
-    .stats-card {
-      min-width: 110px;
-      padding: 10px;
-    }
-
-    .stats-number {
-      font-size: 22px;
-    }
-  }
-
-  /* --- Button Styles --- */
-        button {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        outline: none;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        background: transparent;
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        }
-
-        button.learn-more {
-        width: 12rem;
-        height: auto;
-        }
-
-        button.learn-more .circle {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: relative;
-        display: block;
-        margin: 0;
-        width: 3rem;
-        height: 3rem;
-        background: #282936;
-        border-radius: 1.625rem;
-        }
-
-        button.learn-more .circle .icon {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: #fff;
-        }
-
-        button.learn-more .circle .icon.arrow {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-        }
-
-        button.learn-more .circle .icon.arrow::before {
-        position: absolute;
-        content: "";
-        top: -0.29rem;
-        right: 0.0625rem;
-        width: 0.625rem;
-        height: 0.625rem;
-        border-top: 0.125rem solid #fff;
-        border-right: 0.125rem solid #fff;
-        transform: rotate(45deg);
-        }
-
-        button.learn-more .button-text {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0.75rem 0;
-        margin: 0 0 0 1.85rem;
-        color: #282936;
-        font-weight: 700;
-        line-height: 1.6;
-        text-align: center;
-        text-transform: uppercase;
-        }
-        /* KEEPING these hover transitions as they are the core visual feedback */
-        button:hover .circle {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        width: 100%;
-        }
-
-        button:hover .circle .icon.arrow {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        background: #fff;
-        transform: translate(1rem, 0);
-        }
-
-        button:hover .button-text {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        color: #fff;
-        }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<body>
-    <defcon-showcase-section>
-        <div class="services-heading">
-          <h1>What We Do</h1>
-          <h2 class="services-heading-text" style="color: #001023;">Our Full-Spectrum <br> Technology Services</h2>
-        </div>
-        <defcon-showcase-grid>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="software-engineering">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>Software Development</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We design, develop, and deploy custom, scalable software and platforms that turn your vision into a high-performance digital reality.
-                    </defcon-showcase-paragraph>
-
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                  <img class="defcon-showcase-image" src="https://images.pexels.com/photos/3888151/pexels-photo-3888151.jpeg" alt="A professional team collaborating in a modern office." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="it-infrastructure">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>IT Infrastructure</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We secure your operations with end-to-end cloud solutions, network security, and 24/7 proactive monitoring for maximum stability.
-                    </defcon-showcase-paragraph>
-                    
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                    <img class="defcon-showcase-image" src="https://images.pexels.com/photos/4508751/pexels-photo-4508751.jpeg" alt="Creative professionals working together on a laptop." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-
-            <defcon-showcase-card class="defcon-showcase-reveal" id="marketing">
-                <defcon-showcase-content>
-                    <defcon-showcase-heading>Marketing & Creative Studio</defcon-showcase-heading>
-                    <defcon-showcase-paragraph>
-                      We blend innovative creative design with data-driven strategies to build memorable brands and maximize your market presence.
-                    </defcon-showcase-paragraph>
-
-                    <button class="learn-more" onclick="window.location.href='page.html'">
-                      <span class="circle" aria-hidden="true">
-                      <span class="icon arrow"></span>
-                      </span>
-                      <span class="button-text">Learn More</span>
-                    </button>
-
-                </defcon-showcase-content>
-                <defcon-showcase-image-wrapper>
-                    <img class="defcon-showcase-image" src="https://images.pexels.com/photos/414974/pexels-photo-414974.jpeg" alt="A professional team collaborating in a modern office." style="width: 100%; height: 100%; object-fit: cover">
-                </defcon-showcase-image-wrapper>
-            </defcon-showcase-card>
-        </defcon-showcase-grid>
-
-  </defcon-showcase-section>
-    <style>
-      /* --- Google Font Import --- */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-        /* Optimized services-heading */
-        .services-heading {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-top: 3rem;
-            text-align: center;
-            color: #001023;
-        }
-
-        .services-heading h1 {
-            color: #001023;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            text-align: center;
-            
-        }
-
-        .services-heading-text {
-            font-size: 54px;
-            font-weight: 700;
-            text-transform: none;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            padding-bottom: 7rem;
-            text-align: center;
-            color: #001023;
-        }
-
-        /* --- Main "Showcase" Section Wrapper --- */
-        defcon-showcase-section {
-            font-family: 'Inter', sans-serif;
-            background-color: #f6f6f6;
-            display: block;
-            overflow: hidden;
-            padding: 80px 5%;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        /* --- Grid Layout for the two main cards --- */
-        defcon-showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto 100px auto;
-        }
-
-        /* --- Individual Showcase Card --- */
-        defcon-showcase-card {
-            display: flex;
-            align-items: center;
-            background-color: #ffffff;
-            border: 1px solid #E5E7EB;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            position: relative;
-            overflow: hidden;
-            
-        }
-
-        defcon-showcase-card.defcon-showcase-is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-       
-
-
-        /* --- Left/Right Columns within the card --- */
-        defcon-showcase-content {
-            flex-basis: 50%;
-            padding: 60px;
-            text-align: left; 
-        }
-
-        defcon-showcase-image-wrapper {
-            flex-basis: 50%;
-            align-self: stretch;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-        }
-
-        /* --- Reversing order for the cards on Desktop --- */
-        /* Card 1: Text (Right), Image (Left) */
-        defcon-showcase-card:nth-child(1) defcon-showcase-content {
-            order: 2;
-        }
-        defcon-showcase-card:nth-child(1) defcon-showcase-image-wrapper {
-            order: 1;
-        }
-
-        /* Card 2: Text (Left), Image (Right) - Standard Order */
-        defcon-showcase-card:nth-child(2) defcon-showcase-content {
-            order: 1;
-        }
-        defcon-showcase-card:nth-child(2) defcon-showcase-image-wrapper {
-            order: 2;
-        }
-
-        /* Card 3: Text (Right), Image (Left) */
-        defcon-showcase-card:nth-child(3) defcon-showcase-content{
-          order: 2;
-        }
-        defcon-showcase-card:nth-child(3) defcon-showcase-image-wrapper {
-            order: 1;
-        }
-
-
-        /* --- Text Styling --- */
-        defcon-showcase-heading {
-            display: block;
-            font-size: 36px;
-            font-weight: 700;
-            color: #001023;
-            line-height: 1.25;
-            margin-bottom: 16px;
-        }
-
-        /* --- PARAGRAPH FONT FIXES --- */
-        defcon-showcase-paragraph {
-            display: block;
-            font-size: 20px; /* INCREASED FONT SIZE TO 20PX */
-            font-weight: 500; /* INCREASED FONT WEIGHT TO 700 */
-            color: #757575;
-            line-height: 1.6;
-            margin-bottom: 32px;
-            max-width: 480px;
-        }
-
-        /* --- Image Styling --- */
-        defcon-showcase-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0s ease;
-        }
-
-       
-        /* =============================================
-           RESPONSIVENESS FIXES
-           ============================================= */
-
-        /* --- Tablet & Medium Devices (Max-width 992px) --- */
-        @media (max-width: 992px) {
-            
-            .services-heading-text {
-                font-size: 44px;
-                padding-bottom: 5rem;
-            }
-
-            defcon-showcase-card {
-                flex-direction: column;
-            }
-            
-            /* Order for all cards on mobile: Image Top (1), Text Bottom (2) */
-            defcon-showcase-card defcon-showcase-content {
-                order: 2;
-            }
-            defcon-showcase-card defcon-showcase-image-wrapper {
-                order: 1;
-            }
-
-            defcon-showcase-content {
-                padding: 40px;
-                text-align: left; 
-            }
-            
-            defcon-showcase-image-wrapper {
-                width: 100%;
-                height: 300px;
-                /* Mobile image wrapper should not have radius to allow card's top radius to show */
-                border-radius: 0; 
-            }
-        }
-
-        /* --- Mobile Devices (Max-width 600px) --- */
-        @media (max-width: 600px) {
-
-            defcon-showcase-section {
-                padding: 50px 5%;
-            }
-
-            .services-heading-text {
-                font-size: 32px; 
-                padding-bottom: 3rem; 
-            }
-
-            defcon-showcase-content {
-                padding: 30px 20px;
-            }
-            
-            defcon-showcase-heading {
-                font-size: 26px;
-                margin-bottom: 12px;
-            }
-
-            defcon-showcase-paragraph {
-                font-size: 18px; /* Slightly reduced for better fit on small phones */
-                margin-bottom: 20px;
-            }
-            
-            defcon-showcase-image-wrapper {
-                height: 200px;
-            }
-        }
-
-
-        /* --- Button Styles --- */
-        button {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        outline: none;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        background: transparent;
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        }
-
-        button.learn-more {
-        width: 12rem;
-        height: auto;
-        }
-
-        button.learn-more .circle {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: relative;
-        display: block;
-        margin: 0;
-        width: 3rem;
-        height: 3rem;
-        background: #001023;
-        border-radius: 1.625rem;
-        }
-
-        button.learn-more .circle .icon {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: #fff;
-        }
-
-        button.learn-more .circle .icon.arrow {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-        }
-
-        button.learn-more .circle .icon.arrow::before {
-        position: absolute;
-        content: "";
-        top: -0.29rem;
-        right: 0.0625rem;
-        width: 0.625rem;
-        height: 0.625rem;
-        border-top: 0.125rem solid #fff;
-        border-right: 0.125rem solid #fff;
-        transform: rotate(45deg);
-        }
-
-        button.learn-more .button-text {
-        transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0.75rem 0;
-        margin: 0 0 0 1.85rem;
-        color: #282936;
-        font-weight: 700;
-        line-height: 1.6;
-        text-align: center;
-        text-transform: uppercase;
-        }
-
-        button:hover .circle {
-        width: 100%;
-        }
-
-        button:hover .circle .icon.arrow {
-        background: #fff;
-        transform: translate(1rem, 0);
-        }
-
-        button:hover .button-text {
-        color: #fff;
-        }
-    </style>
-
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-
-        const revealElements = document.querySelectorAll('.defcon-showcase-reveal');
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('defcon-showcase-is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-
-        revealElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        });
-    </script>
-</body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        .container {
-            display: flex;
-            min-height: 100vh;
-            font-family: 'Inter', sans-serif;
-            background-color: #001023;
-            color: #fff;
-            overflow: hidden;
-        }
-
-        .left-column {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 13em 0 13em 160px;
-            background-color: #001023;
-        }
-
-        .tagline {
-            font-size: 14px;
-            font-weight: 600;
-            color: #62b9f7;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .main-heading-op {
-            font-size: 64px;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 60px;
-            letter-spacing: -0.04em;
-        }
-
-        .highlight {
-            color: #0091ff;
-        }
-
-        .features {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 60px;
-        }
-
-        .feature-item-op {
-            display: flex;
-            gap: 20px;
-        }
-
-        .feature-icon-op {
-            flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            background-color: #062733;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .feature-content-op h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-content-op p {
-            font-size: 15px;
-            font-weight: 500;
-            line-height: 1.6;
-            color: #999;
-            max-width: 400px;
-        }
-
-        .cta-button {
-            width: fit-content;
-            padding: 12px 40px;
-            background-color: transparent;
-            color: #fff;
-            border: 1.5px solid #fff;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .cta-button:hover {
-            background-color: #ffffff25;
-        }
-
-        .right-column {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 60px;
-            background-color: #001023;
-        }
-
-        .screen-image {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            display: flex;
-            align-content: center;
-            justify-content: center;
-        }
-
-        @media (max-width: 1200px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .left-column {
-                padding: 60px 40px;
-            }
-
-            .main-heading {
-                font-size: 48px;
-            }
-
-            .right-column {
-                padding: 40px;
-                margin-left: 1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .left-column {
-                padding: 40px 24px;
-            }
-
-            .main-heading {
-                font-size: 36px;
-            }
-
-            .feature-content h3 {
-                font-size: 18px;
-            }
-
-            .feature-content p {
-                font-size: 14px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="left-column">
-            <p class="tagline">Level up with Hyperion</p>
-            <h1 class="main-heading-op">
-                Take Your <br>Business To The<br>
-                <span class="highlight">Next Level</span>
-            </h1>
-
-            <div class="features">
-                <div class="feature-item-op">
-                    <div class="feature-icon-op">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="4" y="4" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                            <rect x="14" y="4" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                            <rect x="4" y="14" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                            <rect x="14" y="14" width="6" height="6" rx="1" stroke="#0091ff" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="feature-content-op">
-                        <h3>High-Performance Premium Apps</h3>
-                        <p>Not your average app drop. These are precision-engineered builds; high-end, encrypted, and lightning-fast.</p>
-                    </div>
-                </div>
-
-                <div class="feature-item-op">
-                    <div class="feature-icon-op">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#0091ff" stroke-width="2"/>
-                            <path d="M3 9H21" stroke="#0091ff" stroke-width="2"/>
-                            <path d="M9 9V21" stroke="#0091ff" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="feature-content-op">
-                        <h3>Handcrafted Code Architecture</h3>
-                        <p>Built different, literally. Our sites are coded from scratch, giving you total control, faster load times, and zero limits on creativity.</p>
-                    </div>
-                </div>
-            </div>
-
-            <button class="cta-button" onclick="window.location.href='page.html'">Explore More</button>
-        </div>
-
-        <div class="right-column" style="overflow: hidden;">
-            
-            <img src="https://images.unsplash.com/photo-1760536928911-40831dacdbc3?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074" alt="CRM Dashboard Interface" class="screen-image" style="width: 140%; height: auto;">
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon Image-Text Grid</title>
+    <title>TechVentures Capital | IT Solutions & Investments</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Root Variables */
+        /* ===== CSS VARIABLES ===== */
         :root {
-            --defcon-navy: #06273e;
-            --defcon-blue: #0091ff;
-            --defcon-light-gray: #e5e5e5;
-            --defcon-white: #ffffff;
-            --defcon-black: #000000;
-            --font-family-inter: 'Inter', sans-serif;
-            --border-radius-1px: 12px;
-            --content-max-width: 1200px; /* Adjusted for this section */
+            --primary-dark: #010119;
+            --primary-accent: #1199fa;
+            --text-light: #e5e5e5;
+            --text-lighter: #f4f4f4;
+            --text-white: #fff;
+            --text-dark: #000;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --section-spacing: 200px;
+            --card-radius: 2px;
+            --transition: all 0.3s ease;
         }
 
-        /* Container for the whole section */
-        .defcon-image-text-section-container {
-            font-family: var(--font-family-inter);
-            background-color: var(--defcon-white); /* White background for this section */
-            padding: 200px 0; /* Vertical padding */
-            width: 100%;
-            margin: 0;
-            text-align: center; /* Center content within */
-            color: var(--defcon-navy); /* Default text color for this section */
-        }
-        
-        /* Inner Wrapper to constrain all content */
-        .defcon-image-text-content-wrapper {
-            max-width: var(--content-max-width);
-            width: 90%; /* Use percentage for responsiveness */
-            margin: 0 auto;
-            text-align: left; /* Align grid content to left */
-        }
-
-        /* --- Image-Text Grid --- */
-        .defcon-content-grid {
-            display: grid;
-            /* Two main rows: Top (Text | Image) and Bottom (Image | Image | Text) */
-            /* Using a flexible 3-column layout for the items */
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 15px; /* Space between grid items */
-            align-items: stretch; /* Stretch items to fill height of cell */
-        }
-
-        /* Grid Item Styling */
-        .defcon-grid-item {
-            background-color: var(--defcon-light-gray); /* Light gray background for text boxes */
-            border-radius: var(--border-radius-1px);
-            overflow: hidden; /* Ensures image corners are rounded if item has padding/border-radius */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically */
-            padding: 0; /* Reset padding for individual control */
-        }
-
-        /* Text Block in Grid Item */
-        .defcon-grid-item-text {
-            padding: 30px; /* Padding for text content */
-            font-size: 1.25rem; /* Larger font for main text */
-            font-weight: 500;
-            line-height: 1.4;
-            color: var(--defcon-navy); /* Dark text on light gray background */
-        }
-
-        /* Image Block in Grid Item */
-        .defcon-grid-item-image {
-            width: auto;
-            height: 40vh;
-            object-fit: cover; /* Cover the area without distortion */
-            display: block; /* Remove extra space below image */
-            border-radius: var(--border-radius-1px); /* Match container radius */
-        }
-
-        /* --- Grid Spanning for Asymmetrical Layout --- */
-        /* Top Left Text */
-        .defcon-item-1-text {
-            grid-column: span 1;
-            background-color: #f4f4f4; /* Keep background white for text box */
-            text-align: left;
-            padding: 30px; /* Apply padding here for text */
-            font-size: 1.8rem; /* Slightly larger for this prominent text */
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--defcon-navy);
-            /* Ensure it stretches vertically in the grid */
-            align-self: stretch;
-            display: flex; /* Use flex to vertically center text */
-            align-items: center; /* Vertically center text */
-        }
-
-        /* Top Right Image - spans 2 columns */
-        .defcon-item-2-image {
-            grid-column: span 2;
-        }
-
-        /* Bottom Left Image - spans 1 column */
-        .defcon-item-3-image {
-            grid-column: span 1;
-        }
-
-        /* Bottom Middle Image - spans 1 column */
-        .defcon-item-4-image {
-            grid-column: span 1;
-        }
-
-        /* Bottom Right Text - spans 1 column */
-        .defcon-item-5-text {
-            grid-column: span 1;
-            background-color: #f4f4f4; /* Keep background white for text box */
-            text-align: left;
-            padding: 30px; /* Apply padding here for text */
-            font-size: 1.8rem; /* Consistent large font */
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--defcon-navy);
-            /* Ensure it stretches vertically in the grid */
-            align-self: stretch;
-            display: flex; /* Use flex to vertically center text */
-            align-items: center; /* Vertically center text */
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 992px) {
-            .defcon-content-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
-            }
-            /* Reset column spans for all items on medium screens to avoid gaps */
-            .defcon-item-1-text,
-            .defcon-item-2-image,
-            .defcon-item-3-image,
-            .defcon-item-4-image,
-            .defcon-item-5-text {
-                grid-column: span 1;
-            }
-            .defcon-item-1-text,
-            .defcon-item-5-text {
-                font-size: 1.25rem; /* Adjust font size for smaller screens */
-            }
-        }
-
-        @media (max-width: 768px) {
-            .defcon-content-grid {
-                grid-template-columns: 1fr; /* Stack all items on small screens */
-            }
-            .defcon-image-text-content-wrapper {
-                width: 95%; /* More width on small screens */
-            }
-            .defcon-grid-item-text,
-            .defcon-item-1-text,
-            .defcon-item-5-text {
-                padding: 20px;
-                font-size: 1.1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <section class="defcon-image-text-section-container">
-        <div class="defcon-image-text-content-wrapper">
-            <div class="defcon-content-grid">
-
-                <div class="defcon-grid-item defcon-item-1-text">
-                    Seamlessly integrate blockchain & Web3 solutions.
-                </div>
-
-                <div class="defcon-grid-item defcon-item-2-image">
-                    <img src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Modern IT Workplace" class="defcon-grid-item-image">
-                </div>
-
-                <div class="defcon-grid-item defcon-item-3-image">
-                    <img src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074" alt="Team Collaboration" class="defcon-grid-item-image">
-                </div>
-
-                <div class="defcon-grid-item defcon-item-4-image">
-                    <img src="https://images.unsplash.com/photo-1729376169862-2297351f9e1f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1171" alt="Mobile App Development" class="defcon-grid-item-image">
-                </div>
-
-                
-                <div class="defcon-grid-item defcon-item-5-text">
-                    Leverage AI & Data Analytics to drive informed decisions.
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-</body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============================================
-     *** FAQ SECTION ***
-     ============================================= -->
-<style>
-  /* FAQ Container */
-  .defcon-faq-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  /* Left Column */
-  .defcon-faq-header-col {
-    flex: 0 0 30%;
-    padding-right: 40px;
-    display: flex;
-  }
-
-  .defcon-faq-title {
-    color: #06273e;
-    font-size: 54px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.2;
-    margin-bottom: 30px;
-  }
-
-  /* Right Column */
-  .defcon-faq-content-col {
-    flex: 0 0 70%;
-  }
-
-  /* Accordion Item */
-  .defcon-accordion-item {
-    border-bottom: 2px solid #e5e5e5;
-    margin-bottom: 15px;
-    overflow: hidden;
-    transition: all 0.4s ease;
-  }
-
-  .defcon-accordion-header {
-    background-color: #fff;
-    color: #06273e;
-    padding: 20px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    
-  }
-
-  .defcon-accordion-header span {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  .defcon-accordion-header:hover {
-    color: #0091ff;
-  }
-
-  .defcon-accordion-header.active {
-    color: #0091ff;
-  }
-
-  .defcon-accordion-icon {
-    width: 24px;
-    height: 24px;
-    position: relative;
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .defcon-accordion-icon-line {
-    position: absolute;
-    background-color: #0091ff;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-  }
-
-  .defcon-accordion-icon-line-horizontal {
-    width: 20px;
-    height: 3px;
-    top: 50%;
-    left: 2px;
-    transform: translateY(-50%);
-  }
-
-  .defcon-accordion-icon-line-vertical {
-    width: 3px;
-    height: 20px;
-    left: 50%;
-    top: 2px;
-    transform: translateX(-50%);
-  }
-
-  /* Show plus sign by default, rotate on active */
-  .defcon-accordion-header .defcon-accordion-icon {
-    transform: rotate(0deg);
-  }
-  .defcon-accordion-header.active .defcon-accordion-icon {
-    transform: rotate(45deg);
-  }
-
-  /* Hide vertical line when active (turn plus into X) */
-  .defcon-accordion-header.active .defcon-accordion-icon-line-vertical {
-    opacity: 0;
-    transform: translateX(-50%) rotate(90deg);
-  }
-
-  .defcon-accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0s ease;
-    background-color: #fff;
-  }
-
-  .defcon-accordion-content-inner {
-    padding: 0 0 25px 0;
-    color: #333;
-    line-height: 1.6;
-    font-weight: 400;
-    font-size: 1rem;
-  }
-
-  .defcon-accordion-item.active .defcon-accordion-content {
-    max-height: 500px;
-  }
-
-  .defcon-accordion-item.active .defcon-accordion-content-inner {
-    transform: translateY(0);
-  }
-
-  .defcon-faq-link {
-    color: #0091ff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0s ease;
-    border-bottom: 1px solid transparent;
-  }
-
-  .defcon-faq-link:hover {
-    border-bottom-color: #0091ff;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .defcon-faq-container {
-      flex-direction: column;
-      padding: 30px 15px;
-    }
-
-    .defcon-faq-header-col {
-      flex: 0 0 100%;
-      padding-right: 0;
-      margin-bottom: 30px;
-    }
-
-    .defcon-faq-content-col {
-      flex: 0 0 100%;
-    }
-
-    .defcon-faq-title {
-      font-size: 2rem;
-      position: static;
-    }
-
-    .defcon-accordion-header {
-      font-size: 1.1rem;
-      padding: 15px 0;
-    }
-  }
-
-  /* Animation Enhancements */
-  @keyframes defcon-fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .defcon-faq-container {
-    animation: defcon-fadeIn 0.6s ease forwards;
-  }
-</style>     
-
-<div class="defcon-faq-section" style="background:#fff; padding:60px 0; font-family: 'Inter', sans-serif;">
-
-<div class="defcon-faq-container">
-  <div class="defcon-faq-header-col">
-    <h2 class="defcon-faq-title rb-fade-in">Frequently Asked Questions</h2>
-  </div>
-  
-  <div class="defcon-faq-content-col">
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What services does your company offer?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>We provide a comprehensive suite of professional services including web design, development, UX/UI design, branding, and digital strategy. Our team specializes in creating custom solutions tailored to your business needs. For specific examples, please visit our <a href="#" class="defcon-faq-link">portfolio page</a> or review our <a href="#" class="defcon-faq-link">services breakdown</a>.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>How long does a typical project take?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Project timelines vary based on scope and complexity. A standard website typically takes 6-8 weeks from kickoff to launch, while more complex applications may require 3-6 months. We provide a detailed timeline during our <a href="#" class="defcon-faq-link">discovery phase</a> after understanding your specific requirements.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What is your pricing structure?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>We offer both fixed-price projects for well-defined scopes and time-and-materials engagements for more flexible requirements. Our pricing is transparent and tailored to each project's needs. For a detailed quote, please <a href="#" class="defcon-faq-link">contact our sales team</a> or use our <a href="#" class="defcon-faq-link">project calculator</a>.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>Do you provide ongoing support after launch?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Yes, we offer several <a href="#" class="defcon-faq-link">maintenance plans</a> to ensure your digital solution continues to perform optimally. Our support services include security updates, performance optimization, content updates, and technical support. All new projects include 30 days of complimentary post-launch support.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What technologies do you specialize in?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Our team is proficient in modern web technologies including React, Vue.js, Angular, Node.js, Python, PHP, and various CMS platforms. We stay at the forefront of technology trends to deliver cutting-edge solutions. View our complete <a href="technology-stack.html" class="defcon-faq-link">technology stack</a> for more details.</p>
-        </div>
-      </div>
-    </div>
-
-  <p style="margin-top: 4rem; margin-bottom: 3rem; font-size: 16px; color: #06273e; font-weight: 600;">Have more questions? <a href="contactus.html" style="color: #0091ff; text-decoration: none; border-bottom: none; font-weight: 400;">Contact us</a></p>
-
-  </div>
-</div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const accordionHeaders = document.querySelectorAll('.defcon-accordion-header');
-    
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const item = this.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Close all other accordion items
-        document.querySelectorAll('.defcon-accordion-item').forEach(accordionItem => {
-          if (accordionItem !== item) {
-            accordionItem.classList.remove('active');
-            accordionItem.querySelector('.defcon-accordion-header').classList.remove('active');
-          }
-        });
-        
-        // Toggle current item
-        if (!isActive) {
-          item.classList.add('active');
-          this.classList.add('active');
-        } else {
-          item.classList.remove('active');
-          this.classList.remove('active');
-        }
-      });
-    });
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.defcon-accordion-item').forEach(item => {
-      observer.observe(item);
-    });
-  });
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Follow Us Bar</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
+        /* ===== BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
             font-family: 'Inter', sans-serif;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
         }
 
-        .follow-container {
-            background-color: #ffffff;
-            color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .follow-bar {
-            padding: 30px 0;
-            width: 100%;
+        .capital-container {
             max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 15px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .follow-content {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* ===== TYPOGRAPHY ===== */
+        .capital-heading {
+            font-size: 4.1rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            color: var(--text-white);
         }
 
-        .follow-title {
-            font-size: 1rem;
+        .capital-subheading {
+            font-size: 1.6rem;
             font-weight: 500;
-            color: #06273e;
-            white-space: nowrap;
-            line-height: 1;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            color: var(--text-lighter);
+        }
+
+        .capital-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .capital-section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            color: var(--text-white);
+        }
+
+        .capital-section-subtitle {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            color: var(--text-lighter);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .capital-hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 150px 0;
             
         }
 
-        .social-icons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .social-icons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 37px;
-            height: 37px;
-            border-radius: 50%;
-            color: #f8f9fa;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            backface-visibility: hidden;
-        }
-
-        .social-icons:hover {
-          background-color: #ececec1b;
-        }
-
-        .social-icons i {
-            font-size: 1.2rem;
-            z-index: 2;
-            position: relative;
-        }
-
-        .social-icons::before {
-            content: '';
+        .capital-hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #0091ff;
-            transform: scale(0);
-            transition: transform 0.3s ease;
+            background: linear-gradient(rgba(1, 1, 25, 0.9), rgba(1, 1, 25, 0.95));
+            z-index: -2;
+        }
+
+        .capital-hero-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
             border-radius: 50%;
+            background: radial-gradient(circle, rgba(17, 153, 250, 0.15) 0%, rgba(17, 153, 250, 0) 70%);
+            top: 20%;
+            right: 10%;
+            z-index: -1;
+            filter: blur(60px);
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .follow-bar {
+        .capital-hero-content {
+            max-width: 800px;
+        }
+
+        .capital-hero-highlight {
+            color: var(--primary-accent);
+        }
+
+        .capital-hero-stats {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .capital-stat {
+            margin-right: 60px;
+        }
+
+        .capital-stat-value {
+            font-size: 2.7rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+        }
+
+        .capital-stat-label {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-top: 5px;
+            font-weight: 500;
+        }
+
+        /* ===== FOUNDERS SECTION ===== */
+        .capital-founders {
+            padding: var(--section-spacing) 0;
+            background: linear-gradient(to bottom, rgba(1, 1, 25, 0.9), rgba(5, 10, 40, 0.9));
+        }
+
+        .capital-founders-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .capital-founders-image {
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .capital-founders-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .capital-founders-content {
+            padding-left: 20px;
+        }
+
+        .capital-founder-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 20px 0 10px;
+            color: var(--text-white);
+        }
+
+        .capital-founder-title {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-accent);
+            margin-bottom: 30px;
+        }
+
+        .capital-feature-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .capital-feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .capital-feature-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+            color: var(--primary-accent);
+            flex-shrink: 0;
+        }
+
+        .capital-feature-text {
+            flex: 1;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 1200px) {
+            .capital-heading {
+                font-size: 3rem;
+            }
+            
+            .capital-section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .capital-founders-container,
+            .capital-partnership-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            
+            .capital-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .capital-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .capital-founders-image {
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .capital-heading {
+                font-size: 2.5rem;
+            }
+            
+            .capital-section-title {
+                font-size: 2rem;
+            }
+            
+            .capital-hero-stats {
                 flex-direction: column;
-                text-align: center;
+                align-items: flex-start;
+            }
+            
+            .capital-stat {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .capital-logos-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .capital-founders-image {
+                max-width: 350px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .capital-heading {
+                font-size: 2rem;
+            }
+            
+            .capital-subheading {
+                font-size: 1.3rem;
+            }
+            
+            .capital-section-title {
+                font-size: 1.7rem;
+            }
+            
+            .capital-container {
+                padding: 0 15px;
+            }
+            
+            .capital-category {
                 padding: 20px;
-               
             }
             
-            .follow-content {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .social-icons {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 400px) {
-            .social-icons-container {
-                gap: 8px;
-            }
-            
-            .social-icons {
-                width: 36px;
-                height: 36px;
+            .capital-founders-image {
+                max-width: 300px;
             }
         }
     </style>
 </head>
+<body>
+    <!-- TechVentures Capital Page -->
+    <section class="capital-page">
+        <!-- Hero Section -->
+        <section class="capital-hero" style="background-color: #010119;">
+            <div class="capital-hero-bg"></div>
+            <div class="capital-hero-glow"></div>
+            <div class="capital-container">
+                <div class="capital-hero-content">
+                    <h1 class="capital-heading">HYPERION CAPITAL</h1>
+                    <h2 class="capital-subheading">Accelerating the growth of <span class="capital-hero-highlight">enterprise IT solutions</span> and digital transformation</h2>
+                    <p class="capital-text">With ZAR10 million earmarked for investment, our venture arm aim to lead early-stage funding rounds for innovative IT infrastructure, cybersecurity, and enterprise software companies in the near future.</p>
+                    
+                    <div class="capital-hero-stats">
+                        <div class="capital-stat">
+                            <div class="capital-stat-value">R10M</div>
+                            <div class="capital-stat-label">Fund Size</div>
+                        </div>
+                        <div class="capital-stat">
+                            <div class="capital-stat-value">40+</div>
+                            <div class="capital-stat-label">Portfolio Companies</div>
+                        </div>
+                        <div class="capital-stat">
+                            <div class="capital-stat-value">Global</div>
+                            <div class="capital-stat-label">Investment Reach</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+        <!-- Founders Section -->
+        <section class="capital-founders" style="background-color: #010119; ">
+            <div class="capital-container">
+                <div class="capital-founders-container">
+                    <div class="capital-founders-content">
+                        <h2 class="capital-section-title" style="color: #007dd6; font-size: 1.1rem;">OUR 'FOUNDERS FIRST' APPROACH</h2>
+                        <h3 class="capital-section-subtitle" style="font-size: 3.5rem; font-weight: 600; line-height: 1; padding-bottom: 2rem;">Your business,<br> your growth</h3>
+
+                        <div class="capital-founder-name">Lefa Mofokeng</div>
+                        <div class="capital-founder-title">Founder & CEO of Hyperion Inc.</div>
+
+                        <p class="capital-text">&#8213; We are a founder-first fund that supports early-stage IT companies as they build the future of enterprise technology.</p>
+                        
+                        
+                        
+                        <p class="capital-text">Founders can count on us to provide key value-adds: our enterprise network, technical expertise, operational guidance, and access to global markets.</p>
+                        
+                    </div>
+                    <div class="capital-founders-image">
+                        <img src="thumbnails/Untitled.png" alt="Sarah Chen">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        
+    </section>
+
+    <script>
+        // Simple animation for elements when they come into view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe elements for animation
+            const elementsToAnimate = document.querySelectorAll('.capital-heading, .capital-subheading, .capital-text, .capital-section-title, .capital-category, .it-ecosystem-subtitle, .it-ecosystem-headline, .it-ecosystem-category-label, .it-ecosystem-logo-item, .capital-stat-value, .it-mission-label, it-mission-headline, .it-mission-paragraph');
+            
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+            
+            // Add staggered animation for logo items
+            const logoItems = document.querySelectorAll('.capital-logo-item');
+            logoItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 0.05}s`;
+            });
+        });
+    </script>
+</body>
 </html>
 
 
@@ -4276,6 +1765,92 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<style>
+    /* --- IT Mission Block Styles --- */
+
+    /* Root Container - Mimics the dark background and centers content */
+    .it-mission-section {
+        /* Custom Tag: it-mission-section */
+        font-family: 'Inter', sans-serif;
+        background-color: #e5e5e5; /* Very dark blue/black background */
+        color: #e5e7eb; /* Off-white text for contrast */
+        text-align: center;
+        padding: 6rem 1.5rem; /* Generous vertical padding */
+        box-sizing: border-box;
+    }
+
+    /* Inner Content Container - Max width for readability */
+    .it-mission-container {
+        /* Custom Tag: it-mission-container */
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    /* Subtitle/Label */
+    .it-mission-label {
+        /* Custom Tag: it-mission-label */
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #007dd6; /* Bright blue color */
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: block;
+    }
+
+    /* Main Headline */
+    .it-mission-headline {
+        /* Custom Tag: it-mission-headline */
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: #010119; /* Bright white for high impact */
+        margin-bottom: 3rem;
+    }
+
+    @media (min-width: 768px) {
+        .it-mission-headline {
+            font-size: 3.5rem;
+        }
+    }
+
+    /* Paragraph Text */
+    .it-mission-paragraph {
+        /* Custom Tag: it-mission-paragraph */
+        font-size: 1.3rem;
+        line-height: 1.75;
+        color: #595b5f; /* Light gray text for readability */
+        margin-bottom: 1.5rem;
+        max-width: 800px; /* Ensures paragraphs don't stretch too wide */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Special emphasis paragraph (mimics the dual paragraph layout) */
+    .it-mission-paragraph:last-of-type {
+        margin-top: 2.5rem; /* Add extra spacing between the two main text blocks */
+    }
+
+</style>
+
+<!-- HTML Structure Start -->
+<div class="it-mission-section">
+    <div class="it-mission-container">
+        <span class="it-mission-label">LONG-TERM DIGITAL PARTNERSHIP</span>
+
+        <h1 class="it-mission-headline">
+            Advancing the digital transformation together
+        </h1>
+
+        <p class="it-mission-paragraph">
+            We invest in long-term partnerships with founders who drive the development of modern cloud infrastructure across industries and regions.
+        </p>
+
+        <p class="it-mission-paragraph">
+            With Hyperion Inc., startups choose a reputable lead partner with a strong portfolio and priority integration on the world's fastest-growing enterprise technology platforms.
+        </p>
+    </div>
+</div>
+<!-- HTML Structure End -->
 
 
 
@@ -4297,6 +1872,274 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+        /* --- General Reset & Fonts --- */
+        .it-ecosystem-body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;  
+            background-color: #ffffff; /* Very light gray background */
+        }
+
+        /* --- Layout Container --- */
+        .it-ecosystem-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* --- Section Heading and Subtitle --- */
+        .it-ecosystem-subtitle {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0080dc; /* Soft blue color for the label */
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .it-ecosystem-headline {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 4rem;
+            text-align: center;
+            color: #010119;
+        }
+
+        @media (min-width: 768px) {
+            .it-ecosystem-headline {
+                font-size: 3rem;
+            }
+        }
+
+        /* --- Category Divider --- */
+        .it-ecosystem-divider {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto 3rem;
+        }
+
+        .it-ecosystem-line {
+            flex-grow: 1;
+            height: 3px;
+            background-color: #d4d4d4; /* Light gray line */
+        }
+
+        .it-ecosystem-category-label {
+            padding: 0 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #0080dc;
+            text-transform: uppercase;
+        }
+
+        /* --- Logo Grid --- */
+        .it-ecosystem-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+            justify-items: center;
+            align-items: center;
+        }
+
+        @media (min-width: 640px) {
+            .it-ecosystem-logo-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .it-ecosystem-logo-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4rem;
+            }
+        }
+
+        .it-ecosystem-logo-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem; /* Fixed height for consistent look */
+            padding: 0.5rem;
+        }
+
+        .it-ecosystem-logo-item img {
+            width: 100%;
+            height: auto;
+            max-width: 150px;
+           
+            opacity: 1;
+            transition: opacity 0.3s, filter 0.3s;
+        }
+
+        .it-ecosystem-logo-item img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+    </style>
+
+<body class="it-ecosystem-body">
+
+    <div class="it-ecosystem-container" style=" padding-top: 8rem;">
+
+        <!-- Top Section: Headline -->
+        <div class="it-ecosystem-subtitle">FEATURED PARTNERSHIPS</div>
+        <h1 class="it-ecosystem-headline">
+            Supporting technology leaders across cloud and infrastructure ecosystems
+        </h1>
+
+        <!-- Category 1: CLOUD & INFRASTRUCTURE -->
+        <div class="it-ecosystem-divider">
+            <div class="it-ecosystem-line"></div>
+            <div class="it-ecosystem-category-label">CLOUD & INFRASTRUCTURE</div>
+            <div class="it-ecosystem-line"></div>
+        </div>
+
+        <div class="it-ecosystem-logo-grid">
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/32/1/microsoft-azure-logo-png_seeklogo-326269.png" alt="Microsoft Azure Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/31/1/amazon-web-services-aws-logo-png_seeklogo-319188.png" alt="AWS Cloud Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/33/1/google-cloud-logo-png_seeklogo-332755.png" alt="Google Cloud Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/35/1/red-hat-logo-png_seeklogo-352454.png" alt="Red Hat Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/50/1/vmware-by-broadcom-logo-png_seeklogo-508529.png" alt="VMware Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/3/1/cisco-logo-png_seeklogo-30674.png" alt="Cisco Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/38/1/palo-alto-networks-logo-png_seeklogo-384891.png" alt="Palo Alto Networks Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/9/1/netapp-logo-png_seeklogo-98416.png" alt="NetApp Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/10/1/oracle-logo-png_seeklogo-103838.png" alt="Oracle Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://imgs.search.brave.com/bYeKmsaj-g1lxKKHwHJjfVHPkjz7JlgzTog79dww3s0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L2libS1sb2dvLXBu/Zy9pYm0tbG9nby1h/Y20taWNwYy1rYW5w/dXItc2l0ZS0wLnBu/Zw" alt="IBM Logo">
+            </div>
+        </div>
+
+        <!-- Category 2: CYBERSECURITY & COMPLIANCE -->
+        <div class="it-ecosystem-divider" style="padding: 3rem 0 0 0;">
+            <div class="it-ecosystem-line"></div>
+            <div class="it-ecosystem-category-label">CYBERSECURITY & COMPLIANCE</div>
+            <div class="it-ecosystem-line"></div>
+        </div>
+
+        <div class="it-ecosystem-logo-grid" style="padding-bottom: 6rem;">
+            <div class="it-ecosystem-logo-item">
+                <img src="https://imgs.search.brave.com/gghgXoxZQKCsMPhRGBR1xScX4APMPsBH3ZkfHhtvRWI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ib290/ZmxhcmUuY29tL3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDI1LzA4/L0Nyb3dkU3RyaWtl/LUxvZ28ucG5n" alt="CrowdStrike Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/25/1/fortinet-logo-png_seeklogo-251031.png" alt="Fortinet Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/39/1/splunk-technology-logo-png_seeklogo-393318.png" alt="Splunk Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/43/1/mandiant-logo-png_seeklogo-433587.png" alt="Mandiant Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/61/1/tenable-logo-png_seeklogo-615436.png" alt="Tenable Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/12/1/rsa-security-logo-png_seeklogo-120378.png" alt="RSA Security Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/28/1/veritas-logo-png_seeklogo-285348.png" alt="Veritas Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/33/1/okta-logo-png_seeklogo-336628.png" alt="Okta Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/19/1/f5-logo-png_seeklogo-198219.png" alt="F5 Labs Logo">
+            </div>
+            <div class="it-ecosystem-logo-item">
+                <img src="https://images.seeklogo.com/logo-png/40/1/snyk-logo-png_seeklogo-408752.png" alt="Snyk Logo">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 
 <!-- =============================================
      *** FOOTER ***
@@ -4827,7 +2670,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <li><a href="page.html">Partners</a></li>
             <li><a href="affiliates.html">Affiliate</a></li>
             <li><a href="security.html">Security</a></li>
-            <li><a href="capital.html">Capital</a></li>
+            <li><a href="capital">Capital</a></li>
             <li><a href="page.html">Verify</a></li>
           </ul>
         </div>

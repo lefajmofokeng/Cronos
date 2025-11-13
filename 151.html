@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Compliance & Security Features</title>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* =========================================
+           A. GLOBAL & BASE STYLES (ITCOMP Prefix)
+           ========================================= */
+        :root {
+            /* Palette matching the image */
+            --itcomp-color-background: #FFFFFF;
+            --itcomp-color-text-dark: #333333;
+            --itcomp-color-text-medium: #666666;
+            --itcomp-color-heading: #333333;
+            --itcomp-color-card-bg: #F8F8F8; /* Very Light Gray/Off-White */
+            --itcomp-color-accent: #3366FF;  /* Bright Blue Checkmark */
+            
+            /* Typography & Spacing */
+            --itcomp-font-family: 'Inter', sans-serif;
+            --itcomp-border-radius: 8px;
+        }
+
+        body {
+            font-family: var(--itcomp-font-family);
+            background-color: var(--itcomp-color-background);
+            color: var(--itcomp-color-text-dark);
+            margin: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .itcomp-container {
+            width: 90%;
+            max-width: 1000px;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        /* =========================================
+           B. HEADER
+           ========================================= */
+        .itcomp-header {
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .itcomp-main-heading {
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            font-weight: 700;
+            color: var(--itcomp-color-heading);
+            line-height: 1.2;
+            margin: 0 0 1rem 0;
+        }
+
+        .itcomp-subtext-title {
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            font-weight: 500;
+            color: var(--itcomp-color-heading);
+            margin-bottom: 0.5rem;
+        }
+
+        .itcomp-subtext-description {
+            font-size: 0.9rem;
+            color: var(--itcomp-color-text-medium);
+            max-width: 700px;
+            margin: 0.5rem auto 0 auto;
+        }
+        
+        /* =========================================
+           C. FEATURE GRID (2x2)
+           ========================================= */
+        .itcomp-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .itcomp-feature-card {
+            background-color: var(--itcomp-color-card-bg);
+            border: 1px solid #EEEEEE;
+            border-radius: var(--itcomp-border-radius);
+            padding: 2.5rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .itcomp-feature-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            background-color: #FAFAFA;
+        }
+
+        .itcomp-icon-box {
+            /* Blue Checkmark SVG Icon (used here as a simple shape) */
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: var(--itcomp-color-accent);
+        }
+
+        /* Styling for the SVG checkmark inside the box */
+        .itcomp-icon-box svg {
+            width: 18px;
+            height: 18px;
+            stroke: white;
+            stroke-width: 3;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .itcomp-feature-title {
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            font-weight: 700;
+            color: var(--itcomp-color-heading);
+            margin: 0;
+        }
+
+        /* =========================================
+           D. MOBILE RESPONSIVENESS
+           ========================================= */
+        @media (max-width: 768px) {
+            .itcomp-feature-grid {
+                grid-template-columns: 1fr; /* Stack cards vertically on mobile */
+                gap: 1rem;
+            }
+            .itcomp-feature-card {
+                padding: 1.5rem;
+                flex-direction: column; /* Stack icon and text for smaller screens */
+                align-items: flex-start;
+                text-align: left;
+            }
+            .itcomp-icon-box {
+                margin-bottom: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="itcomp-container">
+        
+        <header class="itcomp-header">
+            <h2 class="itcomp-main-heading">
+                Comprehensive Solutions for IT Security and Compliance
+            </h2>
+            <p class="itcomp-subtext-description">
+                We empower organizations, large and small, to meet rigorous regulatory demands and establish a robust digital security posture through our tailored consulting and managed services.
+            </p>
+        </header>
+
+        <div class="itcomp-feature-grid">
+            
+            <!-- Feature 1: Regulatory Auditing -->
+            <div class="itcomp-feature-card">
+                <div class="itcomp-icon-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 class="itcomp-feature-title">Annual Regulatory Auditing</h3>
+            </div>
+
+            <!-- Feature 2: Data Governance -->
+            <div class="itcomp-feature-card">
+                <div class="itcomp-icon-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 class="itcomp-feature-title">Cloud Data Governance Strategy</h3>
+            </div>
+
+            <!-- Feature 3: Threat Mitigation -->
+            <div class="itcomp-feature-card">
+                <div class="itcomp-icon-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 class="itcomp-feature-title">Real-Time Threat Mitigation</h3>
+            </div>
+
+            <!-- Feature 4: Training & Policy -->
+            <div class="itcomp-feature-card">
+                <div class="itcomp-icon-box">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h3 class="itcomp-feature-title">Employee Security Training & Policy</h3>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
