@@ -1,1329 +1,3176 @@
+
+<!-- HYPERION-HEADER START -->
+<style>
+    /* =============================================
+        HYPERION HEADER - UNIQUE STYLES
+        ============================================= */
+    :root {
+        /* Palette */
+        --hyperion-color-header-bg: #080d1b;
+        --hyperion-color-accent: #0091ff;
+        --hyperion-color-text-light: #fff;
+        --hyperion-color-background-dark: #000;
+        --hyperion-color-off-white: #f4f4f4;
+        --hyperion-color-text-muted: #A0A9BE;
+        --hyperion-color-menu-bg: #080d1b;
+        --hyperion-color-menu-border: rgba(0, 145, 255, 0.2);
+        --hyperion-color-qr-dropdown-bg: #1c1a3b;
+        
+        /* Sizing */
+        --hyperion-header-height: 55px;
+        --hyperion-content-max-width-fg: 1500px;
+    }
+
+    .hyperion-header-wrapper {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%; 
+        z-index: 1000;
+        background-color: var(--hyperion-color-header-bg);
+        text-decoration: none;
+        border-bottom: none;
+
+    }
+
+    .hyperion-custom-header {
+        height: var(--hyperion-header-height);
+        display: flex;
+        align-items: center;
+    }
+
+    .hyperion-custom-header-container {
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Logo */
+    .hyperion-custom-logo-text img {
+        font-size: 28px;
+        font-weight: 900;
+        letter-spacing: -0.5px;
+        color: var(--hyperion-color-text-light);
+        transition: color 0.3s ease;
+        height: 23px;
+        vertical-align: middle;
+    }
+    
+    .hyperion-custom-logo-text:hover {
+         color: var(--hyperion-color-accent);
+    }
+
+    /* Desktop Navigation */
+    .hyperion-custom-main-nav {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-list li {
+        margin-left: 35px;
+        position: relative;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-custom-nav-link {
+        text-decoration: none;
+        color: var(--hyperion-color-text-light);
+        font-weight: 500;
+        padding: 10px 0;
+        display: flex;
+        font-size: 14px;
+        align-items: center;
+    }
+
+    .hyperion-custom-nav-link:hover {
+        color: #a0a9be;
+    }
+    
+    /* Icon for desktop links */
+    .hyperion-desktop-link-icon {
+        width: 14px;
+        height: 14px;
+        margin-left: 6px;
+        color: var(--hyperion-color-text-muted);
+        stroke-width: 2;
+    }
+    
+    .hyperion-custom-nav-link:hover .hyperion-desktop-link-icon {
+        color: #a0a9be;
+    }
+    
+    /* Action Buttons Wrapper */
+    .hyperion-header-action-buttons {
+        display: flex;
+        align-items: center;
+    }
+
+    /* Primary Action Button (Contact Us) */
+    .hyperion-header-action-btn {
+        background: #0077cc;
+        color: var(--hyperion-color-text-light);
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 20px;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-action-btn a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-action-btn:hover {
+        background-color: #0081ff;
+    }
+    
+    /* Secondary Action Button (Get Started) */
+    .hyperion-header-secondary-btn {
+        background-color: #62b8fa32;
+        color: #95d1ff;
+        border: none;
+        padding: 9px 15px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 15px;
+        cursor: pointer;
+        margin-left: 10px;
+        transition: background-color 0.2s ease;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-secondary-btn a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-header-secondary-btn:hover {
+        background-color: #4a4b6b;
+    }
+
+    /* QR Code Dropdown Trigger */
+    .hyperion-qr-dropdown-trigger {
+        position: relative;
+        margin-left: 10px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        color: var(--hyperion-color-text-light);
+        font-size: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .hyperion-qr-dropdown-trigger:hover {
+        background-color: #2b294a;
+    }
+
+    .hyperion-qr-dropdown-trigger svg {
+        content: '';
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no;
+    }
+
+    /* QR Code Dropdown Content */
+    .hyperion-qr-dropdown-content {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        background-color: #080d1b;
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 130px;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0.2s, opacity 0.2s, transform 0.2s;
+        z-index: 100;
+    }
+
+    .hyperion-qr-dropdown-content.show {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-qr-dropdown-content img {
+        width: 100px;
+        height: 100px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+
+    .hyperion-qr-dropdown-content p {
+        color: var(--hyperion-color-text-light);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    /* MEGA MENU CONTAINER */
+    .hyperion-mega-menu-container {
+        position: absolute;
+        top: var(--hyperion-header-height);
+        left: 0;
+        width: 100%;
+        background-color: var(--hyperion-color-menu-bg);
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: visibility 0s, opacity 0s, transform 0s;
+    }
+
+    .hyperion-header-wrapper.hyperion-mega-menu-open .hyperion-mega-menu-container {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hyperion-mega-menu-panel {
+        display: none;
+        max-width: var(--hyperion-content-max-width-fg);
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 40px 40px 40px;
+    }
+
+    .hyperion-mega-menu-panel.active {
+        display: block;
+    }
+    
+    /* 3-Column Grid for Mega Menus */
+    .hyperion-megamenu-3-column-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        gap: 40px;
+        justify-content: start;
+        padding-left: 8.45rem;
+    }
+    
+    .hyperion-menu-group-card {
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 2.5rem;
+        border-radius: 8px;
+    }
+
+    .hyperion-menu-group-card h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-transform: none;
+        letter-spacing: 0.1px;
+        cursor: default;
+        display: flex;
+        align-items: center;
+        color: var(--hyperion-color-text-muted);
+    }
+    
+    /* Image Icon for mega menu group headings */
+    .hyperion-menu-group-img-icon {
+        width: auto;
+        height: 40px;
+        margin-right: 8px;
+        flex-shrink: 0;
+        backface-visibility: visible;
+    }
+    
+    /* Container for Heading Text and Tagline */
+    .hyperion-menu-group-text-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    /* Tagline Style */
+    .hyperion-menu-group-tagline {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--hyperion-color-text-muted);
+        margin-top: 5px;
+        display: block;
+    }
+    
+    .hyperion-mega-menu-group-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Link Items inside Mega Menu */
+    .hyperion-mega-menu-group-list a {
+        display: block;
+        border-radius: 0;
+        transition: color 0s;
+        position: relative;
+        margin: 7px 0;
+        padding: 2px 0;
+        letter-spacing: -0.03em;
+        font-size: 19px;
+        font-weight: 600;
+        color: var(--hyperion-color-text-light);
+         text-decoration: none;
+        border-bottom: none;
+    }
+
+    .hyperion-mega-menu-link-title {
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+        margin-bottom: 0;
+    }
+    
+    .hyperion-mega-menu-group-list a:hover {
+        color: #9cd4ff;
+        background-color: transparent;
+    }
+    
+    /* SVG Icon for mobile dropdown */
+    .hyperion-mobile-dropdown-icon {
+        display: none;
+        transition: transform 0.3s ease;
+    }
+
+    /* Mobile Toggle */
+    .hyperion-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        padding: 0;
+        position: relative;
+        z-index: 1010;
+    }
+
+    .hyperion-mobile-toggle span {
+        display: block;
+        height: 2px;
+        width: 100%;
+        background-color: var(--hyperion-color-text-light);
+        margin: 6px 0;
+        transition: all 0.3s ease;
+    }
+
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-mobile-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    
+    /* Mobile Overrides */
+    @media (max-width: 1024px) {
+        .hyperion-custom-header-container {
+            padding: 0 20px;
+        }
+        
+        .hyperion-mobile-toggle {
+            display: block;
+        }
+
+        .hyperion-custom-main-nav {
+            position: fixed;
+            top: var(--hyperion-header-height);
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--hyperion-header-height));
+            background-color: var(--hyperion-color-header-bg);
+            overflow-y: auto;
+            padding: 20px 0;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: block;
+            z-index: 900;
+        }
+
+        .hyperion-header-wrapper.hyperion-mobile-menu-open .hyperion-custom-main-nav {
+            transform: translateX(0);
+        }
+
+        .hyperion-custom-nav-list {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0 20px;
+            margin-left: 0;
+        }
+
+        .hyperion-custom-nav-list li {
+            margin: 0;
+            width: 100%;
+            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+        }
+
+        .hyperion-custom-nav-link {
+            padding: 15px 0;
+            font-size: 1.1rem;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* Hide desktop-only icons on mobile */
+        .hyperion-desktop-link-icon {
+            display: none;
+        }
+        
+        /* Hide the tagline on mobile */
+        .hyperion-menu-group-tagline {
+            display: none;
+        }
+        
+        /* Show and style mobile icon */
+        .hyperion-mobile-dropdown-icon {
+            display: inline-block;
+        }
+        
+        /* Rotate icon when the parent menu item is active */
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-custom-nav-link .hyperion-mobile-dropdown-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Mobile Action Buttons */
+        .hyperion-header-action-buttons {
+            flex-direction: column;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+
+        .hyperion-header-action-btn,
+        .hyperion-header-secondary-btn {
+            width: 100%;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .hyperion-qr-dropdown-trigger {
+            width: 100%;
+            border-radius: 50px;
+            margin: 10px 0 0 0;
+            padding: 15px 20px;
+            height: auto;
+            box-sizing: border-box;
+            justify-content: center;
+            display: none; /* HIDE QR TRIGGER ON MOBILE */
+        }
+
+        .hyperion-qr-dropdown-content {
+            position: static;
+            width: 100%;
+            margin-top: 15px;
+            padding: 15px;
+            box-shadow: none;
+            border-top: 1px solid rgba(0, 145, 255, 0.1);
+            border-radius: 0;
+            background-color: #0d0d29;
+            display: none; /* HIDE QR CONTENT ON MOBILE */
+        }
+        
+        .hyperion-qr-dropdown-content img {
+            width: 120px;
+            height: 120px;
+        }
+
+        .hyperion-qr-dropdown-content.show {
+            transform: none;
+        }
+
+        /* Mobile Mega Menu */
+        .hyperion-mega-menu-container {
+            position: static;
+            visibility: visible;
+            opacity: 1;
+            transform: none;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+            max-height: 0;
+            background-color: var(--hyperion-color-menu-bg);
+            border-top: none;
+        }
+
+        .hyperion-mega-menu-link-title {
+          padding: 0;
+          border-bottom: none;
+        }
+        
+        .hyperion-custom-nav-item--has-megamenu.active .hyperion-mega-menu-container {
+            max-height: 2000px;
+            padding: 0;
+        }
+        
+        .hyperion-mega-menu-panel {
+            padding: 15px 0;
+            display: block;
+        }
+
+        .hyperion-megamenu-3-column-grid {
+            grid-template-columns: 1fr;
+            gap: 20px;
+            padding-left: 0;
+        }
+        
+        .hyperion-menu-group-card {
+            padding: 0;
+        }
+        
+        .hyperion-menu-group-card h3 {
+            margin-top: 23px;
+            flex-direction: row;
+            align-items: center;
+            display: flex;
+        }
+        
+        .hyperion-mega-menu-group-list a {
+            margin: 10px 0;
+        }
+
+        .hyperion-mega-menu-group-list li {
+            border: none;
+        }
+        
+        .hyperion-mega-menu-group-list a:hover {
+            background-color: rgba(0, 145, 255, 0.1);
+        }
+    }
+</style>
+
+<div class="hyperion-header-wrapper">
+    
+    <header class="hyperion-custom-header">
+        <div class="hyperion-custom-header-container">
+            
+            <div class="hyperion-custom-logo-container">
+                <a href="index.html" class="hyperion-custom-logo-link hyperion-custom-logo-text">
+                    <img src="thumbnails/hyperion logo (2).png" alt="Hyperion Logo">
+                </a>
+            </div>
+
+            <nav class="hyperion-custom-main-nav">
+                <ul class="hyperion-custom-nav-list">
+                    <li>
+                        <a href="pricing.html" class="hyperion-custom-nav-link">Pricing
+                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="page.html" class="hyperion-custom-nav-link">Projects
+                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="services">
+                            Solutions
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            Software Development
+                                        </h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Web Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="mobile-applications.html">
+                                                    <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            IT Infrastructure
+                                        </h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">IT Consulting</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Smart Technology</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            Marketing & Creative Studio
+                                        </h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Graphic Design</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Content Management</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="hyperion-custom-nav-item--has-megamenu">
+                        <a href="#" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="discover">
+                            Discover
+                            <svg class="hyperion-mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <div class="hyperion-mega-menu-container">
+                            <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+                                <div class="hyperion-megamenu-3-column-grid">
+                                    
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            Hyperion
+                                        </h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">About Us</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Product News</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Innovations</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="careers.html">
+                                                    <span class="hyperion-mega-menu-link-title">Careers</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="partners.html">
+                                                    <span class="hyperion-mega-menu-link-title">Partners</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="licenses-and-registrations.html">
+                                                    <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            Resources
+                                        </h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Blog</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">eBooks</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Podcasts</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Webinars</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Recommendations</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="hyperion-menu-group-card">
+                                        <h3>
+                                            Connect
+                                        </h3>
+                                        <ul class="hyperion-mega-menu-group-list">
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">X</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="page.html">
+                                                    <span class="hyperion-mega-menu-link-title">Facebook</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="hyperion-mega-menu-link-title">LinkedIn</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="hyperion-mega-menu-link-title">Youtube</span>
+                                                    </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <span class="hyperion-mega-menu-link-title">Github</span>
+                                                    </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="hyperion-header-action-buttons">
+                    <button class="hyperion-header-secondary-btn">
+                        <a href="page.html">Get Started</a>
+                    </button>
+                    <button class="hyperion-header-action-btn">
+                        <a href="page.html">Contact Us</a>
+                    </button>
+                    <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
+                        <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <button class="hyperion-mobile-toggle" id="hyperion-mobileMenuToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="hyperion-mega-menu-container hyperion-desktop-mega-menu">
+        
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="services">
+            <div class="hyperion-megamenu-3-column-grid">
+                
+                <div class="hyperion-menu-group-card">
+                    <h3>
+                        <img src="thumbnails/01.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Software Development
+                            <span class="hyperion-menu-group-tagline">Build your custom vision</span>
+                        </span>
+                    </h3>
+                    <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Web Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="mobile-applications.html">
+                                <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Blockchain & Web3</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Database Engineering & Management</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="hyperion-menu-group-card">
+                    <h3>
+                        <img src="thumbnails/02.png" alt="IT Icon" class="hyperion-menu-group-img-icon">
+                         <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            IT Infrastructure
+                            <span class="hyperion-menu-group-tagline">Power your business</span>
+                        </span>
+                    </h3>
+                    <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">IT Consulting</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Cloud Computing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Smart Technology</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="hyperion-menu-group-card">
+                    <h3>
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="hyperion-menu-group-img-icon">
+                        <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                            Marketing & Creative Studio
+                            <span class="hyperion-menu-group-tagline">Grow your audience</span>
+                        </span>
+                    </h3>
+                    <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Digital Marketing</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Graphic Design</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Content Management</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="hyperion-mega-menu-panel" data-hyperion-megamenu-panel="discover">
+            <div class="hyperion-megamenu-3-column-grid">
+                
+                <div class="hyperion-menu-group-card">
+                    <h3>
+                        Hyperion
+                    </h3>
+                    <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">About Us</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Roadmap</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Innovations</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Product News</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Events</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="careers.html">
+                                <span class="hyperion-mega-menu-link-title">Careers</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="partners.html">
+                                <span class="hyperion-mega-menu-link-title">Partners</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="licenses-and-registrations.html">
+                                <span class="hyperion-mega-menu-link-title">Licenses & Registrations</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="hyperion-menu-group-card">
+                    <h3>
+                        Resources
+                    </h3>
+                    <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Blog</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">eBooks</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Webinars</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Podcasts</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Recommendations</span>
+                                </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="hyperion-menu-group-card">
+                    <h3>
+                        Connect
+                    </h3>
+                    <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">X</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Facebook</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">LinkedIn</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Youtube</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Github</span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// =============================================
+// HYPERION HEADER JAVASCRIPT
+// =============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const hyperionHeaderWrapper = document.querySelector('.hyperion-header-wrapper');
+    const hyperionDesktopMegaMenuContainer = document.querySelector('.hyperion-desktop-mega-menu');
+    const hyperionMegaMenuTriggers = document.querySelectorAll('[data-hyperion-megamenu-trigger]');
+    const hyperionDesktopMegaMenuPanels = hyperionDesktopMegaMenuContainer.querySelectorAll('.hyperion-mega-menu-panel');
+    const hyperionMobileMenuToggle = document.getElementById('hyperion-mobileMenuToggle');
+    const hyperionBody = document.body;
+    
+    // QR Code Dropdown elements
+    const hyperionQrDropdownTrigger = document.getElementById('hyperion-qrDropdownTrigger');
+    const hyperionQrDropdownContent = document.getElementById('hyperion-qrDropdownContent');
+
+    let hyperionCloseTimer = null;
+    let hyperionQrCloseTimer = null;
+
+    // =============================================
+    // DESKTOP MEGA MENU LOGIC
+    // =============================================
+    
+    function hyperionSetActiveMenu(trigger, panel) {
+        hyperionMegaMenuTriggers.forEach(t => t.classList.remove('active'));
+        hyperionDesktopMegaMenuPanels.forEach(p => p.classList.remove('active'));
+
+        if (trigger && panel) {
+            trigger.classList.add('active');
+            panel.classList.add('active');
+            hyperionHeaderWrapper.classList.add('hyperion-mega-menu-open');
+        } else {
+            hyperionHeaderWrapper.classList.remove('hyperion-mega-menu-open');
+        }
+    }
+
+    function hyperionHandleOpen(trigger) {
+        if (window.innerWidth > 1024) {
+            clearTimeout(hyperionCloseTimer);
+            const targetMenuId = trigger.getAttribute('data-hyperion-megamenu-trigger');
+            const targetMenuPanel = hyperionDesktopMegaMenuContainer.querySelector(`[data-hyperion-megamenu-panel="${targetMenuId}"]`);
+            hyperionSetActiveMenu(trigger, targetMenuPanel);
+            if (hyperionQrDropdownContent.classList.contains('show')) {
+                hyperionHideQrDropdown();
+            }
+        }
+    }
+
+    function hyperionHandleClose() {
+        if (window.innerWidth > 1024) {
+            hyperionCloseTimer = setTimeout(() => {
+                hyperionSetActiveMenu(null, null);
+            }, 150); 
+        }
+    }
+
+    hyperionMegaMenuTriggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', () => {
+            hyperionHandleOpen(trigger);
+        });
+        
+        trigger.parentElement.addEventListener('mouseleave', () => {
+            hyperionHandleClose();
+        });
+    });
+
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseenter', () => {
+        if (window.innerWidth > 1024) {
+            clearTimeout(hyperionCloseTimer);
+        }
+    });
+
+    hyperionDesktopMegaMenuContainer.addEventListener('mouseleave', () => {
+        hyperionHandleClose();
+    });
+
+    // =============================================
+    // QR CODE DROPDOWN LOGIC
+    // =============================================
+    function hyperionShowQrDropdown() {
+        if (window.innerWidth > 1024) {
+            clearTimeout(hyperionQrCloseTimer);
+            hyperionQrDropdownContent.classList.add('show');
+            hyperionSetActiveMenu(null, null);
+        }
+    }
+
+    function hyperionHideQrDropdown() {
+        if (window.innerWidth > 1024) {
+            hyperionQrCloseTimer = setTimeout(() => {
+                hyperionQrDropdownContent.classList.remove('show');
+            }, 150);
+        }
+    }
+
+    hyperionQrDropdownTrigger.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownTrigger.addEventListener('mouseleave', hyperionHideQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseenter', hyperionShowQrDropdown);
+    hyperionQrDropdownContent.addEventListener('mouseleave', hyperionHideQrDropdown);
+
+    // =============================================
+    // MOBILE MENU LOGIC
+    // =============================================
+    const hyperionMobileDropdownItems = document.querySelectorAll('.hyperion-custom-nav-item--has-megamenu');
+    
+    hyperionMobileMenuToggle.addEventListener('click', function() {
+        hyperionHeaderWrapper.classList.toggle('hyperion-mobile-menu-open');
+        hyperionBody.classList.toggle('hyperion-mobile-menu-active');
+        
+        if (!hyperionHeaderWrapper.classList.contains('hyperion-mobile-menu-open')) {
+             hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+             hyperionQrDropdownContent.classList.remove('show');
+        }
+    });
+
+    hyperionMobileDropdownItems.forEach(item => {
+        const trigger = item.querySelector('.hyperion-custom-nav-link');
+        trigger.addEventListener('click', function(e) {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                e.stopPropagation(); 
+
+                hyperionMobileDropdownItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+
+                item.classList.toggle('active');
+                hyperionQrDropdownContent.classList.remove('show');
+            }
+        });
+    });
+
+    hyperionQrDropdownTrigger.addEventListener('click', function(e) {
+        if (window.innerWidth <= 1024) {
+            e.preventDefault();
+            e.stopPropagation();
+            hyperionQrDropdownContent.classList.toggle('show');
+            hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+        }
+    });
+
+    document.querySelectorAll('.hyperion-custom-nav-list a').forEach(link => {
+        if (!link.hasAttribute('data-hyperion-megamenu-trigger') && !link.closest('.hyperion-mega-menu-container')) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 1024) {
+                    hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                    hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                    hyperionQrDropdownContent.classList.remove('show');
+                }
+            });
+        }
+    });
+    
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth > 1024 && !hyperionQrDropdownTrigger.contains(event.target) && !hyperionQrDropdownContent.contains(event.target)) {
+            hyperionHideQrDropdown();
+        }
+    });
+
+    // =============================================
+    // WINDOW RESIZE HANDLER
+    // =============================================
+    let hyperionResizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(hyperionResizeTimer);
+        hyperionResizeTimer = setTimeout(function() {
+            if (window.innerWidth > 1024) {
+                hyperionHeaderWrapper.classList.remove('hyperion-mobile-menu-open');
+                hyperionBody.classList.remove('hyperion-mobile-menu-active');
+                hyperionMobileDropdownItems.forEach(item => item.classList.remove('active'));
+                hyperionSetActiveMenu(null, null);
+            } else {
+                hyperionQrDropdownContent.classList.remove('show');
+            }
+        }, 250);
+    });
+});
+</script>
+<!-- HYPERION-HEADER END -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Market Insights | Hyperion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>IT Market Insights Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font Import for Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Global Styles */
-        :root {
-            --primary-blue: #1199fa;
-            --deep-navy: #010119;
-            --pure-white: #fff;
-            --light-gray: #f4f4f4;
-            --pure-black: #000;
-            --medium-gray: #e5e5e5;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        /* --- IT Market Insights Dashboard Styles --- */
+
+        /* Set base font and background */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--deep-navy);
-            color: var(--pure-white);
-            line-height: 1.6;
-            overflow-x: hidden;
+            background-color: #080d1b;
+            color: #F0F0F0;
+            margin: 0;
+            padding: 0;
         }
-        
-        .hyperion-insights-container {
-            max-width: 100%;
-            overflow: hidden;
+
+        /* Utility classes */
+        .itmi-text-green { color: #0ECB81; }
+        .itmi-text-red { color: #F6465D; }
+
+        /* Main container padding */
+        .itmi-container {
+            padding: 24px 100px;
         }
-        
-        /* Section Spacing */
-        .hyperion-section {
-            padding: 100px 0;
-        }
-        
-        .hyperion-section-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 40px;
-        }
-        
-        .hyperion-section-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--pure-white);
-        }
-        
-        .hyperion-section-subtitle {
-            font-size: 1.3rem;
-            color: var(--medium-gray);
+
+        /* --- Header Stats Bar --- */
+        .itmi-header-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            padding-bottom: 24px;
             margin-bottom: 3rem;
-            max-width: 700px;
+            margin-top: 4rem;
         }
-        
-        /* Hero Section - Asymmetrical Layout */
-        .hyperion-hero-section {
-            height: 100vh;
+
+        .itmi-header-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .itmi-header-stat-label {
+            font-size: 14px;
+            color: #8A91B5;
+            font-weight: 500;
+        }
+
+        .itmi-header-stat-value {
+            font-size: 14px;
+            color: #F0F0F0;
+            font-weight: 600;
+        }
+
+        .itmi-header-stat-value.itmi-fear-index {
             display: flex;
             align-items: center;
+            gap: 6px;
+        }
+
+        .itmi-fear-gauge {
+            width: 20px;
+            height: 10px;
+            background: linear-gradient(to right, #F6465D, #F6A000, #0ECB81);
+            border-radius: 2px;
             position: relative;
-            overflow: hidden;
+            border: 1px solid #444;
         }
-        
-        .hyperion-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(1, 1, 25, 0.85), rgba(1, 1, 25, 0.9)), 
-                        url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
-            z-index: -2;
-        }
-        
-        .hyperion-hero-glow {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(17, 153, 250, 0.3) 0%, rgba(17, 153, 250, 0) 70%);
-            top: 50%;
-            right: -100px;
-            transform: translateY(-50%);
-            z-index: -1;
-            filter: blur(40px);
-        }
-        
-        .hyperion-hero-content {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-        
-        .hyperion-hero-text {
-            max-width: 700px;
-        }
-        
-        .hyperion-hero-title {
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hyperion-hero-title span {
-            color: var(--primary-blue);
-        }
-        
-        .hyperion-hero-description {
-            font-size: 1.3rem;
-            color: var(--medium-gray);
-            margin-bottom: 2.5rem;
-        }
-        
-        .hyperion-hero-visual {
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hyperion-data-sphere {
-            position: relative;
-            width: 450px;
-            height: 450px;
-        }
-        
-        .hyperion-sphere {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, var(--primary-blue) 0%, transparent 70%);
-            box-shadow: 0 0 100px rgba(17, 153, 250, 0.5);
-            position: relative;
-            overflow: hidden;
-            animation: rotate 30s infinite linear;
-        }
-        
-        .hyperion-sphere-inner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1865&q=80') center/cover no-repeat;
-            opacity: 0.7;
-        }
-        
-        .hyperion-data-points {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .hyperion-data-point {
-            position: absolute;
-            width: 12px;
+
+        .itmi-fear-needle {
+            width: 2px;
             height: 12px;
-            background-color: var(--primary-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--primary-blue);
-            transform: translate(-50%, -50%);
-        }
-        
-        .hyperion-data-connection {
+            background: #FFFFFF;
             position: absolute;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary-blue), transparent);
-            transform-origin: left center;
+            bottom: -1px;
+            left: 72%; /* 72 is the "Bullish" value */
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+
+
+        /* Header */
+        .itmi-header {
+            padding-bottom: 5px;
+            margin-bottom: 20px;
         }
-        
-        /* Key Trends Section - F Layout */
-        .hyperion-trends-section {
-            background-color: var(--pure-white);
-            color: var(--deep-navy);
-        }
-        
-        .hyperion-trends-grid {
+
+        /* Cards Layout */
+        .itmi-cards-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-        }
-        
-        .hyperion-trends-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .hyperion-trends-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--deep-navy);
-        }
-        
-        .hyperion-trends-description {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 2rem;
-        }
-        
-        .hyperion-trends-list {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        
-        .hyperion-trend-item {
-            display: flex;
-            align-items: flex-start;
             gap: 20px;
+            margin-bottom: 100px;
+            /* Responsive grid: 2 columns on medium, 4 columns on large screens */
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        @media (min-width: 768px) {
+            .itmi-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+           
         }
         
-        .hyperion-trend-icon {
-            width: 60px;
-            height: 60px;
-            background-color: var(--primary-blue);
+        @media (min-width: 1024px) {
+            .itmi-cards-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+        }
+
+        .itmi-card {
+            background-color: #0b1326;
+            border-radius: 30px;
+            padding: 24px 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+                /* Card-specific background gradients */
+        .itmi-card-1 {
+            background-image: radial-gradient(circle at 100% 0, rgba(0, 98, 255, 0.427), transparent 70%);
+        }
+        .itmi-card-2 {
+            background-image: radial-gradient(circle at 100% 0, rgba(138, 145, 181, 0.303), transparent 70%);
+        }
+        .itmi-card-3 {
+            background-image: radial-gradient(circle at 100% 0, rgba(14, 203, 129, 0.15), transparent 70%);
+        }
+        .itmi-card-4 {
+            background-image: radial-gradient(circle at 100% 0, rgba(246, 70, 93, 0.15), transparent 70%);
+        }
+
+        .itmi-card-header {
+            margin-bottom: 12px;
+        }
+
+        .itmi-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .itmi-card-subtitle {
+            font-size: 14px;
+            color: #a0a9be;
+            margin-top: 4px;
+        }
+
+        .itmi-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .itmi-card-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .itmi-card-item-name-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Icon Placeholder Styling for Cards */
+        .itmi-card-item-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #282D48;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: #FFFFFF;
+            overflow: hidden; /* Keep image rounded */
+        }
+
+        .itmi-card-item-icon img {
+            width: fit-content;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .itmi-card-item-name {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .itmi-card-item-value-group {
+            text-align: right;
+        }
+
+        .itmi-card-item-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .itmi-card-item-change {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Filters and Dropdowns Section */
+        .itmi-filter-bar {
+            background-color: transparent;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .hyperion-trend-text h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--deep-navy);
-        }
-        
-        .hyperion-trend-text p {
-            color: #666;
-        }
-        
-        .hyperion-trends-visual {
-            position: relative;
-            height: 600px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a7cc9 100%);
-            border-radius: 20px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        .hyperion-chart-container {
-            width: 90%;
-            height: 90%;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-        }
-        
-        /* Market Data Section - Z Layout */
-        .hyperion-data-section {
-            background-color: var(--deep-navy);
-        }
-        
-        .hyperion-data-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .hyperion-data-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-        
-        .hyperion-data-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hyperion-data-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(17, 153, 250, 0.2);
-        }
-        
-        .hyperion-data-card-title {
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--pure-white);
-        }
-        
-        .hyperion-data-card-chart {
-            height: 250px;
-            margin-bottom: 20px;
-        }
-        
-        .hyperion-data-card-stats {
+            padding: 12px 16px;
+            margin-bottom: 24px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap; /* Ensure responsiveness */
+            gap: 12px;
         }
-        
-        .hyperion-stat {
-            text-align: center;
+
+        .itmi-filter-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
         }
-        
-        .hyperion-stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 5px;
-        }
-        
-        .hyperion-stat-label {
-            font-size: 0.9rem;
-            color: var(--medium-gray);
-        }
-        
-        /* Industry Shifts Section - Grid Layout */
-        .hyperion-shifts-section {
-            background-color: var(--light-gray);
-            color: var(--deep-navy);
-        }
-        
-        .hyperion-shifts-title {
-            color: var(--deep-navy);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        
-        .hyperion-shifts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-        
-        .hyperion-shift-card {
-            background-color: var(--pure-white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hyperion-shift-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-        
-        .hyperion-shift-visual {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .hyperion-shift-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            color: white;
-        }
-        
-        .hyperion-shift-content {
-            padding: 30px;
-        }
-        
-        .hyperion-shift-tag {
-            display: inline-block;
-            padding: 5px 15px;
-            background-color: var(--primary-blue);
-            color: white;
-            border-radius: 20px;
-            font-size: 0.8rem;
+
+        .itmi-filter-btn {
+            background-color: transparent;
+            color: #8A91B5;
             font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .hyperion-shift-name {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--deep-navy);
-        }
-        
-        .hyperion-shift-description {
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        .hyperion-shift-stats {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid var(--medium-gray);
-            padding-top: 20px;
-        }
-        
-        .hyperion-shift-stat {
-            text-align: center;
-        }
-        
-        .hyperion-shift-stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 5px;
-        }
-        
-        .hyperion-shift-stat-label {
-            font-size: 0.8rem;
-            color: #777;
-        }
-        
-        /* Video Section */
-        .hyperion-video-section {
-            background-color: var(--deep-navy);
-            padding: 100px 0;
-        }
-        
-        .hyperion-video-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-        
-        .hyperion-video-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .hyperion-video-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: var(--pure-white);
-        }
-        
-        .hyperion-video-description {
-            font-size: 1.2rem;
-            color: var(--medium-gray);
-            margin-bottom: 2rem;
-        }
-        
-        .hyperion-video-features {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .hyperion-video-feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .hyperion-video-feature i {
-            color: var(--primary-blue);
-            font-size: 1.2rem;
-        }
-        
-        .hyperion-video-feature span {
-            color: var(--medium-gray);
-        }
-        
-        .hyperion-video-player {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hyperion-video-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a7cc9 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            position: relative;
-        }
-        
-        .hyperion-video-play-button {
-            width: 80px;
-            height: 80px;
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid #282D48;
+            transition: all 0.2s;
             cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 14px;
         }
-        
-        .hyperion-video-play-button:hover {
-            transform: scale(1.1);
-            background-color: white;
+
+        .itmi-filter-btn:hover {
+            background-color: #262a3f;
         }
-        
-        .hyperion-video-play-button i {
-            color: var(--primary-blue);
-            font-size: 2rem;
-            margin-left: 5px;
+
+        .itmi-filter-btn.active {
+            background-color: #0e86cb70;
+            border: 1px solid #0091fa;
+            color: #FFFFFF;
         }
-        
-        .hyperion-video-placeholder-text {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        /* Interactive Infographic Section */
-        .hyperion-infographic-section {
-            background-color: var(--deep-navy);
-            padding: 100px 0;
-        }
-        
-        .hyperion-infographic-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .hyperion-infographic {
+
+        /* Dropdown Group */
+        .itmi-dropdown-group {
             display: flex;
-            flex-direction: column;
-            gap: 60px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
-        
-        .hyperion-infographic-step {
+
+        .itmi-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .itmi-dropdown-btn {
+            background-color: #1f2338;
+            color: #F0F0F0;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 50px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 60px;
         }
         
-        .hyperion-infographic-step:nth-child(even) {
-            flex-direction: row-reverse;
+        .itmi-dropdown-btn:hover {
+            background-color: #161927;
         }
         
-        .hyperion-step-visual {
-            flex: 1;
-            height: 300px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 20px;
+        .itmi-dropdown-caret {
+            fill: currentColor;
+            width: 18px;
+            height: 18px;
+            margin-left: 4px;
+            transition: transform 0.2s;
+        }
+
+        .itmi-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1f2338;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 10;
+            right: 0; /* Align to the right */
+            margin-top: 8px;
+        }
+
+        .itmi-dropdown-item {
+            color: #F0F0F0;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .itmi-dropdown-item:hover {
+            background-color: #22263a;
+        }
+
+        .itmi-dropdown-content-show {
+            display: block;
+        }
+
+
+        /* Data Table */
+        .itmi-table-card {
+            background-color: transparent;
+            border-radius: 12px;
+            overflow-x: auto; /* Enable horizontal scroll on small screens */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10rem;
+        }
+        
+        .itmi-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 900px; /* Minimum width to prevent crushing on mobile */
+        }
+
+        .itmi-table th {
+            text-align: left;
+            padding: 19px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8A91B5;
+            text-transform: none;
+            border-bottom: 1px solid #282D48;
+        }
+
+        .itmi-table td {
+            padding: 36px 16px;
+            font-size: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid #282D48;
+            white-space: nowrap;
+        }
+        
+        .itmi-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .itmi-table-sector-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Icon Placeholder Styling for Table */
+        .itmi-table-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #282D48;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
+            overflow: hidden; /* Keep image rounded */
         }
         
-        .hyperion-step-visual::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .itmi-table-icon img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(17, 153, 250, 0.1) 0%, rgba(17, 153, 250, 0.05) 100%);
+            object-fit: cover;
         }
-        
-        .hyperion-step-content {
-            flex: 1;
-        }
-        
-        .hyperion-step-number {
-            font-size: 5rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-            line-height: 1;
-        }
-        
-        .hyperion-step-title {
-            font-size: 2rem;
+
+        .itmi-table-sector-name {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            font-size: 16px;
             font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--pure-white);
         }
-        
-        .hyperion-step-description {
-            color: var(--medium-gray);
-            font-size: 1.1rem;
-        }
-        
-        /* CTA Section */
-        .hyperion-cta-section {
-            background: linear-gradient(135deg, var(--deep-navy) 0%, #0a0a2a 100%);
-            text-align: center;
-            padding: 120px 0;
-        }
-        
-        .hyperion-cta-title {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hyperion-cta-description {
-            font-size: 1.3rem;
-            color: var(--medium-gray);
-            max-width: 700px;
-            margin: 0 auto 3rem;
-        }
-        
-        .hyperion-cta-button {
-            display: inline-block;
-            padding: 18px 45px;
-            background-color: var(--primary-blue);
-            color: var(--pure-white);
+
+        .itmi-table-sector-symbol {
+            font-size: 14px;
             font-weight: 600;
-            border-radius: 50px;
+            color: #8A91B5;
+        }
+
+        .itmi-trade-link {
+            color: #0091fa;
             text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(17, 153, 250, 0.3);
-            font-size: 1.1rem;
+            font-weight: 600;
+            transition: color 0.2s;
         }
         
-        .hyperion-cta-button:hover {
-            background-color: #0d8ae6;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(17, 153, 250, 0.4);
+        .itmi-star-icon {
+            cursor: pointer;
+            transition: fill 0.2s;
         }
         
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .hyperion-hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 50px;
-            }
-            
-            .hyperion-hero-title {
-                font-size: 3.5rem;
-            }
-            
-            .hyperion-trends-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hyperion-data-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .hyperion-video-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hyperion-infographic-step {
-                flex-direction: column !important;
-                gap: 30px;
-            }
+        /* Sparkline Chart (SVG) */
+        .itmi-sparkline-chart svg {
+            width: 100px;
+            height: 30px;
         }
-        
-        @media (max-width: 768px) {
-            .hyperion-section {
-                padding: 80px 0;
-            }
-            
-            .hyperion-section-inner {
-                padding: 0 20px;
-            }
-            
-            .hyperion-section-title {
-                font-size: 2.5rem;
-            }
-            
-            .hyperion-hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .hyperion-data-sphere {
-                width: 300px;
-                height: 300px;
-            }
-            
-            .hyperion-trends-visual {
-                height: 400px;
-            }
-            
-            .hyperion-shifts-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .hyperion-cta-title {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hyperion-section {
-                padding: 60px 0;
-            }
-            
-            .hyperion-hero-title {
-                font-size: 2.2rem;
-            }
-            
-            .hyperion-data-sphere {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .hyperion-cta-title {
-                font-size: 2rem;
-            }
-        }
+
     </style>
 </head>
 <body>
-    <div class="hyperion-insights-container">
-        <!-- Hero Section - Asymmetrical Layout -->
-        <section class="hyperion-hero-section">
-            <div class="hyperion-hero-bg"></div>
-            <div class="hyperion-hero-glow"></div>
-            <div class="hyperion-hero-content">
-                <div class="hyperion-hero-text">
-                    <h1 class="hyperion-hero-title">Market <span>Insights</span> & Digital Intelligence</h1>
-                    <p class="hyperion-hero-description">Data-driven analysis of technology trends, market shifts, and digital transformation patterns. Uncover opportunities with our comprehensive market intelligence.</p>
-                    <a href="#trends" class="hyperion-cta-button">Explore Trends</a>
-                </div>
-                <div class="hyperion-hero-visual">
-                    <div class="hyperion-data-sphere">
-                        <div class="hyperion-sphere">
-                            <div class="hyperion-sphere-inner"></div>
-                        </div>
-                        <div class="hyperion-data-points" id="hyperionDataPoints"></div>
-                        <div class="hyperion-data-connections" id="hyperionDataConnections"></div>
-                    </div>
-                </div>
+
+    <div class="itmi-container">
+
+        <!-- --- HEADER STATS BAR --- -->
+        <header class="itmi-header-bar">
+            <div class="itmi-header-stat">
+                <span class="itmi-header-stat-label">Global IT Spend (YTD):</span>
+                <span class="itmi-header-stat-value">$4.72T</span>
+                <span class="itmi-header-stat-value itmi-text-green">+1.8%</span>
             </div>
-        </section>
+            <div class="itmi-header-stat">
+                <span class="itmi-header-stat-label">Cloud Spend (Q3 '25):</span>
+                <span class="itmi-header-stat-value">$68.1B</span>
+            </div>
+            <div class="itmi-header-stat">
+                <span class="itmi-header-stat-label">Top Skill Demand:</span>
+                <span class="itmi-header-stat-value">AI/ML (38.2%)</span>
+            </div>
+            <div class="itmi-header-stat">
+                <span class="itmi-header-stat-label">Avg. Dev Salary (US):</span>
+                <span class="itmi-header-stat-value">$134,500</span>
+            </div>
+            <div class="itmi-header-stat">
+                <span class="itmi-header-stat-label">Open Source Projects:</span>
+                <span class="itmi-header-stat-value">512M</span>
+            </div>
+            <div class="itmi-header-stat">
+                <span class="itmi-header-stat-label">C-Suite AI Index:</span>
+                <span class="itmi-header-stat-value itmi-fear-index">
+                    <div class="itmi-fear-gauge">
+                        <div class="itmi-fear-needle"></div>
+                    </div>
+                    72 (Bullish)
+                </span>
+            </div>
+        </header>
         
-        <!-- Key Trends Section - F Layout -->
-        <section class="hyperion-section hyperion-trends-section" id="trends">
-            <div class="hyperion-section-inner">
-                <h2 class="hyperion-section-title hyperion-trends-title">Key Digital Transformation Trends</h2>
-                <p class="hyperion-section-subtitle" style="color: #666;">Understanding the forces shaping tomorrow's technology landscape</p>
-                
-                <div class="hyperion-trends-grid">
-                    <div class="hyperion-trends-text">
-                        <p class="hyperion-trends-description">The digital landscape is evolving at an unprecedented pace. Our research identifies the critical trends that will define the next decade of technological innovation and business transformation.</p>
-                        
-                        <div class="hyperion-trends-list">
-                            <div class="hyperion-trend-item">
-                                <div class="hyperion-trend-icon">
-                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="hyperion-trend-text">
-                                    <h3>AI Integration Acceleration</h3>
-                                    <p>Enterprise AI adoption has increased by 270% in the past two years, with 68% of large organizations implementing AI solutions.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="hyperion-trend-item">
-                                <div class="hyperion-trend-icon">
-                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M19.4 15C19.2669 15.3042 19.1333 15.6081 19 15.9115C18.438 17.1494 17.7471 18.3219 16.936 19.406C15.67 21.135 13.971 22.365 12 22.365C10.029 22.365 8.33 21.135 7.064 19.406C5.798 17.677 5 15.635 5 13.365C5 11.095 5.798 9.053 7.064 7.324C8.33 5.595 10.029 4.365 12 4.365C13.971 4.365 15.67 5.595 16.936 7.324C17.747 8.408 18.438 9.5806 19 10.8185C19.1333 11.1219 19.2669 11.4258 19.4 11.73" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="hyperion-trend-text">
-                                    <h3>Edge Computing Expansion</h3>
-                                    <p>By 2025, 75% of enterprise data will be processed outside traditional centralized data centers, up from less than 10% in 2021.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="hyperion-trend-item">
-                                <div class="hyperion-trend-icon">
-                                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </div>
-                                <div class="hyperion-trend-text">
-                                    <h3>Sustainable Technology</h3>
-                                    <p>Green IT initiatives are projected to reduce global carbon emissions by 15% by 2030, with 82% of organizations prioritizing sustainability.</p>
-                                </div>
-                            </div>
+        <!-- Header -->
+        <div class="itmi-header">
+            <h1 class="text-2xl font-bold">Trending Today</h1>
+            <p class="text-sm text-gray-400 mt-1">Global Tech and Finance Sector Watch</p>
+        </div>
+        
+
+        <!-- Trending Cards Section -->
+        <div class="itmi-cards-grid">
+            
+            <!-- Card 1: Trending Tech -->
+            <div class="itmi-card itmi-card-1">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">Trending Tech</h3>
+                    <p class="itmi-card-subtitle">Developer adoption (YoY)</p>
+                </div>
+                <div class="itmi-card-list" id="itmi-hot-tech-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://www.logo.wine/a/logo/Rust_(video_game)/Rust_(video_game)-Logo.wine.svg" alt="Rust icon">
+                            </span>
+                            <span class="itmi-card-item-name">Rust</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value">1.4M Devs</div>
+                            <div class="itmi-card-item-change itmi-text-green">+22.1%</div>
                         </div>
                     </div>
-                    
-                    <div class="hyperion-trends-visual">
-                        <div class="hyperion-chart-container">
-                            <canvas id="hyperionTrendChart"></canvas>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://www.logo.wine/a/logo/WebAssembly/WebAssembly-Logo.wine.svg" alt="WebAssembly icon">
+                            </span>
+                            <span class="itmi-card-item-name">WebAssembly</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value">850k Devs</div>
+                            <div class="itmi-card-item-change itmi-text-green">+19.4%</div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://www.logo.wine/a/logo/Go_(programming_language)/Go_(programming_language)-Logo.wine.svg" alt="Go icon">
+                            </span>
+                            <span class="itmi-card-item-name">Go</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value">2.1M Devs</div>
+                            <div class="itmi-card-item-change itmi-text-green">+15.8%</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Market Data Section - Z Layout -->
-        <section class="hyperion-section hyperion-data-section">
-            <div class="hyperion-section-inner">
-                <h2 class="hyperion-section-title">Market Data & Analytics</h2>
-                <p class="hyperion-section-subtitle">Quantitative insights into technology adoption and market dynamics</p>
-                
-                <div class="hyperion-data-cards">
-                    <div class="hyperion-data-card">
-                        <h3 class="hyperion-data-card-title">Cloud Computing Growth</h3>
-                        <div class="hyperion-data-card-chart">
-                            <canvas id="hyperionCloudChart"></canvas>
+
+            <!-- Card 2: Industry Buzz -->
+            <div class="itmi-card itmi-card-2">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">Industry Buzz</h3>
+                    <p class="itmi-card-subtitle">Market size forecasts</p>
+                </div>
+                <div class="itmi-card-list" id="itmi-buzz-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://cdn1.iconfinder.com/data/icons/artificial-intelligence-281/64/Text_AI_Generative_Imaging_Rendering-512.png" alt="AI icon">
+                            </span>
+                            <span class="itmi-card-item-name">Generative AI</span>
                         </div>
-                        <div class="hyperion-data-card-stats">
-                            <div class="hyperion-stat">
-                                <div class="hyperion-stat-value">87%</div>
-                                <div class="hyperion-stat-label">Enterprise Adoption</div>
-                            </div>
-                            <div class="hyperion-stat">
-                                <div class="hyperion-stat-value">$832B</div>
-                                <div class="hyperion-stat-label">Market Value 2024</div>
-                            </div>
-                            <div class="hyperion-stat">
-                                <div class="hyperion-stat-value">18.5%</div>
-                                <div class="hyperion-stat-label">Annual Growth</div>
-                            </div>
+                        <div class="itmi-card-item-value-group">
+                            <!-- data-usd-value is used for currency conversion -->
+                            <div class="itmi-card-item-value" data-usd-value="1300000000000">$1.3T</div>
+                            <div class="itmi-card-item-change" style="color: #8A91B5;">by 2032</div>
                         </div>
                     </div>
-                    
-                    <div class="hyperion-data-card">
-                        <h3 class="hyperion-data-card-title">AI Investment Trends</h3>
-                        <div class="hyperion-data-card-chart">
-                            <canvas id="hyperionAIChart"></canvas>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                 <img src="https://images.seeklogo.com/logo-png/11/1/quantum-logo-png_seeklogo-114413.png" alt="Quantum icon">
+                            </span>
+                            <span class="itmi-card-item-name">Quantum</span>
                         </div>
-                        <div class="hyperion-data-card-stats">
-                            <div class="hyperion-stat">
-                                <div class="hyperion-stat-value">$154B</div>
-                                <div class="hyperion-stat-label">Global Investment</div>
-                            </div>
-                            <div class="hyperion-stat">
-                                <div class="hyperion-stat-value">42%</div>
-                                <div class="hyperion-stat-label">ROI Increase</div>
-                            </div>
-                            <div class="hyperion-stat">
-                                <div class="hyperion-stat-value">3.2M</div>
-                                <div class="hyperion-stat-label">AI Jobs Created</div>
-                            </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="5300000000">$5.3B</div>
+                            <div class="itmi-card-item-change" style="color: #8A91B5;">by 2029</div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://placehold.co/32x32/282D48/F0F0F0?text=E" alt="Edge icon">
+                            </span>
+                            <span class="itmi-card-item-name">Edge AI</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="2700000000">$2.7B</div>
+                            <div class="itmi-card-item-change" style="color: #8A91B5;">by 2028</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Video Section -->
-        <section class="hyperion-section hyperion-video-section">
-            <div class="hyperion-section-inner">
-                <div class="hyperion-video-container">
-                    <div class="hyperion-video-content">
-                        <h2 class="hyperion-video-title">Tech Market Explained by Our Experts</h2>
-                        <p class="hyperion-video-description">Gain valuable insights from our industry specialists as they break down complex market dynamics and emerging opportunities in the technology sector.</p>
-                        
-                        <div class="hyperion-video-features">
-                            <div class="hyperion-video-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Analysis of current market conditions</span>
-                            </div>
-                            <div class="hyperion-video-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Emerging technology opportunities</span>
-                            </div>
-                            <div class="hyperion-video-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Strategic investment recommendations</span>
-                            </div>
-                            <div class="hyperion-video-feature">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Future market projections</span>
-                            </div>
+            
+            <!-- Card 3: Top Market Movers -->
+            <div class="itmi-card itmi-card-3">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">Top Market Movers</h3>
+                    <p class="itmi-card-subtitle">Biggest gainers (1Y Change)</p>
+                </div>
+                <div class="itmi-card-list" id="itmi-movers-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/10/1/nvidia-logo-png_seeklogo-101614.png" alt="NVIDIA icon">
+                            </span>
+                            <span class="itmi-card-item-name">NVIDIA</span>
                         </div>
-                        
-                        <a href="#" class="hyperion-cta-button">Watch Full Analysis</a>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="3100000000000">$3.1T</div>
+                            <div class="itmi-card-item-change itmi-text-green">+188.2%</div>
+                        </div>
                     </div>
-                    
-                    <div class="hyperion-video-player">
-                        <div class="hyperion-video-placeholder">
-                            <div class="hyperion-video-play-button" id="hyperionVideoPlayButton">
-                                <i class="fas fa-play"></i>
-                            </div>
-                            <div class="hyperion-video-placeholder-text">Tech Market Analysis 2024</div>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/35/1/broadcom-logo-png_seeklogo-357502.png" alt="Broadcom icon">
+                            </span>
+                            <span class="itmi-card-item-name">Broadcom</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="820000000000">$820B</div>
+                            <div class="itmi-card-item-change itmi-text-green">+95.1%</div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/38/1/palo-alto-networks-logo-png_seeklogo-384891.png" alt="Palo Alto icon">
+                            </span>
+                            <span class="itmi-card-item-name">Palo Alto</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="110000000000">$110B</div>
+                            <div class="itmi-card-item-change itmi-text-green">+72.4%</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Industry Shifts Section - Grid Layout -->
-        <section class="hyperion-section hyperion-shifts-section">
-            <div class="hyperion-section-inner">
-                <h2 class="hyperion-section-title hyperion-shifts-title">Industry Transformation Snapshots</h2>
-                <p class="hyperion-section-subtitle" style="color: #666; text-align: center;">Visualizing the impact of digital disruption across sectors</p>
-                
-                <div class="hyperion-shifts-grid">
-                    <div class="hyperion-shift-card">
-                        <div class="hyperion-shift-visual" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
-                            <div class="hyperion-shift-overlay">
-                                <span class="hyperion-shift-tag">FINANCIAL SERVICES</span>
-                            </div>
+
+            <!-- Card 4: New Launches -->
+            <div class="itmi-card itmi-card-4">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">New Launches</h3>
+                    <p class="itmi-card-subtitle">Recent product announcements</p>
+                </div>
+                <div class="itmi-card-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/26/1/google-2015-logo-png_seeklogo-268116.png" alt="Google icon">
+                            </span>
+                            <span class="itmi-card-item-name">Project Astra</span>
                         </div>
-                        <div class="hyperion-shift-content">
-                            <h3 class="hyperion-shift-name">Digital Banking Revolution</h3>
-                            <p class="hyperion-shift-description">Traditional banking models are being disrupted by fintech innovations, with digital-only banks capturing 25% of new accounts globally.</p>
-                            <div class="hyperion-shift-stats">
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">64%</div>
-                                    <div class="hyperion-shift-stat-label">Digital Transactions</div>
-                                </div>
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">$1.2T</div>
-                                    <div class="hyperion-shift-stat-label">Fintech Valuation</div>
-                                </div>
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">3.5x</div>
-                                    <div class="hyperion-shift-stat-label">Growth Rate</div>
-                                </div>
-                            </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" style="color: #8A91B5;">(Google)</div>
+                            <div class="itmi-card-item-change itmi-text-green">Vision AI</div>
                         </div>
                     </div>
-                    
-                    <div class="hyperion-shift-card">
-                        <div class="hyperion-shift-visual" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
-                            <div class="hyperion-shift-overlay">
-                                <span class="hyperion-shift-tag">HEALTHCARE</span>
-                            </div>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/42/1/meta-icon-new-facebook-2021-logo-png_seeklogo-424014.png" alt="Meta icon">
+                            </span>
+                            <span class="itmi-card-item-name">Llama 4</span>
                         </div>
-                        <div class="hyperion-shift-content">
-                            <h3 class="hyperion-shift-name">Telemedicine Expansion</h3>
-                            <p class="hyperion-shift-description">Virtual healthcare services have grown by 380% since 2020, with AI diagnostics improving accuracy by 32%.</p>
-                            <div class="hyperion-shift-stats">
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">76%</div>
-                                    <div class="hyperion-shift-stat-label">Adoption Rate</div>
-                                </div>
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">$280B</div>
-                                    <div class="hyperion-shift-stat-label">Market Value</div>
-                                </div>
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">2.1B</div>
-                                    <div class="hyperion-shift-stat-label">Virtual Consultations</div>
-                                </div>
-                            </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" style="color: #8A91B5;">(Meta)</div>
+                            <div class="itmi-card-item-change itmi-text-green">Open LLM</div>
                         </div>
                     </div>
-                    
-                    <div class="hyperion-shift-card">
-                        <div class="hyperion-shift-visual" style="background-image: url('https://images.unsplash.com/photo-1593508512255-86ab42a8e620?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2052&q=80');">
-                            <div class="hyperion-shift-overlay">
-                                <span class="hyperion-shift-tag">RETAIL</span>
-                            </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/50/1/chatgpt-logo-png_seeklogo-500383.png" alt="OpenAI icon">
+                            </span>
+                            <span class="itmi-card-item-name">GPT-5</span>
                         </div>
-                        <div class="hyperion-shift-content">
-                            <h3 class="hyperion-shift-name">E-commerce Evolution</h3>
-                            <p class="hyperion-shift-description">Augmented reality and AI personalization are transforming online shopping, with AR increasing conversion rates by 40%.</p>
-                            <div class="hyperion-shift-stats">
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">$6.5T</div>
-                                    <div class="hyperion-shift-stat-label">Global E-commerce</div>
-                                </div>
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">58%</div>
-                                    <div class="hyperion-shift-stat-label">Mobile Sales</div>
-                                </div>
-                                <div class="hyperion-shift-stat">
-                                    <div class="hyperion-shift-stat-value">22%</div>
-                                    <div class="hyperion-shift-stat-label">Annual Growth</div>
-                                </div>
-                            </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" style="color: #8A91B5;">(OpenAI)</div>
+                            <div class="itmi-card-item-change itmi-text-green">Next Gen AI</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- Interactive Infographic Section -->
-        <section class="hyperion-infographic-section">
-            <div class="hyperion-section-inner">
-                <h2 class="hyperion-section-title">The Digital Transformation Journey</h2>
-                <p class="hyperion-section-subtitle">A visual guide to organizational digital maturity</p>
-                
-                <div class="hyperion-infographic">
-                    <div class="hyperion-infographic-step">
-                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');">
-                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Digital Foundation</h3>
-                                <p>Establishing core infrastructure</p>
-                            </div>
-                        </div>
-                        <div class="hyperion-step-content">
-                            <div class="hyperion-step-number">01</div>
-                            <h3 class="hyperion-step-title">Digital Foundation</h3>
-                            <p class="hyperion-step-description">Establishing core digital infrastructure, cloud migration, and basic automation. Organizations at this stage see 15-25% efficiency gains through process digitization.</p>
-                        </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="itmi-filter-bar">
+            <!-- Filter Buttons -->
+            <div class="itmi-filter-group" id="itmi-filter-group">
+                <button class="itmi-filter-btn active" data-filter="All Sectors">All Sectors</button>
+                <button class="itmi-filter-btn" data-filter="Top Growth">Top Growth</button>
+                <button class="itmi-filter-btn" data-filter="Top R&D">Top R&D</button>
+                <button class="itmi-filter-btn" data-filter="New">New</button>
+                <button class="itmi-filter-btn" data-filter="Favorites">Favorites</button>
+            </div>
+            
+            <!-- Dropdowns -->
+            <div class="itmi-dropdown-group">
+                <!-- Dropdown 1: Currency -->
+                <div class="itmi-dropdown">
+                    <button class="itmi-dropdown-btn" data-toggle="itmi-currency-dropdown" id="itmi-currency-btn">
+                        USD 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ffffff" d="m12 13.171l4.95-4.95l1.414 1.415L12 16L5.636 9.636L7.05 8.222l4.95 4.95Z"/></svg>
+                    </button>
+                    <div class="itmi-dropdown-content" id="itmi-currency-dropdown">
+                        <a class="itmi-dropdown-item" data-value="USD">USD</a>
+                        <a class="itmi-dropdown-item" data-value="EUR">EUR</a>
+                        <a class="itmi-dropdown-item" data-value="BTC">BTC</a>
                     </div>
-                    
-                    <div class="hyperion-infographic-step">
-                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');">
-                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Data Integration</h3>
-                                <p>Implementing advanced analytics</p>
-                            </div>
-                        </div>
-                        <div class="hyperion-step-content">
-                            <div class="hyperion-step-number">02</div>
-                            <h3 class="hyperion-step-title">Data Integration</h3>
-                            <p class="hyperion-step-description">Implementing advanced analytics, data lakes, and AI-driven insights. Companies achieve 30-50% better decision-making with integrated data systems.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="hyperion-infographic-step">
-                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');">
-                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Intelligent Automation</h3>
-                                <p>Deploying AI and machine learning</p>
-                            </div>
-                        </div>
-                        <div class="hyperion-step-content">
-                            <div class="hyperion-step-number">03</div>
-                            <h3 class="hyperion-step-title">Intelligent Automation</h3>
-                            <p class="hyperion-step-description">Deploying AI, machine learning, and robotic process automation. Organizations report 40-60% cost reduction in automated processes.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="hyperion-infographic-step">
-                        <div class="hyperion-step-visual" style="background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80');">
-                            <div style="position: relative; z-index: 2; color: white; text-align: center; padding: 20px;">
-                                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Ecosystem Integration</h3>
-                                <p>Creating connected digital ecosystems</p>
-                            </div>
-                        </div>
-                        <div class="hyperion-step-content">
-                            <div class="hyperion-step-number">04</div>
-                            <h3 class="hyperion-step-title">Ecosystem Integration</h3>
-                            <p class="hyperion-step-description">Creating connected digital ecosystems with partners, suppliers, and customers. Businesses achieve 2-3x faster innovation cycles through collaboration.</p>
-                        </div>
+                </div>
+                <!-- Dropdown 2: Categories -->
+                <div class="itmi-dropdown">
+                    <button class="itmi-dropdown-btn" data-toggle="itmi-category-dropdown" id="itmi-category-btn">
+                        All Categories
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ffffff" d="m12 13.171l4.95-4.95l1.414 1.415L12 16L5.636 9.636L7.05 8.222l4.95 4.95Z"/></svg>
+                    </button>
+                    <div class="itmi-dropdown-content" id="itmi-category-dropdown">
+                        <a class="itmi-dropdown-item" data-value="All Categories">All Categories</a>
+                        <a class="itmi-dropdown-item" data-value="Tech">Tech</a>
+                        <a class="itmi-dropdown-item" data-value="Finance">Finance</a>
+                        <a class="itmi-dropdown-item" data-value="SaaS">SaaS</a>
                     </div>
                 </div>
             </div>
-        </section>
-        
-        <!-- CTA Section -->
-        <section class="hyperion-section hyperion-cta-section">
-            <div class="hyperion-section-inner">
-                <h2 class="hyperion-cta-title">Access Deeper Market Intelligence</h2>
-                <p class="hyperion-cta-description">Get customized insights and strategic analysis tailored to your industry and business objectives. Our advanced analytics platform delivers actionable intelligence for informed decision-making.</p>
-                <a href="#" class="hyperion-cta-button">Request Custom Report</a>
-            </div>
-        </section>
+        </div>
+
+        <!-- Data Table -->
+        <div class="itmi-table-card">
+            <table class="itmi-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Sector Name / Symbol</th>
+                        <th>Market Cap</th>
+                        <th>YoY Growth</th>
+                        <th>1Y Performance</th>
+                        <th>Key Player</th>
+                        <th>R&D Spend (Annual)</th>
+                        <th>Trade</th>
+                        <th>Favorite</th>
+                    </tr>
+                </thead>
+                <tbody id="itmi-table-body">
+                    <!-- Table rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
     </div>
 
     <script>
-        // Data Sphere Animation
-        document.addEventListener('DOMContentLoaded', function() {
-            const dataPoints = document.getElementById('hyperionDataPoints');
-            const dataConnections = document.getElementById('hyperionDataConnections');
-            const pointCount = 25;
-            const connectionCount = 15;
-            
-            // Create data points
-            for (let i = 0; i < pointCount; i++) {
-                const point = document.createElement('div');
-                point.className = 'hyperion-data-point';
-                
-                // Random position on sphere surface
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos((Math.random() * 2) - 1);
-                
-                const x = 50 + 45 * Math.sin(phi) * Math.cos(theta);
-                const y = 50 + 45 * Math.sin(phi) * Math.sin(theta);
-                
-                point.style.left = `${x}%`;
-                point.style.top = `${y}%`;
-                
-                // Random animation delay
-                point.style.animationDelay = `${Math.random() * 5}s`;
-                
-                dataPoints.appendChild(point);
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. Data Mockup ---
+    let allSectorData = [
+        {
+            id: 1,
+            rank: 1,
+            iconUrl: 'https://imgs.search.brave.com/lIu3F-AenrMio3181ZI20CrxwyOkerPDP9OzPw1GJkU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjIx/MDAyNzI2My92ZWN0/b3IvYXJ0aWZpY2lh/bC1pbnRlbGxpZ2Vu/Y2UtaWNvbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9dVl0/TnF3cUw0UThqWnRv/UGZjVlhYYmpLUHVK/c21JeUFNWjRQVUh0/SDViYz0',
+            name: 'Artificial Intelligence',
+            symbol: 'AI',
+            marketCap: 2.8e12, // 2.8 Trillion USD
+            yoyGrowth: 34.5,
+            sparklinePath: 'M 0 25 Q 10 15, 20 18 T 40 20 T 60 10 T 80 8 T 100 5', // High growth line
+            keyPlayer: 'OpenAI',
+            rdSpend: 20e9, // 20 Billion USD
+            favorite: false,
+            categories: ['Top Growth', 'Top R&D', 'New'],
+            mainCategory: 'Tech'
+        },
+        {
+            id: 2,
+            rank: 2,
+            iconUrl: 'https://imgs.search.brave.com/7SgirpfhWfX8Ez82jTiGEzesMN1oMisVVZG1djwAqRw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDYv/MDMwLzYwMC9zbWFs/bC9hYnN0cmFjdC1j/bG91ZC1sb2dvLWJs/dWUtc2hhcGUtY2xv/dWQtY29tcHV0aW5n/LWlzb2xhdGVkLW9u/LXdoaXRlLWJhY2tn/cm91bmQtdXNhYmxl/LWZvci1idXNpbmVz/cy1hbmQtdGVjaG5v/bG9neS1sb2dvcy1m/bGF0LWxvZ28tZGVz/aWduLXRlbXBsYXRl/LWVsZW1lbnQtdmVj/dG9yLmpwZw',
+            name: 'Cloud Computing',
+            symbol: 'CLOUD',
+            marketCap: 2.1e12, // 2.1 Trillion USD
+            yoyGrowth: 18.2,
+            sparklinePath: 'M 0 28 Q 10 20, 20 22 T 40 18 T 60 15 T 80 10 T 100 12',
+            keyPlayer: 'Microsoft (Azure)',
+            rdSpend: 27.1e9, // 27.1 Billion USD
+            favorite: true,
+            categories: ['Top Growth', 'Top R&D'],
+            mainCategory: 'Tech'
+        },
+        {
+            id: 3,
+            rank: 3,
+            iconUrl: 'https://imgs.search.brave.com/rfchsHt0EbKCMaXVmolggaPni7SuYt2-txvoImIsdCQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJhbmRmZXRjaC5p/by9pZFdmRG1NTlpW/L3cvNDAwL2gvNDAw/L3RoZW1lL2Rhcmsv/aWNvbi5wbmc_Yz0x/YnhpZDY0TXVwN2Fj/emV3U0FZTVgmdD0x/NzUyMTMxNTk1NTcx',
+            name: 'Semiconductors',
+            symbol: 'SEMI',
+            marketCap: 4.2e12, // 4.2 Trillion USD
+            yoyGrowth: 28.1,
+            sparklinePath: 'M 0 20 Q 10 25, 20 15 T 40 18 T 60 5 T 80 10 T 100 3',
+            keyPlayer: 'NVIDIA',
+            rdSpend: 8.9e9, // 8.9 Billion USD
+            favorite: false,
+            categories: ['Top Growth'],
+            mainCategory: 'Tech'
+        },
+        {
+            id: 4,
+            rank: 4,
+            iconUrl: 'https://imgs.search.brave.com/353r6apL5UMLKJTDAGbEwi2vNz1ztDY5A5rTu8vIKhI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzk4LzU1LzU1/LzM2MF9GXzE5ODU1/NTU2NF9IaVdPaUV5/YzVwRTdGUmdnekh2/REtUVDM0NjBHZWxJ/bC5qcGc',
+            name: 'Cybersecurity',
+            symbol: 'CYBER',
+            marketCap: 345e9, // 345 Billion USD
+            yoyGrowth: 14.7,
+            sparklinePath: 'M 0 28 Q 10 22, 20 18 T 40 20 T 60 14 T 80 16 T 100 10',
+            keyPlayer: 'Palo Alto Networks',
+            rdSpend: 1.9e9, // 1.9 Billion USD
+            favorite: false,
+            categories: ['Top Growth'],
+            mainCategory: 'Tech'
+        },
+        {
+            id: 5,
+            rank: 5,
+            iconUrl: 'https://imgs.search.brave.com/HmmO5sJKAaJ8jVnkNvQQ_fnCur4IT7E_TzMAy4MjnW8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMucHJvbXB0YmFz/ZS5jb20vREFMTEVf/SU1BR0VTL2lOQXpj/QzVZNkNiZkE5TVRW/TDRNYmpvZkFuczEv/cmVzaXplZC8xNzAy/NzI0NjYzNDkydF84/MDB4ODAwLndlYnA_/YWx0PW1lZGlhJnRv/a2VuPTAwODExZTcz/LTA5MTItNDEzMy04/Y2QzLTUxZWNiZjMy/NTQwMQ',
+            name: 'SaaS',
+            symbol: 'SAAS',
+            marketCap: 1.9e12, // 1.9 Trillion USD
+            yoyGrowth: 16.8,
+            sparklinePath: 'M 0 25 Q 10 20, 20 18 T 40 15 T 60 12 T 80 14 T 100 8',
+            keyPlayer: 'Salesforce',
+            rdSpend: 9.8e9, // 9.8 Billion USD
+            favorite: false,
+            categories: ['Top R&D'],
+            mainCategory: 'SaaS'
+        },
+        {
+            id: 6,
+            rank: 6,
+            iconUrl: 'https://images.seeklogo.com/logo-png/51/1/89-studio-logo-png_seeklogo-515777.png',
+            name: 'E-commerce',
+            symbol: 'ECOM',
+            marketCap: 3.5e12, // 3.5 Trillion USD
+            yoyGrowth: -9.4,
+            sparklinePath: 'M 0 5 Q 10 12, 20 10 T 40 18 T 60 20 T 80 25 T 100 28', // Negative growth line
+            keyPlayer: 'Amazon',
+            rdSpend: 85.5e9, // 85.5 Billion USD
+            favorite: false,
+            categories: ['Top R&D'],
+            mainCategory: 'Finance' 
+        },
+        {
+            id: 7,
+            rank: 7,
+            iconUrl: 'https://imgs.search.brave.com/30LirFazr18im2CIj469GIOdw8mBDpz7tj64ggunsQM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvZ2xvYmFsLWNv/bm5lY3QtdGVjaG5v/bG9neS1sb2dvLWRl/c2lnbi10ZW1wbGF0/ZXNfMjQ1OTktNzQ5/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA',
+            name: 'Quantum Computing',
+            symbol: 'QCOM',
+            marketCap: 5.3e9, // 5.3 Billion USD
+            yoyGrowth: 25.0,
+            sparklinePath: 'M 0 25 Q 10 10, 20 15 T 40 5 T 60 10 T 80 3 T 100 5',
+            keyPlayer: 'IonQ',
+            rdSpend: 150e6, // 150 Million USD
+            favorite: false,
+            categories: ['New', 'Top Growth'],
+            mainCategory: 'Tech'
+        }
+    ];
+
+    // --- 2. State ---
+    let currentFilter = 'All Sectors'; // Active filter button (e.g., 'Top Growth')
+    let currentCurrency = 'USD';        // Active currency dropdown value
+    let currentCategory = 'All Categories'; // Active category dropdown value
+
+    // --- 3. Currency Conversion & Formatting ---
+    const conversionRates = {
+        USD: 1,
+        EUR: 0.92,
+        BTC: 0.000015
+    };
+
+    /**
+     * Formats a large number into T, B, M or adds currency symbols.
+     * @param {number} value - The base USD value.
+     * @param {string} currency - The target currency (e.g., 'USD', 'EUR', 'BTC').
+     */
+    function formatCurrency(value, currency) {
+        const convertedValue = value * conversionRates[currency];
+
+        if (currency === 'BTC') {
+            // Format Bitcoin with 2-6 decimal places
+            return `₿${convertedValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}`;
+        }
+        
+        const symbol = currency === 'EUR' ? '€' : '$';
+        
+        if (convertedValue >= 1e12) { // Trillions
+            return `${symbol}${(convertedValue / 1e12).toFixed(2)}T`;
+        } else if (convertedValue >= 1e9) { // Billions
+            return `${symbol}${(convertedValue / 1e9).toFixed(1)}B`;
+        } else if (convertedValue >= 1e6) { // Millions
+            return `${symbol}${(convertedValue / 1e6).toFixed(1)}M`;
+        } else {
+            return `${symbol}${convertedValue.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+        }
+    }
+
+    // --- 4. DOM References ---
+    const tableBody = document.getElementById('itmi-table-body');
+    const filterButtonGroup = document.getElementById('itmi-filter-group');
+    const filterButtons = document.querySelectorAll('.itmi-filter-btn');
+
+    // Dropdown DOM Refs
+    const dropdownButtons = document.querySelectorAll('.itmi-dropdown-btn');
+    const currencyBtn = document.getElementById('itmi-currency-btn');
+    const categoryBtn = document.getElementById('itmi-category-btn');
+    const trendingCardValueElements = document.querySelectorAll('.itmi-card-item-value[data-usd-value]');
+
+
+    // --- 5. Render Functions ---
+
+    /**
+     * Updates the values in the "Trending Today" cards based on currency.
+     */
+    function renderTrendingCards() {
+        trendingCardValueElements.forEach(el => {
+            const baseUsdValue = parseFloat(el.dataset.usdValue);
+            if (!isNaN(baseUsdValue)) {
+                el.textContent = formatCurrency(baseUsdValue, currentCurrency);
             }
-            
-            // Create connections between points
-            for (let i = 0; i < connectionCount; i++) {
-                const connection = document.createElement('div');
-                connection.className = 'hyperion-data-connection';
-                
-                // Random start and end points
-                const startX = 20 + Math.random() * 60;
-                const startY = 20 + Math.random() * 60;
-                const endX = 20 + Math.random() * 60;
-                const endY = 20 + Math.random() * 60;
-                
-                // Calculate distance and angle
-                const dx = endX - startX;
-                const dy = endY - startY;
-                const length = Math.sqrt(dx * dx + dy * dy);
-                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-                
-                connection.style.width = `${length}%`;
-                connection.style.left = `${startX}%`;
-                connection.style.top = `${startY}%`;
-                connection.style.transform = `rotate(${angle}deg)`;
-                
-                // Random animation
-                connection.style.animation = `pulse ${3 + Math.random() * 4}s infinite`;
-                
-                dataConnections.appendChild(connection);
-            }
-            
-            // Add pulsing animation for connections
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes pulse {
-                    0%, 100% { opacity: 0.2; }
-                    50% { opacity: 0.8; }
-                }
-                
-                .hyperion-data-point {
-                    animation: pulse 3s infinite;
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Video Play Button Functionality
-            const videoPlayButton = document.getElementById('hyperionVideoPlayButton');
-            videoPlayButton.addEventListener('click', function() {
-                // In a real implementation, this would trigger a video modal or player
-                alert('Video player would open here with tech market analysis content');
-            });
-            
-            // Initialize Charts
-            initializeCharts();
-            
-            // Scroll animations
-            initializeScrollAnimations();
         });
-        
-        function initializeCharts() {
-            // Trend Chart
-            const trendCtx = document.getElementById('hyperionTrendChart').getContext('2d');
-            const trendChart = new Chart(trendCtx, {
-                type: 'line',
-                data: {
-                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
-                    datasets: [
-                        {
-                            label: 'AI Adoption',
-                            data: [15, 22, 35, 48, 62, 78],
-                            borderColor: '#1199fa',
-                            backgroundColor: 'rgba(17, 153, 250, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        },
-                        {
-                            label: 'Cloud Migration',
-                            data: [42, 51, 59, 68, 76, 87],
-                            borderColor: '#0d8ae6',
-                            backgroundColor: 'rgba(13, 138, 230, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        },
-                        {
-                            label: 'IoT Implementation',
-                            data: [28, 35, 43, 52, 61, 73],
-                            borderColor: '#0a7cc9',
-                            backgroundColor: 'rgba(10, 124, 201, 0.1)',
-                            tension: 0.4,
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'Technology Adoption Trends (%)'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 100
-                        }
-                    }
-                }
-            });
+    }
+
+    /**
+     * Clears and re-renders the table based on the provided data array.
+     * @param {Array<Object>} data The data to display.
+     */
+    function renderTable(data) {
+        if (!tableBody) return;
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        data.forEach(item => {
+            const row = tableBody.insertRow();
+            row.dataset.id = item.id;
             
-            // Cloud Chart
-            const cloudCtx = document.getElementById('hyperionCloudChart').getContext('2d');
-            const cloudChart = new Chart(cloudCtx, {
-                type: 'bar',
-                data: {
-                    labels: ['2019', '2020', '2021', '2022', '2023', '2024'],
-                    datasets: [{
-                        label: 'Cloud Market Value ($B)',
-                        data: [272, 371, 482, 574, 682, 832],
-                        backgroundColor: [
-                            'rgba(17, 153, 250, 0.7)',
-                            'rgba(17, 153, 250, 0.7)',
-                            'rgba(17, 153, 250, 0.7)',
-                            'rgba(17, 153, 250, 0.7)',
-                            'rgba(17, 153, 250, 0.7)',
-                            'rgba(17, 153, 250, 0.7)'
-                        ],
-                        borderColor: [
-                            '#1199fa',
-                            '#1199fa',
-                            '#1199fa',
-                            '#1199fa',
-                            '#1199fa',
-                            '#1199fa'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            display: false
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-            
-            // AI Chart
-            const aiCtx = document.getElementById('hyperionAIChart').getContext('2d');
-            const aiChart = new Chart(aiCtx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['North America', 'Europe', 'Asia Pacific', 'Other Regions'],
-                    datasets: [{
-                        data: [42, 28, 24, 6],
-                        backgroundColor: [
-                            'rgba(17, 153, 250, 0.8)',
-                            'rgba(13, 138, 230, 0.8)',
-                            'rgba(10, 124, 201, 0.8)',
-                            'rgba(7, 109, 172, 0.8)'
-                        ],
-                        borderColor: [
-                            '#1199fa',
-                            '#0d8ae6',
-                            '#0a7cc9',
-                            '#076dac'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'bottom'
-                        }
-                    }
-                }
-            });
+            const yoyColorClass = item.yoyGrowth >= 0 ? 'itmi-text-green' : 'itmi-text-red';
+            const yoySign = item.yoyGrowth >= 0 ? '+' : '';
+            const sparklineColor = item.yoyGrowth >= 0 ? '#0ECB81' : '#F6465D';
+
+            row.innerHTML = `
+                <td>${item.rank}</td>
+                <td>
+                    <div class="itmi-table-sector-group">
+                        <span class="itmi-table-icon" data-id="${item.id}">
+                            <img src="${item.iconUrl}" alt="${item.name} icon">
+                        </span>
+                        <span class="itmi-table-sector-name">${item.name}<span class="itmi-table-sector-symbol">${item.symbol}</span></span>
+                    </div>
+                </td>
+                <td>${formatCurrency(item.marketCap, currentCurrency)}</td>
+                <td class="${yoyColorClass}">${yoySign}${item.yoyGrowth}%</td>
+                <td class="itmi-sparkline-chart">
+                    <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                        <path d="${item.sparklinePath}" fill="none" stroke="${sparklineColor}" stroke-width="2" vector-effect="non-scaling-stroke"/>
+                        <circle cx="100" cy="${item.sparklinePath.match(/T 100 (\d+)/)?.[1] || 5}" r="2" fill="${sparklineColor}"/>
+                    </svg>
+                </td>
+                <td>${item.keyPlayer}</td>
+                <td>${formatCurrency(item.rdSpend, currentCurrency)}</td>
+                <td><a href="#" class="itmi-trade-link">Details</a></td>
+                <td>
+                    <svg class="itmi-star-icon" data-id="${item.id}" width="20" height="20" viewBox="0 0 24 24" fill="${item.favorite ? '#F8C000' : 'none'}" stroke="${item.favorite ? '#F8C000' : '#8A91B5'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </td>
+            `;
+        });
+    }
+
+    /**
+     * Filters the main data based on the currentFilter and currentCategory and calls renderTable.
+     */
+    function filterAndRender() {
+        let filteredData;
+
+        // 1. Filter by top buttons (All, Top Growth, etc.)
+        if (currentFilter === 'All Sectors') {
+            filteredData = allSectorData;
+        } else if (currentFilter === 'Favorites') {
+            filteredData = allSectorData.filter(item => item.favorite);
+        } else {
+            // Filter by Top Growth, Top R&D, New
+            filteredData = allSectorData.filter(item => item.categories.includes(currentFilter));
+        }
+
+        // 2. Filter by "All Categories" dropdown
+        if (currentCategory !== 'All Categories') {
+            filteredData = filteredData.filter(item => item.mainCategory === currentCategory);
         }
         
-        function initializeScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-            
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, observerOptions);
-            
-            // Observe elements for animation
-            document.querySelectorAll('.hyperion-trend-item, .hyperion-data-card, .hyperion-shift-card, .hyperion-infographic-step').forEach(el => {
-                el.style.opacity = '0';
-                el.style.transform = 'translateY(20px)';
-                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                observer.observe(el);
-            });
+        // Sort by Rank for stable view
+        filteredData.sort((a, b) => a.rank - b.rank);
+
+        renderTable(filteredData);
+    }
+
+    // --- 6. Event Handlers ---
+
+    /**
+     * Handles clicks on the top filter buttons (All Sectors, Top Growth, etc.)
+     */
+    function handleFilterClick(e) {
+        const button = e.target.closest('.itmi-filter-btn');
+        if (!button) return;
+
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Add active class to the clicked button
+        button.classList.add('active');
+        
+        // Update state and re-render
+        currentFilter = button.dataset.filter;
+        console.log(`Filter changed to: ${currentFilter}`);
+        filterAndRender();
+    }
+
+    /**
+     * Handles clicks on the star icon to toggle favorite status.
+     */
+    function handleStarClick(e) {
+        const starIcon = e.target.closest('.itmi-star-icon');
+        if (!starIcon) return;
+        
+        const itemId = parseInt(starIcon.dataset.id);
+        const item = allSectorData.find(d => d.id === itemId);
+
+        if (item) {
+            item.favorite = !item.favorite;
+            // Update UI immediately and re-render based on current filters
+            filterAndRender();
+            console.log(`Item ${item.name} favorite status toggled to: ${item.favorite}`);
         }
+    }
+    
+    /**
+     * Closes all open dropdown menus.
+     */
+    function closeAllDropdowns() {
+        document.querySelectorAll('.itmi-dropdown-content').forEach(menu => {
+            menu.classList.remove('itmi-dropdown-content-show');
+        });
+    }
+
+    /**
+     * Handles clicks on the dropdown toggle buttons.
+     */
+    function handleDropdownToggle(e) {
+        // Use currentTarget to ensure we get the button, even if svg is clicked
+        const button = e.currentTarget;
+        const menuId = button.dataset.toggle;
+        const menu = document.getElementById(menuId);
+
+        if (!menu) return;
+
+        // Check if this menu is already open
+        const isAlreadyOpen = menu.classList.contains('itmi-dropdown-content-show');
+        
+        // Close all others first
+        closeAllDropdowns();
+
+        // If it wasn't already open, open it
+        if (!isAlreadyOpen) {
+            menu.classList.add('itmi-dropdown-content-show');
+        }
+    }
+
+    /**
+     * Handles clicks on items within a dropdown menu (Currency or Category).
+     */
+    function handleDropdownItemClick(e) {
+        e.preventDefault(); // Stop <a> tag from navigating
+        const item = e.target.closest('.itmi-dropdown-item');
+        if (!item) return;
+
+        const newValue = item.dataset.value;
+        const dropdownMenu = item.closest('.itmi-dropdown-content');
+        
+        if (!dropdownMenu || !newValue) return;
+
+        // Determine which dropdown was clicked and update state
+        if (dropdownMenu.id === 'itmi-currency-dropdown' && currencyBtn) {
+            // Update button text (childNode[0] is the text node before the SVG)
+            currencyBtn.childNodes[0].nodeValue = `${newValue} `; 
+            currentCurrency = newValue;
+            
+            // Re-render table AND trending cards to reflect new currency
+            filterAndRender();
+            renderTrendingCards();
+            console.log(`Currency changed to: ${newValue}`);
+
+        } else if (dropdownMenu.id === 'itmi-category-dropdown' && categoryBtn) {
+            // Update button text
+            categoryBtn.childNodes[0].nodeValue = `${newValue} `; 
+            currentCategory = newValue;
+            
+            // Re-render table only, as this filter does not affect cards
+            filterAndRender();
+            console.log(`Category changed to: ${newValue}`);
+        }
+        
+        closeAllDropdowns();
+    }
+
+    // Close dropdowns if clicking outside
+    window.addEventListener('click', (e) => {
+        // Check if the click is on a dropdown button or inside a dropdown menu
+        if (!e.target.closest('.itmi-dropdown-btn') && !e.target.closest('.itmi-dropdown-content')) {
+            closeAllDropdowns();
+        }
+    });
+
+
+    // --- 7. Initial Setup ---
+
+    // Add event listeners for top filters and star toggle
+    if (filterButtonGroup) {
+        filterButtonGroup.addEventListener('click', handleFilterClick);
+    }
+    if (tableBody) {
+        tableBody.addEventListener('click', handleStarClick);
+    }
+
+    // Add event listeners for dropdowns
+    dropdownButtons.forEach(button => {
+        button.addEventListener('click', handleDropdownToggle);
+    });
+
+    document.querySelectorAll('.itmi-dropdown-content').forEach(menu => {
+        menu.addEventListener('click', handleDropdownItemClick);
+    });
+
+    // Initial render on page load
+    filterAndRender();
+    renderTrendingCards(); 
+});
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =============================================
+     *** FOOTER ***
+     ============================================= -->
+<style>
+  /* =============================================
+     *** FOOTER STYLES ***
+     ============================================= */
+  
+  /* Main container for the footer */
+  .pc-footer-container {
+    font-family: 'Inter', sans-serif;
+    background-color: #07071e;
+    color: #7b849b;
+    width: 100%;
+    padding: 5rem 0;
+    box-sizing: border-box;
+  }
+
+  .pc-footer-wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    
+  }
+
+  /* Top section: logo, line, and icons */
+  .pc-footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .image-logo {
+    height: 30px;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  .pc-footer-logo span {
+    font-size: 25px;
+    font-weight: 600;
+    align-items: center;
+    align-self: center;
+    vertical-align: middle;
+    color: white;
+  }
+
+  /* The decorative line between logo and icons */
+  .pc-footer-line {
+    flex-grow: 1;
+    height: 1.2px;
+    background-color: #303c55;
+    min-width: 50px;
+    border: none;
+    margin: 0;
+  }
+
+  /* Social Icons */ 
+  .social-icons-container {
+    display: flex;
+    column-gap: 18px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .social-icon {
+    display: inline-flex;
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    font-size: 12px;
+    background-color: #a4aaae38;
+    border-radius: 50%;
+    transition-property: outline-offset, outline-color, background-color;
+    transition-duration: 0.25s;
+    color: #fff;
+    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-icon:hover {
+    outline-offset: 4px;
+    color: #f4f4f4;
+    background-color: #cdcdcd7d;
+  }
+
+  .social-icon img {
+    display: block;
+    width: 19px;
+    height: 19px;
+  }
+
+  .social-icon svg {
+    margin: auto;
+    width: 19px;
+  }
+
+  .social-icon:hover svg,
+  .social-icon:hover img {
+    animation: shake 0.25s;
+  }
+
+  @keyframes shake {
+    10% {
+      transform: rotate(15deg);
+    }
+    20% {
+      transform: rotate(-15deg);
+    }
+    30% {
+      transform: rotate(15deg);
+    }
+    40% {
+      transform: rotate(-15deg);
+    }
+    50%, 100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  /* Footer content with columns */
+  .footer-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-top: 3.5rem;
+    width: 100%;
+  }
+
+  .footer-column h3 {
+    color: #858992;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: none;
+    letter-spacing: 0.1px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-column h3::after {
+    content: '+';
+    font-size: 18px;
+    display: none;
+  }
+
+  .footer-column.active h3::after {
+    content: '‒';
+    font-size: 18px;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 20px;
+  }
+
+  .footer-column ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: fit-content;
+  }
+
+  .footer-column ul li a:hover {
+    color: #62b8fa;
+  }
+
+  /* Middle content section with paragraphs */
+  .pc-footer-content {
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #a0a9be;
+  }
+
+  .pc-footer-content p {
+    margin-bottom: 1rem;
+  }
+
+  .footer-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .footer-left {
+    flex-basis: 100%;
+  }
+
+  /* Bottom section with copyright */
+.pc-footer-bottom {
+    margin-top: 15px;
+    padding-top: 0;
+    margin-bottom: 2rem;
+    display: flex;
+    text-align: right;
+    align-items: center;
+    justify-content: flex-end; /* This is the key change */
+    gap: 1.5rem;
+    font-size: 0.826rem;
+    font-weight: 400;
+    color: #a0a9be;
+    flex-wrap: wrap;
+}
+
+.pc-footer-bottom span {
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .pc-footer-bottom {
+        justify-content: center; /* Center on mobile */
+        text-align: center;
+        padding: 1rem 0;
+    }
+}
+
+  /* =============================================
+     *** RESPONSIVE STYLES ***
+     ============================================= */
+  @media (max-width: 1024px) {
+    .footer-content {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .pc-footer-wrapper {
+      padding: 0 20px;
+    }
+
+    .footer-columns {
+      flex-direction: column;
+    }
+
+    .footer-left, .footer-right {
+      flex-basis: 100%;
+    }
+
+    .footer-right {
+      text-align: left;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pc-footer-container {
+      padding: 3rem 0;
+    }
+
+    .logo-ft {
+      font-size: 10px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .pc-footer-top {
+      justify-content: center;
+      flex-direction: column;
+    }
+    
+    .pc-footer-line {
+      display: none;
+    }
+    
+    .pc-footer-bottom .footer-kv {
+      justify-content: center;
+      text-align: center; 
+      padding: 1rem 0;
+    }
+    
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-top: 2rem;
+    }
+    
+    .footer-column {
+      border-bottom: 1px solid #303c55;
+      padding: 15px 0;
+    }
+
+    .footer-column:last-child {
+      border-bottom: none;
+    }
+    
+    .footer-column h3 {
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .footer-column h3::after {
+      display: block;
+    }
+    
+    .footer-column ul {
+      display: none;
+      margin-top: 10px;
+      padding-left: 10px;
+    }
+    
+    .footer-column.active ul {
+      display: block;
+    }
+    
+    .footer-columns {
+      flex-direction: column;
+    }
+    
+    .footer-left {
+      flex-basis: 100%;
+      border-top: 1px solid #303c55;
+      padding-top: 2rem;
+    }
+    
+    .footer-right {
+      text-align: left;
+      justify-content: flex-start;
+      margin-top: 20px;
+    }
+
+    .social-icons-container {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pc-footer-container {
+      padding: 2rem 0;
+    }
+
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .social-icons-container {
+      column-gap: 12px;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .social-icon img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer-right {
+      gap: 10px;
+    }
+
+    .footer-image {
+      height: 40px;
+    }
+
+    .defcon-qr-code {
+      height: 88px;
+      padding: 8px;
+    }
+
+    .defcon-qr-image {
+      width: 70px;
+      height: 70px;
+    }
+
+    .defcon-footer-qr-section {
+      margin-top: 40px;
+    }
+  }
+
+  /* Add top padding for nested columns on desktop */
+@media (min-width: 769px) {
+    .footer-content > div > .footer-column:not(:first-child) {
+        padding-top: 2rem; /* Adjust this value as needed */
+    }
+}
+
+
+@media (max-width: 768px) {
+    .footer-content > div > .footer-column {
+        border-bottom: 1px solid #303c55;
+        padding: 15px 0;
+    }
+    
+    .footer-content > div > .footer-column:last-child {
+        border-bottom: 1px solid #303c55;
+    }
+}
+</style>
+
+<div style="background-color: #080d1b; margin: 0; padding: 2rem 0;">
+  <primecapital-footer class="pc-footer-container">
+    <div class="pc-footer-wrapper">
+      <!-- *** TOP SECTION: LOGO AND SOCIAL ICONS *** -->
+      <div class="pc-footer-top">
+        <div class="pc-footer-logo">
+          <a href="index.html">
+            <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
+          </a>
+        </div>
+
+        <hr class="pc-footer-line">
+      </div>
+
+      <!-- *** MIDDLE CONTENT SECTION *** -->
+      <div class="pc-footer-content">
+        <div class="footer-columns">
+          <div class="footer-left">
+            <p>
+              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
+            </p>
+
+            <p>
+              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
+      <div class="footer-content">
+        <!-- Resources Column -->
+        <div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="page.html">Blog</a></li>
+            <li><a href="page.html">Learn</a></li>
+            <li><a href="page.html">eBooks</a></li>
+            <li><a href="page.html">Podcasts</a></li>
+            <li><a href="page.html">Webinars</a></li>
+            <li><a href="page.html">YouTube Playlists</a></li>
+            <li><a href="page.html">Recommendations</a></li>
+            <li><a href="page.html">Training & Certification</a></li>
+          </ul>
+        </div>
+
+        </div>
+
+        <div>
+          <!-- Services Column -->
+          <div class="footer-column">
+            <h3>Solutions</h3>
+            <ul>
+              <li><a href="page.html">Software Development</a></li>
+              <li><a href="page.html">IT Infrastructure</a></li>
+              <li><a href="page.html">Communicative Media</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>Developers</h3>
+            <ul>
+              <li><a href="page.html">API Docs</a></li>
+              <li><a href="page.html">Github</a></li>
+              <li><a href="page.html">SDKs & Libraries</a></li>
+              <li><a href="page.html">Developer Guides</a></li>
+              <li><a href="page.html">Code of Conduct</a></li>
+              <li><a href="page.html">Support</a></li>
+              <li><a href="page.html">Community</a></li>
+              <li><a href="page.html">Open Source</a></li>
+            
+              
+            </ul>
+          </div>
+        </div>
+
+        <!-- Help Column -->
+        <div class="footer-column">
+          <h3>Help</h3>
+          <ul>
+            <li><a href="page.html">Contact Support</a></li>
+            <li><a href="page.html">Plan Comparison</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="page.html">FAQs</a></li>
+            <li><a href="page.html">Account & Billing</a></li>
+            <li><a href="page.html">Feedback</a></li>
+            <li><a href="page.html">knowledge Base</a></li>
+          </ul>
+        </div>
+
+        <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Business</h3>
+            <ul>
+              <li><a href="page.html">Partnership</a></li>
+              <li><a href="page.html">Industries</a></li>
+              <li><a href="page.html">Investment</a></li>
+              <li><a href="page.html">Corporate Responsibility</a></li>
+              <li><a href="page.html">Global Network</a></li>
+              <li><a href="page.html">Market Insights</a></li>
+              <li><a href="page.html">Startup Collaboration</a></li>
+            </ul>
+          </div>
+
+        <!-- Company Column -->
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="page.html">About Us</a></li>
+            <li><a href="page.html">Roadmap</a></li>
+            <li><a href="page.html">Innovations</a></li>
+            <li><a href="careers.html">Careers</a></li>
+            <li><a href="page.html">Legal</a></li>
+            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+            <li><a href="page.html">Partners</a></li>
+            <li><a href="affiliates.html">Affiliate</a></li>
+            <li><a href="security.html">Security</a></li>
+            <li><a href="capital.html">Capital</a></li>
+            <li><a href="page.html">Verify</a></li>
+          </ul>
+        </div>
+
+        
+        <div>
+          <!-- Updates Column -->
+          <div class="footer-column">
+            <h3>Updates</h3>
+            <ul>
+              <li><a href="#">X</a></li>
+              <li><a href="page.html">Company News</a></li>
+              <li><a href="page.html">Product Updates</a></li>
+              <li><a href="page.html">Events</a></li>
+              <li><a href="page.html">Facebook</a></li>
+              <li><a href="page.html">Youtube</a></li>
+              <li><a href="page.html">LinkedIn</a></li>
+              <li><a href="page.html">Github</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="pc-footer-line">
+      
+      <!-- *** COPYRIGHT SECTION *** -->
+      <div class="pc-footer-bottom">
+
+        <style>
+          .footer-kv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            line-height: 0.9;
+            gap: 12px;
+          }
+          .footer-kv a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0;
+            font-weight: 500;
+          }
+          .footer-kv a + a {
+            padding-left: 12px;
+            border-left: 1px solid #7b849b;
+            margin-left: 8px;
+          }
+
+          @media (max-width: 768px) {
+            .footer-kv {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              width: 100%;
+              gap: 6px;
+              padding: 8px 0;
+              order: 1;
+            }
+            .footer-kv a + a {
+              border-left: none;
+              padding-left: 0;
+              margin-left: 0;
+            }
+          }
+        </style>
+
+        <div class="footer-kv">
+          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="page.html" aria-label="Status">Status</a>
+        </div>
+
+        <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
+      </div>
+    </div>
+  </primecapital-footer>
+</div>
+
+<script>
+  // Mobile accordion functionality
+  document.addEventListener('DOMContentLoaded', function() {
+    const footerColumns = document.querySelectorAll('.footer-column');
+    
+    footerColumns.forEach(column => {
+      const header = column.querySelector('h3');
+      if (header) {
+        header.addEventListener('click', function() {
+          if (window.innerWidth <= 768) {
+            column.classList.toggle('active');
+          }
+        });
+      }
+    });
+
+    // Close accordion on resize to desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        footerColumns.forEach(column => {
+          column.classList.remove('active');
+        });
+      }
+    });
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+

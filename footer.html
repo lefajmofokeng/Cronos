@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community - DEFCON Developer Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --color-primary: #1199fa;
+            --color-dark-blue: #010119;
+            --color-white: #fff;
+            --color-light-gray: #f4f4f4;
+            --color-black: #000;
+            --color-text: #e5e5e5;
+            --font-family: 'Inter', sans-serif;
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ===== RESET & BASE STYLES ===== */
+        .defcon-community-page * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .defcon-community-page {
+            font-family: var(--font-family);
+            background-color: var(--color-dark-blue);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .defcon-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .defcon-section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .defcon-section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--color-primary);
+            border-radius: 2px;
+        }
+
+        .defcon-section-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-text);
+            opacity: 0.8;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+        }
+
+        .defcon-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .defcon-card-text {
+            font-size: 1rem;
+            color: var(--color-text);
+            opacity: 0.9;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .defcon-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.9) 0%, rgba(17, 153, 250, 0.2) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23010119"/><path d="M0 0L100 100M100 0L0 100" stroke="%231199fa" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: cover;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .defcon-hero-content {
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .defcon-hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, var(--color-white), var(--color-primary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textReveal 1.5s ease-out;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .defcon-hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .defcon-cta-button {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            border: 2px solid var(--color-primary);
+        }
+
+        .defcon-cta-button:hover {
+            background-color: transparent;
+            color: var(--color-primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(17, 153, 250, 0.2);
+        }
+
+        /* ===== SECTION STYLES ===== */
+        .defcon-section {
+            padding: 100px 0;
+        }
+
+        .defcon-section-alt {
+            background: linear-gradient(135deg, rgba(1, 1, 25, 0.95) 0%, rgba(17, 153, 250, 0.1) 100%);
+        }
+
+        /* ===== FORUM SECTION - Z PATTERN LAYOUT ===== */
+        .defcon-forum-section {
+            padding: 100px 0;
+        }
+
+        .defcon-z-pattern {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .defcon-z-pattern-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .defcon-z-pattern-item-right {
+            text-align: right;
+        }
+
+        .defcon-forum-image {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .defcon-forum-image:hover {
+            transform: scale(1.02);
+        }
+
+        /* ===== EVENTS SECTION - ASYMMETRICAL GRID ===== */
+        .defcon-events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .defcon-event-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--color-primary);
+        }
+
+        .defcon-event-date {
+            display: inline-block;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* ===== CONTRIBUTIONS SECTION - SYMMETRICAL GRID ===== */
+        .defcon-contributions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .defcon-contribution-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-contribution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .defcon-contribution-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+        }
+
+        /* ===== LEARNING RESOURCES - F PATTERN LAYOUT ===== */
+        .defcon-learning-f-pattern {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .defcon-learning-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .defcon-learning-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* ===== AMBASSADOR SECTION - ACCORDION LAYOUT ===== */
+        .defcon-ambassador-section {
+            padding: 100px 0;
+        }
+
+        .defcon-ambassador-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .defcon-ambassador-info {
+            padding-right: 20px;
+        }
+
+        .defcon-accordion {
+            width: 100%;
+        }
+
+        .defcon-accordion-item {
+            margin-bottom: 15px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .defcon-accordion-header {
+            padding: 20px;
+            background: rgba(17, 153, 250, 0.1);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .defcon-accordion-header:hover {
+            background: rgba(17, 153, 250, 0.2);
+        }
+
+        .defcon-accordion-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .defcon-accordion-icon {
+            transition: var(--transition);
+        }
+
+        .defcon-accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 20px;
+        }
+
+        .defcon-accordion-item.active .defcon-accordion-content {
+            max-height: 500px;
+            padding: 20px;
+        }
+
+        .defcon-accordion-item.active .defcon-accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* ===== CODE OF CONDUCT SECTION ===== */
+        .defcon-code-section {
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .defcon-code-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 50px;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== CONTRIBUTION PATHWAYS - CAROUSEL ===== */
+        .defcon-pathways-carousel {
+            position: relative;
+            overflow: hidden;
+            padding: 40px 0;
+        }
+
+        .defcon-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .defcon-carousel-slide {
+            min-width: 100%;
+            padding: 0 20px;
+        }
+
+        .defcon-pathway-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            text-align: center;
+            height: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .defcon-pathway-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--color-primary);
+        }
+
+        .defcon-carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 10px;
+        }
+
+        .defcon-carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .defcon-carousel-dot.active {
+            background: var(--color-primary);
+            transform: scale(1.2);
+        }
+
+        /* ===== NEWS SECTION - SINGLE COLUMN ===== */
+        .defcon-news-section {
+            padding: 100px 0;
+        }
+
+        .defcon-news-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .defcon-news-item {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .defcon-news-item:last-child {
+            border-bottom: none;
+        }
+
+        .defcon-news-date {
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .defcon-news-content {
+            flex: 1;
+        }
+
+        /* ===== RESPONSIVE STYLES ===== */
+        @media (max-width: 992px) {
+            .defcon-z-pattern {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .defcon-z-pattern-item-right {
+                text-align: left;
+            }
+            
+            .defcon-ambassador-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .defcon-contributions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .defcon-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-contributions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .defcon-news-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .defcon-news-date {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .defcon-hero-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .defcon-section {
+                padding: 70px 0;
+            }
+            
+            .defcon-card-title {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Community Page Container -->
+    <div class="defcon-community-page">
+        <!-- Hero Section -->
+        <section class="defcon-hero">
+            <div class="defcon-container">
+                <div class="defcon-hero-content">
+                    <h1 class="defcon-hero-title">Join the DEFCON Developer Ecosystem</h1>
+                    <p class="defcon-hero-subtitle">Build together, learn together, innovate together. Connect with developers worldwide to create amazing technology.</p>
+                    <a href="#forum" class="defcon-cta-button">Join Our Community</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Developer Forum Section - Z Pattern Layout -->
+        <section id="forum" class="defcon-forum-section defcon-section">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Developer Forum & Discussion Hub</h2>
+                <p class="defcon-section-subtitle">A vibrant space where developers connect, ask questions, share solutions, and discuss the latest updates.</p>
+                
+                <div class="defcon-z-pattern">
+                    <div class="defcon-z-pattern-item">
+                        <h3 class="defcon-card-title">Connect with Fellow Developers</h3>
+                        <p class="defcon-card-text">Our forum is the central hub for DEFCON developers. Ask technical questions, troubleshoot issues with peers, share your solutions, and request new features. Join thousands of developers in productive discussions.</p>
+                        <ul style="margin-top: 20px; padding-left: 20px;">
+                            <li style="margin-bottom: 10px;">Technical Q&A with expert responses</li>
+                            <li style="margin-bottom: 10px;">Feature requests and voting system</li>
+                            <li style="margin-bottom: 10px;">Integration tutorials and best practices</li>
+                            <li style="margin-bottom: 10px;">Release announcements and discussions</li>
+                        </ul>
+                    </div>
+                    <div class="defcon-z-pattern-item defcon-z-pattern-item-right">
+                        <div class="defcon-forum-image-placeholder" style="background: linear-gradient(135deg, var(--color-primary), #0a7bc8); height: 300px; border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600;">
+                            Forum Interface Preview
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events & Meetups Section - Asymmetrical Grid -->
+        <section class="defcon-section defcon-section-alt">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Events & Meetups</h2>
+                <p class="defcon-section-subtitle">Join our community events to learn, collaborate, and innovate with developers worldwide.</p>
+                
+                <div class="defcon-events-grid">
+                    <div class="defcon-event-card">
+                        <span class="defcon-event-date">June 15, 2023</span>
+                        <h3 class="defcon-card-title">API Workshop: Advanced Integration</h3>
+                        <p class="defcon-card-text">Learn how to implement advanced API features with hands-on coding sessions and expert guidance.</p>
+                    </div>
+                    <div class="defcon-event-card">
+                        <span class="defcon-event-date">July 22, 2023</span>
+                        <h3 class="defcon-card-title">DEFCON Hackathon 2023</h3>
+                        <p class="defcon-card-text">48-hour coding competition with prizes, mentorship, and networking opportunities.</p>
+                    </div>
+                    <div class="defcon-event-card">
+                        <span class="defcon-event-date">August 5, 2023</span>
+                        <h3 class="defcon-card-title">Open Source Contribution Sprint</h3>
+                        <p class="defcon-card-text">Collaborate with core maintainers to improve DEFCON's open-source projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Contributions Section - Symmetrical Grid -->
+        <section class="defcon-section">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Community Contributions</h2>
+                <p class="defcon-section-subtitle">Recognizing the amazing work our community members create with DEFCON technology.</p>
+                
+                <div class="defcon-contributions-grid">
+                    <div class="defcon-contribution-card">
+                        <div class="defcon-contribution-icon">👥</div>
+                        <h3 class="defcon-card-title">Top Contributors</h3>
+                        <p class="defcon-card-text">Highlighting developers who consistently improve our ecosystem through code, documentation, and support.</p>
+                    </div>
+                    <div class="defcon-contribution-card">
+                        <div class="defcon-contribution-icon">🔧</div>
+                        <h3 class="defcon-card-title">Community Tools</h3>
+                        <p class="defcon-card-text">Discover extensions, plugins, and utilities built by community members to enhance DEFCON development.</p>
+                    </div>
+                    <div class="defcon-contribution-card">
+                        <div class="defcon-contribution-icon">📱</div>
+                        <h3 class="defcon-card-title">Showcase Projects</h3>
+                        <p class="defcon-card-text">Explore innovative applications and solutions built with DEFCON APIs by developers worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Learning Resources Section - F Pattern Layout -->
+        <section class="defcon-section defcon-section-alt">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Learning Resources</h2>
+                <p class="defcon-section-subtitle">Community-driven educational content for developers at all skill levels.</p>
+                
+                <div class="defcon-learning-f-pattern">
+                    <div class="defcon-learning-item">
+                        <div class="defcon-learning-number">1</div>
+                        <div>
+                            <h3 class="defcon-card-title">Beginner Tutorials</h3>
+                            <p class="defcon-card-text">Step-by-step guides to get started with DEFCON technology, from setup to your first application.</p>
+                        </div>
+                    </div>
+                    <div class="defcon-learning-item">
+                        <div class="defcon-learning-number">2</div>
+                        <div>
+                            <h3 class="defcon-card-title">Advanced Guides</h3>
+                            <p class="defcon-card-text">Deep dives into advanced features, optimization techniques, and architectural best practices.</p>
+                        </div>
+                    </div>
+                    <div class="defcon-learning-item">
+                        <div class="defcon-learning-number">3</div>
+                        <div>
+                            <h3 class="defcon-card-title">Video Walkthroughs</h3>
+                            <p class="defcon-card-text">Visual learning resources created by community experts covering various aspects of DEFCON development.</p>
+                        </div>
+                    </div>
+                    <div class="defcon-learning-item">
+                        <div class="defcon-learning-number">4</div>
+                        <div>
+                            <h3 class="defcon-card-title">Sample Projects</h3>
+                            <p class="defcon-card-text">Real-world examples and templates to accelerate your development process and inspire new ideas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ambassador Program Section - Accordion Layout -->
+        <section class="defcon-ambassador-section">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Ambassador Program</h2>
+                <p class="defcon-section-subtitle">Join our elite group of community leaders who help shape the DEFCON ecosystem.</p>
+                
+                <div class="defcon-ambassador-container">
+                    <div class="defcon-ambassador-info">
+                        <h3 class="defcon-card-title">Become a DEFCON Ambassador</h3>
+                        <p class="defcon-card-text">Our Ambassador Program recognizes senior developers, speakers, and community organizers who actively contribute to the DEFCON ecosystem. Ambassadors receive exclusive benefits and opportunities to influence the future of our technology.</p>
+                        <p class="defcon-card-text" style="margin-top: 20px;">As an ambassador, you'll have early access to new features, direct communication with our engineering team, and resources to host events and create content.</p>
+                        <a href="#" class="defcon-cta-button" style="margin-top: 30px; display: inline-block;">Apply Now</a>
+                    </div>
+                    
+                    <div class="defcon-accordion">
+                        <div class="defcon-accordion-item active">
+                            <div class="defcon-accordion-header">
+                                <h3>Program Benefits</h3>
+                                <span class="defcon-accordion-icon">▼</span>
+                            </div>
+                            <div class="defcon-accordion-content">
+                                <p>Early access to beta features, exclusive swag, speaking opportunities at DEFCON events, direct line to product team, and recognition across our platforms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="defcon-accordion-item">
+                            <div class="defcon-accordion-header">
+                                <h3>Eligibility Requirements</h3>
+                                <span class="defcon-accordion-icon">▼</span>
+                            </div>
+                            <div class="defcon-accordion-content">
+                                <p>Active community member for 6+ months, consistent contributions to DEFCON projects, positive community engagement, and at least one significant contribution (code, content, or events).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="defcon-accordion-item">
+                            <div class="defcon-accordion-header">
+                                <h3>Application Process</h3>
+                                <span class="defcon-accordion-icon">▼</span>
+                            </div>
+                            <div class="defcon-accordion-content">
+                                <p>Submit application with portfolio of contributions, community references, interview with program lead, and approval by selection committee. Applications reviewed quarterly.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code of Conduct Section -->
+        <section class="defcon-code-section defcon-section-alt">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Code of Conduct</h2>
+                <p class="defcon-section-subtitle">Our commitment to fostering an inclusive and respectful community for all developers.</p>
+                
+                <div class="defcon-code-card">
+                    <h3 class="defcon-card-title">Our Community Standards</h3>
+                    <p class="defcon-card-text" style="margin-bottom: 20px;">The DEFCON community is dedicated to providing a harassment-free experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, religion (or lack thereof), or technology choices.</p>
+                    <p class="defcon-card-text" style="margin-bottom: 20px;">We do not tolerate harassment of community members in any form. Sexual language and imagery is not appropriate for any community venue, including talks, workshops, parties, Twitter and other online media.</p>
+                    <a href="#" class="defcon-cta-button">Read Full Code of Conduct</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contribution Pathways Section - Carousel -->
+        <section class="defcon-section">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">Contribution Pathways</h2>
+                <p class="defcon-section-subtitle">Multiple ways to contribute to the DEFCON ecosystem and make an impact.</p>
+                
+                <div class="defcon-pathways-carousel">
+                    <div class="defcon-carousel-track">
+                        <div class="defcon-carousel-slide">
+                            <div class="defcon-pathway-card">
+                                <h3 class="defcon-card-title">Code Contributions</h3>
+                                <p class="defcon-card-text">Submit pull requests to our open-source repositories, fix bugs, implement new features, or improve documentation.</p>
+                            </div>
+                        </div>
+                        <div class="defcon-carousel-slide">
+                            <div class="defcon-pathway-card">
+                                <h3 class="defcon-card-title">Community Support</h3>
+                                <p class="defcon-card-text">Help other developers in our forums, answer questions, and share your knowledge and experience.</p>
+                            </div>
+                        </div>
+                        <div class="defcon-carousel-slide">
+                            <div class="defcon-pathway-card">
+                                <h3 class="defcon-card-title">Content Creation</h3>
+                                <p class="defcon-card-text">Write tutorials, create video guides, develop sample projects, or translate documentation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="defcon-carousel-nav">
+                        <div class="defcon-carousel-dot active"></div>
+                        <div class="defcon-carousel-dot"></div>
+                        <div class="defcon-carousel-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News & Announcements Section - Single Column -->
+        <section class="defcon-news-section defcon-section-alt">
+            <div class="defcon-container">
+                <h2 class="defcon-section-title">News & Announcements</h2>
+                <p class="defcon-section-subtitle">Stay updated with the latest from the DEFCON ecosystem.</p>
+                
+                <div class="defcon-news-list">
+                    <div class="defcon-news-item">
+                        <div class="defcon-news-date">May 12</div>
+                        <div class="defcon-news-content">
+                            <h3 class="defcon-card-title">DEFCON 2.0 Release Candidate Available</h3>
+                            <p class="defcon-card-text">Test the new features and improvements in our upcoming major release. Provide feedback to help us polish the final version.</p>
+                        </div>
+                    </div>
+                    <div class="defcon-news-item">
+                        <div class="defcon-news-date">April 28</div>
+                        <div class="defcon-news-content">
+                            <h3 class="defcon-card-title">Community Hackathon Winners Announced</h3>
+                            <p class="defcon-card-text">Congratulations to all participants of our Spring Hackathon. Check out the amazing projects created in just 48 hours.</p>
+                        </div>
+                    </div>
+                    <div class="defcon-news-item">
+                        <div class="defcon-news-date">April 15</div>
+                        <div class="defcon-news-content">
+                            <h3 class="defcon-card-title">New Documentation Portal Launched</h3>
+                            <p class="defcon-card-text">Our completely redesigned documentation site is now live with improved search, tutorials, and API references.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer Section -->
+    <style>
+        /* =============================================
+           *** FOOTER STYLES ***
+           ============================================= */
+        
+        /* Main container for the footer */
+        .pc-footer-container {
+            font-family: 'Inter', sans-serif;
+            background-color: #07071e;
+            color: #7b849b;
+            width: 100%;
+            padding: 5rem 0;
+            box-sizing: border-box;
+        }
+
+        .pc-footer-wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top section: logo, line, and icons */
+        .pc-footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .image-logo {
+            height: 30px;
+            align-items: center;
+            align-self: center;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .pc-footer-logo span {
+            font-size: 25px;
+            font-weight: 600;
+            align-items: center;
+            align-self: center;
+            vertical-align: middle;
+            color: white;
+        }
+
+        /* The decorative line between logo and icons */
+        .pc-footer-line {
+            flex-grow: 1;
+            height: 1.2px;
+            background-color: #303c55;
+            min-width: 50px;
+            border: none;
+            margin: 0;
+        }
+
+        /* Social Icons */ 
+        .social-icons-container {
+            display: flex;
+            column-gap: 18px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            width: 35px;
+            height: 35px;
+            text-decoration: none;
+            font-size: 12px;
+            background-color: #a4aaae38;
+            border-radius: 50%;
+            transition-property: outline-offset, outline-color, background-color;
+            transition-duration: 0.25s;
+            color: #fff;
+            vertical-align: middle;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-icon:hover {
+            outline-offset: 4px;
+            color: #f4f4f4;
+            background-color: #cdcdcd7d;
+        }
+
+        .social-icon img {
+            display: block;
+            width: 19px;
+            height: 19px;
+        }
+
+        .social-icon svg {
+            margin: auto;
+            width: 19px;
+        }
+
+        .social-icon:hover svg,
+        .social-icon:hover img {
+            animation: shake 0.25s;
+        }
+
+        @keyframes shake {
+            10% {
+                transform: rotate(15deg);
+            }
+            20% {
+                transform: rotate(-15deg);
+            }
+            30% {
+                transform: rotate(15deg);
+            }
+            40% {
+                transform: rotate(-15deg);
+            }
+            50%, 100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        /* Footer content with columns - IMPROVED SPACING */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 50px; /* Increased gap for better spacing */
+            margin-bottom: 30px;
+            padding-top: 3.5rem;
+            width: 100%;
+        }
+
+        .footer-column h3 {
+            color: #858992;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-transform: none;
+            letter-spacing: 0.1px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-column h3::after {
+            content: '+';
+            font-size: 18px;
+            display: none;
+        }
+
+        .footer-column.active h3::after {
+            content: '‒';
+            font-size: 18px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            min-width: fit-content;
+            transition: color 0.2s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #62b8fa;
+        }
+
+        /* Middle content section with paragraphs */
+        .pc-footer-content {
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: #a0a9be;
+        }
+
+        .pc-footer-content p {
+            margin-bottom: 1rem;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .footer-left {
+            flex-basis: 100%;
+        }
+
+        /* Bottom section with copyright */
+        .pc-footer-bottom {
+            margin-top: 15px;
+            padding-top: 0;
+            margin-bottom: 2rem;
+            display: flex;
+            text-align: right;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1.5rem;
+            font-size: 0.826rem;
+            font-weight: 400;
+            color: #a0a9be;
+            flex-wrap: wrap;
+        }
+
+        .pc-footer-bottom span {
+            flex-shrink: 0;
+        }
+
+        .footer-kv {
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            flex-grow: 1;
+            line-height: 0.9;
+            gap: 12px;
+        }
+        .footer-kv a {
+            color: inherit;
+            text-decoration: none;
+            padding: 0;
+            font-weight: 500;
+        }
+        .footer-kv a + a {
+            padding-left: 12px;
+            border-left: 1px solid #7b849b;
+            margin-left: 8px;
+        }
+
+        /* =============================================
+           *** RESPONSIVE STYLES ***
+           ============================================= */
+        @media (max-width: 1200px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+
+            .pc-footer-wrapper {
+                padding: 0 20px;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+            }
+
+            .footer-left, .footer-right {
+                flex-basis: 100%;
+            }
+
+            .footer-right {
+                text-align: left;
+                justify-content: flex-start;
+                margin-top: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .pc-footer-container {
+                padding: 3rem 0;
+            }
+
+            .logo-ft {
+                font-size: 10px;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .pc-footer-top {
+                justify-content: center;
+                flex-direction: column;
+            }
+            
+            .pc-footer-line {
+                display: none;
+            }
+            
+            .pc-footer-bottom {
+                justify-content: center;
+                text-align: center;
+                padding: 1rem 0;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 0;
+                padding-top: 2rem;
+            }
+            
+            .footer-column {
+                border-bottom: 1px solid #303c55;
+                padding: 15px 0;
+            }
+
+            .footer-column:last-child {
+                border-bottom: none;
+            }
+            
+            .footer-column h3 {
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .footer-column h3::after {
+                display: block;
+            }
+            
+            .footer-column ul {
+                display: none;
+                margin-top: 10px;
+                padding-left: 10px;
+            }
+            
+            .footer-column.active ul {
+                display: block;
+            }
+            
+            .footer-columns {
+                flex-direction: column;
+            }
+            
+            .footer-left {
+                flex-basis: 100%;
+                border-top: 1px solid #303c55;
+                padding-top: 2rem;
+            }
+            
+            .footer-right {
+                text-align: left;
+                justify-content: flex-start;
+                margin-top: 20px;
+            }
+
+            .social-icons-container {
+                justify-content: center;
+            }
+
+            .footer-kv {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                gap: 6px;
+                padding: 8px 0;
+                order: 1;
+            }
+            .footer-kv a + a {
+                border-left: none;
+                padding-left: 0;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .pc-footer-container {
+                padding: 2rem 0;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .social-icons-container {
+                column-gap: 12px;
+            }
+
+            .social-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .social-icon img {
+                width: 16px;
+                height: 16px;
+            }
+
+            .footer-right {
+                gap: 10px;
+            }
+
+            .footer-image {
+                height: 40px;
+            }
+
+            .defcon-qr-code {
+                height: 88px;
+                padding: 8px;
+            }
+
+            .defcon-qr-image {
+                width: 70px;
+                height: 70px;
+            }
+
+            .defcon-footer-qr-section {
+                margin-top: 40px;
+            }
+        }
+
+        /* Add top padding for nested columns on desktop */
+        @media (min-width: 769px) {
+            .footer-content > div > .footer-column:not(:first-child) {
+                padding-top: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .footer-content > div > .footer-column {
+                border-bottom: 1px solid #303c55;
+                padding: 15px 0;
+            }
+            
+            .footer-content > div > .footer-column:last-child {
+                border-bottom: 1px solid #303c55;
+            }
+        }
+    </style>
+
+    <div style="background-color: #080d1b; margin: 0; padding: 2rem 0;">
+        <primecapital-footer class="pc-footer-container">
+            <div class="pc-footer-wrapper">
+                <!-- *** TOP SECTION: LOGO AND SOCIAL ICONS *** -->
+                <div class="pc-footer-top">
+                    <div class="pc-footer-logo">
+                        <a href="index.html">
+                            <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
+                        </a>
+                    </div>
+
+                    <hr class="pc-footer-line">
+                    
+                    <!-- Social Icons -->
+                    <div class="social-icons-container">
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="GitHub">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Discord">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.8 8.18 1.8 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.029 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- *** MIDDLE CONTENT SECTION *** -->
+                <div class="pc-footer-content">
+                    <div class="footer-columns">
+                        <div class="footer-left">
+                            <p>
+                                We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
+                            </p>
+
+                            <p>
+                                Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
+                <div class="footer-content">
+                    <!-- Resources Column -->
+                    <div>
+                        <div class="footer-column">
+                            <h3>Resources</h3>
+                            <ul>
+                                <li><a href="page.html">Blog</a></li>
+                                <li><a href="page.html">Learn</a></li>
+                                <li><a href="page.html">eBooks</a></li>
+                                <li><a href="page.html">Podcasts</a></li>
+                                <li><a href="page.html">Webinars</a></li>
+                                <li><a href="page.html">YouTube Playlists</a></li>
+                                <li><a href="page.html">Recommendations</a></li>
+                                <li><a href="page.html">Training & Certification</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <!-- Services Column -->
+                        <div class="footer-column">
+                            <h3>Solutions</h3>
+                            <ul>
+                                <li><a href="page.html">Software Development</a></li>
+                                <li><a href="page.html">IT Infrastructure</a></li>
+                                <li><a href="page.html">Communicative Media</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="footer-column">
+                            <h3>Developers</h3>
+                            <ul>
+                                <li><a href="page.html">API Docs</a></li>
+                                <li><a href="page.html">Github</a></li>
+                                <li><a href="page.html">SDKs & Libraries</a></li>
+                                <li><a href="page.html">Developer Guides</a></li>
+                                <li><a href="page.html">Code of Conduct</a></li>
+                                <li><a href="page.html">Support</a></li>
+                                <li><a href="page.html">Community</a></li>
+                                <li><a href="page.html">Open Source</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Help Column -->
+                    <div class="footer-column">
+                        <h3>Help</h3>
+                        <ul>
+                            <li><a href="page.html">Contact Support</a></li>
+                            <li><a href="page.html">Plan Comparison</a></li>
+                            <li><a href="glossary.html">Glossary</a></li>
+                            <li><a href="page.html">FAQs</a></li>
+                            <li><a href="page.html">Account & Billing</a></li>
+                            <li><a href="page.html">Feedback</a></li>
+                            <li><a href="page.html">knowledge Base</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Updates Column -->
+                    <div class="footer-column">
+                        <h3>Business</h3>
+                        <ul>
+                            <li><a href="page.html">Partnership</a></li>
+                            <li><a href="page.html">Industries</a></li>
+                            <li><a href="page.html">Investment</a></li>
+                            <li><a href="page.html">Corporate Responsibility</a></li>
+                            <li><a href="page.html">Global Network</a></li>
+                            <li><a href="page.html">Market Insights</a></li>
+                            <li><a href="page.html">Startup Collaboration</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Company Column -->
+                    <div class="footer-column">
+                        <h3>Company</h3>
+                        <ul>
+                            <li><a href="page.html">About Us</a></li>
+                            <li><a href="page.html">Roadmap</a></li>
+                            <li><a href="page.html">Innovations</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="page.html">Legal</a></li>
+                            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+                            <li><a href="page.html">Partners</a></li>
+                            <li><a href="affiliates.html">Affiliate</a></li>
+                            <li><a href="security.html">Security</a></li>
+                            <li><a href="capital.html">Capital</a></li>
+                            <li><a href="page.html">Verify</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <!-- Updates Column -->
+                        <div class="footer-column">
+                            <h3>Updates</h3>
+                            <ul>
+                                <li><a href="#">X</a></li>
+                                <li><a href="page.html">Company News</a></li>
+                                <li><a href="page.html">Product Updates</a></li>
+                                <li><a href="page.html">Events</a></li>
+                                <li><a href="page.html">Facebook</a></li>
+                                <li><a href="page.html">Youtube</a></li>
+                                <li><a href="page.html">LinkedIn</a></li>
+                                <li><a href="page.html">Github</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="pc-footer-line">
+                
+                <!-- *** COPYRIGHT SECTION *** -->
+                <div class="pc-footer-bottom">
+                    <div class="footer-kv">
+                        <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+                        <a href="page.html" aria-label="Status">Status</a>
+                    </div>
+
+                    <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
+                </div>
+            </div>
+        </primecapital-footer>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Accordion toggle
+            const accordionHeaders = document.querySelectorAll('.defcon-accordion-header');
+            
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const item = this.parentNode;
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all accordion items
+                    document.querySelectorAll('.defcon-accordion-item').forEach(accItem => {
+                        accItem.classList.remove('active');
+                    });
+                    
+                    // If the clicked item wasn't active, open it
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+            
+            // Carousel functionality
+            const carouselTrack = document.querySelector('.defcon-carousel-track');
+            const carouselSlides = document.querySelectorAll('.defcon-carousel-slide');
+            const carouselDots = document.querySelectorAll('.defcon-carousel-dot');
+            let currentSlide = 0;
+            
+            function updateCarousel() {
+                carouselTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update active dot
+                carouselDots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            // Dot click events
+            carouselDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentSlide = index;
+                    updateCarousel();
+                });
+            });
+            
+            // Auto-advance carousel
+            setInterval(function() {
+                currentSlide = (currentSlide + 1) % carouselSlides.length;
+                updateCarousel();
+            }, 5000);
+            
+            // Text reveal animation for hero section
+            const heroTitle = document.querySelector('.defcon-hero-title');
+            heroTitle.style.animation = 'textReveal 1.5s ease-out';
+            
+            // Footer accordion functionality
+            const footerColumns = document.querySelectorAll('.footer-column');
+            
+            footerColumns.forEach(column => {
+                const header = column.querySelector('h3');
+                if (header) {
+                    header.addEventListener('click', function() {
+                        if (window.innerWidth <= 768) {
+                            column.classList.toggle('active');
+                        }
+                    });
+                }
+            });
+
+            // Close accordion on resize to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    footerColumns.forEach(column => {
+                        column.classList.remove('active');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
