@@ -60,26 +60,160 @@
                 </a>
             </div>
             <div class="hero-actions">
-                <button class="btn btn-primary">View My Work</button>
-                <button class="btn btn-secondary">Download CV</button>
+                <button class="btn btn-primary" id="viewWorkBtn">View My Work</button>
+                <button class="btn btn-secondary" id="downloadCvBtn">Download CV</button>
             </div>
         </div>
         <div class="hero-image">
-            
-                <img src="thumbnails/Untitled.png" alt="Alex Morgan - Full Stack Developer" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="image-container">
+                <img src="thumbnails/Untitled.png" alt="Alex Morgan - Full Stack Developer">
                 <div class="image-overlay"></div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Your existing portfolio sections would go here -->
+<!-- What I Do Section -->
+<div class="expertise-section">
+    <div class="expertise-container">
+        <div class="expertise-header">
+            <h2 class="expertise-title">What I Do</h2>
+            <p class="expertise-subtitle">Crafting digital solutions that drive business growth and user engagement</p>
+        </div>
+        
+        <div class="expertise-grid">
+            <!-- Frontend Development -->
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 18L12 6M12 6L6 12M12 6L18 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="expertise-card-title">Frontend Development</h3>
+                <p class="expertise-card-description">
+                    Building responsive, accessible, and performant user interfaces using modern technologies 
+                    like React, Vue.js, and TypeScript. Focus on creating seamless user experiences across all devices.
+                </p>
+                <div class="expertise-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Vue.js</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">CSS3</span>
+                </div>
+            </div>
+            
+            <!-- Backend Development -->
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 12H19M5 12C3.89543 12 3 11.1046 3 10V6C3 4.89543 3.89543 4 5 4H19C20.1046 4 21 4.89543 21 6V10C21 11.1046 20.1046 12 19 12M5 12C3.89543 12 3 12.8954 3 14V18C3 19.1046 3.89543 20 5 20H19C20.1046 20 21 19.1046 21 18V14C21 12.8954 20.1046 12 19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="1" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h3 class="expertise-card-title">Backend Development</h3>
+                <p class="expertise-card-description">
+                    Developing robust server-side applications, RESTful APIs, and database architectures. 
+                    Expertise in Node.js, Python, and cloud services for scalable and secure solutions.
+                </p>
+                <div class="expertise-tech">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+            </div>
+            
+            <!-- E-commerce Solutions -->
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11M5 9H19L20 21H4L5 9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h3 class="expertise-card-title">E-commerce Solutions</h3>
+                <p class="expertise-card-description">
+                    Creating comprehensive online shopping experiences with secure payment integrations, 
+                    inventory management, and optimized checkout processes that convert visitors into customers.
+                </p>
+                <div class="expertise-tech">
+                    <span class="tech-tag">Shopify</span>
+                    <span class="tech-tag">WooCommerce</span>
+                    <span class="tech-tag">Stripe</span>
+                    <span class="tech-tag">Payment APIs</span>
+                </div>
+            </div>
+            
+            <!-- UI/UX Design -->
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 8H17M7 12H17M7 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="expertise-card-title">UI/UX Design</h3>
+                <p class="expertise-card-description">
+                    Designing intuitive and beautiful interfaces that prioritize user needs. From wireframing 
+                    to prototyping, ensuring every interaction is meaningful and every visual element serves a purpose.
+                </p>
+                <div class="expertise-tech">
+                    <span class="tech-tag">Figma</span>
+                    <span class="tech-tag">Adobe XD</span>
+                    <span class="tech-tag">User Research</span>
+                    <span class="tech-tag">Prototyping</span>
+                </div>
+            </div>
+            
+            <!-- Mobile Development -->
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="2"/>
+                        <path d="M12 18H12.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h3 class="expertise-card-title">Mobile Development</h3>
+                <p class="expertise-card-description">
+                    Building cross-platform mobile applications that deliver native-like performance. 
+                    Focus on responsive design, smooth animations, and optimal user experience on all screen sizes.
+                </p>
+                <div class="expertise-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Flutter</span>
+                    <span class="tech-tag">PWA</span>
+                    <span class="tech-tag">App Store</span>
+                </div>
+            </div>
+            
+            <!-- DevOps & Cloud -->
+            <div class="expertise-card">
+                <div class="expertise-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 15C8 15 9 16 12 16C15 16 16 15 16 15M12 9V12M12 12V15M12 12H15M12 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M3 10C3 6.22876 3 4.34315 4.17157 3.17157C5.34315 2 7.22876 2 11 2H13C16.7712 2 18.6569 2 19.8284 3.17157C21 4.34315 21 6.22876 21 10V14C21 17.7712 21 19.6569 19.8284 20.8284C18.6569 22 16.7712 22 13 22H11C7.22876 22 5.34315 22 4.17157 20.8284C3 19.6569 3 17.7712 3 14V10Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <h3 class="expertise-card-title">DevOps & Cloud</h3>
+                <p class="expertise-card-description">
+                    Implementing CI/CD pipelines, containerization, and cloud infrastructure for reliable 
+                    and scalable deployments. Ensuring high availability and performance across global markets.
+                </p>
+                <div class="expertise-tech">
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">GitHub Actions</span>
+                    <span class="tech-tag">CI/CD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <style>
- 
- * {
+* {
     font-family: 'Inter', sans-serif;
- }
+}
 
 /* Floating Navigation Styles */
 .portfolio-floating-nav {
@@ -148,13 +282,13 @@
 
 .hero-badge {
     display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
+    background: #000;
+    color: white;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 24px;
-    backdrop-filter: blur(10px);
 }
 
 .hero-title {
@@ -176,7 +310,6 @@
     display: flex;
     gap: 32px;
     margin-bottom: 32px;
-    color: #0043a8;
 }
 
 .stat-item {
@@ -193,7 +326,7 @@
 
 .stat-label {
     font-size: 14px;
-    opacity: 0.8;
+    color: #666;
 }
 
 .hero-social-links {
@@ -210,15 +343,15 @@
     color: black;
     text-decoration: none;
     padding: 8px 16px;
-    border: 1px solid rgba(101, 101, 101, 0.3);
+    border: 1px solid #e0e0e0;
     border-radius: 25px;
     transition: all 0.3s ease;
     font-size: 14px;
 }
 
 .social-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(142, 142, 142, 0.5);
+    background: #f8f9fa;
+    border-color: #666;
     transform: translateY(-2px);
 }
 
@@ -253,34 +386,128 @@
 .btn-secondary {
     background: transparent;
     color: black;
-    border: 2px solid rgba(104, 104, 104, 0.3);
+    border: 2px solid #e0e0e0;
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.5);
+    background: #f8f9fa;
+    border-color: #666;
     transform: translateY(-2px);
 }
 
-/* Hero Image Styles */
+/* Hero Image Styles - Fixed Alignment */
 .hero-image {
-    position: relative;
-    display: block;
-    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-container {
     position: relative;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
 .image-container img {
     width: 100%;
     height: auto;
-    object-fit: cover;
     display: block;
+    object-fit: cover;
+}
+
+/* What I Do Section Styles */
+.expertise-section {
+    background: #f8f9fa;
+    padding: 80px 20px;
+}
+
+.expertise-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.expertise-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.expertise-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.expertise-subtitle {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.expertise-card {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.expertise-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.expertise-icon {
+    width: 70px;
+    height: 70px;
+    background: #000;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: white;
+}
+
+.expertise-card-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 16px;
+}
+
+.expertise-card-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.expertise-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tech-tag {
+    background: #f8f9fa;
+    color: #000;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid #e0e0e0;
 }
 
 /* Responsive Design */
@@ -326,8 +553,12 @@
         justify-content: center;
     }
     
-    .image-container img {
-        height: 400px;
+    .expertise-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .expertise-title {
+        font-size: 28px;
     }
 }
 
@@ -349,6 +580,29 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add active class to clicked link
             this.classList.add('active');
         });
+    });
+    
+    // Download CV Button Functionality
+    const downloadCvBtn = document.getElementById('downloadCvBtn');
+    downloadCvBtn.addEventListener('click', function() {
+        // Create a temporary anchor element for download
+        const link = document.createElement('a');
+        link.href = 'path/to/your-cv.pdf'; // Replace with actual CV path
+        link.download = 'Alex-Morgan-CV.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Optional: Show success message
+        alert('CV download started! If it doesn\'t start automatically, check your downloads folder.');
+    });
+    
+    // View Work Button - Scroll to portfolio section
+    const viewWorkBtn = document.getElementById('viewWorkBtn');
+    viewWorkBtn.addEventListener('click', function() {
+        // This would scroll to your portfolio section
+        // For now, just show a message
+        alert('Scroll to portfolio section would happen here!');
     });
     
     // Scroll-based active state (optional enhancement)
