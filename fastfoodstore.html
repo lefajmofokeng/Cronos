@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Blaze Bites Menu | Light Theme</title>
+    
+    <!-- Load Poppins Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* ==================================== */
+        /* 1. GLOBAL STYLES & VARIABLES (LIGHT THEME) */
+        /* ==================================== */
+
+        :root {
+            --ff-primary: #e65100;    /* Vibrant Dark Orange */
+            --ff-light-bg: #ffffff;   /* Pure White Background */
+            --ff-dark-text: #212121;  /* Very Dark Grey/Black Text */
+            --ff-light-card: #efefef; /* Soft Light Grey Card/Hero Background */
+            --ff-text-muted: #d5d5d5; /* Medium Grey Text for descriptions */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--ff-light-bg);
+            color: var(--ff-dark-text);
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Standard container for centering and limiting width */
+        .ff-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        /* Smooth, subtle shadow on cards */
+        .ff-card-shadow {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ==================================== */
+        /* 2. HEADER & HERO STYLES              */
+        /* ==================================== */
+
+        .ff-header {
+            background-color: var(--ff-primary);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 5px 0;
+        }
+
+        .ff-header .ff-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ff-header-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            color: var(--ff-light-bg); /* White text on orange header */
+            vertical-align: middle;
+        }
+
+        .ff-header-nav a {
+            color: var(--ff-light-bg);
+            font-weight: 600;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: opacity 0.3s;
+        }
+
+        .ff-header-nav a:hover {
+            opacity: 0.8;
+        }
+
+        .ff-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(6, 39, 62, 0.2)), url('https://images.unsplash.com/photo-1543353071-10c8ba85a904?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            text-align: center;
+            padding: 5rem 1.5rem;
+            border-bottom: 1px solid #ddd;
+            height: 90vh;
+        }
+
+        .ff-hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .ff-hero p {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--ff-text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .ff-hero a.ff-cta-button {
+            display: inline-block;
+            padding: 0.75rem 2.5rem;
+            background-color: var(--ff-primary);
+            color: var(--ff-light-bg);
+            font-weight: 700;
+            font-size: 1.125rem;
+            border-radius: 60px;
+            text-decoration: none;
+        }
+
+        .ff-hero a.ff-cta-button:hover {
+            transform: scale(1.05);
+            background-color: #ff8a65; /* Lighter Orange on hover */
+        }
+
+        /* ==================================== */
+        /* 3. MENU GRID LAYOUT                  */
+        /* ==================================== */
+
+        .ff-menu-grid {
+            padding: 3rem 0;
+            display: flex;
+            gap: 3rem;
+        }
+
+        /* Left Sidebar Navigation */
+        .ff-sidebar {
+            flex-shrink: 0;
+            width: 250px;
+            position: sticky;
+            top: 6rem; /* Space below sticky header */
+            align-self: flex-start;
+            height: fit-content;
+        }
+
+        .ff-sidebar h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ff-primary);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 0.5rem;
+        }
+
+        .ff-nav-link {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: none;
+            background: transparent;
+            color: var(--ff-dark-text);
+            cursor: pointer;
+            border-radius: 0.75rem;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .ff-nav-link:hover {
+            background-color: #eeeeee;
+        }
+
+        .ff-nav-link.active {
+            background-color: var(--ff-primary);
+            color: var(--ff-light-bg);
+            font-weight: 700;
+        }
+
+        /* Right Products Display */
+        .ff-products-display {
+            flex-grow: 1;
+            min-width: 0;
+        }
+
+        .ff-product-group {
+            margin-bottom: 4rem;
+            padding-top: 1rem;
+            scroll-margin-top: 7rem; 
+        }
+
+        .ff-product-group h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--ff-dark-text);
+            padding-left: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .ff-product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ==================================== */
+        /* 4. PRODUCT CARD STYLES               */
+        /* ==================================== */
+
+        .ff-card {
+            background-color: var(--ff-light-card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s;
+        }
+
+        .ff-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(230, 81, 0, 0.2);
+        }
+        
+        .ff-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .ff-card h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--ff-primary);
+        }
+
+        .ff-card-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--ff-dark-text); /* Dark price text */
+        }
+
+        .ff-card-desc {
+            color: #4e4e4e;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+        
+        .ff-card-image {
+            width: 100%;
+            height: 290px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .ff-add-button {
+            padding: 0.6rem 1.5rem;
+            background-color: var(--ff-primary);
+            color: var(--ff-light-bg); /* White button text */
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            align-self: flex-start;
+        }
+
+        .ff-add-button:hover {
+            background-color: #ff8a65;
+        }
+        
+        /* ==================================== */
+        /* 5. RESPONSIVENESS (Media Queries)    */
+        /* ==================================== */
+
+        @media (max-width: 1024px) {
+            .ff-menu-grid {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .ff-sidebar {
+                position: static;
+                width: 100%;
+                overflow-x: auto; 
+                white-space: nowrap; 
+                padding-bottom: 1rem;
+            }
+            
+            .ff-sidebar h2 {
+                display: none;
+            }
+            
+            .ff-sidebar nav {
+                display: flex;
+                gap: 1rem;
+            }
+            
+            .ff-nav-link {
+                flex-shrink: 0;
+                font-size: 1rem;
+                text-align: center;
+                padding: 0.5rem 1rem;
+            }
+
+            .ff-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .ff-product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 640px) {
+             .ff-header .ff-container {
+                flex-direction: column;
+                gap: 0.75rem;
+             }
+             .ff-header-nav {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+             }
+             .ff-header-nav a {
+                margin-left: 0;
+             }
+             .ff-hero h1 {
+                font-size: 2.5rem;
+             }
+        }
+
+    </style>
+</head>
+
+<body class="ff-body">
+
+    <!-- 1. FF Header Navigation -->
+    <nav class="ff-header">
+        <div class="ff-container">
+            <div class="ff-header-logo">
+                BLAZE BITES 🔥
+            </div>
+            <div class="ff-header-nav">
+                <a href="#menu-start">Menu</a>
+                <a href="#">Deals</a>
+                <a href="#">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. FF Hero Section -->
+    <header class="ff-hero">
+        <div class="ff-container">
+            <h1>FLAVOR ON FIRE.</h1>
+            <p>
+                Discover our signature selection of high-quality ingredients, prepared fresh for your ultimate satisfaction.
+            </p>
+            <a href="#ff-category-Burgers" class="ff-cta-button">
+                View Menu
+            </a>
+        </div>
+    </header>
+
+    <!-- 3. FF Products Section -->
+    <main id="menu-start" class="ff-menu-grid-wrapper">
+        <div class="ff-container ff-menu-grid">
+            
+            <!-- 3.1. Left Sidebar Navigation -->
+            <div class="ff-sidebar">
+                <h2>Categories</h2>
+                <nav class="ff-category-nav">
+                    <button data-target="Burgers" class="ff-nav-link active">
+                        🍔 Burgers
+                    </button>
+                    <button data-target="Drinks" class="ff-nav-link">
+                        🥤 Drinks
+                    </button>
+                    <button data-target="IceCreams" class="ff-nav-link">
+                        🍦 Ice Creams
+                    </button>
+                    <button data-target="Extras" class="ff-nav-link">
+                        🍟 Extras
+                    </button>
+                </nav>
+            </div>
+
+            <!-- 3.2. Right Products Display -->
+            <div class="ff-products-display">
+
+                <!-- BURGERS SECTION -->
+                <div id="ff-category-Burgers" class="ff-product-group">
+                    <h3>Burgers</h3>
+                    <div class="ff-product-grid">
+                        <!-- Burger 1 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=999&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Blaze King Burger" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Blaze King Burger</h4>
+                                <span class="ff-card-price">$12.99</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Double beef patty, smoked bacon, cheddar, crisp lettuce, and our signature spicy blaze sauce.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                        <!-- Burger 2 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1610970878459-a0e464d7592b?q=80&w=1224&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Mushroom Melt Burger" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Mushroom Melt Burger</h4>
+                                <span class="ff-card-price">$10.50</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Single patty, Swiss cheese, sautéed garlic mushrooms, and truffle aioli on a brioche bun.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DRINKS SECTION -->
+                <div id="ff-category-Drinks" class="ff-product-group">
+                    <h3>Drinks</h3>
+                    <div class="ff-product-grid">
+                        <!-- Drink 1 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://plus.unsplash.com/premium_photo-1675667742825-469a806c8657?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Fizzy Citrus Blast" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Fizzy Citrus Blast</h4>
+                                <span class="ff-card-price">$3.50</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Freshly squeezed lemonade with a hint of orange and sparkling water. Large size available.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                        <!-- Drink 2 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1530373239216-42518e6b4063?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Iced Mocha Nitro" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Iced Mocha Nitro</h4>
+                                <span class="ff-card-price">$4.99</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Cold brew coffee, rich chocolate syrup, and sweet cream, nitrogen infused for smooth texture.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ICE CREAMS SECTION -->
+                <div id="ff-category-IceCreams" class="ff-product-group">
+                    <h3>Ice Creams</h3>
+                    <div class="ff-product-grid">
+                        <!-- Ice Cream 1 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?q=80&w=744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Volcano Sundae" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Volcano Sundae</h4>
+                                <span class="ff-card-price">$6.75</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Vanilla ice cream, hot fudge, peanuts, whipped cream, and a cherry on top. A classic favorite.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                        <!-- Ice Cream 2 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1546470427-0d4db154ceb7?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cookies & Cream Shake" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Cookies & Cream Shake</h4>
+                                <span class="ff-card-price">$5.99</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Thick, creamy milkshake blended with chunks of chocolate sandwich cookies. Unforgettable.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EXTRAS SECTION -->
+                <div id="ff-category-Extras" class="ff-product-group">
+                    <h3>Extras</h3>
+                    <div class="ff-product-grid">
+                        <!-- Extra 1 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Loaded Cheese Fries" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Loaded Cheese Fries</h4>
+                                <span class="ff-card-price">$4.25</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Crispy fries topped with melted cheddar, fresh chives, and a dollop of sour cream.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                        <!-- Extra 2 -->
+                        <div class="ff-card ff-card-shadow">
+                            <img src="https://images.unsplash.com/photo-1625938146369-adc83368bda7?q=80&w=1025&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Onion Rings" class="ff-card-image">
+                            <div class="ff-card-top">
+                                <h4>Onion Rings</h4>
+                                <span class="ff-card-price">$3.99</span>
+                            </div>
+                            <p class="ff-card-desc">
+                                Hand-cut, battered, and fried to a golden perfection. Served with signature dipping sauce.
+                            </p>
+                            <button class="ff-add-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+    
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.ff-nav-link');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    const targetId = `ff-category-${event.currentTarget.dataset.target}`;
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Scrolls the target element into view smoothly
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+
+                        // Update active state for the clicked link
+                        navLinks.forEach(l => l.classList.remove('active'));
+                        event.currentTarget.classList.add('active');
+                    }
+                });
+            });
+            
+            // Set the first link as active on load
+            const firstLink = document.querySelector('.ff-nav-link');
+            if (firstLink) {
+                navLinks.forEach(l => l.classList.remove('active'));
+                firstLink.classList.add('active');
+            }
+        });
+        
+        // Disable context menu for source protection (prevents right-click menu)
+        document.addEventListener('contextmenu', event => event.preventDefault());
+    </script>
+</body>
+</html>
