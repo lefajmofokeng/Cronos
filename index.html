@@ -1175,18 +1175,13 @@
                     </li>
                 </ul>
                 <div class="hyperion-header-action-buttons">
-                    <button class="hyperion-header-secondary-btn">
-                        <a href="page.html">Log In</a>
-                    </button>
+                    
                     <button class="hyperion-header-action-btn">
-                        <a href="page.html">Get Started With Cronos</a>
+                        <a href="page.html">Cronos Workspace
+                          <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;" width="20" height="20" viewBox="0 0 24 24"><path fill="#fff" d="m16.004 9.414l-8.607 8.607l-1.414-1.414L14.59 8H7.003V6h11v11h-2V9.414Z"/></svg>
+                        </a>
                     </button>
-                    <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
-                      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
-                        <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
-                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Contact Sales</p>
-                        </div>
-                    </div>
+                    
                 </div>
             </nav>
 
@@ -1655,7 +1650,7 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 
   <button class="defcon-crypto-cta" onclick="window.location.href='page.html'">
-    <span class="defcon-crypto-text">Discover Why Cronos</span>
+    <span class="defcon-crypto-text">Discover the Blueprint</span>
     <span class="defcon-crypto-icon">
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1924,457 +1919,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<div class="hero-section-dv">
-    <div class="container-dv">
-      <div class="content-left">
-        <p style="text-transform: uppercase; color: #001023; font-size: 14px; font-weight: 600; margin-bottom: 1rem; letter-spacing: 1px;">Future of Infrastructure</p>
-        <h1 class="main-heading">
-            Innovate, Integrate <br> and 
-            <span class="highlight-word">
-                Elevate.
-                <svg class="underline-svg" viewBox="0 0 196 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3 16.9998C30.4988 9.39999 91.2223 -6.38075 193 11.0002"/>
-                </svg>
-            </span>
-        </h1>
-            
-        
-
-        <button class="learn-more" onclick="window.location.href='page.html'">
-          <span class="circle" aria-hidden="true">
-          <span class="icon arrow"></span>
-          </span>
-          <span class="button-text">Learn More</span>
-        </button>
-      </div>
-
-      <div class="image-container">
-          <div class="main-image">
-            <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Happy team celebrating together" />
-          </div>
-          
-          <div class="stats-card">
-            <div class="stats-number">53%</div>
-            <div class="stats-text">High Conversions<br>Everything</div>
-          </div>
-      </div>
-    </div>
-  </div>
-
-<style>
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .hero-section-dv {
-    position: relative;
-    min-height: 100vh;
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    padding-top: 80px;
-    padding-bottom: 100px;
-    font-family: 'Inter', sans-serif;
-    overflow: hidden;
-    line-height: 1.7;
-  }
-
-  .container-dv {
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    padding: 0 20px;
-  }
-
-  .content-left {
-    flex: 1;
-    max-width: 600px;
-    z-index: 2;
-    /* Font Visibility Fix */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  .main-heading {
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
-    color: #001023;
-    margin-bottom: 30px;
-    letter-spacing: -0.03em;
-    /* Font Visibility Fix */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-  }
-
-  .description {
-    font-size: 17px;
-    font-weight: 500;
-    line-height: 1.6;
-    color: #757575;
-    margin-bottom: 40px;
-    max-width: 480px;
-  }
-
-  .image-container {
-    position: relative;
-    flex: 1;
-    max-width: 600px;
-    /* The fixed height on the image container is a responsiveness issue, but it must be kept as requested */
-    height: 400px; 
-  }
-
-  /* --- NEW CREATIVE ADDITION: Dot Pattern Overlay --- */
-  .image-container::after {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: -40px;
-    width: 50%;
-    height: 50%;
-    background-image: radial-gradient(circle at 1.5px 1.5px, #0066ff 1.5px, transparent 0);
-    background-size: 20px 20px;
-    opacity: 0.4;
-    z-index: 1;
-  }
-
-  .main-image {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-  }
-
-  .main-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%; /* Focus on the people in the image */
-    display: block; /* Remove any default inline spacing */
-  }
-
-  .stats-card {
-    position: absolute;
-    bottom: -40px;
-    left: -50px;
-    background: #ffd700;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    z-index: 3;
-    min-width: 150px;
-  }
-
-  .stats-number {
-    font-size: 40px;
-    font-weight: 800;
-    color: #001023;
-    line-height: 1;
-    margin-bottom: 5px;
-    text-align: left;
-  }
-
-  .stats-text {
-    font-size: 18px;
-    color: #001023;
-    line-height: 1.3;
-    text-align: left;
-  }
-
-  /* --- NEW CREATIVE ADDITION: Underline Scribble --- */
-  .highlight-word {
-    position: relative;
-    color: #0091ff;
-  }
-
-  .underline-svg {
-    position: absolute;
-    bottom: -15px;
-    left: -5%;
-    width: 110%;
-    height: 25px;
-    overflow: visible;
-  }
-
-  .underline-svg path {
-    stroke: #0091ff;
-    stroke-width: 5;
-    stroke-linecap: round;
-    fill: none;
-    stroke-dasharray: 300;
-    stroke-dashoffset: 300;
-    animation: draw 1.5s ease-out 0.5s forwards;
-  }
-
-   @keyframes draw {
-    to {
-        stroke-dashoffset: 0;
-    }
-  }
-
-  /* Tablet Styles */
-  @media (max-width: 1024px) {
-    .container-dv {
-        flex-direction: column;
-        text-align: center;
-        gap: 50px;
-    }
-
-    .main-heading {
-        font-size: 3.5rem;
-    }
-
-    .content-left {
-      text-align: center;
-      max-width: 100%;
-    }
-
-    .description {
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .image-container {
-      width: 100%;
-      max-width: 500px;
-      height: 350px;
-      margin-top: 2rem;
-    }
-
-    /* Adjust dot pattern for tablet */
-    .image-container::after {
-        width: 100%;
-        height: 50%;
-        left: 0;
-        
-    }
-  }
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    .hero-section-dv {
-      padding: 60px 20px 80px;
-      min-height: auto;
-    }
-
-    .container-dv {
-      gap: 40px;
-      padding: 0 15px;
-    }
-
-    .main-heading {
-        font-size: 2.5rem;
-    }
-
-    .content-left {
-      text-align: left;
-    }
-
-    .description {
-      font-size: 15px;
-      max-width: 100%;
-    }
-
-    .image-container {
-      height: 300px;
-    }
-
-    .main-image img {
-      object-position: center 30%; /* Adjust focus for mobile */
-    }
-
-    .stats-card {
-      bottom: -15px;
-      left: -15px;
-      padding: 15px;
-      min-width: 130px;
-    }
-
-    .stats-number {
-      font-size: 28px;
-    }
-
-    .stats-text {
-      font-size: 13px;
-    }
-
-    .learm-more {
-      padding-bottom: 2rem;
-    }
-  }
-
-  /* Small Phone Styles */
-  @media (max-width: 480px) {
-    .hero-section-dv {
-      padding: 40px 15px 60px;
-    }
-
-    .container-dv {
-      gap: 30px;
-    }
-
-    .main-heading {
-        font-size: 2rem;
-        margin-bottom: 20px;
-    }
-
-    .description {
-      font-size: 14px;
-      margin-bottom: 30px;
-    }
-
-    .image-container {
-      height: 250px;
-    }
-
-    .main-image img {
-      object-position: center 35%; /* Further adjust focus for small screens */
-    }
-
-    .stats-card {
-      bottom: -10px;
-      left: -10px;
-      padding: 12px;
-      min-width: 120px;
-    }
-
-    .stats-number {
-      font-size: 24px;
-    }
-
-    .stats-text {
-      font-size: 12px;
-    }
-  }
-
-  /* Extra Small Phone Styles */
-  @media (max-width: 360px) {
-    .main-heading {
-        font-size: 1.8rem;
-    }
-
-    .image-container {
-      height: 220px;
-    }
-
-    .main-image img {
-      object-position: center 40%; /* Final adjustment for extra small screens */
-    }
-
-    .stats-card {
-      min-width: 110px;
-      padding: 10px;
-    }
-
-    .stats-number {
-      font-size: 22px;
-    }
-  }
-
-  /* --- Button Styles --- */
-        button {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-        outline: none;
-        border: 0;
-        vertical-align: middle;
-        text-decoration: none;
-        background: transparent;
-        padding: 0;
-        font-size: inherit;
-        font-family: inherit;
-        }
-
-        button.learn-more {
-        width: 12rem;
-        height: auto;
-        }
-
-        button.learn-more .circle {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: relative;
-        display: block;
-        margin: 0;
-        width: 3rem;
-        height: 3rem;
-        background: #282936;
-        border-radius: 1.625rem;
-        }
-
-        button.learn-more .circle .icon {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background: #fff;
-        }
-
-        button.learn-more .circle .icon.arrow {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        left: 0.625rem;
-        width: 1.125rem;
-        height: 0.125rem;
-        background: none;
-        }
-
-        button.learn-more .circle .icon.arrow::before {
-        position: absolute;
-        content: "";
-        top: -0.29rem;
-        right: 0.0625rem;
-        width: 0.625rem;
-        height: 0.625rem;
-        border-top: 0.125rem solid #fff;
-        border-right: 0.125rem solid #fff;
-        transform: rotate(45deg);
-        }
-
-        button.learn-more .button-text {
-        /* transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1); REMOVED */
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0.75rem 0;
-        margin: 0 0 0 1.85rem;
-        color: #282936;
-        font-weight: 700;
-        line-height: 1.6;
-        text-align: center;
-        text-transform: uppercase;
-        }
-        /* KEEPING these hover transitions as they are the core visual feedback */
-        button:hover .circle {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        width: 100%;
-        }
-
-        button:hover .circle .icon.arrow {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        background: #fff;
-        transform: translate(1rem, 0);
-        }
-
-        button:hover .button-text {
-        transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
-        color: #fff;
-        }
-</style>
-
-
-
 
 
 
@@ -2424,7 +1968,7 @@ document.addEventListener('DOMContentLoaded', function() {
             font-family: 'Inter', sans-serif;
             background-color: #0A0E17; /* Deep charcoal background matching the image */
             color: #FFFFFF;
-            line-height: 1.5;
+            
             -webkit-font-smoothing: antialiased;
         }
 
@@ -2449,6 +1993,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .hero-headline-block {
             margin-bottom: 96px; /* Large spacing between title and columns */
             max-width: 850px;
+            margin-top: 5rem;
         }
 
         /* The main H1 title */
@@ -3112,590 +2657,820 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon IT Section - Gradient Background</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Root Variables */
+        :root {
+            --defcon-navy: #0b1426;
+            --defcon-blue: #0091ff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-white: #ffffff;
+            --defcon-black: #000000;
+            --font-family-inter: 'Inter', sans-serif;
+            --border-radius-1px: 8px;
+            /* New Max Width for Inner Content */
+            --content-max-width: 1000px;
+        }
+
+        /* Container for the whole section */
+        .defcon-merchant-section-container {
+            font-family: var(--font-family-inter);
+            color: var(--defcon-white);
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            padding: 200px 0;
+            border: none; /* Ensure the gradient is full-width */
+            width: 100%;
+            margin: 0; /* Remove margin */
+            text-align: center;
+        }
+        
+        /* New Wrapper to constrain all content (Title and Cards) */
+        .defcon-content-wrapper {
+            /* === KEY CHANGE 2: Constrain and Center Content === */
+            max-width: var(--content-max-width);
+            width: 90%; /* Use percentage for responsiveness */
+            margin: 0 auto;
+            padding: 40px; /* Padding inside the border */   
+        }
+
+        /* Title styling */
+        .defcon-merchant-section-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--defcon-white);
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        /* --- Asymmetrical Grid (No Change to layout logic) --- */
+        .defcon-asym-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        /* Individual feature card styling */
+        .defcon-asym-feature-card {
+            background-color: #EAEEF4;
+            border-radius: var(--border-radius-1px);
+            padding: 30px;
+            text-align: left; 
+            color: var(--defcon-black);
+            min-height: fit-content;
+            display: flex;
+        }
+        
+        /* Inner Wrapper for vertical alignment */
+        .defcon-card-content-wrapper {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        
+        /* Grid Span Utility Classes */
+        .defcon-grid-span-2 {
+            grid-column: span 2;
+        }
+        
+        .defcon-grid-span-1 {
+            grid-column: span 1;
+        }
+
+
+        /* Large number in feature card */
+        .defcon-feature-card-number {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--defcon-navy);
+            line-height: 1;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        
+        /* Small text next to large number */
+        .defcon-feature-card-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+            color: #7f7e8f;
+        }
+        
+        /* Bold text inside the description */
+        .defcon-feature-card-text strong {
+            font-weight: 700;
+            color: var(--defcon-navy);
+        }
+
+        /* Styling for the superscript (1) */
+        .defcon-superscript {
+            vertical-align: super;
+            font-size: 0.7em;
+            margin-left: 2px;
+        }
+
+        /* Legal disclaimer at the bottom */
+        .defcon-legal-disclaimer {
+            font-size: 0.8rem;
+            color: var(--defcon-light-gray);
+            margin-top: 20px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 900px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .defcon-grid-span-2,
+            .defcon-grid-span-1 {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+             .defcon-content-wrapper {
+                padding: 25px;
+                width: 100%; /* Allow content wrapper to take full width on smallest screens */
+            }
+            
+            .defcon-merchant-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-feature-card-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<section class="defcon-merchant-section-container">
+    <div class="defcon-content-wrapper">
+        <h2 class="defcon-merchant-section-title">Become a Cronos.com client</h2>
+
+        <div class="defcon-asym-feature-grid">
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">&lt;15</span>
+                    <span class="defcon-feature-card-text">
+                        <span style="color: #0b1426;">minutes</span> average response time for all critical-level support incidents.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">1</span>
+                    <span class="defcon-feature-card-text">
+                        <span style="color: #0b1426;">dedicated account</span> manager per client.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">120<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                       <span style="color: #0b1426;">successful</span> projects. 
+                    </span>
+                </div>
+            </div>
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">80K<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                        <span style="color: #0b1426;">cyber threats</span> neutralized on our clients' networks.
+                    </span>
+                </div>
+            </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- =============================================
-     *** FAQ SECTION ***
-     ============================================= -->
-<style>
-  /* FAQ Container */
-  .defcon-faq-container {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  /* Left Column */
-  .defcon-faq-header-col {
-    flex: 0 0 30%;
-    padding-right: 40px;
-    display: flex;
-  }
-
-  .defcon-faq-title {
-    color: #06273e;
-    font-size: 54px;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.2;
-    margin-bottom: 30px;
-  }
-
-  /* Right Column */
-  .defcon-faq-content-col {
-    flex: 0 0 70%;
-  }
-
-  /* Accordion Item */
-  .defcon-accordion-item {
-    border-bottom: 2px solid #e5e5e5;
-    margin-bottom: 15px;
-    overflow: hidden;
-    transition: all 0.4s ease;
-  }
-
-  .defcon-accordion-header {
-    background-color: #fff;
-    color: #06273e;
-    padding: 20px 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    
-  }
-
-  .defcon-accordion-header span {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  }
-
-  .defcon-accordion-header:hover {
-    color: #0091ff;
-  }
-
-  .defcon-accordion-header.active {
-    color: #0091ff;
-  }
-
-  .defcon-accordion-icon {
-    width: 24px;
-    height: 24px;
-    position: relative;
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .defcon-accordion-icon-line {
-    position: absolute;
-    background-color: #0091ff;
-    transition: all 0.3s ease;
-    border-radius: 2px;
-  }
-
-  .defcon-accordion-icon-line-horizontal {
-    width: 20px;
-    height: 3px;
-    top: 50%;
-    left: 2px;
-    transform: translateY(-50%);
-  }
-
-  .defcon-accordion-icon-line-vertical {
-    width: 3px;
-    height: 20px;
-    left: 50%;
-    top: 2px;
-    transform: translateX(-50%);
-  }
-
-  /* Show plus sign by default, rotate on active */
-  .defcon-accordion-header .defcon-accordion-icon {
-    transform: rotate(0deg);
-  }
-  .defcon-accordion-header.active .defcon-accordion-icon {
-    transform: rotate(45deg);
-  }
-
-  /* Hide vertical line when active (turn plus into X) */
-  .defcon-accordion-header.active .defcon-accordion-icon-line-vertical {
-    opacity: 0;
-    transform: translateX(-50%) rotate(90deg);
-  }
-
-  .defcon-accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, padding 0s ease;
-    background-color: #fff;
-  }
-
-  .defcon-accordion-content-inner {
-    padding: 0 0 25px 0;
-    color: #333;
-    line-height: 1.6;
-    font-weight: 400;
-    font-size: 1rem;
-  }
-
-  .defcon-accordion-item.active .defcon-accordion-content {
-    max-height: 500px;
-  }
-
-  .defcon-accordion-item.active .defcon-accordion-content-inner {
-    transform: translateY(0);
-  }
-
-  .defcon-faq-link {
-    color: #0091ff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0s ease;
-    border-bottom: 1px solid transparent;
-  }
-
-  .defcon-faq-link:hover {
-    border-bottom-color: #0091ff;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .defcon-faq-container {
-      flex-direction: column;
-      padding: 30px 15px;
-    }
-
-    .defcon-faq-header-col {
-      flex: 0 0 100%;
-      padding-right: 0;
-      margin-bottom: 30px;
-    }
-
-    .defcon-faq-content-col {
-      flex: 0 0 100%;
-    }
-
-    .defcon-faq-title {
-      font-size: 2rem;
-      position: static;
-    }
-
-    .defcon-accordion-header {
-      font-size: 1.1rem;
-      padding: 15px 0;
-    }
-  }
-
-  /* Animation Enhancements */
-  @keyframes defcon-fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .defcon-faq-container {
-    animation: defcon-fadeIn 0.6s ease forwards;
-  }
-</style>     
-
-<div class="defcon-faq-section" style="background:#fff; padding:60px 0; font-family: 'Inter', sans-serif;">
-
-<div class="defcon-faq-container">
-  <div class="defcon-faq-header-col">
-    <h2 class="defcon-faq-title rb-fade-in">Frequently Asked Questions</h2>
-  </div>
-  
-  <div class="defcon-faq-content-col">
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What services does your company offer?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
         </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>We provide a comprehensive suite of professional services including web design, development, UX/UI design, branding, and digital strategy. Our team specializes in creating custom solutions tailored to your business needs. For specific examples, please visit our <a href="#" class="defcon-faq-link">portfolio page</a> or review our <a href="#" class="defcon-faq-link">services breakdown</a>.</p>
-        </div>
-      </div>
+
+        <p class="defcon-legal-disclaimer">
+            <span class="defcon-superscript">(1)</span> As per our Enterprise Service Level Agreement (SLA).
+        </p>
     </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive FAQ Component</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0B1220;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --cronos-color-bg: #0B1220;
+            --cronos-color-text-primary: #FFFFFF;
+            --cronos-color-text-secondary: #B0B8C6;
+            --cronos-color-border: rgba(255, 255, 255, 0.325);
+            --cronos-font-family: 'Inter', sans-serif;
+        }
+
+        /* --- Component Wrapper and Layout --- */
+        .cronos-component-faq-main-wrapper {
+            display: flex;
+            flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            gap: 32px;
+            font-family: var(--cronos-font-family);
+            color: var(--cronos-color-text-primary);
+        }
+
+        /* Tablet breakpoint */
+        @media (min-width: 600px) {
+            .cronos-component-faq-main-wrapper {
+                padding: 60px 40px;
+                gap: 40px;
+            }
+        }
+
+        /* Desktop breakpoint */
+        @media (min-width: 900px) {
+            .cronos-component-faq-main-wrapper {
+                flex-direction: row;
+                align-items: flex-start;
+                justify-content: space-between;
+                padding: 100px 40px;
+                gap: 60px;
+            }
+        }
+
+        /* Large desktop breakpoint */
+        @media (min-width: 1200px) {
+            .cronos-component-faq-main-wrapper {
+                gap: 80px;
+            }
+        }
+
+        /* --- Left Column: Header --- */
+        .cronos-component-header-module {
+            flex: 0 0 auto;
+        }
+
+        .cronos-component-main-heading {
+            font-weight: 600;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--cronos-color-text-primary);
+            margin: 0;
+        }
+
+        /* Tablet heading size */
+        @media (min-width: 600px) {
+            .cronos-component-main-heading {
+                font-size: 1.65rem;
+            }
+        }
+
+        /* Desktop heading size and sticky behavior */
+        @media (min-width: 900px) {
+            .cronos-component-header-module {
+                flex: 0 0 290px;
+            }
+
+            .cronos-component-main-heading {
+                font-size: 1.8rem;
+                position: sticky;
+                top: 40px;
+                margin-top: 3rem;
+            }
+        }
+
+        /* --- Right Column: Accordion --- */
+        .cronos-component-list-container {
+            flex: 1;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .cronos-accordion-item-entity {
+            border-bottom: 1px solid var(--cronos-color-border);
+        }
+
+        .cronos-accordion-trigger-toggle {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            color: var(--cronos-color-text-primary);
+            transition: color 0.2s ease;
+        }
+
+        /* Increase padding on larger screens */
+        @media (min-width: 600px) {
+            .cronos-accordion-trigger-toggle {
+                padding: 24px 0;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .cronos-accordion-trigger-toggle {
+                padding: 28px 0;
+            }
+        }
+
+        .cronos-toggle-question-text {
+            font-family: var(--cronos-font-family);
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 1.4;
+            padding-right: 16px;
+            flex: 1;
+        }
+
+        /* Scale question text on larger screens */
+        @media (min-width: 600px) {
+            .cronos-toggle-question-text {
+                font-size: 10px;
+                line-height: 1.45;
+                padding-right: 20px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .cronos-toggle-question-text {
+                font-size: 10px;
+                line-height: 1.5;
+            }
+        }
+
+        .cronos-toggle-icon-symbol {
+            font-family: var(--cronos-font-family);
+            font-weight: 200;
+            font-size: 2.25rem;
+            line-height: 1;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        /* Scale icon on larger screens */
+        @media (min-width: 600px) {
+            .cronos-toggle-icon-symbol {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .cronos-toggle-icon-symbol {
+                font-size: 2.75rem;
+            }
+        }
+
+        /* Rotate icon when expanded */
+        .cronos-accordion-trigger-toggle[aria-expanded="true"] .cronos-toggle-icon-symbol {
+            transform: rotate(45deg);
+        }
+
+        /* --- Content Area --- */
+        .cronos-accordion-content-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease-out;
+            padding: 0;
+        }
+
+        /* Inner typography for the answers */
+        .cronos-answer-paragraph-text {
+            font-size: 1rem;
+            color: #a0a9be;
+            line-height: 1.6;
+            padding-bottom: 20px;
+            max-width: 100%;
+        }
+
+        .cronos-answer-paragraph-text strong {
+            color: #0088f0;
+            font-weight: 400;
+        }
+
+        .cronos-cta-us {
+          margin-top: 3rem;
+          font-weight: 600;
+        }
+
+        .cronos-cta-us span {
+          color: #1988ff;
+          
+        }
+
+        /* Scale answer text on larger screens */
+        @media (min-width: 600px) {
+            .cronos-answer-paragraph-text {
+                font-size: 1.125rem;
+                padding-bottom: 24px;
+                max-width: 95%;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .cronos-answer-paragraph-text {
+                font-size: 1.25rem;
+                padding-bottom: 28px;
+                max-width: 90%;
+            }
+        }
+
+        /* Handle very small screens */
+        @media (max-width: 360px) {
+            .cronos-component-faq-main-wrapper {
+                padding: 32px 16px;
+            }
+
+            .cronos-toggle-question-text {
+                font-size: 1rem;
+            }
+
+            .cronos-toggle-icon-symbol {
+                font-size: 2rem;
+            }
+
+            .cronos-answer-paragraph-text {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="cronos-component-faq-main-wrapper">
     
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>How long does a typical project take?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Project timelines vary based on scope and complexity. A standard website typically takes 6-8 weeks from kickoff to launch, while more complex applications may require 3-6 months. We provide a detailed timeline during our <a href="#" class="defcon-faq-link">discovery phase</a> after understanding your specific requirements.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What is your pricing structure?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>We offer both fixed-price projects for well-defined scopes and time-and-materials engagements for more flexible requirements. Our pricing is transparent and tailored to each project's needs. For a detailed quote, please <a href="#" class="defcon-faq-link">contact our sales team</a> or use our <a href="#" class="defcon-faq-link">project calculator</a>.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>Do you provide ongoing support after launch?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Yes, we offer several <a href="#" class="defcon-faq-link">maintenance plans</a> to ensure your digital solution continues to perform optimally. Our support services include security updates, performance optimization, content updates, and technical support. All new projects include 30 days of complimentary post-launch support.</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="defcon-accordion-item">
-      <div class="defcon-accordion-header">
-        <span>What technologies do you specialize in?</span>
-        <div class="defcon-accordion-icon">
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-horizontal"></span>
-          <span class="defcon-accordion-icon-line defcon-accordion-icon-line-vertical"></span>
-        </div>
-      </div>
-      <div class="defcon-accordion-content">
-        <div class="defcon-accordion-content-inner">
-          <p>Our team is proficient in modern web technologies including React, Vue.js, Angular, Node.js, Python, PHP, and various CMS platforms. We stay at the forefront of technology trends to deliver cutting-edge solutions. View our complete <a href="technology-stack.html" class="defcon-faq-link">technology stack</a> for more details.</p>
-        </div>
-      </div>
+    <div class="cronos-component-header-module">
+        <h2 class="cronos-component-main-heading">Frequently Asked Questions</h2>
     </div>
 
-  <p style="margin-top: 4rem; margin-bottom: 3rem; font-size: 16px; color: #06273e; font-weight: 600;">Have more questions? <a href="contactus.html" style="color: #0091ff; text-decoration: none; border-bottom: none; font-weight: 400;">Contact us</a></p>
+    <div class="cronos-component-list-container">
+        
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">What is your core development methodology?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    We primarily use an <strong>Agile and Scrum methodology</strong>. This approach emphasizes iterative development, frequent collaboration, and flexible responsiveness to changing requirements. Our process includes Discovery, Design & Prototyping, Iterative Development, Quality Assurance (QA), and continuous deployment. This ensures rapid time-to-market and alignment with your business goals at every stage.
+                </p>
+            </div>
+        </div>
 
-  </div>
-</div>
-</div>
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">How do you ensure AI/Web3 solution security?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    Security is paramount. For AI, we focus on data privacy (differential privacy techniques) and model robustness against adversarial attacks. For Web3, we conduct rigorous smart contract audits (using tools like Slither and Mythril) and employ best practices for decentralized key management and secure transaction handling, minimizing vulnerabilities before deployment.
+                </p>
+            </div>
+        </div>
+
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">Which Cloud providers do you specialize in?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    Cronos specializes in all major platforms, including <strong>AWS, Microsoft Azure, and Google Cloud</strong>. Our migration process begins with a TCO (Total Cost of Ownership) analysis and a readiness assessment. We then execute a phased transition plan—often using a hybrid model first—to ensure zero downtime and optimize resource allocation in the new environment immediately post-migration.
+                </p>
+            </div>
+        </div>
+
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">What is the guaranteed response time for critical IT support?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    We guarantee a rapid response based on defined Service Level Agreements (SLAs). For <strong>Priority 1 (critical) incidents</strong>—such as a complete server outage or security breach—our system guarantees engineer acknowledgment and initial action within <strong>15 minutes, 24/7/365</strong>. Non-critical issues are handled according to a tiered structure to ensure all incidents are addressed efficiently.
+                </p>
+            </div>
+        </div>
+
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">How is marketing campaign ROI tracked?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    Our focus is measurable value. We integrate tracking across all channels to calculate key performance indicators (KPIs) like Customer Acquisition Cost (CAC), Lifetime Value (LTV), and marketing-sourced revenue. We provide detailed, customized dashboards that refresh daily, ensuring you always have real-time visibility into the exact revenue generated by our efforts.
+                </p>
+            </div>
+        </div>
+
+        <div class="cronos-accordion-item-entity">
+            <button class="cronos-accordion-trigger-toggle" aria-expanded="false">
+                <span class="cronos-toggle-question-text">What is the first step to starting a project with Cronos?</span>
+                <span class="cronos-toggle-icon-symbol" aria-hidden="true">+</span>
+            </button>
+            <div class="cronos-accordion-content-panel">
+                <p class="cronos-answer-paragraph-text">
+                    The first step is a <strong>free, non-committal consultation</strong> with one of our senior IT consultants. We discuss your current challenges, future technology goals, and immediate needs. This is followed by a Discovery Session, where we map out a tailored solution blueprint and provide a detailed estimate and project timeline.
+                </p>
+            </div>
+        </div>
+        <div class="cronos-cta-us">
+          <p>Have more questions? <span><a href="page.html">Contact Us</a></span></p>
+        </div>
+    </div>
+</section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const accordionHeaders = document.querySelectorAll('.defcon-accordion-header');
-    
-    accordionHeaders.forEach(header => {
-      header.addEventListener('click', function() {
-        const item = this.parentElement;
-        const isActive = item.classList.contains('active');
-        
-        // Close all other accordion items
-        document.querySelectorAll('.defcon-accordion-item').forEach(accordionItem => {
-          if (accordionItem !== item) {
-            accordionItem.classList.remove('active');
-            accordionItem.querySelector('.defcon-accordion-header').classList.remove('active');
-          }
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggles = document.querySelectorAll('.cronos-accordion-trigger-toggle');
+
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const content = this.nextElementSibling; 
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                toggles.forEach(otherToggle => {
+                    if (otherToggle !== toggle) {
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                        otherToggle.nextElementSibling.style.maxHeight = null;
+                    }
+                });
+
+                if (isExpanded) {
+                    this.setAttribute('aria-expanded', 'false');
+                    content.style.maxHeight = null;
+                } else {
+                    this.setAttribute('aria-expanded', 'true');
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
+            });
         });
-        
-        // Toggle current item
-        if (!isActive) {
-          item.classList.add('active');
-          this.classList.add('active');
-        } else {
-          item.classList.remove('active');
-          this.classList.remove('active');
-        }
-      });
     });
-    
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-      threshold: 0.1
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    }, observerOptions);
-    
-    document.querySelectorAll('.defcon-accordion-item').forEach(item => {
-      observer.observe(item);
-    });
-  });
 </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -4367,7 +4142,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <h3>Business</h3>
             <ul>
               <li><a href="page.html">Global Network</a></li>
-              <li><a href="page.html">Investment</a></li>
             </ul>
           </div>
         </div>
