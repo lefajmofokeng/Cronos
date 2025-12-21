@@ -768,7 +768,7 @@
         .hyperion-custom-nav-list li {
             margin: 0;
             width: 100%;
-            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            
         }
 
         .hyperion-custom-nav-link {
@@ -1210,7 +1210,9 @@
                             <span class="hyperion-menu-group-tagline">Build your custom vision</span>
                         </span>
                     </h3>
-                    <button style="color: white; background-color: none; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Start Project</a></button>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Start Project
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
@@ -1248,7 +1250,9 @@
                             <span class="hyperion-menu-group-tagline">Power your business</span>
                         </span>
                     </h3>
-                    <button style="color: white; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Learn About IT</a></button>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Learn About IT
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
@@ -1281,7 +1285,9 @@
                             <span class="hyperion-menu-group-tagline">Grow your audience</span>
                         </span>
                     </h3>
-                    <button style="color: white; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Explore Marketing</a></button>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a href="index.html">Explore Marketing
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
@@ -1866,7 +1872,7 @@ document.addEventListener('DOMContentLoaded', function() {
 @media (max-width: 480px) {
   .defcon-premium-showcase {
     padding: 40px 5%;
-    min-height: 60vh; /* Reduced height on small phones */
+    min-height: 100vh; /* Reduced height on small phones */
   }
   
   /* Heading size reduced significantly for small screens */
@@ -2053,7 +2059,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .enterprise-hero-section {
             width: 100%;
             min-height: 80vh; /* Ensures substantial vertical space */
-            padding: 100px 24px;
+            padding: 150px 24px 200px 24px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -2070,6 +2076,15 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 96px; /* Large spacing between title and columns */
             max-width: 850px;
             margin-top: 5rem;
+        }
+
+        .hero-main-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0091ff; /* Muted gray/blue for subtitle */
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         /* The main H1 title */
@@ -2104,8 +2119,9 @@ document.addEventListener('DOMContentLoaded', function() {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 48px;
-            width: 48px;
+            height: 58px;
+            width: 58px;
+            stroke-width: 0.1;
         }
 
         /* The H3 headings for each column */
@@ -2119,9 +2135,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         /* The descriptive paragraph text */
         .card-description {
-            font-size: 1rem;
+            font-size: 1.1rem;
             /* Muted gray/blue for descriptions to create hierarchy */
-            color: #94A3B8; 
+            color: #94A3B8;
+            font-weight: 500; 
             line-height: 1.6;
             max-width: 340px; /* Ensures optimal reading width */
         }
@@ -2135,12 +2152,18 @@ document.addEventListener('DOMContentLoaded', function() {
             .solutions-grid {
                 gap: 40px;
             }
+
+            .solution-card {
+                border: 2px solid #303c55;
+                padding: 15px;
+                border-radius: 20px;
+            }
         }
 
         /* Mobile breakpoints */
         @media (max-width: 768px) {
             .enterprise-hero-section {
-                padding: 64px 20px;
+                padding: 9rem 20px;
             }
             .hero-headline-block {
                 margin-bottom: 56px;
@@ -2176,6 +2199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="hero-container">
             
             <header class="hero-headline-block">
+                <h1 class="hero-main-title">Cronos Solutions</h1>
                 <h1 class="hero-title">
                     Building Digital <br>Ecosystems That Work
                 </h1>
@@ -2185,11 +2209,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 <article class="solution-card">
                     <div class="card-icon-wrapper">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/>
-                        </svg>
+                        <svg width="70" height="70"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M21.49 13.115l-9-5a1 1 0 0 0-1 0l-9 5A1.008 1.008 0 0 0 2 14v9.995a1 1 0 0 0 .52.87l9 5A1.004 1.004 0 0 0 12 30a1.056 1.056 0 0 0 .49-.135l9-5A.992.992 0 0 0 22 24V14a1.008 1.008 0 0 0-.51-.885zM11 27.295l-7-3.89v-7.72l7 3.89zm1-9.45L5.06 14L12 10.135l6.94 3.86zm8 5.56l-7 3.89v-7.72l7-3.89z" fill="#ffffff"/><path d="M30 6h-4V2h-2v4h-4v2h4v4h2V8h4V6z" fill="#ffffff"/></svg>
                     </div>
-                    <h3 class="card-heading">Full Spectrum IT Solutions</h3>
+                    <h3 class="card-heading">Software Development</h3>
                     <p class="card-description">
                         All-in-one infrastructure. From cloud migration and cybersecurity to custom software development, data analytics, and managed network services.
                     </p>
@@ -2205,7 +2227,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0-6 0"/>
                         </svg>
                     </div>
-                    <h3 class="card-heading">Immutable Security Architecture</h3>
+                    <h3 class="card-heading">IT Infrastructure</h3>
                     <p class="card-description">
                         Facilitating robust, zero-trust access to regulated data across distributed networks and hybrid cloud environments for maximum integrity.
                     </p>
@@ -2221,7 +2243,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <path d="M12 3v2"/><path d="M12 19v2"/><path d="M3 12h2"/><path d="M19 12h2"/>
                         </svg>
                     </div>
-                    <h3 class="card-heading">Supercharged Ecosystem Integration</h3>
+                    <h3 class="card-heading">Marketing & Creative Studio</h3>
                     <p class="card-description">
                         Composable utility for systems across existing and new tech stacks. Instant scalability, enhanced performance, and seamless API interoperability.
                     </p>
@@ -2572,13 +2594,14 @@ document.addEventListener('DOMContentLoaded', function() {
         @media (max-width: 1200px) {
             .container {
                 flex-direction: column;
+                padding: 8rem 0;
             }
 
             .left-column {
                 padding: 60px 40px;
             }
 
-            .main-heading {
+            .main-heading-op {
                 font-size: 48px;
             }
 
@@ -2593,7 +2616,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 padding: 40px 24px;
             }
 
-            .main-heading {
+            .main-heading-op {
                 font-size: 36px;
             }
 
@@ -2616,16 +2639,13 @@ document.addEventListener('DOMContentLoaded', function() {
             </h1>
 
             <button class="cta-button" onclick="window.location.href='page.html'">Learn More
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 32 32" style="vertical-align: middle;">
-                  <path fill="#ffffff" d="m21.188 9.28l-1.407 1.44L24.063 15H4v2h20.063l-4.282 4.28l1.407 1.44l6-6l.72-.72l-.72-.72l-6-6z"/>
-              </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;" width="20" height="20" viewBox="0 0 24 24"><path fill="#ffffff" d="m16 8.4l-8.9 8.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7L14.6 7H7q-.425 0-.713-.288T6 6q0-.425.288-.713T7 5h10q.425 0 .713.288T18 6v10q0 .425-.288.713T17 17q-.425 0-.713-.288T16 16V8.4Z"/></svg>
             </button>
         </div>
 
         <div class="right-column" style="overflow: hidden;">
-            
             <img src="thumbnails/klkuhn (1).png" alt="CRM Dashboard Interface" class="screen-image" style="width: 140%; height: auto;">
-            </div>
+        </div>
         </div>
     </div>
 </body>
@@ -2721,23 +2741,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="crns-feature-list">
                 <p class="crns-feature-item">
-                    <span class="crns-bold">Cronos. Your Foundation.</span> 
-                    <span class="crns-muted">Your Innovation.</span>
+                    <span class="crns-bold">Monitor.</span> 
+                    <span class="crns-muted">Real-time server latency & uptime checks.</span>
                 </p>
                 <p class="crns-feature-item">
-                    <span class="crns-bold">Deploy.</span> 
-                    <span class="crns-muted">No downtime, secure cloud solutions.</span>
+                    <span class="crns-bold">Manage.</span> 
+                    <span class="crns-muted">Restart services via SSH from the app.</span>
                 </p>
                 <p class="crns-feature-item">
-                    <span class="crns-bold">Integrate.</span> 
-                    <span class="crns-muted">Seamless data flow and managed services.</span>
+                    <span class="crns-bold">Scale.</span> 
+                    <span class="crns-muted">Deploy new instances with a single tap.</span>
                 </p>
             </div>
 
             <div class="crns-cta-group">
-                <a href="#" class="crns-btn crns-btn-outline">Get Started with Cronos</a>
+                <a href="#" class="crns-btn crns-btn-outline">Documentation</a>
                 <a href="#" class="crns-btn crns-btn-solid">
-                    Explore Services 
+                    Launch Web Dashboard 
                     <svg class="crns-arrow-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
             </div>
@@ -3313,7 +3333,7 @@ document.addEventListener('DOMContentLoaded', function() {
         /* Handle very small screens */
         @media (max-width: 360px) {
             .cronos-component-faq-main-wrapper {
-                padding: 32px 16px;
+                padding: 36px 16px;
             }
 
             .cronos-toggle-question-text {

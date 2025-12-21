@@ -1349,6 +1349,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1757,41 +1795,391 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     </section>
 
-    <section class="py-16 lg:py-24 bg-white">
-        <div class="dc-careers-container">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-                <div class="lg:pr-8">
-                    <h2 class="dc-careers-solutions-title">What It's Like<br>Working With Us.</h2>
-                    <p class="text-xl font-medium text-gray-600 leading-relaxed">
-                        We are not just a company, we are a community of passionate individuals dedicated to innovation and excellence. We provide an environment where your ideas are valued, your growth is prioritized, and your impact is measurable.
-                    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Stats & Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+</head>
+<body-qp id="body-qp">
+
+    <section class="stats-module">
+        
+        <!-- Header: Title + Descriptive Text -->
+        <header class="stats-module__header">
+            <div class="stats-label">Key Stats</div>
+            <p class="stats-intro">
+                Our journey in numbers — <strong>With over 120+ projects delivered, 50+ trusted clients worldwide,</strong> and <strong>8 industry awards</strong> under our belt, Opalhaus® continues to craft design solutions that drive real results.
+            </p>
+        </header>
+
+        <!-- Main Content: Image + Numbers Grid -->
+        <div class="stats-module__content">
+            
+            <!-- Image Block -->
+            <figure class="visual-block">
+                <img src="thumbnails/hq.png" alt="Artistic portrait representing vision" class="visual-block__img">
+            </figure>
+
+            <!-- Stats Grid -->
+            <div class="metrics-grid" id="metricsGrid">
+                
+                <!-- Item 1 -->
+                <div class="metric-card">
+                    <div class="metric-card__value-wrapper">
+                        <span class="metric-card__value" data-target="120">0</span>
+                        <span class="metric-card__value" style="transition-delay: 0.1s">+</span>
+                    </div>
+                    <p class="metric-card__label">Brands Elevated Over the Years With Purpose</p>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4 sm:gap-6">
-                    <div class="dc-careers-solutions-card dc-careers-solutions-card--primary shadow-xl">
-                        <h2>01</h2>
-                        <h3 class="dc-careers-solutions-card__title">Flexible work arrangements</h3>
-                        <p class="text-gray-200 text-md">Work on your terms. Whether it's remote, hybrid, or in-office, we believe flexibility fuels creativity and balance.</p>
+                <!-- Item 2 -->
+                <div class="metric-card">
+                    <div class="metric-card__value-wrapper">
+                        <span class="metric-card__value" data-target="18">0</span>
+                        <span class="metric-card__value" style="transition-delay: 0.2s">+</span>
                     </div>
-                    <div class="dc-careers-solutions-card">
-                        <h2>02</h2>
-                        <h3 class="dc-careers-solutions-card__title">Continuous learning opportunities</h3>
-                        <p class="text-gray-600 text-md">We invest in your growth. From online courses to mentorship and workshops, learning never stops here.</p>
-                    </div>
-                    <div class="dc-careers-solutions-card">
-                        <h2>03</h2>
-                        <h3 class="dc-careers-solutions-card__title">Cutting-edge projects</h3>
-                        <p class="text-gray-600 text-md">Get hands-on with the latest tech and innovations. You won't just follow trends, you'll help create them.</p>
-                    </div>
-                    <div class="dc-careers-solutions-card dc-careers-solutions-card--primary shadow-xl">
-                        <h2>04</h2>
-                        <h3 class="dc-careers-solutions-card__title">Inclusive and diverse culture</h3>
-                        <p class="text-gray-200 text-md">Be yourself, fully. We celebrate different voices, backgrounds, and ideas that make our team stronger and smarter.</p>
-                    </div>
+                    <p class="metric-card__label">Industries served as professionals</p>
                 </div>
+
+                <!-- Item 3 -->
+                <div class="metric-card">
+                    <div class="metric-card__value-wrapper">
+                        <span class="metric-card__value" data-target="40">0</span>
+                        <span class="metric-card__value" style="transition-delay: 0.3s">+</span>
+                    </div>
+                    <p class="metric-card__label">Websites brought to life with Webflow</p>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="metric-card">
+                    <div class="metric-card__value-wrapper">
+                        <span class="metric-card__value" data-target="98">0</span>
+                        <span class="metric-card__value" style="transition-delay: 0.4s">%</span>
+                    </div>
+                    <p class="metric-card__label">Client satisfaction through our journey</p>
+                </div>
+
             </div>
         </div>
+
     </section>
+
+   
+       
+</body-qp>
+</html>
+
+<style>
+    /* --- Variables & Reset --- */
+        :root {
+            --color-bg: #ffffff;
+            --color-text-main: #111111;
+            --color-text-muted: #999999; /* Light grey for the faded text parts */
+            --color-accent: #ff5e3a; /* Orange dot color */
+            --font-family: 'Inter', sans-serif;
+            --border-radius: 16px;
+            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #body-qp {
+            font-family: var(--font-family);
+            background-color: var(--color-bg);
+            color: var(--color-text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 180px 20px;
+        }
+
+        /* --- Main Section Container --- */
+        .stats-module {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- Header Area --- */
+        .stats-module__header {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .stats-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: fit-content;
+            margin-top: 8px; /* Align with top of large text */
+        }
+
+        .stats-label::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-accent);
+            border-radius: 50%;
+        }
+
+        .stats-intro {
+            font-size: 2.2rem;
+            line-height: 1.3;
+            font-weight: 500;
+            color: var(--color-text-muted); /* Default to muted grey */
+            max-width: 900px;
+        }
+
+        /* Highlight specific parts in black */
+        .stats-intro strong {
+            color: var(--color-text-main);
+            font-weight: 500; /* Keep weight consistent, just change color */
+        }
+
+        /* --- Content Grid (Image + Stats) --- */
+        .stats-module__content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* --- Image Styling --- */
+        .visual-block {
+            position: relative;
+            width: 100%;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .visual-block__img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease, filter 0.6s ease;
+        }
+        
+        
+
+        /* --- Stats Grid --- */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 40px;
+            row-gap: 60px;
+            padding-top: 20px; /* Slight offset to align optically with image */
+        }
+
+        .metric-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Wrapper for the slide-down animation */
+        .metric-card__value-wrapper {
+            overflow: hidden; /* Hides the number before it drops in */
+            height: 3.5rem; /* Fixed height for the number area */
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .metric-card__value {
+            font-size: 3.5rem;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--color-text-main);
+            transform: translateY(-100%); /* Start hidden above */
+            opacity: 0;
+            display: block;
+            transition: transform 0.8s var(--ease-out), opacity 0.8s var(--ease-out);
+        }
+
+        /* The active state triggered by JS */
+        .metric-card.is-visible .metric-card__value {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .metric-card__label {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #555;
+            max-width: 200px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 900px) {
+            .stats-module__header {
+                grid-template-columns: 1fr; /* Stack header */
+                gap: 20px;
+            }
+            
+            .stats-module__content {
+                grid-template-columns: 1fr; /* Stack image and stats */
+                gap: 40px;
+            }
+
+            .stats-intro {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .metrics-grid {
+                grid-template-columns: 1fr; /* Stack stats on mobile */
+                row-gap: 40px;
+            }
+
+            .metric-card__value {
+                font-size: 3rem;
+            }
+        }
+</style>
+<script>
+     // --- Animation Logic ---
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            const observerOptions = {
+                threshold: 0.2 // Trigger when 20% visible
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startAnimations(entry.target);
+                        observer.unobserve(entry.target); // Run once
+                    }
+                });
+            }, observerOptions);
+
+            const grid = document.getElementById('metricsGrid');
+            observer.observe(grid);
+
+            function startAnimations(container) {
+                const cards = container.querySelectorAll('.metric-card');
+                
+                cards.forEach((card, index) => {
+                    // 1. Trigger the CSS Slide Down animation (staggered)
+                    setTimeout(() => {
+                        card.classList.add('is-visible');
+                        
+                        // 2. Trigger the Number Counting animation
+                        const numberEl = card.querySelector('[data-target]');
+                        if (numberEl) {
+                            animateValue(numberEl, 0, parseInt(numberEl.dataset.target), 2000);
+                        }
+                    }, index * 150); // 150ms stagger delay between items
+                });
+            }
+
+            // Linear interpolation counter
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    
+                    // Ease-out effect for the counter specifically
+                    const easeProgress = 1 - Math.pow(1 - progress, 3); 
+                    
+                    obj.innerHTML = Math.floor(easeProgress * (end - start) + start);
+                    
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+        });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
