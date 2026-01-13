@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lumina | Digital Library</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons" rel="stylesheet">
+    
+    <style>
+        /* --- 1. Variables & Reset --- */
+        :root {
+            /* Google Material 3 Palette */
+            --md-primary: #0b57d0;
+            --md-on-primary: #ffffff;
+            --md-primary-container: #d3e3fd;
+            --md-on-primary-container: #041e49;
+            --md-surface: #ffffff;
+            --md-surface-variant: #f0f4f9;
+            --md-outline: #747775;
+            --md-text-main: #1f1f1f;
+            --md-text-sub: #444746;
+            
+            /* Spacing & Layout */
+            --radius-md: 12px;
+            --radius-lg: 24px;
+            --radius-pill: 50px;
+            --header-height: 64px;
+            --max-width: 1280px;
+            
+            /* Animation */
+            --trans-fast: 0.2s cubic-bezier(0.2, 0.0, 0, 1.0);
+            --trans-smooth: 0.4s cubic-bezier(0.2, 0.0, 0, 1.0);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--md-surface);
+            color: var(--md-text-main);
+            overflow-x: hidden;
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        h1, h2, h3, .brand-font { font-family: 'Google Sans', sans-serif; }
+
+        /* --- 2. Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 48px; height: 48px;
+            border: 5px solid #e0e0e0;
+            border-bottom-color: var(--md-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* --- 3. Navigation --- */
+        .navbar {
+            position: sticky; top: 0;
+            height: var(--header-height);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e0e3e7;
+            z-index: 100;
+            display: flex; align-items: center;
+            padding: 0 24px;
+        }
+        .nav-inner {
+            width: 100%; max-width: var(--max-width); margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo {
+            display: flex; align-items: center; gap: 8px;
+            font-family: 'Google Sans', sans-serif;
+            font-size: 22px; font-weight: 500; color: #444;
+            text-decoration: none;
+        }
+        .nav-actions { display: flex; gap: 12px; }
+        .nav-btn {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 14px; font-weight: 500;
+            color: var(--md-text-sub);
+            padding: 8px 16px;
+            border-radius: var(--radius-pill);
+            cursor: pointer; transition: var(--trans-fast);
+            user-select: none;
+        }
+        .nav-btn:hover { background-color: var(--md-surface-variant); color: #000; }
+        .btn-primary {
+            background-color: var(--md-primary); color: #fff; border: none;
+        }
+        .btn-primary:hover { 
+            background-color: #0842a0; color: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.2); 
+        }
+
+        /* --- 4. Hero Section --- */
+        .hero {
+            text-align: center; padding: 80px 20px 40px;
+            background: radial-gradient(circle at 50% -20%, #f0f6ff, #fff 60%);
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1; margin-bottom: 20px; color: #1f1f1f;
+        }
+        .search-container {
+            max-width: 600px; margin: 40px auto; position: relative;
+        }
+        .search-input {
+            width: 100%; height: 56px;
+            border-radius: 28px; border: 1px solid #dfe1e5;
+            padding: 0 20px 0 52px; font-size: 16px;
+            box-shadow: 0 1px 6px rgba(32,33,36,0.1);
+            outline: none; transition: var(--trans-fast);
+        }
+        .search-input:focus {
+            box-shadow: 0 1px 6px rgba(32,33,36,0.2); border-color: transparent;
+        }
+        .search-icon {
+            position: absolute; left: 16px; top: 50%; transform: translateY(-50%);
+            color: #9aa0a6; pointer-events: none;
+        }
+
+        /* --- 5. Grid & Cards --- */
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; flex: 1; width: 100%; }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 24px; padding-bottom: 40px;
+        }
+
+        .book-card {
+           
+            display: flex; flex-direction: column;
+            position: relative; overflow: hidden;
+            
+        }
+        .book-card:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        
+        .card-img-wrap {
+            aspect-ratio: 2/3; width: 100%;
+            background: #f1f3f4; position: relative;
+            overflow: hidden;
+        }
+        .card-img-wrap img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .card-body { padding: 16px 0; flex: 1; display: flex; flex-direction: column; }
+        .card-title {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 16px; font-weight: 500; margin-bottom: 4px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+        }
+        .card-author { font-size: 13px; color: #5f6368; margin-bottom: 12px; font-weight: 500; }
+        
+        .card-footer {
+            margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+        }
+        .chip {
+            background: #efefef; color: #565656;
+            padding: 4px 10px; border-radius: 60px; font-size: 11px; font-weight: 500;
+        }
+        .action-btn {
+            background: none; border: none; cursor: pointer;
+            padding: 8px; border-radius: 50%; color: #444;
+            transition: background 0.2s;
+            text-decoration: none; display: inline-flex;
+            align-items: center; justify-content: center;
+        }
+        .action-btn:hover { background: #f5f5f5; }
+        .action-btn.saved .material-icons { color: var(--md-primary); }
+
+        /* --- 6. Pagination --- */
+        .pagination-container {
+            display: flex; justify-content: center; align-items: center; gap: 8px;
+            margin: 20px 0 80px;
+        }
+        .page-btn {
+            min-width: 40px; height: 40px; padding: 0 16px;
+            border-radius: 20px; border: 1px solid #e0e3e7;
+            background: #fff; color: var(--md-text-main);
+            font-family: 'Google Sans', sans-serif; font-size: 14px; font-weight: 500;
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; user-select: none;
+        }
+        .page-btn:hover:not(:disabled) { background: var(--md-surface-variant); }
+        .page-btn.active {
+            background: var(--md-primary); color: #fff; border-color: var(--md-primary);
+        }
+        .page-btn:disabled {
+            opacity: 0.5; cursor: not-allowed; background: #f9f9f9;
+        }
+        .page-dots { color: #999; letter-spacing: 2px; }
+
+        /* --- 7. Drawer (Right Side) --- */
+        .drawer-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+            z-index: 900; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+        }
+        .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+        
+        .drawer {
+            position: fixed; top: 0; right: 0; bottom: 0;
+            width: 380px; max-width: 90%; background: #fff;
+            z-index: 901; transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column;
+            box-shadow: -4px 0 24px rgba(0,0,0,0.15);
+        }
+        .drawer.open { transform: translateX(0); }
+        
+        .drawer-header {
+            padding: 16px 24px; border-bottom: 1px solid #eee;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .drawer-body { padding: 20px 24px; overflow-y: auto; flex: 1; }
+        
+        /* Drawer Items */
+        .saved-item {
+            display: flex; gap: 16px; margin-bottom: 16px; padding-bottom: 16px;
+            border-bottom: 1px solid #f5f5f5; align-items: center;
+        }
+        .saved-item img {
+            width: 48px; height: 72px; object-fit: cover; border-radius: 4px; background: #eee;
+        }
+        .saved-info h4 { font-size: 14px; margin-bottom: 4px; }
+        .remove-btn { color: #d93025; font-size: 12px; cursor: pointer; font-weight: 500; }
+
+        .collection-tag {
+            display: inline-block; padding: 10px 16px;
+            border: 1px solid #e0e3e7; border-radius: 12px;
+            margin: 0 8px 12px 0; font-size: 14px; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .collection-tag:hover { border-color: var(--md-primary); background: #f0f6ff; color: var(--md-primary); }
+
+        /* --- 8. Toast Notification --- */
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: #323232; color: white;
+            padding: 14px 24px; border-radius: 4px;
+            font-size: 14px; opacity: 0; transition: all 0.3s; z-index: 2000;
+            display: flex; align-items: center; gap: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* Responsive Tweaks */
+        @media (max-width: 600px) {
+            .navbar { padding: 0 16px; }
+            .nav-btn.desktop-only { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .book-card { flex-direction: row; height: 140px; }
+            .card-img-wrap { width: 100px; height: 100%; aspect-ratio: unset; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .card-body { padding: 12px 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="#" class="logo" onclick="resetView()">
+                Ebooks
+            </a>
+            <div class="nav-actions">
+                <div class="nav-btn desktop-only" onclick="toggleDrawer('collections')">Collections</div>
+                <div class="nav-btn" onclick="toggleDrawer('library')">
+                    <span style="display: flex; align-items: center; gap: 6px;">
+                        <span class="material-icons-outlined" style="font-size: 20px;">bookmarks</span>
+                        <span class="desktop-only">My Library</span>
+                    </span>
+                </div>
+                <button class="nav-btn btn-primary" onclick="showToast('Demo Mode: Backend not connected')">Sign In</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <h1>Unlock knowledge.<br>Anytime, anywhere.</h1>
+            <div class="search-container">
+                <span class="material-icons-outlined search-icon">search</span>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search by title, author, or topic...">
+            </div>
+        </section>
+
+        <section class="container" style="margin-top: 40px;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+                <h2 id="galleryTitle" style="font-size: 22px; color: #1f1f1f;">Trending Now</h2>
+                <span style="font-size: 13px; color: #5f6368;" id="resultCount"></span>
+            </div>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                </div>
+
+            <div class="pagination-container" id="paginationControls"></div>
+
+        </section>
+    </main>
+
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+    <div class="drawer" id="sideDrawer">
+        <div class="drawer-header">
+            <h3 id="drawerTitle">Menu</h3>
+            <span class="material-icons-outlined" style="cursor: pointer;" onclick="closeDrawer()">close</span>
+        </div>
+        <div class="drawer-body" id="drawerContent">
+            </div>
+    </div>
+
+    <div id="toast" class="toast">
+        <span class="material-icons-outlined">info</span>
+        <span id="toastMsg">Notification</span>
+    </div>
+
+    <script>
+        /* --- DATA STORE --- */
+        // NOTE: Create a folder named 'library_files' in your root directory.
+        // Place your PDF files there and update the 'pdfUrl' below to match your filenames.
+        const booksDB = [
+            { id: 1, title: "The Art of Innovation", author: "Tom Kelly", category: "Business", image: "thumbnails/Screenshot 2025-10-20 131322.png", pdfUrl: "library_files/art_of_innovation.pdf" },
+            { id: 2, title: "Design for How People Think", author: "John Whalen", category: "Design", image: "thumbnails/Screenshot 2025-10-20 133026.png", pdfUrl: "library_files/design_think.pdf" },
+            { id: 3, title: "Zero to One", author: "Peter Thiel", category: "Startups", image: "thumbnails/Screenshot 2025-10-20 133112.png", pdfUrl: "library_files/zero_to_one.pdf" },
+            { id: 4, title: "Deep Work", author: "Cal Newport", category: "Productivity", image: "thumbnails/Screenshot 2025-10-20 133146.png", pdfUrl: "library_files/deep_work.pdf" },
+            { id: 5, title: "Atomic Habits", author: "James Clear", category: "Self Help", image: "thumbnails/Screenshot 2025-10-20 133215.png", pdfUrl: "library_files/atomic_habits.pdf" },
+            { id: 6, title: "Clean Code", author: "Robert Martin", category: "Technology", image: "thumbnails/Screenshot 2025-10-22 134428.png", pdfUrl: "library_files/clean_code.pdf" },
+            { id: 7, title: "The Psychology of Money", author: "Morgan Housel", category: "Finance", image: "thumbnails/Screenshot 2025-10-23 102705.png", pdfUrl: "library_files/psych_money.pdf" },
+            { id: 8, title: "Sapiens", author: "Yuval Noah Harari", category: "History", image: "thumbnails/Screenshot 2025-10-20 131322.png", pdfUrl: "library_files/sapiens.pdf" },
+            { id: 9, title: "Educated", author: "Tara Westover", category: "Biography", image: "thumbnails/Screenshot 2025-10-20 133026.png", pdfUrl: "library_files/educated.pdf" },
+            { id: 10, title: "Thinking, Fast and Slow", author: "Daniel Kahneman", category: "Psychology", image: "thumbnails/Screenshot 2025-10-20 133112.png", pdfUrl: "library_files/fast_slow.pdf" },
+            { id: 11, title: "Artificial Intelligence: A Guide", author: "Melanie Mitchell", category: "AI", image: "thumbnails/Screenshot 2025-10-22 134428.png", pdfUrl: "library_files/ai_guide.pdf" },
+            { id: 12, title: "Project Hail Mary", author: "Andy Weir", category: "Sci-Fi", image: "thumbnails/Screenshot 2025-10-20 133146.png", pdfUrl: "library_files/hail_mary.pdf" }
+        ];
+
+        /* --- STATE MANAGEMENT --- */
+        let state = {
+            searchQuery: "",
+            filterCategory: null,
+            savedIds: JSON.parse(localStorage.getItem('lumina_saved_books')) || [],
+            currentPage: 1,
+            itemsPerPage: 6 // Change this to 8 or 12 as you grow the library
+        };
+
+        const placeholderImg = "https://via.placeholder.com/300x450/f0f4f9/999999?text=Book+Cover";
+
+        /* --- INITIALIZATION --- */
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Simulate fast load, then hide spinner
+            setTimeout(() => {
+                document.getElementById('preloader').style.opacity = '0';
+                setTimeout(() => document.getElementById('preloader').style.display = 'none', 500);
+            }, 800);
+
+            // 2. Initial Render
+            renderGrid();
+        });
+
+        /* --- RENDERING ENGINE --- */
+        function renderGrid() {
+            const grid = document.getElementById('galleryGrid');
+            const title = document.getElementById('galleryTitle');
+            const resultCount = document.getElementById('resultCount');
+            const paginationContainer = document.getElementById('paginationControls');
+            
+            grid.innerHTML = "";
+            paginationContainer.innerHTML = "";
+
+            // 1. Filter Logic
+            let filtered = booksDB.filter(book => {
+                const matchesSearch = book.title.toLowerCase().includes(state.searchQuery) || 
+                                      book.author.toLowerCase().includes(state.searchQuery);
+                const matchesCat = state.filterCategory ? book.category === state.filterCategory : true;
+                return matchesSearch && matchesCat;
+            });
+
+            // 2. Pagination Math
+            const totalItems = filtered.length;
+            const totalPages = Math.ceil(totalItems / state.itemsPerPage);
+            
+            // Adjust current page if it exceeds total pages
+            if (state.currentPage > totalPages && totalPages > 0) state.currentPage = totalPages;
+            if (totalPages === 0) state.currentPage = 1;
+
+            const startIndex = (state.currentPage - 1) * state.itemsPerPage;
+            const endIndex = startIndex + state.itemsPerPage;
+            const paginatedItems = filtered.slice(startIndex, endIndex);
+
+            // 3. Update Header
+            resultCount.textContent = `${totalItems} books found`;
+            title.textContent = state.filterCategory ? `${state.filterCategory} Collection` : 
+                               (state.searchQuery ? "Search Results" : "Trending Now");
+
+            // 4. Render Empty State
+            if (totalItems === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px;">
+                        <span class="material-icons-outlined" style="font-size: 48px; color: #ccc;">menu_book</span>
+                        <p style="margin-top: 10px; color: #666;">No books found. Try a different search.</p>
+                        <button onclick="resetView()" class="nav-btn" style="margin-top:10px; border:1px solid #ddd;">Clear Filters</button>
+                    </div>`;
+                return;
+            }
+
+            // 5. Render Cards
+            paginatedItems.forEach(book => {
+                const isSaved = state.savedIds.includes(book.id);
+                const card = document.createElement('article');
+                card.className = 'book-card';
+                card.innerHTML = `
+                    <div class="card-img-wrap">
+                        <img src="${book.image}" alt="${book.title}" onerror="this.src='${placeholderImg}'">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">${book.title}</h3>
+                        <p class="card-author">${book.author}</p>
+                        <div class="card-footer">
+                            <span class="chip">${book.category}</span>
+                            <div style="display: flex; gap: 4px;">
+                                <button class="action-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave(${book.id})" title="${isSaved ? 'Remove' : 'Save'}">
+                                    <span class="material-icons${isSaved ? '' : '-outlined'}">${isSaved ? 'bookmark' : 'bookmark_border'}</span>
+                                </button>
+                                <a href="${book.pdfUrl}" download="${book.title}.pdf" class="action-btn" title="Download PDF">
+                                    <span class="material-icons-outlined">download</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+
+            // 6. Render Pagination Controls
+            if (totalPages > 1) {
+                renderPagination(paginationContainer, totalPages);
+            }
+        }
+
+        function renderPagination(container, totalPages) {
+            // Previous Button
+            const prevBtn = document.createElement('button');
+            prevBtn.className = 'page-btn';
+            prevBtn.innerHTML = '<span class="material-icons">chevron_left</span>';
+            prevBtn.disabled = state.currentPage === 1;
+            prevBtn.onclick = () => changePage(state.currentPage - 1);
+            container.appendChild(prevBtn);
+
+            // Page Numbers
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = `page-btn ${state.currentPage === i ? 'active' : ''}`;
+                btn.innerText = i;
+                btn.onclick = () => changePage(i);
+                container.appendChild(btn);
+            }
+
+            // Next Button
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'page-btn';
+            nextBtn.innerHTML = '<span class="material-icons">chevron_right</span>';
+            nextBtn.disabled = state.currentPage === totalPages;
+            nextBtn.onclick = () => changePage(state.currentPage + 1);
+            container.appendChild(nextBtn);
+        }
+
+        function changePage(pageNum) {
+            state.currentPage = pageNum;
+            renderGrid();
+            // Scroll to top of grid
+            document.querySelector('.container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* --- FEATURES: SAVING & SEARCH --- */
+        
+        // Search Listener
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            state.searchQuery = e.target.value.toLowerCase();
+            state.filterCategory = null; 
+            state.currentPage = 1; // Reset to page 1 on search
+            renderGrid();
+        });
+
+        // Toggle Save (Real-time LocalStorage)
+        function toggleSave(id) {
+            const index = state.savedIds.indexOf(id);
+            if (index === -1) {
+                state.savedIds.push(id);
+                showToast("Added to My Library");
+            } else {
+                state.savedIds.splice(index, 1);
+                showToast("Removed from Library");
+            }
+            // PERSIST DATA
+            localStorage.setItem('lumina_saved_books', JSON.stringify(state.savedIds));
+            
+            // Re-render
+            renderGrid();
+            
+            // If drawer is open, refresh it
+            if(document.getElementById('sideDrawer').classList.contains('open') && 
+               document.getElementById('drawerTitle').innerText === "My Library") {
+                renderLibraryContent();
+            }
+        }
+
+        /* --- DRAWER LOGIC --- */
+        
+        function toggleDrawer(type) {
+            const drawer = document.getElementById('sideDrawer');
+            const overlay = document.getElementById('drawerOverlay');
+            const title = document.getElementById('drawerTitle');
+
+            if (type === 'library') {
+                title.innerText = "My Library";
+                renderLibraryContent();
+            } else {
+                title.innerText = "Collections";
+                renderCollectionsContent();
+            }
+
+            drawer.classList.add('open');
+            overlay.classList.add('open');
+        }
+
+        function closeDrawer() {
+            document.getElementById('sideDrawer').classList.remove('open');
+            document.getElementById('drawerOverlay').classList.remove('open');
+        }
+
+        function renderLibraryContent() {
+            const content = document.getElementById('drawerContent');
+            const savedBooks = booksDB.filter(book => state.savedIds.includes(book.id));
+
+            if (savedBooks.length === 0) {
+                content.innerHTML = `
+                    <div style="text-align: center; margin-top: 40px; color: #666;">
+                        <span class="material-icons-outlined" style="font-size: 40px; color: #ddd;">bookmark_border</span>
+                        <p style="margin-top: 10px;">Your library is empty.<br>Tap the bookmark icon to save books.</p>
+                    </div>`;
+                return;
+            }
+
+            let html = `<p style="font-size: 14px; color: #666; margin-bottom: 20px;">${savedBooks.length} items saved locally</p>`;
+            savedBooks.forEach(book => {
+                html += `
+                    <div class="saved-item">
+                        <img src="${book.image}" onerror="this.src='${placeholderImg}'">
+                        <div class="saved-info">
+                            <h4>${book.title}</h4>
+                            <span class="remove-btn" onclick="toggleSave(${book.id})">Remove</span>
+                        </div>
+                    </div>`;
+            });
+            content.innerHTML = html;
+        }
+
+        function renderCollectionsContent() {
+            const content = document.getElementById('drawerContent');
+            const categories = ["Business", "Technology", "Design", "Self Help", "History", "Finance", "Sci-Fi", "Startups", "AI", "Productivity"];
+            
+            let html = `<p style="font-size: 14px; color: #666; margin-bottom: 20px;">Filter by category</p>
+                        <div style="display: flex; flex-wrap: wrap;">`;
+            
+            categories.forEach(cat => {
+                html += `<span class="collection-tag" onclick="filterByCategory('${cat}')">${cat}</span>`;
+            });
+            
+            html += `</div>
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+                <p style="font-size: 14px; font-weight: 500; margin-bottom: 12px;">More Options</p>
+                <button class="nav-btn" style="padding-left:0; color: #0b57d0;" onclick="resetView()">Show All Books</button>
+            </div>`;
+            
+            content.innerHTML = html;
+        }
+
+        function filterByCategory(cat) {
+            state.filterCategory = cat;
+            state.searchQuery = ""; // Clear search
+            state.currentPage = 1; // Reset page
+            document.getElementById('searchInput').value = "";
+            renderGrid();
+            closeDrawer();
+        }
+
+        function resetView() {
+            state.filterCategory = null;
+            state.searchQuery = "";
+            state.currentPage = 1;
+            document.getElementById('searchInput').value = "";
+            renderGrid();
+            closeDrawer();
+        }
+
+        /* --- TOAST NOTIFICATION --- */
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.add('show');
+            
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+    </script>
+</body>
+</html>
