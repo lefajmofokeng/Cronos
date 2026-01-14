@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Network Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* --- SCOPED CSS VARIABLE DEFINITIONS --- */
+    :root {
+        --it-global-bg-dark: #030712;
+        --it-global-bg-card: #111827;
+        --it-global-text-white: #F9FAFB;
+        --it-global-text-gray: #757b85;
+        --it-global-accent-blue: #3B82F6;
+        --it-global-accent-cyan: #06b6d4;
+        --it-global-accent-purple: #8b5cf6;
+        --it-global-border: rgba(255, 255, 255, 0.1);
+        --it-global-font: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* --- WRAPPER --- */
+    .it-global-wrapper {
+        font-family: var(--it-global-font);
+        background-color: var(--it-global-bg-dark);
+        color: var(--it-global-text-white);
+        width: 100%;
+        overflow-x: hidden;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- UTILITIES --- */
+    .it-global-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 24px;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* --- ANIMATION (Scroll Reveal) --- */
+    .it-global-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .it-global-reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* --- HERO SECTION --- */
+    .it-global-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .it-global-hero-video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        background: radial-gradient(circle at center, #1f2937 0%, #030712 100%); 
+        opacity: 0.6;
+    }
+    
+    .it-global-hero-video-bg video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .it-global-grid-overlay {
+        position: absolute;
+        inset: 0;
+        background-image: 
+            linear-gradient(var(--it-global-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--it-global-border) 1px, transparent 1px);
+        background-size: 50px 50px;
+        opacity: 0.1;
+        z-index: 1;
+        mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+        -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+    }
+
+    .it-global-hero-content {
+        max-width: 900px;
+        z-index: 3;
+    }
+
+    .it-global-pill {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 50px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        color: var(--it-global-accent-cyan);
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 24px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .it-global-h1 {
+        font-size: clamp(40px, 5vw, 72px);
+        font-weight: 600;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 24px;
+    }
+
+    .it-global-lead {
+        font-size: clamp(16px, 2vw, 20px);
+        color: var(--it-global-text-gray);;
+        margin-bottom: 40px;
+        font-weight: 600;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .it-global-cta-row {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+    }
+
+    .it-global-btn {
+        padding: 8px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.2s;
+        display: inline-block;
+    }
+    .it-global-btn:hover { transform: translateY(-2px); }
+
+    .it-global-btn-primary { background: #0072c9; color: var(--it-global-text-white); }
+    .it-global-btn-glow { background: transparent; color: var(--it-global-text-white); border: 2px solid #F9FAFB; }
+
+    /* --- EXPANSION SECTION --- */
+    .it-global-expansion {
+        padding: 180px 0;
+        text-align: center;
+        background-color: #f4f4f4;
+    }
+    .it-global-expansion-content { max-width: 700px; margin: 0 auto; }
+    .it-global-subtitle {
+        color: #0072c9;
+        font-weight: 600;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        display: block;
+        font-size: 18px;
+    }
+    .it-global-h2 {
+        font-size: 42px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        margin-bottom: 16px;
+        color: #000000;
+    }
+
+    /* --- REFACTORED MAP SECTION --- */
+    .it-global-map-section {
+        padding: 120px 0 80px;
+        position: relative;
+        overflow: hidden;
+        background-color: #f4f4f4;
+    }
+
+    .it-global-section-header { text-align: center; margin-bottom: 60px; }
+
+    /* The Map Canvas */
+    .it-global-map-container {
+        position: relative;
+        width: 100%;
+        height: 650px; /* Increased height to fit text cards */
+        background-color: #0b111d;
+        background-size: 20px 20px;
+        border-radius: 8px;
+        /* Ensure nodes don't get clipped */
+        overflow: hidden; 
+    }
+
+    .it-global-world-shape {
+        position: absolute;
+        inset: 0;
+        opacity: 0.8;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg') no-repeat center center;
+        background-size: contain;
+        filter: invert(1) opacity(1);
+        pointer-events: none;
+    }
+
+    /* The Node Wrapper (Contains Dot + Text Card) */
+    .it-global-node-wrapper {
+        position: absolute;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+    }
+
+    /* The Glowing Dot */
+    .it-node-dot {
+        width: 14px;
+        height: 14px;
+        background-color: #3B82F6;
+        border-radius: 50%;
+        box-shadow: 0 0 15px var(--it-global-accent-blue);
+        position: relative;
+        flex-shrink: 0;
+        cursor: pointer;
+        z-index: 20;
+    }
+    .it-node-dot::before {
+        content: '';
+        position: absolute;
+        top: 50%; left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%; height: 100%;
+        background-color: var(--it-global-accent-cyan);
+        border-radius: 50%;
+        animation: it-global-pulse 2s infinite;
+        z-index: -1;
+    }
+    
+    /* The Info Card (Text on Map) */
+    .it-node-card {
+        position: absolute;
+        width: 260px;
+        background: rgba(17, 24, 39, 0.9);
+       
+        padding: 12px 16px;
+        border-radius: 1px;
+        font-size: 13px;
+        color: var(--it-global-text-gray);
+        pointer-events: none; /* Let clicks pass through if needed, or set auto */
+        transition: all 0.3s;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        font-weight: 600;
+    }
+
+    .it-node-card h4 {
+        color: var(--it-global-text-white);
+        margin-bottom: 4px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 500;
+    }
+    
+    /* Connecting Line (Optional visual flair) */
+    .it-node-card::before {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 1px;
+        background: var(--it-global-accent-blue);
+    }
+
+    /* -- REGION SPECIFIC POSITIONING (Desktop) -- */
+    
+    /* New York: Text to the LEFT */
+    .pos-ny { top: 32%; left: 28%; }
+    .pos-ny .it-node-card {
+        right: 24px; /* Push to left of dot */
+        top: 50%; transform: translateY(-50%);
+        text-align: right;
+    }
+    .pos-ny .it-node-card::before {
+        right: -20px; top: 50%; /* Line to dot */
+    }
+    .pos-ny .it-node-card h4 { justify-content: flex-end; }
+
+    /* London: Text to the RIGHT */
+    .pos-ldn { top: 26%; left: 48%; }
+    .pos-ldn .it-node-card {
+        left: 24px; /* Push to right of dot */
+        top: 50%; transform: translateY(-50%);
+    }
+    .pos-ldn .it-node-card::before { left: -20px; top: 50%; }
+
+    /* SA: Text to the BOTTOM */
+    .pos-sa { top: 68%; left: 53%; }
+    .pos-sa .it-node-dot { background-color: var(--it-global-accent-purple); box-shadow: 0 0 15px var(--it-global-accent-purple); }
+    .pos-sa .it-node-card {
+        top: 24px; left: 50%; transform: translateX(-50%);
+        text-align: center;
+        width: 220px;
+    }
+    .pos-sa .it-node-card::before {
+        width: 1px; height: 20px;
+        top: -20px; left: 50%;
+    }
+    .pos-sa .it-node-card h4 { justify-content: center; }
+
+    /* Japan: Text to the TOP */
+    .pos-jp { top: 35%; left: 85%; }
+    .pos-jp .it-node-card {
+        bottom: 24px; left: 50%; transform: translateX(-50%);
+        text-align: center;
+        width: 200px;
+    }
+    .pos-jp .it-node-card::before {
+        width: 1px; height: 20px;
+        bottom: -20px; left: 50%;
+    }
+    .pos-jp .it-node-card h4 { justify-content: center; }
+
+    /* Singapore: Text to the LEFT (to avoid overlapping Sydney) */
+    .pos-sg { top: 60%; left: 78%; }
+    .pos-sg .it-node-card {
+        right: 24px; top: 50%; transform: translateY(-50%);
+        text-align: right;
+        width: 220px;
+    }
+    .pos-sg .it-node-card::before { right: -20px; top: 50%; }
+    .pos-sg .it-node-card h4 { justify-content: flex-end; }
+
+    /* Sydney: Text to the RIGHT */
+    .pos-syd { top: 80%; left: 88%; }
+    .pos-syd .it-node-card {
+        right: 24px; top: 50%; transform: translateY(-50%);
+        text-align: right; /* Keep right to stay in bounds */
+    }
+    .pos-syd .it-node-card::before { right: -20px; top: 50%; }
+    .pos-syd .it-node-card h4 { justify-content: flex-end; }
+
+    @keyframes it-global-pulse {
+        0% { width: 100%; height: 100%; opacity: 0.8; }
+        100% { width: 300%; height: 300%; opacity: 0; }
+    }
+
+    /* --- MOBILE RESPONSIVE MAP OVERRIDE --- */
+    @media (max-width: 900px) {
+        /* Reset Container Height to Auto */
+        .it-global-map-container {
+            height: auto;
+            display: block;
+            padding: 40px 20px;
+            /* Keep map bg but let content flow */
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Hide the shape overlay on mobile if it interferes with text readability */
+        .it-global-world-shape {
+            opacity: 0.1;
+            /* Make it fixed or cover to simulate background */
+            background-size: cover; 
+        }
+
+        /* Reset Node Positioning */
+        .it-global-node-wrapper {
+            position: relative;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            transform: none !important;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row; /* Icon Left, Text Right */
+        }
+
+        /* Reset Card Styles for Stacked View */
+        .it-node-card {
+            position: relative;
+            top: auto !important;
+            left: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            transform: none !important;
+            width: 100%;
+            margin-left: 16px;
+            text-align: left !important;
+            background: rgba(17, 24, 39, 0.6); /* Slightly more transparent */
+        }
+        
+        .it-node-card::before { display: none; /* Hide connector lines on mobile */ }
+        .it-node-card h4 { justify-content: flex-start !important; }
+    }
+
+    /* --- MEDIA SECTION --- */
+    .it-media-feature { padding: 150px 0; background: #f4f4f4; }
+    .it-media-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .it-media-video-wrapper {
+        border-radius: 8px; overflow: hidden;
+        border: 1px solid var(--it-global-border);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        aspect-ratio: 11/9;
+    }
+    .it-media-video-wrapper video { width: 100%; height: 100%; object-fit: cover; }
+    .it-media-list { margin-top: 24px; list-style: none; }
+    .it-media-list li {
+        margin-bottom: 16px; padding-left: 24px; position: relative;
+        color: var(--it-global-text-gray);
+    }
+    .it-media-list li::before {
+        content: '✓'; position: absolute; left: 0; color: var(--it-global-accent-blue); font-weight: bold;
+    }
+
+    /* --- BENTO GRID --- */
+    .it-global-grid-section { padding: 160px 0 160px;}
+    .it-global-bento-grid {
+        display: grid; grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 300px); gap: 20px;
+    }
+    .it-global-card {
+        background: var(--it-global-bg-card); border-radius: 20px; padding: 32px;
+        position: relative; overflow: hidden; transition: border-color 0.3s;
+        display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .it-global-card:hover { border-color: var(--it-global-text-gray); }
+    .it-span-2 { grid-column: span 2; } .it-span-1 { grid-column: span 1; }
+    .it-global-card-icon {
+        width: 48px; height: 48px; background: rgba(255,255,255,0.05);
+        border-radius: 12px; display: flex; align-items: center; justify-content: center;
+        font-size: 24px; margin-bottom: 24px;
+    }
+    .it-global-card-h3 { font-size: 34px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .it-global-card-p { font-size: 16px; font-weight: 500; color: var(--it-global-text-gray); }
+    .it-deco-gradient {
+        position: absolute; top: -50%; right: -20%; width: 300px; height: 300px;
+        background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%); pointer-events: none;
+    }
+
+    /* --- FOOTER CTA --- */
+    .it-global-footer-cta {
+        border-top: 1px solid var(--it-global-border); padding: 100px 0; text-align: center;
+        background: linear-gradient(180deg, var(--it-global-bg-dark) 0%, #0f172a 100%);
+    }
+
+    @media (max-width: 900px) {
+        .it-global-h1 { font-size: 40px; }
+        .it-global-bento-grid { display: flex; flex-direction: column; height: auto; }
+        .it-global-card { min-height: 250px; }
+        .it-media-grid { grid-template-columns: 1fr; }
+    }
+
+    .desc-global {
+        color: #2b2d30;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        margin: 40px 0 0 0;
+    }
+</style>
+</head>
+<body>
+
+<div class="it-global-wrapper">
+
+    <section class="it-global-hero">
+        <div class="it-global-hero-video-bg">
+            <video autoplay muted loop playsinline>
+                <source src="https://www.pexels.com/download/video/1851190/" type="video/mp4">
+            </video>
+        </div>
+        <div class="it-global-grid-overlay"></div>
+        
+        <div class="it-global-container it-global-hero-content">
+            <div class="it-global-pill it-global-reveal">Vision 2030</div>
+            <h1 class="it-global-h1 it-global-reveal">
+                Connecting Intelligence <br>
+                Beyond Borders
+            </h1>
+            <p class="it-global-lead it-global-reveal">
+                We are architecting the future of global connectivity. A low-latency, high-security mesh network designed for the next generation of enterprise IT.
+            </p>
+            <div class="it-global-cta-row it-global-reveal">
+                <a href="#" class="it-global-btn it-global-btn-primary">View Network Map</a>
+                <a href="#" class="it-global-btn it-global-btn-glow">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="it-global-expansion">
+        <div class="it-global-container it-global-expansion-content it-global-reveal">
+            <span class="it-global-subtitle">The Roadmap</span>
+            <h2 class="it-global-h2">Expanding Our Horizons</h2>
+            <p class="it-global-lead">
+               We aren't just building cables; we are building intelligence. Our expansion strategy targets the world's fastest-growing digital economies, laying the foundation for a seamless Tier-1 mesh network.
+            </p>
+        </div>
+    </section>
+
+    
+
+    <section class="it-global-map-section">
+        <div class="it-global-container">
+            <div class="it-global-section-header it-global-reveal">
+                <h2 class="it-global-h2" style="line-height: 1;">Service Zones, real-time monitoring, and managed services across international countires</h2>
+                <p class="it-global-lead">Real-time capabilities active across our mesh network.</p>
+            </div>
+
+            <div class="it-global-map-container it-global-reveal">
+                <div class="it-global-world-shape"></div>
+                
+                <div class="it-global-node-wrapper pos-ny">
+                    <div class="it-node-dot"></div>
+                    <div class="it-node-card">
+                        <h4>New York, USA</h4>
+                        Primary HFT corridors & AWS US-East on-ramps.
+                    </div>
+                </div>
+
+                <div class="it-global-node-wrapper pos-ldn">
+                    <div class="it-node-dot"></div>
+                    <div class="it-node-card">
+                        <h4>London, UK</h4>
+                        GDPR-compliant storage hub with LINX peering.
+                    </div>
+                </div>
+
+                <div class="it-global-node-wrapper pos-sa">
+                    <div class="it-node-dot"></div>
+                    <div class="it-node-card">
+                        <h4>Johannesburg (HQ)</h4>
+                        Command Center (NOC) & Redundancy Core.
+                    </div>
+                </div>
+
+                <div class="it-global-node-wrapper pos-sg">
+                    <div class="it-node-dot"></div>
+                    <div class="it-node-card">
+                        <h4>Singapore</h4>
+                        Mobile-first edge compute & content delivery.
+                    </div>
+                </div>
+
+                <div class="it-global-node-wrapper pos-jp">
+                    <div class="it-node-dot"></div>
+                    <div class="it-node-card">
+                        <h4>Tokyo, JP</h4>
+                        High-density Asia-Pacific routing node.
+                    </div>
+                </div>
+
+                <div class="it-global-node-wrapper pos-syd">
+                    <div class="it-node-dot"></div>
+                    <div class="it-node-card">
+                        <h4>Sydney, AU</h4>
+                        Southern hemisphere disaster recovery site.
+                    </div>
+                </div>
+
+            </div>
+            <div class="desc-global">
+                <p>(1) Securities are being offered to U.S. persons through Foris Capital US LLC. Foris Capital US LLC is an SEC-registered broker-dealer and member of FINRA and SIPC. All stock deposit bonuses are provided by and subject to Foris Capital US LLC's sole discretion. All amounts shown are representative.</p>
+                <p>(2) All banking services will be provided by an authorised financial institution subject to the laws of the relevant jurisdiction. Availability subject to jurisdiction and terms and conditions.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="it-media-feature">
+        <div class="it-global-container">
+            <div class="it-media-grid">
+                <div class="it-media-video-wrapper it-global-reveal">
+                    <video autoplay muted loop playsinline>
+                        <source src="https://www.pexels.com/download/video/8246970/" type="video/mp4">
+                    </video>
+                </div>
+                <div class="it-media-content it-global-reveal">
+                    <h2 class="it-global-h2" style="color: #000000; line-height: 1;">Hardware-Accelerated Throughput</h2>
+                    <p class="it-global-lead" style="margin-bottom: 20px;">
+                        Software-defined networking is only half the story. We deploy custom ASIC hardware at every node to handle encryption and routing at wire speed.
+                    </p>
+                    <a href="#" class="it-global-btn it-global-btn-primary" style="margin-top: 20px;">Learn about our Tech</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="it-global-grid-section">
+        <div class="it-global-container">
+            <div class="it-global-bento-grid">
+                
+                <div class="it-global-card it-span-2 it-global-reveal">
+                    <div class="it-deco-gradient"></div>
+                    <div class="it-global-card-icon">🚀</div>
+                    <div>
+                        <h3 class="it-global-card-h3">Edge Computing Acceleration</h3>
+                        <p class="it-global-card-p">We are moving processing power closer to where data is generated. Our future Edge nodes will reduce bandwidth use and improve response times for your mission-critical applications.</p>
+                    </div>
+                </div>
+
+                <div class="it-global-card it-span-1 it-global-reveal">
+                    <div class="it-global-card-icon">🛡️</div>
+                    <div>
+                        <h3 class="it-global-card-h3">Zero Trust Core</h3>
+                        <p class="it-global-card-p">Every packet verified. Our global architecture is built on Zero Trust principles from the ground up.</p>
+                    </div>
+                </div>
+
+                <div class="it-global-card it-span-1 it-global-reveal">
+                    <div class="it-global-card-icon">⚡</div>
+                    <div>
+                        <h3 class="it-global-card-h3">Instant Scalability</h3>
+                        <p class="it-global-card-p">Spin up resources in new regions with a single click via our upcoming unified dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="it-global-card it-span-2 it-global-reveal">
+                    <div class="it-deco-gradient" style="left: -20%; right: auto; background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);"></div>
+                    <div class="it-global-card-icon">🌐</div>
+                    <div>
+                        <h3 class="it-global-card-h3">Unified Global Compliance</h3>
+                        <p class="it-global-card-p">Navigating GDPR, POPIA, and CCPA is complex. Our network is being built with automated compliance routing to ensure data stays within legal borders automatically.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Industries Component</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .itindustries-wrapper {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            padding: 200px 40px;
+            margin: 0;
+        }
+
+        .itindustries-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .itindustries-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0072c9;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .itindustries-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .itindustries-title {
+            font-size: 42px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin: 0;
+            color: #000000;
+        }
+
+        .itindustries-title-highlight {
+            color: #8b8b8b;
+        }
+
+        .itindustries-cta-btn {
+            background: #0073c6;
+            color: white;
+            padding: 5px 5px 5px 25px;
+            border-radius: 60px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .itindustries-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+        }
+
+        .itindustries-arrow {
+            background: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .itindustries-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .itindustries-card {
+            background: #2a2a2a;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 0.85;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .itindustries-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+        }
+
+        .itindustries-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .itindustries-card:hover .itindustries-card-image {
+            transform: scale(1.05);
+        }
+
+        .itindustries-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            padding: 30px;
+            color: white;
+        }
+
+        .itindustries-card-title {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0 0 15px 0;
+        }
+
+        .itindustries-card-description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #d0d0d0;
+            margin: 0 0 20px 0;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .itindustries-card:hover .itindustries-card-description {
+            opacity: 1;
+            max-height: 200px;
+        }
+
+        .itindustries-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .itindustries-card:hover .itindustries-card-list {
+            opacity: 1;
+            max-height: 300px;
+        }
+
+        .itindustries-card-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .itindustries-card-list li::before {
+            content: '✓';
+            color: #ff5722;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        @media (max-width: 1200px) {
+            .itindustries-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .itindustries-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .itindustries-title {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .itindustries-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .itindustries-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .itindustries-title {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="itindustries-wrapper">
+        <div class="itindustries-container">
+            <div class="itindustries-badge">Industries We Serve</div>
+            
+            <div class="itindustries-header">
+                <h1 class="itindustries-title">
+                    Serving <span class="itindustries-title-highlight">excellence</span><br>
+                    across every industry
+                </h1>
+                <button class="itindustries-cta-btn">
+                    Explore All Capabilities
+                    <span class="itindustries-arrow">→</span>
+                </button>
+            </div>
+
+            <div class="itindustries-grid">
+                <!-- Card 1: Cloud Computing -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80" alt="Cloud Computing" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">Cloud Computing</h3>
+                        <p class="itindustries-card-description">Scalable infrastructure and services for modern cloud-native applications.</p>
+                        <ul class="itindustries-card-list">
+                            <li>AWS & Azure solutions</li>
+                            <li>Cloud migration services</li>
+                            <li>Infrastructure automation</li>
+                            <li>Multi-cloud management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2: Cybersecurity -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80" alt="Cybersecurity" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">Cybersecurity</h3>
+                        <p class="itindustries-card-description">Comprehensive security solutions to protect your digital assets.</p>
+                        <ul class="itindustries-card-list">
+                            <li>Threat detection & response</li>
+                            <li>Penetration testing</li>
+                            <li>Security compliance</li>
+                            <li>Identity management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3: AI & Machine Learning -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="AI & Machine Learning" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">AI & Machine Learning</h3>
+                        <p class="itindustries-card-description">Intelligent automation and predictive analytics for business growth.</p>
+                        <ul class="itindustries-card-list">
+                            <li>Custom AI models</li>
+                            <li>Natural language processing</li>
+                            <li>Computer vision systems</li>
+                            <li>Predictive analytics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 4: DevOps -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&q=80" alt="DevOps" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">DevOps</h3>
+                        <p class="itindustries-card-description">Streamlined development operations for faster delivery cycles.</p>
+                        <ul class="itindustries-card-list">
+                            <li>CI/CD pipelines</li>
+                            <li>Container orchestration</li>
+                            <li>Infrastructure as code</li>
+                            <li>Monitoring & logging</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 5: Data Analytics -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80" alt="Data Analytics" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">Data Analytics</h3>
+                        <p class="itindustries-card-description">Transform raw data into actionable business insights.</p>
+                        <ul class="itindustries-card-list">
+                            <li>Business intelligence</li>
+                            <li>Data warehousing</li>
+                            <li>Real-time analytics</li>
+                            <li>Data visualization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 6: Mobile Development -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80" alt="Mobile Development" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">Mobile Development</h3>
+                        <p class="itindustries-card-description">Native and cross-platform mobile applications for iOS and Android.</p>
+                        <ul class="itindustries-card-list">
+                            <li>iOS & Android apps</li>
+                            <li>React Native solutions</li>
+                            <li>Progressive web apps</li>
+                            <li>Mobile UI/UX design</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 7: Blockchain -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&q=80" alt="Blockchain" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">Blockchain</h3>
+                        <p class="itindustries-card-description">Decentralized solutions and smart contract development.</p>
+                        <ul class="itindustries-card-list">
+                            <li>Smart contracts</li>
+                            <li>DApp development</li>
+                            <li>Cryptocurrency integration</li>
+                            <li>NFT platforms</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 8: IoT Solutions -->
+                <div class="itindustries-card">
+                    <img src="https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&q=80" alt="IoT Solutions" class="itindustries-card-image">
+                    <div class="itindustries-card-overlay">
+                        <h3 class="itindustries-card-title">IoT Solutions</h3>
+                        <p class="itindustries-card-description">Connected devices and intelligent sensor networks.</p>
+                        <ul class="itindustries-card-list">
+                            <li>Sensor integration</li>
+                            <li>Edge computing</li>
+                            <li>Industrial IoT</li>
+                            <li>Smart home systems</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="it-global-footer-cta">
+        <div class="it-global-container it-global-reveal">
+            <h2 class="it-global-h2" style="font-size: 42px; line-height: 1; color: #F9FAFB;">One rewarding experience <br> for everything</h2>
+            <p class="it-global-lead">Join our pilot program for global enterprise connectivity.</p>
+            <a href="#" class="it-global-btn it-global-btn-primary" style="background: var(--it-global-accent-blue); color: white; border: none;">Start Conversation</a>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const revealElements = document.querySelectorAll('.it-global-reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
