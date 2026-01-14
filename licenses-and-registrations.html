@@ -1,8 +1,16 @@
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <!-- HYPERION-HEADER START -->
 <style>
     /* =============================================
         HYPERION HEADER - UNIQUE STYLES
         ============================================= */
+
+    * {
+        font-family: 'Inter', sans-serif;
+    }    
     :root {
         /* Palette */
         --hyperion-color-header-bg: #080d1b;
@@ -17,7 +25,7 @@
         
         /* Sizing */
         --hyperion-header-height: 55px;
-        --hyperion-content-max-width-fg: 1500px;
+        --hyperion-content-max-width-fg: 1420px;
     }
 
     .hyperion-header-wrapper {
@@ -42,7 +50,7 @@
         max-width: var(--hyperion-content-max-width-fg);
         width: 100%;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -55,7 +63,7 @@
         letter-spacing: -0.5px;
         color: var(--hyperion-color-text-light);
         transition: color 0.3s ease;
-        height: 23px;
+        height: 30px;
         vertical-align: middle;
     }
     
@@ -129,10 +137,11 @@
         font-weight: 600;
         font-size: 15px;
         cursor: pointer;
-        margin-left: 20px;
+        margin-left: 10px;
         transition: background-color 0.2s ease;
         text-decoration: none;
         border-bottom: none;
+        font-family: 'Inter', sans-serif;
     }
 
     .hyperion-header-action-btn a {
@@ -156,9 +165,9 @@
         font-size: 15px;
         cursor: pointer;
         margin-left: 10px;
-        transition: background-color 0.2s ease;
         text-decoration: none;
         border-bottom: none;
+        font-family: 'Inter', sans-serif;
     }
 
     .hyperion-header-secondary-btn a {
@@ -208,12 +217,12 @@
         top: calc(100% + 10px);
         right: 0;
         background-color: #080d1b;
-        border-radius: 10px;
-        padding: 20px;
+        border-radius: 15px;
+        padding: 10px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 130px;
+        width: 120px;
         visibility: hidden;
         opacity: 0;
         transform: translateY(-10px);
@@ -269,7 +278,7 @@
         max-width: var(--hyperion-content-max-width-fg);
         width: 100%;
         margin: 0 auto;
-        padding: 20px 40px 40px 40px;
+        padding: 20px 40px 40px 121px;
     }
 
     .hyperion-mega-menu-panel.active {
@@ -282,7 +291,7 @@
         grid-template-columns: repeat(3, 250px);
         gap: 40px;
         justify-content: start;
-        padding-left: 8.45rem;
+        
     }
     
     .hyperion-menu-group-card {
@@ -308,8 +317,9 @@
     .hyperion-menu-group-img-icon {
         width: auto;
         height: 40px;
-        margin-right: 8px;
+        margin-right: 12px;
         flex-shrink: 0;
+        border-radius: 11px;
         backface-visibility: visible;
     }
     
@@ -440,7 +450,7 @@
         .hyperion-custom-nav-list li {
             margin: 0;
             width: 100%;
-            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            
         }
 
         .hyperion-custom-nav-link {
@@ -595,16 +605,12 @@
                 <ul class="hyperion-custom-nav-list">
                     <li>
                         <a href="pricing.html" class="hyperion-custom-nav-link">Pricing
-                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                             
                         </a>
                     </li>
                     <li>
-                        <a href="page.html" class="hyperion-custom-nav-link">Projects
-                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="projects">Ecosystem
+                             
                         </a>
                     </li>
                     <li class="hyperion-custom-nav-item--has-megamenu">
@@ -629,7 +635,7 @@
                                                     </a>
                                             </li>
                                             <li>
-                                                <a href="page.html">
+                                                <a href="mobile-applications.html">
                                                     <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                                     </a>
                                             </li>
@@ -851,15 +857,15 @@
                 </ul>
                 <div class="hyperion-header-action-buttons">
                     <button class="hyperion-header-secondary-btn">
-                        <a href="page.html">Get Started</a>
+                        <a href="page.html">Log In</a>
                     </button>
                     <button class="hyperion-header-action-btn">
-                        <a href="page.html">Contact Us</a>
+                        <a href="page.html">Sign Up</a>
                     </button>
                     <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
+                      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
                         <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
-                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Contact Sales</p>
                         </div>
                     </div>
                 </div>
@@ -880,36 +886,34 @@
                 
                 <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/01.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                        <img src="thumbnails/04 (2).png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
                         <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             Software Development
                             <span class="hyperion-menu-group-tagline">Build your custom vision</span>
                         </span>
                     </h3>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">AI</span>
+                                </a>
+                        </li>
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">Web Applications</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="page.html">
+                            <a href="mobile-applications.html">
                                 <span class="hyperion-mega-menu-link-title">Mobile Applications</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
+                                <span class="hyperion-mega-menu-link-title">E-commerce</span>
                                 </a>
                         </li>
                         <li>
@@ -933,15 +937,28 @@
                             <span class="hyperion-menu-group-tagline">Power your business</span>
                         </span>
                     </h3>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn About IT
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                <span class="hyperion-mega-menu-link-title">IT Support & Helpdesk</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Managed IT Infrastructure</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">IT Consulting</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Cybersecurity</span>
                                 </a>
                         </li>
                         <li>
@@ -952,11 +969,6 @@
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                 </a>
                         </li>
                     </ul>
@@ -970,6 +982,9 @@
                             <span class="hyperion-menu-group-tagline">Grow your audience</span>
                         </span>
                     </h3>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Marketing
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
@@ -988,12 +1003,7 @@
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
+                                <span class="hyperion-mega-menu-link-title">Advertising</span>
                                 </a>
                         </li>
                     </ul>
@@ -1027,11 +1037,6 @@
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">Product News</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Events</span>
                                 </a>
                         </li>
                         <li>
@@ -1077,43 +1082,27 @@
                                 <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                 </a>
                         </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Recommendations</span>
-                                </a>
-                        </li>
-
                     </ul>
                 </div>
 
                 <div class="hyperion-menu-group-card">
                     <h3>
-                        Connect
+                        Learn
                     </h3>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">X</span>
+                                <span class="hyperion-mega-menu-link-title">Learn</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Facebook</span>
+                                <span class="hyperion-mega-menu-link-title">Research</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">LinkedIn</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Youtube</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Github</span>
+                                <span class="hyperion-mega-menu-link-title">Market Updates</span>
                                 </a>
                         </li>
                     </ul>
@@ -1350,7 +1339,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1365,13 +1353,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <header class="licenses-hero-section">
         <div class="hero-background-gradient"></div>
-        <h1 class="hero-main-title">Hyperion SA Compliance Ledger</h1>
+        <h1 class="hero-main-title">Cronos Licenses</h1>
         <div class="hero-glow-effect"></div>
     </header>
 
     <main class="licenses-content-area">
         <div class="licenses-info-card">
-            <h2 class="card-intro-heading">Hyperion is registered and authorized to operate across all nine South African provinces:</h2>
+            <h2 class="card-intro-heading">Cronos is registered and authorized to operate across all nine South African provinces:</h2>
             
             <div class="licenses-table">
                 <div class="table-header-row">
@@ -1496,7 +1484,7 @@ body.defcon-licenses-page {
 .licenses-hero-section {
     position: relative;
     width: 100%;
-    min-height: 500px; /* Adjust height as needed */
+    min-height: 550px; /* Adjust height as needed */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1511,18 +1499,18 @@ body.defcon-licenses-page {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(145deg, #0008ffc2 0%, #040e2a 40%, #040a23 100%); /* Darker blue to Defcon blue */
+    background: linear-gradient(145deg, #001affc2 0%, #040e2a 40%, #040a23 100%); /* Darker blue to Defcon blue */
     z-index: -1;
 }
 
 .hero-main-title {
     font-size: clamp(2.5rem, 5vw, 60px);
-    font-weight: 700;
+    font-weight: 600;
     color: #fff;
     text-align: center;
     z-index: 1;
     margin-bottom: 3rem;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.02em;
     margin-top: -180px;
 
 }
@@ -1570,7 +1558,7 @@ body.defcon-licenses-page {
 }
 
 .card-intro-heading {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     font-weight: 600;
     margin-bottom: 30px;
     color: #000;
@@ -1615,8 +1603,9 @@ body.defcon-licenses-page {
     padding: 15px 20px;
     background-color: #0080ff1e; /* Dark blue for group headers */
     color: #000;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 1.2rem;
+    letter-spacing: -0.02em;
     border: none;
     font-family: 'Inter', sans-serif;
 }
@@ -1665,7 +1654,8 @@ body.defcon-licenses-page {
 
 .country-cell {
     flex: 0.8; /* Match header width */
-    font-weight: 500;
+    font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 .license-details {
@@ -2007,6 +1997,9 @@ body.defcon-licenses-page {
 
 
 
+
+
+
 <!-- =============================================
      *** FOOTER ***
      ============================================= -->
@@ -2026,7 +2019,7 @@ body.defcon-licenses-page {
   }
 
   .pc-footer-wrapper {
-    max-width: 1300px;
+    max-width: 1250px;
     margin: 0 auto;
     
   }
@@ -2041,7 +2034,7 @@ body.defcon-licenses-page {
   }
 
   .image-logo {
-    height: 30px;
+    height: 35px;
     align-items: center;
     align-self: center;
     vertical-align: middle;
@@ -2134,8 +2127,8 @@ body.defcon-licenses-page {
   /* Footer content with columns */
   .footer-content {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 80px;
     margin-bottom: 30px;
     padding-top: 3.5rem;
     width: 100%;
@@ -2418,11 +2411,12 @@ body.defcon-licenses-page {
 }
 </style>
 
-<div style="background-color: #080d1b; margin: 0; padding: 2rem 0;">
+<div style="background-color: #080d1b; margin: 0; padding: 3.5rem 0;">
   <primecapital-footer class="pc-footer-container">
     <div class="pc-footer-wrapper">
       <!-- *** TOP SECTION: LOGO AND SOCIAL ICONS *** -->
-      <div class="pc-footer-top">
+      
+        <div class="pc-footer-top">
         <div class="pc-footer-logo">
           <a href="index.html">
             <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
@@ -2431,21 +2425,7 @@ body.defcon-licenses-page {
 
         <hr class="pc-footer-line">
       </div>
-
-      <!-- *** MIDDLE CONTENT SECTION *** -->
-      <div class="pc-footer-content">
-        <div class="footer-columns">
-          <div class="footer-left">
-            <p>
-              We operate as a digitally-native technology enterprise, delivering comprehensive solutions across the entire information technology spectrum through our advanced digital infrastructure and methodologies. Our systems are optimized for virtual engagement, allowing us to deliver efficient, responsive service without the need for constant on-site presence.
-            </p>
-
-            <p>
-              Please note that our expert IT specialists are deployed to client locations exclusively when on-site intervention becomes absolutely necessary for project completion or when remote capabilities prove insufficient for the technical requirements at hand.
-            </p>
-          </div>
-        </div>
-      </div>
+      
 
       <!-- *** FOOTER CONTENT WITH COLUMNS *** -->
       <div class="footer-content">
@@ -2455,88 +2435,35 @@ body.defcon-licenses-page {
           <h3>Resources</h3>
           <ul>
             <li><a href="page.html">Blog</a></li>
-            <li><a href="page.html">Learn</a></li>
-            <li><a href="page.html">eBooks</a></li>
-            <li><a href="page.html">Podcasts</a></li>
-            <li><a href="page.html">Webinars</a></li>
-            <li><a href="page.html">YouTube Playlists</a></li>
-            <li><a href="page.html">Recommendations</a></li>
-            <li><a href="page.html">Training & Certification</a></li>
+            <li><a href="page.html">Github</a></li>
+            <li><a href="page.html">Glossary</a></li>
+            <li><a href="market-insights.html">Market Insights</a></li>
           </ul>
         </div>
 
         </div>
 
-        <div>
-          <!-- Services Column -->
+         <div>
+          <!-- Updates Column -->
           <div class="footer-column">
-            <h3>Solutions</h3>
+            <h3>Businesses</h3>
             <ul>
-              <li><a href="page.html">Software Development</a></li>
-              <li><a href="page.html">IT Infrastructure</a></li>
-              <li><a href="page.html">Communicative Media</a></li>
-            </ul>
-          </div>
-
-          <div class="footer-column">
-            <h3>Developers</h3>
-            <ul>
-              <li><a href="page.html">API Docs</a></li>
-              <li><a href="page.html">Github</a></li>
-              <li><a href="page.html">SDKs & Libraries</a></li>
-              <li><a href="page.html">Developer Guides</a></li>
-              <li><a href="page.html">Code of Conduct</a></li>
-              <li><a href="page.html">Support</a></li>
-              <li><a href="page.html">Community</a></li>
-              <li><a href="page.html">Open Source</a></li>
-            
-              
+              <li><a href="global.html">Global Network</a></li>
             </ul>
           </div>
         </div>
 
-        <!-- Help Column -->
-        <div class="footer-column">
-          <h3>Help</h3>
-          <ul>
-            <li><a href="page.html">Contact Support</a></li>
-            <li><a href="page.html">Plan Comparison</a></li>
-            <li><a href="glossary.html">Glossary</a></li>
-            <li><a href="page.html">FAQs</a></li>
-            <li><a href="page.html">Account & Billing</a></li>
-            <li><a href="page.html">Feedback</a></li>
-            <li><a href="page.html">knowledge Base</a></li>
-          </ul>
-        </div>
-
-        <!-- Updates Column -->
-          <div class="footer-column">
-            <h3>Business</h3>
-            <ul>
-              <li><a href="page.html">Partnership</a></li>
-              <li><a href="page.html">Industries</a></li>
-              <li><a href="page.html">Investment</a></li>
-              <li><a href="page.html">Corporate Responsibility</a></li>
-              <li><a href="page.html">Global Network</a></li>
-              <li><a href="page.html">Market Insights</a></li>
-              <li><a href="page.html">Startup Collaboration</a></li>
-            </ul>
-          </div>
 
         <!-- Company Column -->
         <div class="footer-column">
           <h3>Company</h3>
           <ul>
-            <li><a href="page.html">About Us</a></li>
-            <li><a href="page.html">Roadmap</a></li>
-            <li><a href="page.html">Innovations</a></li>
+            <li><a href="about.html">About Us</a></li>
             <li><a href="careers.html">Careers</a></li>
-            <li><a href="page.html">Legal</a></li>
-            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-            <li><a href="partners.html">Partners</a></li>
+            <li><a href="page.html">Partners</a></li>
             <li><a href="affiliates.html">Affiliate</a></li>
-            <li><a href="security.html">Security</a></li>
-            <li><a href="page.html">Capital</a></li>
+            <li><a href="capital.html">Capital</a></li>
+            <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
             <li><a href="page.html">Verify</a></li>
           </ul>
         </div>
@@ -2548,20 +2475,30 @@ body.defcon-licenses-page {
             <h3>Updates</h3>
             <ul>
               <li><a href="#">X</a></li>
-              <li><a href="page.html">Company News</a></li>
               <li><a href="page.html">Product Updates</a></li>
-              <li><a href="page.html">Events</a></li>
               <li><a href="page.html">Facebook</a></li>
               <li><a href="page.html">Youtube</a></li>
               <li><a href="page.html">LinkedIn</a></li>
-              <li><a href="page.html">Github</a></li>
             </ul>
           </div>
         </div>
 
       </div>
 
-      <hr class="pc-footer-line">
+        <hr class="pc-footer-line">
+
+<!-- *** MIDDLE CONTENT SECTION *** -->
+      <div class="pc-footer-content">
+        <div class="footer-columns">
+          <div class="footer-left">
+            <p>
+                We operate as a digitally native technology enterprise, delivering end-to-end IT solutions through modern digital infrastructure and streamlined methodologies. Our services are optimized for remote engagement, enabling fast and efficient support, with on-site deployment reserved only for situations where physical presence is essential or remote solutions are not technically viable.            </p>
+          </div>
+        </div>
+      </div>
+
+
+      
       
       <!-- *** COPYRIGHT SECTION *** -->
       <div class="pc-footer-bottom">
@@ -2584,7 +2521,7 @@ body.defcon-licenses-page {
           .footer-kv a + a {
             padding-left: 12px;
             border-left: 1px solid #7b849b;
-            margin-left: 8px;
+            margin-left: 1px;
           }
 
           @media (max-width: 768px) {
@@ -2607,11 +2544,11 @@ body.defcon-licenses-page {
         </style>
 
         <div class="footer-kv">
-          <a href="page.html" aria-label="Privacy Notice">Privacy Notice</a>
+          <a href="page.html" aria-label="Privacy Notice">Legal</a>
           <a href="page.html" aria-label="Status">Status</a>
         </div>
 
-        <span>Copyright &copy; Defcon <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
+        <span>Copyright &copy; Cronos <script>document.write(new Date().getFullYear())</script>. All rights reserved.</span>
       </div>
     </div>
   </primecapital-footer>
@@ -2643,3 +2580,6 @@ body.defcon-licenses-page {
     });
   });
 </script>
+
+</body>
+</html>
