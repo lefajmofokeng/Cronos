@@ -2289,122 +2289,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Architecture</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -2511,13 +2401,11 @@ document.addEventListener('DOMContentLoaded', function() {
             background-color: #0a0e17;
         }
 
-        .screen-image {
-            width: 100%;
+        .screen-video {
+            width: 170%;
             height: auto;
             border-radius: 12px;
-            display: flex;
-            align-content: center;
-            justify-content: center;
+            object-fit: cover;
         }
 
         @media (max-width: 1200px) {
@@ -2556,6 +2444,11 @@ document.addEventListener('DOMContentLoaded', function() {
             .feature-content p {
                 font-size: 14px;
             }
+
+            .screen-video {
+                width: fit-content;
+                height: 300px;
+            }
         }
     </style>
 </head>
@@ -2573,16 +2466,19 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <div class="right-column" style="overflow: hidden;">
-            <img src="thumbnails/klkuhn (1).png" alt="CRM Dashboard Interface" class="screen-image" style="width: 140%; height: auto;">
-        </div>
+            <video 
+                class="screen-video" 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                src="https://www.pexels.com/download/video/28320042/">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 </body>
 </html>
-
-
-
-
 
 
 
@@ -4171,7 +4067,7 @@ document.addEventListener('DOMContentLoaded', function() {
           <ul>
             <li><a href="page.html">Blog</a></li>
             <li><a href="proof.html">Github</a></li>
-            <li><a href="page.html">Glossary</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
             <li><a href="market-insights.html">Market Insights</a></li>
           </ul>
         </div>

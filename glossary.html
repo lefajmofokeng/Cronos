@@ -12,30 +12,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- HYPERION-HEADER START -->
 <style>
     /* =============================================
@@ -55,7 +31,7 @@
         
         /* Sizing */
         --hyperion-header-height: 55px;
-        --hyperion-content-max-width-fg: 1500px;
+        --hyperion-content-max-width-fg: 1420px;
     }
 
     .hyperion-header-wrapper {
@@ -80,7 +56,7 @@
         max-width: var(--hyperion-content-max-width-fg);
         width: 100%;
         margin: 0 auto;
-        padding: 0 40px;
+        padding: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -93,7 +69,7 @@
         letter-spacing: -0.5px;
         color: var(--hyperion-color-text-light);
         transition: color 0.3s ease;
-        height: 23px;
+        height: 30px;
         vertical-align: middle;
     }
     
@@ -167,10 +143,11 @@
         font-weight: 600;
         font-size: 15px;
         cursor: pointer;
-        margin-left: 20px;
+        margin-left: 10px;
         transition: background-color 0.2s ease;
         text-decoration: none;
         border-bottom: none;
+        font-family: 'Inter', sans-serif;
     }
 
     .hyperion-header-action-btn a {
@@ -194,9 +171,9 @@
         font-size: 15px;
         cursor: pointer;
         margin-left: 10px;
-        transition: background-color 0.2s ease;
         text-decoration: none;
         border-bottom: none;
+        font-family: 'Inter', sans-serif;
     }
 
     .hyperion-header-secondary-btn a {
@@ -246,12 +223,12 @@
         top: calc(100% + 10px);
         right: 0;
         background-color: #080d1b;
-        border-radius: 10px;
-        padding: 20px;
+        border-radius: 15px;
+        padding: 10px 0;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 130px;
+        width: 120px;
         visibility: hidden;
         opacity: 0;
         transform: translateY(-10px);
@@ -307,7 +284,7 @@
         max-width: var(--hyperion-content-max-width-fg);
         width: 100%;
         margin: 0 auto;
-        padding: 20px 40px 40px 40px;
+        padding: 20px 40px 40px 121px;
     }
 
     .hyperion-mega-menu-panel.active {
@@ -320,7 +297,7 @@
         grid-template-columns: repeat(3, 250px);
         gap: 40px;
         justify-content: start;
-        padding-left: 8.45rem;
+        
     }
     
     .hyperion-menu-group-card {
@@ -346,8 +323,9 @@
     .hyperion-menu-group-img-icon {
         width: auto;
         height: 40px;
-        margin-right: 8px;
+        margin-right: 12px;
         flex-shrink: 0;
+        border-radius: 11px;
         backface-visibility: visible;
     }
     
@@ -478,7 +456,7 @@
         .hyperion-custom-nav-list li {
             margin: 0;
             width: 100%;
-            border-bottom: 1px solid rgba(0, 145, 255, 0.1);
+            
         }
 
         .hyperion-custom-nav-link {
@@ -633,16 +611,12 @@
                 <ul class="hyperion-custom-nav-list">
                     <li>
                         <a href="pricing.html" class="hyperion-custom-nav-link">Pricing
-                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                             
                         </a>
                     </li>
                     <li>
-                        <a href="page.html" class="hyperion-custom-nav-link">Projects
-                             <svg class="hyperion-desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-                        </svg>
+                        <a href="page.html" class="hyperion-custom-nav-link" data-hyperion-megamenu-trigger="projects">Ecosystem
+                             
                         </a>
                     </li>
                     <li class="hyperion-custom-nav-item--has-megamenu">
@@ -889,15 +863,15 @@
                 </ul>
                 <div class="hyperion-header-action-buttons">
                     <button class="hyperion-header-secondary-btn">
-                        <a href="page.html">Get Started</a>
+                        <a href="page.html">Log In</a>
                     </button>
                     <button class="hyperion-header-action-btn">
-                        <a href="page.html">Contact Us</a>
+                        <a href="page.html">Sign Up</a>
                     </button>
                     <div class="hyperion-qr-dropdown-trigger" id="hyperion-qrDropdownTrigger">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 56 56"><path fill="#fff" d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m.047-3.304c-.82 0-1.219-.422-1.219-1.29V10.997c0-.844.399-1.266 1.22-1.266h10.57c.82 0 1.242.422 1.242 1.266v10.477c0 .867-.422 1.289-1.242 1.289Zm23.531 0c-.82 0-1.218-.422-1.218-1.29V10.997c0-.844.398-1.266 1.218-1.266h10.594c.797 0 1.196.422 1.196 1.266v10.477c0 .867-.399 1.289-1.196 1.289Zm-20.25-4.055h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.515v3.891c0 .398.094.54.445.54m23.672 0h3.985c.351 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-3.985c-.351 0-.468.14-.468.515v3.891c0 .398.117.54.468.54m-27 30.867H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m20.625-13.57h4.008c.352 0 .492-.14.492-.54v-3.89c0-.375-.14-.515-.492-.515h-4.008c-.351 0-.445.14-.445.515v3.89c0 .4.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.54v-3.89c0-.375-.141-.515-.493-.515h-4.007c-.352 0-.47.14-.47.515v3.89c0 .4.118.54.47.54M10.949 46.27c-.82 0-1.219-.422-1.219-1.266V34.527c0-.867.399-1.289 1.22-1.289h10.57c.82 0 1.242.422 1.242 1.29v10.476c0 .844-.422 1.266-1.242 1.266Zm3.281-4.032h4.008c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516H14.23c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.445.562m23.579 0h4.007c.352 0 .492-.14.492-.562v-3.867c0-.375-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.867c0 .422.094.562.446.562m-6.282 6.211h4.008c.352 0 .492-.14.492-.539v-3.89c0-.376-.14-.516-.492-.516h-4.008c-.351 0-.445.14-.445.516v3.89c0 .399.094.54.445.54m12.446 0h4.007c.352 0 .493-.14.493-.539v-3.89c0-.376-.141-.516-.493-.516h-4.007c-.352 0-.47.14-.47.516v3.89c0 .399.118.54.47.54"/></svg>
+                      <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
                         <div class="hyperion-qr-dropdown-content" id="hyperion-qrDropdownContent">
-                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Request a consultation</p>
+                            <img src="thumbnails/qr-code-placeholder.png" alt="QR Code"> <p>Contact Sales</p>
                         </div>
                     </div>
                 </div>
@@ -918,13 +892,21 @@
                 
                 <div class="hyperion-menu-group-card">
                     <h3>
-                        <img src="thumbnails/01.png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
+                        <img src="thumbnails/04 (2).png" alt="Dev Icon" class="hyperion-menu-group-img-icon">
                         <span class="hyperion-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
                             Software Development
                             <span class="hyperion-menu-group-tagline">Build your custom vision</span>
                         </span>
                     </h3>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">AI</span>
+                                </a>
+                        </li>
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">Web Applications</span>
@@ -937,17 +919,7 @@
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">AI & Machine Learning</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">API & Microservices Architecture</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">E-commerce Solutions</span>
+                                <span class="hyperion-mega-menu-link-title">E-commerce</span>
                                 </a>
                         </li>
                         <li>
@@ -971,15 +943,28 @@
                             <span class="hyperion-menu-group-tagline">Power your business</span>
                         </span>
                     </h3>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn About IT
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Managed IT Support & Helpdesk</span>
+                                <span class="hyperion-mega-menu-link-title">IT Support & Helpdesk</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Managed IT Infrastructure</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">IT Consulting</span>
+                                </a>
+                        </li>
+                        <li>
+                            <a href="page.html">
+                                <span class="hyperion-mega-menu-link-title">Cybersecurity</span>
                                 </a>
                         </li>
                         <li>
@@ -990,11 +975,6 @@
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">Data Center & Storage</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Smart Technology</span>
                                 </a>
                         </li>
                     </ul>
@@ -1008,6 +988,9 @@
                             <span class="hyperion-menu-group-tagline">Grow your audience</span>
                         </span>
                     </h3>
+                    <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Marketing
+                        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
+                    </a></button>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
@@ -1026,12 +1009,7 @@
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Multimedia Production</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Advertising Campaigns</span>
+                                <span class="hyperion-mega-menu-link-title">Advertising</span>
                                 </a>
                         </li>
                     </ul>
@@ -1065,11 +1043,6 @@
                         <li>
                             <a href="page.html">
                                 <span class="hyperion-mega-menu-link-title">Product News</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Events</span>
                                 </a>
                         </li>
                         <li>
@@ -1115,43 +1088,27 @@
                                 <span class="hyperion-mega-menu-link-title">Podcasts</span>
                                 </a>
                         </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Recommendations</span>
-                                </a>
-                        </li>
-
                     </ul>
                 </div>
 
                 <div class="hyperion-menu-group-card">
                     <h3>
-                        Connect
+                        Learn
                     </h3>
                     <ul class="hyperion-mega-menu-group-list">
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">X</span>
+                                <span class="hyperion-mega-menu-link-title">Learn</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Facebook</span>
+                                <span class="hyperion-mega-menu-link-title">Research</span>
                                 </a>
                         </li>
                         <li>
                             <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">LinkedIn</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Youtube</span>
-                                </a>
-                        </li>
-                        <li>
-                            <a href="page.html">
-                                <span class="hyperion-mega-menu-link-title">Github</span>
+                                <span class="hyperion-mega-menu-link-title">Market Updates</span>
                                 </a>
                         </li>
                     </ul>
@@ -1479,6 +1436,268 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+<style>
+        /* =============================================
+    TRENDING TERMS SECTION CSS (Updated for Responsiveness)
+    =============================================
+    */
+    .trending-terms-container {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0; /* Added desktop padding */
+        position: relative;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #121212;
+        margin: 0;
+    }
+    
+    .terms-wrapper {
+        display: flex;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        padding-bottom: 25px;
+        margin-bottom: 10px;
+    }
+
+    .terms-wrapper::-webkit-scrollbar {
+        display: none;
+    }
+    .terms-wrapper {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .term-card-sv {
+        flex: 0 0 360px; /* Desktop Card Size */
+        margin-right: 20px;
+        background-color: white;
+        border-radius: 30px;
+        padding: 30px 25px;
+        border: 1px solid #e0e0e0ab;
+        height: auto;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .term-card-sv h3 {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #e0e0e055;
+        padding-bottom: 10px;
+    }
+
+    .term-card-sv p {
+        font-size: 1rem;
+        color: #333;
+        line-height: 1.6;
+        font-weight: 500;
+        padding-top: 10px;
+    }
+
+    .scroll-controls {
+        position: absolute;
+        bottom: -60px;
+        right: 50px; /* Aligned with desktop padding */
+        display: flex;
+        gap: 15px;
+    }
+
+    .scroll-btn {
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: transparent;
+    }
+
+    .scroll-btn:hover {
+        color: white;
+        border: 3px solid black;
+    }
+
+    .scroll-btn svg {
+        width: 40px;
+        height: 40px;
+        fill: currentColor;
+    }
+
+    /* Tablet/Smaller Desktop Styles (1024px) */
+    @media (max-width: 1024px) {
+        .trending-terms-container {
+            padding: 0 20px; /* Reduced padding for smaller screens */
+            margin: 40px auto;
+        }
+
+        .term-card-sv {
+            flex: 0 0 300px; /* Slightly smaller card size */
+            margin-right: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 1.75rem;
+        }
+
+        .scroll-controls {
+            bottom: -40px;
+            right: 20px;
+            gap: 10px;
+        }
+    }
+
+    /* Mobile Styles (600px) */
+    @media (max-width: 600px) {
+        .trending-terms-container {
+            padding: 0; /* Remove container padding to allow full width scrolling */
+            margin: 40px auto;
+        }
+        
+        .section-header {
+            padding: 0 20px; /* Apply padding only to header content */
+            margin-bottom: 15px;
+        }
+
+        .terms-wrapper {
+            /* Adjust wrapper to start scrolling from the edge, while creating a visual margin */
+            margin-left: 20px;
+            padding-right: 20px;
+            width: 100%;
+            padding-bottom: 15px;
+        }
+
+        .term-card-sv {
+            /* Make card take up 88% of the viewport width minus padding,
+               leaving a little space for the next card to peek in. */
+            flex: 0 0 88%; 
+            margin-right: 15px;
+        }
+        
+        .term-card-sv h3 {
+            font-size: 1.5rem;
+        }
+        .term-card-sv p {
+            font-size: 0.95rem;
+        }
+
+        /* Make scroll controls static and centered for mobile */
+        .scroll-controls {
+            position: static; 
+            margin-top: 15px;
+            margin-bottom: 10px;
+            justify-content: center;
+            right: auto;
+            bottom: auto;
+            transform: none;
+        }
+        
+        .scroll-btn {
+            width: 45px;
+            height: 45px;
+        }
+        .scroll-btn svg {
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+</style>
+</head>
+<body>
+    
+
+    <section class="hero-section">
+        <div class="content-container">
+            <h1>Cronos Glossary</h1>
+            <p>Comprehensive definitions for technical terms you need to know.</p>
+        </div>
+    </section>
+
+<section class="trending-terms-container">
+    <div class="section-header">
+        <h2>Trending Terms</h2>
+    </div>
+
+    <div class="terms-wrapper" id="trendingTermsWrapper">
+        <div class="term-card-sv">
+            <h3>DevOps</h3>
+            <p>A set of practices, cultural philosophies, and tools that increases an organization's ability to deliver applications and services at high velocity. DevOps emphasizes collaboration between development and operations teams, automation of the software delivery pipeline, continuous integration and delivery, infrastructure as code, monitoring, and rapid feedback loops to improve reliability, quality, and time to market.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Cloud Computing</h3>
+            <p>The delivery of computing services — servers, storage, databases, networking, software, analytics, and intelligence — over the internet (the cloud). Cloud computing provides on-demand resources, elasticity, and pay-as-you-go pricing, enabling faster innovation, easier scaling, reduced operational overhead, and the ability to run workloads globally without owning physical infrastructure.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>API</h3>
+            <p>Application Programming Interface. A set of rules, protocols, and tools that defines how software components should interact. APIs expose functionality and data from applications or services in a standardized way, enabling integration, automation, and modular development by allowing clients to request and manipulate resources without needing knowledge of internal implementation details.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>CI/CD Pipeline</h3>
+            <p>Continuous Integration (CI) and Continuous Delivery/Deployment (CD) are automated practices for building, testing, and delivering code changes. CI automates merging and testing of code in a shared repository to detect issues early. CD automates the packaging, staging, and deployment of changes so teams can release reliable software faster, often with automated testing, promotion gates, and rollback mechanisms.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Microservices</h3>
+            <p>An architectural style that structures an application as a collection of small, independently deployable services, each responsible for a single business capability. Microservices communicate over lightweight protocols (e.g., HTTP/REST, gRPC, or messaging), enable decentralized data management, allow teams to iterate and scale independently, and improve resilience by isolating failures.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Blockchain</h3>
+            <p>A distributed ledger technology that records transactions in an ordered, append-only chain of cryptographically linked blocks across a decentralized network of nodes. Blockchains provide immutability, tamper-resistance, and transparent audit trails; they can be permissionless (public) or permissioned (private) and are used for cryptocurrencies, smart contracts, and provenance or supply-chain applications.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Latency</h3>
+            <p>The delay between initiating an action and observing its effect. In networking, latency is the time it takes for a packet to travel from source to destination, typically measured in milliseconds. Latency is influenced by propagation, transmission, processing, and queuing delays and is a critical metric for real-time applications such as gaming, video conferencing, and high-frequency trading.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>SaaS</h3>
+            <p>Software as a Service. A cloud delivery model where software applications are hosted by a provider and made available to customers over the internet, typically on a subscription or usage-based pricing model. SaaS removes the need for local installation and maintenance, centralizes updates and security, and enables quick onboarding and access from any device with a network connection.</p>
+        </div>
+        <div class="term-card-sv">
+            <h3>Artificial Intelligence</h3>
+            <p>The field of computer science focused on creating systems that perform tasks normally requiring human intelligence. AI encompasses machine learning, deep learning, natural language processing, computer vision, and reasoning techniques to enable machines to perceive, learn from data, make decisions, and perform tasks such as classification, prediction, planning, and language understanding.</p>
+        </div>
+    </div>
+
+    <div class="scroll-controls">
+        <button class="scroll-btn" id="scrollLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#000000" d="M29 16a1 1 0 0 1-1 1H6.414l8.293 8.293a1 1 0 0 1-1.414 1.414l-10-10a1 1 0 0 1 0-1.414l10-10a1 1 0 1 1 1.414 1.414L6.414 15H28a1 1 0 0 1 1 1Z"/></svg>
+        </button>
+        <button class="scroll-btn" id="scrollRight">
+            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#000000" d="M3 16a1 1 0 0 1 1-1h21.586l-8.293-8.293a1 1 0 0 1 1.414-1.414l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L25.586 17H4a1 1 0 0 1-1-1Z"/></svg>
+        </button>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE TML>
 <html lang="en">
 <head>
@@ -1583,7 +1802,6 @@ document.addEventListener('DOMContentLoaded', function() {
             font-size: 1.3rem;
             font-weight: 700;
             border-radius: 3px;
-            transition: all 0.2s ease;
             background-color: #fff;
             color: #565f76;
             text-decoration: none;
@@ -1593,7 +1811,6 @@ document.addEventListener('DOMContentLoaded', function() {
         .alphabet-nav a:hover:not(.disabled) {
             background-color: var(--color-accent);
             color: white;
-            transform: translateY(-2px);
         }
 
         .alphabet-nav a.disabled {
@@ -1605,7 +1822,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .alphabet-nav a.active-letter {
             background-color: var(--color-accent);
             color: white;
-            box-shadow: 0 4px 12px rgba(0, 145, 255, 0.3);
+            
         }
 
         /* Search Box */
@@ -1671,7 +1888,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .term-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-            gap: 20px;
+            gap: 12px;
         }
 
         .term-card {
@@ -1813,257 +2030,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     </style>
 
-      <style>
-        /* =============================================
-    TRENDING TERMS SECTION CSS (Updated for Responsiveness)
-    =============================================
-    */
-    .trending-terms-container {
-        max-width: 1200px;
-        margin: 60px auto;
-        padding: 0; /* Added desktop padding */
-        position: relative;
-        font-family: 'Inter', sans-serif;
-    }
-
-    .section-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-    
-    .section-header h2 {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #121212;
-        margin: 0;
-    }
-    
-    .terms-wrapper {
-        display: flex;
-        overflow-x: scroll;
-        scroll-behavior: smooth;
-        padding-bottom: 25px;
-        margin-bottom: 10px;
-    }
-
-    .terms-wrapper::-webkit-scrollbar {
-        display: none;
-    }
-    .terms-wrapper {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    .term-card-sv {
-        flex: 0 0 360px; /* Desktop Card Size */
-        margin-right: 20px;
-        background-color: white;
-        border-radius: 12px;
-        padding: 30px 25px;
-        border: 1px solid #e0e0e0ab;
-        height: auto;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .term-card-sv:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(25, 118, 210, 0.1);
-    }
-
-    .term-card-sv h3 {
-        font-size: 1.9rem;
-        font-weight: 700;
-        color: #000;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #e0e0e055;
-        padding-bottom: 10px;
-    }
-
-    .term-card-sv p {
-        font-size: 1rem;
-        color: #333;
-        line-height: 1.6;
-        padding-top: 10px;
-    }
-
-    .scroll-controls {
-        position: absolute;
-        bottom: -60px;
-        right: 50px; /* Aligned with desktop padding */
-        display: flex;
-        gap: 15px;
-    }
-
-    .scroll-btn {
-        border: none;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    }
-
-    .scroll-btn:hover {
-        color: white;
-        border: 3px solid black;
-    }
-
-    .scroll-btn svg {
-        width: 40px;
-        height: 40px;
-        fill: currentColor;
-    }
-
-    /* Tablet/Smaller Desktop Styles (1024px) */
-    @media (max-width: 1024px) {
-        .trending-terms-container {
-            padding: 0 20px; /* Reduced padding for smaller screens */
-            margin: 40px auto;
-        }
-
-        .term-card-sv {
-            flex: 0 0 300px; /* Slightly smaller card size */
-            margin-right: 15px;
-        }
-
-        .section-header h2 {
-            font-size: 1.75rem;
-        }
-
-        .scroll-controls {
-            bottom: -40px;
-            right: 20px;
-            gap: 10px;
-        }
-    }
-
-    /* Mobile Styles (600px) */
-    @media (max-width: 600px) {
-        .trending-terms-container {
-            padding: 0; /* Remove container padding to allow full width scrolling */
-            margin: 40px auto;
-        }
-        
-        .section-header {
-            padding: 0 20px; /* Apply padding only to header content */
-            margin-bottom: 15px;
-        }
-
-        .terms-wrapper {
-            /* Adjust wrapper to start scrolling from the edge, while creating a visual margin */
-            margin-left: 20px;
-            padding-right: 20px;
-            width: 100%;
-            padding-bottom: 15px;
-        }
-
-        .term-card-sv {
-            /* Make card take up 88% of the viewport width minus padding,
-               leaving a little space for the next card to peek in. */
-            flex: 0 0 88%; 
-            margin-right: 15px;
-        }
-        
-        .term-card-sv h3 {
-            font-size: 1.5rem;
-        }
-        .term-card-sv p {
-            font-size: 0.95rem;
-        }
-
-        /* Make scroll controls static and centered for mobile */
-        .scroll-controls {
-            position: static; 
-            margin-top: 15px;
-            margin-bottom: 10px;
-            justify-content: center;
-            right: auto;
-            bottom: auto;
-            transform: none;
-        }
-        
-        .scroll-btn {
-            width: 45px;
-            height: 45px;
-        }
-        .scroll-btn svg {
-            width: 25px;
-            height: 25px;
-        }
-    }
-
-</style>
-</head>
-<body>
-    
-
-    <section class="hero-section">
-        <div class="content-container">
-            <h1>Hyperion Glossary</h1>
-            <p>Comprehensive definitions for technical terms you need to know.</p>
-        </div>
-    </section>
-
-<section class="trending-terms-container">
-    <div class="section-header">
-        <h2>Trending Terms</h2>
-    </div>
-
-    <div class="terms-wrapper" id="trendingTermsWrapper">
-        <div class="term-card-sv">
-            <h3>DevOps</h3>
-            <p>A set of practices, cultural philosophies, and tools that increases an organization's ability to deliver applications and services at high velocity. DevOps emphasizes collaboration between development and operations teams, automation of the software delivery pipeline, continuous integration and delivery, infrastructure as code, monitoring, and rapid feedback loops to improve reliability, quality, and time to market.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>Cloud Computing</h3>
-            <p>The delivery of computing services—servers, storage, databases, networking, software, analytics, and intelligence—over the internet (the cloud). Cloud computing provides on-demand resources, elasticity, and pay-as-you-go pricing, enabling faster innovation, easier scaling, reduced operational overhead, and the ability to run workloads globally without owning physical infrastructure.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>API</h3>
-            <p>Application Programming Interface. A set of rules, protocols, and tools that defines how software components should interact. APIs expose functionality and data from applications or services in a standardized way, enabling integration, automation, and modular development by allowing clients to request and manipulate resources without needing knowledge of internal implementation details.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>CI/CD Pipeline</h3>
-            <p>Continuous Integration (CI) and Continuous Delivery/Deployment (CD) are automated practices for building, testing, and delivering code changes. CI automates merging and testing of code in a shared repository to detect issues early. CD automates the packaging, staging, and deployment of changes so teams can release reliable software faster, often with automated testing, promotion gates, and rollback mechanisms.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>Microservices</h3>
-            <p>An architectural style that structures an application as a collection of small, independently deployable services, each responsible for a single business capability. Microservices communicate over lightweight protocols (e.g., HTTP/REST, gRPC, or messaging), enable decentralized data management, allow teams to iterate and scale independently, and improve resilience by isolating failures.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>Blockchain</h3>
-            <p>A distributed ledger technology that records transactions in an ordered, append-only chain of cryptographically linked blocks across a decentralized network of nodes. Blockchains provide immutability, tamper-resistance, and transparent audit trails; they can be permissionless (public) or permissioned (private) and are used for cryptocurrencies, smart contracts, and provenance or supply-chain applications.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>Latency</h3>
-            <p>The delay between initiating an action and observing its effect. In networking, latency is the time it takes for a packet to travel from source to destination, typically measured in milliseconds. Latency is influenced by propagation, transmission, processing, and queuing delays and is a critical metric for real-time applications such as gaming, video conferencing, and high-frequency trading.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>SaaS</h3>
-            <p>Software as a Service. A cloud delivery model where software applications are hosted by a provider and made available to customers over the internet, typically on a subscription or usage-based pricing model. SaaS removes the need for local installation and maintenance, centralizes updates and security, and enables quick onboarding and access from any device with a network connection.</p>
-        </div>
-        <div class="term-card-sv">
-            <h3>Artificial Intelligence</h3>
-            <p>The field of computer science focused on creating systems that perform tasks normally requiring human intelligence. AI encompasses machine learning, deep learning, natural language processing, computer vision, and reasoning techniques to enable machines to perceive, learn from data, make decisions, and perform tasks such as classification, prediction, planning, and language understanding.</p>
-        </div>
-    </div>
-
-    <div class="scroll-controls">
-        <button class="scroll-btn" id="scrollLeft">
-            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#000000" d="M29 16a1 1 0 0 1-1 1H6.414l8.293 8.293a1 1 0 0 1-1.414 1.414l-10-10a1 1 0 0 1 0-1.414l10-10a1 1 0 1 1 1.414 1.414L6.414 15H28a1 1 0 0 1 1 1Z"/></svg>
-        </button>
-        <button class="scroll-btn" id="scrollRight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32"><path fill="#000000" d="M3 16a1 1 0 0 1 1-1h21.586l-8.293-8.293a1 1 0 0 1 1.414-1.414l10 10a1 1 0 0 1 0 1.414l-10 10a1 1 0 0 1-1.414-1.414L25.586 17H4a1 1 0 0 1-1-1Z"/></svg>
-        </button>
-    </div>
-</section>
-
-
-
     <section class="pb-20">
         <div class="content-container">
             <span style="font-size: 2rem; font-weight: 700;">Glossary A to Z</span>
@@ -2082,12 +2048,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <footer>
         <div class="content-container">
-            <p>&copy; 2025 Defcon. All Rights Reserved.</p>
+            <p>&copy; 2025 Glossary. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() {
         const wrapper = document.getElementById('trendingTermsWrapper');
         const scrollLeftBtn = document.getElementById('scrollLeft');
         const scrollRightBtn = document.getElementById('scrollRight');
@@ -2111,14 +2077,11 @@ document.addEventListener('DOMContentLoaded', function() {
         checkScrollability();
         window.addEventListener('resize', checkScrollability);
     });
-</script>
-
+    </script>
     <script>
+        
         document.addEventListener('DOMContentLoaded', function() {
             const glossaryData = [
-                // #
-                { term: "2FA", definition: "A methodology focused on iterative development, delivering work in small continuous cycles, and rapid adaptation to change." },
-
                 // A
                 { term: "Agile", definition: "A project management methodology focused on iterative development, delivering work in small continuous cycles, and rapid adaptation to change." },
                 { term: "API", definition: "Application Programming Interface. A set of defined protocols and tools for building software applications that specify how software components should interact." },
@@ -2318,7 +2281,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="term-group fade-in" id="${letter}">
                             <div class="term-group-header">
                                 <h2>${letter}</h2>
-                                <span>${terms.length} ${terms.length === 1 ? 'term' : 'terms'}</span>
                             </div>
                             <div class="term-grid">
                     `;
