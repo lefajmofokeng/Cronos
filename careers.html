@@ -1805,349 +1805,296 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stats & Journey</title>
+    <title>IT Vision Component Example</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
 </head>
-<body-qp id="body-qp">
+<body style="margin: 0; padding: 0;">
 
-    <section class="stats-module">
-        
-        <!-- Header: Title + Descriptive Text -->
-        <header class="stats-module__header">
-            <div class="stats-label">Key Stats</div>
-            <p class="stats-intro">
-                Our journey in numbers — <strong>With over 120+ projects delivered, 50+ trusted clients worldwide,</strong> and <strong>8 industry awards</strong> under our belt, Opalhaus® continues to craft design solutions that drive real results.
-            </p>
-        </header>
+    <it-vision-component></it-vision-component>
 
-        <!-- Main Content: Image + Numbers Grid -->
-        <div class="stats-module__content">
-            
-            <!-- Image Block -->
-            <figure class="visual-block">
-                <img src="thumbnails/hq.png" alt="Artistic portrait representing vision" class="visual-block__img">
-            </figure>
 
-            <!-- Stats Grid -->
-            <div class="metrics-grid" id="metricsGrid">
+    <script>
+        class ItVisionComponent extends HTMLElement {
+            constructor() {
+                super();
+                // Create shadow DOM for complete isolation
+                this.attachShadow({ mode: 'open' });
+
+                // Data for the IT/Technology Theme
+                this.data = [
+                    {
+                        title: "Innovate Constantly",
+                        content: [
+                            "We consider continuous innovation to be the single most important driver in the rapidly evolving tech landscape.",
+                            "We aggressively pursue new methodologies and emerging technologies to solve complex problems before they become roadblocks.",
+                            "We are future-focused, dedicated to staying ahead of the curve and defining what's next in IT."
+                        ]
+                    },
+                    {
+                        title: "Prioritize Security",
+                        content: [
+                            "Security is not a feature; it is the foundation of everything we build.",
+                            "We adopt a 'security-first' mindset, integrating robust protection layers and compliance standards from the initial design phase through to deployment."
+                        ]
+                    },
+                    {
+                        title: "Embrace Agility",
+                        content: [
+                            "The ability to pivot quickly is crucial. We utilize agile frameworks to respond swiftly to changing market demands and user feedback.",
+                            "We value iterative progress and flexibility over rigid, outdated structures."
+                        ]
+                    },
+                    {
+                        title: "Scale Responsibly",
+                        content: [
+                            "We design architectures that are built to grow seamlessly with demand.",
+                            "Our focus is on creating sustainable, high-performance systems that handle increased loads without compromising stability or efficiency."
+                        ]
+                    },
+                    {
+                        title: "Foster Collaboration",
+                        content: [
+                            "Complex tech challenges require diverse perspectives. We break down silos and encourage open communication across development, operations, and business units.",
+                            "We believe shared knowledge leads to superior solutions."
+                        ]
+                    },
+                    {
+                        title: " Deliver Excellence",
+                        content: [
+                            "We do not compromise on quality. From clean code to intuitive user experiences, we strive for precision in every deliverable.",
+                            "Reliability and performance are non-negotiable metrics of our success."
+                        ]
+                    }
+                ];
                 
-                <!-- Item 1 -->
-                <div class="metric-card">
-                    <div class="metric-card__value-wrapper">
-                        <span class="metric-card__value" data-target="120">0</span>
-                        <span class="metric-card__value" style="transition-delay: 0.1s">+</span>
+                this.activeIndex = 0; // Start with the first item active
+            }
+
+            connectedCallback() {
+                this.render();
+            }
+
+            // Handles tab clicking
+            handleTabClick(index) {
+                this.activeIndex = index;
+                this.updateActiveState();
+            }
+
+            // Updates the DOM to reflect the active index without re-rendering everything
+            updateActiveState() {
+                const tabs = this.shadowRoot.querySelectorAll('.it-v-tab-item');
+                const contents = this.shadowRoot.querySelectorAll('.it-v-content-group');
+
+                tabs.forEach((tab, idx) => {
+                    if (idx === this.activeIndex) {
+                        tab.classList.add('it-v-active');
+                    } else {
+                        tab.classList.remove('it-v-active');
+                    }
+                });
+
+                contents.forEach((content, idx) => {
+                    if (idx === this.activeIndex) {
+                        content.classList.add('it-v-active');
+                    } else {
+                        content.classList.remove('it-v-active');
+                    }
+                });
+            }
+
+            render() {
+                // 1. Define Styles (Scoped to Shadow DOM)
+                const styles = `
+                    <style>
+                        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+                        :host {
+                            /* Ensure the component block behaves like a block element */
+                            display: block;
+                            all: initial; /* Reset inheritable properties */
+                            font-family: 'Inter', sans-serif;
+                            background-color: #F4F5F6; /* Match image background */
+                            color: #0B1426; /* Deep dark blue/black from image */
+                        }
+
+                        .it-v-wrapper {
+                            padding: 160px 24px;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .it-v-container {
+                            max-width: 1080px;
+                            width: 100%;
+                        }
+
+                        /* Typography & Headings */
+                        .it-v-heading {
+                            font-size: 68px;
+                            font-weight: 600;
+                            margin: 0 0 24px 0;
+                            line-height: 1.1;
+                            color: #000;
+                            letter-spacing: -0.02em;
+                        }
+
+                        .it-v-subheading {
+                            font-size: 35px;
+                            font-weight: 600;
+                            line-height: 1.2;
+                            max-width: 800px;
+                            margin: 0 0 60px 0;
+                        }
+
+                        /* Main Two-Column Layout */
+                        .it-v-tabs-layout {
+                            display: flex;
+                            gap: 60px;
+                        }
+
+                        /* Left Column - Tabs List */
+                        .it-v-tab-list {
+                            list-style: none;
+                            padding: 0;
+                            margin: 0;
+                            flex: 0 0 300px; /* Fixed width for tab column */
+                            display: flex;
+                            flex-direction: column;
+                            gap: 20px;
+                            border-left: 1px solid #aaa;
+                        }
+
+                        .it-v-tab-item {
+                            font-size: 32px;
+                            font-weight: 600;
+                            line-height: 1.4;
+                            color: #B4B9C3; /* Grey color for inactive state */
+                            cursor: pointer;
+                            padding: 4px 0 4px 24px;
+                            border-left: 2px solid transparent;
+                            transition: all 0.2s ease;
+                        }
+
+                        /* Active Tab State */
+                        .it-v-tab-item.it-v-active {
+                            color: #0B1426;
+                            border-left-color: #0B1426;
+                        }
+
+                        /* Right Column - Content Area */
+                        .it-v-content-area {
+                            flex: 1;
+                            padding-top: 4px; /* Align with top of first tab */
+                        }
+
+                        .it-v-content-group {
+                            display: none; /* Hidden by default */
+                            font-size: 32px;
+                            font-weight: 600;
+                            line-height: 1.4;
+                            color: #454D5C; /* Slightly lighter text for body */
+                        }
+
+                        .it-v-content-group.it-v-active {
+                            display: block; /* Show only the active group */
+                        }
+
+                        .it-v-content-paragraph {
+                            margin: 0 0 28px 0;
+                        }
+                        .it-v-content-paragraph:last-child {
+                            margin-bottom: 0;
+                        }
+
+                        /* Responsive adjustments for smaller screens */
+                        @media (max-width: 768px) {
+                            .it-v-wrapper { padding: 40px 20px; }
+                            .it-v-heading { font-size: 26px; }
+                            .it-v-subheading { font-size: 18px; }
+                            .it-v-tabs-layout { flex-direction: column; gap: 32px; }
+                            .it-v-tab-list { border-left: none; flex: auto; width: 100%; flex-direction: row; overflow-x: auto; padding-bottom: 10px; border-bottom: 1px solid #E0E0E0; }
+                            .it-v-tab-item { font-size: 19px; padding: 8px 0; border-left: none; border-bottom: 2px solid transparent; white-space: nowrap; margin-right: 20px;}
+                            .it-v-tab-item.it-v-active { border-left: none; border-bottom-color: #0B1426; }
+                            .it-v-content-group { font-size: 18px; }
+                        }
+                    </style>
+                `;
+
+                // 2. Generate HTML Structure based on data
+                const tabsHtml = this.data.map((item, index) => `
+                    <li class="it-v-tab-item ${index === this.activeIndex ? 'it-v-active' : ''}">
+                        ${item.title}
+                    </li>
+                `).join('');
+
+                const contentHtml = this.data.map((item, index) => `
+                    <div class="it-v-content-group ${index === this.activeIndex ? 'it-v-active' : ''}">
+                        ${item.content.map(paragraph => `<p class="it-v-content-paragraph">${paragraph}</p>`).join('')}
                     </div>
-                    <p class="metric-card__label">Brands Elevated Over the Years With Purpose</p>
-                </div>
+                `).join('');
 
-                <!-- Item 2 -->
-                <div class="metric-card">
-                    <div class="metric-card__value-wrapper">
-                        <span class="metric-card__value" data-target="18">0</span>
-                        <span class="metric-card__value" style="transition-delay: 0.2s">+</span>
+
+                // 3. Assemble Shadow DOM structure
+                this.shadowRoot.innerHTML = `
+                    ${styles}
+                    <div class="it-v-wrapper">
+                        <div class="it-v-container">
+                            <h2 class="it-v-heading">Our Vision</h2>
+                            <p class="it-v-subheading">
+                                Technology in Every Aspect™. At Cronos, we are on a mission to accelerate the world's digital transformation through innovative IT infrastructure and software.
+                            </p>
+
+                            <div class="it-v-tabs-layout">
+                                <ul class="it-v-tab-list" id="tabContainer">
+                                    ${tabsHtml}
+                                </ul>
+
+                                <div class="it-v-content-area">
+                                    ${contentHtml}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="metric-card__label">Industries served as professionals</p>
-                </div>
+                `;
 
-                <!-- Item 3 -->
-                <div class="metric-card">
-                    <div class="metric-card__value-wrapper">
-                        <span class="metric-card__value" data-target="40">0</span>
-                        <span class="metric-card__value" style="transition-delay: 0.3s">+</span>
-                    </div>
-                    <p class="metric-card__label">Websites brought to life with Webflow</p>
-                </div>
+                // 4. Attach Event Listeners
+                const tabItems = this.shadowRoot.querySelectorAll('.it-v-tab-item');
+                tabItems.forEach((tab, index) => {
+                    tab.addEventListener('click', () => this.handleTabClick(index));
+                });
+            }
+        }
 
-                <!-- Item 4 -->
-                <div class="metric-card">
-                    <div class="metric-card__value-wrapper">
-                        <span class="metric-card__value" data-target="98">0</span>
-                        <span class="metric-card__value" style="transition-delay: 0.4s">%</span>
-                    </div>
-                    <p class="metric-card__label">Client satisfaction through our journey</p>
-                </div>
+        // Define the custom element
+        customElements.define('it-vision-component', ItVisionComponent);
+    </script>
 
-            </div>
-        </div>
-
-    </section>
-
-   
-       
-</body-qp>
+</body>
 </html>
 
-<style>
-    /* --- Variables & Reset --- */
-        :root {
-            --color-bg: #ffffff;
-            --color-text-main: #111111;
-            --color-text-muted: #999999; /* Light grey for the faded text parts */
-            --color-accent: #ff5e3a; /* Orange dot color */
-            --font-family: 'Inter', sans-serif;
-            --border-radius: 16px;
-            --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-        }
 
-        #body-qp {
-            font-family: var(--font-family);
-            background-color: var(--color-bg);
-            color: var(--color-text-main);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 180px 20px;
-        }
 
-        /* --- Main Section Container --- */
-        .stats-module {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
 
-        /* --- Header Area --- */
-        .stats-module__header {
-            display: grid;
-            grid-template-columns: 200px 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-        }
 
-        .stats-label {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.02em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            height: fit-content;
-            margin-top: 8px; /* Align with top of large text */
-        }
 
-        .stats-label::before {
-            content: '';
-            display: block;
-            width: 6px;
-            height: 6px;
-            background-color: var(--color-accent);
-            border-radius: 50%;
-        }
 
-        .stats-intro {
-            font-size: 2.2rem;
-            line-height: 1.3;
-            font-weight: 500;
-            color: var(--color-text-muted); /* Default to muted grey */
-            max-width: 900px;
-        }
 
-        /* Highlight specific parts in black */
-        .stats-intro strong {
-            color: var(--color-text-main);
-            font-weight: 500; /* Keep weight consistent, just change color */
-        }
 
-        /* --- Content Grid (Image + Stats) --- */
-        .stats-module__content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: start;
-        }
 
-        /* --- Image Styling --- */
-        .visual-block {
-            position: relative;
-            width: 100%;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
 
-        .visual-block__img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.6s ease, filter 0.6s ease;
-        }
-        
-        
 
-        /* --- Stats Grid --- */
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 40px;
-            row-gap: 60px;
-            padding-top: 20px; /* Slight offset to align optically with image */
-        }
 
-        .metric-card {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
 
-        /* Wrapper for the slide-down animation */
-        .metric-card__value-wrapper {
-            overflow: hidden; /* Hides the number before it drops in */
-            height: 3.5rem; /* Fixed height for the number area */
-            display: flex;
-            align-items: flex-end;
-        }
 
-        .metric-card__value {
-            font-size: 3.5rem;
-            font-weight: 600;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            color: var(--color-text-main);
-            transform: translateY(-100%); /* Start hidden above */
-            opacity: 0;
-            display: block;
-            transition: transform 0.8s var(--ease-out), opacity 0.8s var(--ease-out);
-        }
 
-        /* The active state triggered by JS */
-        .metric-card.is-visible .metric-card__value {
-            transform: translateY(0);
-            opacity: 1;
-        }
 
-        .metric-card__label {
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #555;
-            max-width: 200px;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 900px) {
-            .stats-module__header {
-                grid-template-columns: 1fr; /* Stack header */
-                gap: 20px;
-            }
-            
-            .stats-module__content {
-                grid-template-columns: 1fr; /* Stack image and stats */
-                gap: 40px;
-            }
-
-            .stats-intro {
-                font-size: 1.75rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .metrics-grid {
-                grid-template-columns: 1fr; /* Stack stats on mobile */
-                row-gap: 40px;
-            }
-
-            .metric-card__value {
-                font-size: 3rem;
-            }
-        }
-</style>
-<script>
-     // --- Animation Logic ---
-        document.addEventListener("DOMContentLoaded", () => {
-            
-            const observerOptions = {
-                threshold: 0.2 // Trigger when 20% visible
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        startAnimations(entry.target);
-                        observer.unobserve(entry.target); // Run once
-                    }
-                });
-            }, observerOptions);
-
-            const grid = document.getElementById('metricsGrid');
-            observer.observe(grid);
-
-            function startAnimations(container) {
-                const cards = container.querySelectorAll('.metric-card');
-                
-                cards.forEach((card, index) => {
-                    // 1. Trigger the CSS Slide Down animation (staggered)
-                    setTimeout(() => {
-                        card.classList.add('is-visible');
-                        
-                        // 2. Trigger the Number Counting animation
-                        const numberEl = card.querySelector('[data-target]');
-                        if (numberEl) {
-                            animateValue(numberEl, 0, parseInt(numberEl.dataset.target), 2000);
-                        }
-                    }, index * 150); // 150ms stagger delay between items
-                });
-            }
-
-            // Linear interpolation counter
-            function animateValue(obj, start, end, duration) {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    
-                    // Ease-out effect for the counter specifically
-                    const easeProgress = 1 - Math.pow(1 - progress, 3); 
-                    
-                    obj.innerHTML = Math.floor(easeProgress * (end - start) + start);
-                    
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
-                };
-                window.requestAnimationFrame(step);
-            }
-        });
-</script>
 
 
 

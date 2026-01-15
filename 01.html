@@ -1,69 +1,27 @@
-
-
-
-<header id="header">
-    <div class="header">
-        <a href="index.html">
-        <img src="thumbnails/hyperion logo (2).png" alt="Defcon Logo"></a>
-    </div>
-</header>    
-
-
-    <style>
-         #header {
-            position: sticky;
-            left: 0;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-         }
-        
-         .header {
-            background-color: #050e21;
-            padding: 7px 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 1px solid #2d3748;
-            margin: 0;
-        }
-
-        .header img:hover {
-            cursor: pointer;
-        }
-        
-        .header img {
-            height: 25px; /* Adjust as needed */
-            
-        }
-        
-    </style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backend Engineer Application</title>
+    <title>Backend Engineer Application | Hyperion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0f172a; /* Deep Navy */
+            --accent: #2563eb; /* Royal Blue */
+            --accent-hover: #1d4ed8;
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -72,44 +30,95 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f4f4f4;
-            color: #000000;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
-            
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        /* --- Header --- */
+        #header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .header-content {
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-content img {
+            height: 32px;
+            display: block;
+        }
+
+        /* --- Main Layout --- */
         .application-container {
             max-width: 800px;
-            margin: 0 auto;
-            margin-top: 1rem;
-            margin-bottom: 3rem;
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 95%;
+            margin: 2rem auto 4rem;
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .app-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            padding: 40px 48px;
+            position: relative;
             overflow: hidden;
         }
 
-        .app-header {
-            background-color: #001023;
-            color: #fff;
-            padding: 30px 40px;
+        .app-hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2), transparent 70%);
+            pointer-events: none;
         }
 
-        .app-header h1 {
-            font-size: 28px;
-            font-weight: 600;
+        .app-hero h1 {
+            font-size: 32px;
+            font-weight: 700;
             margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
 
-        .app-header p {
-            font-size: 15px;
-            opacity: 0.9;
-            font-weight: 300;
+        .app-hero p {
+            font-size: 16px;
+            color: #94a3b8;
+            font-weight: 400;
         }
 
+        /* --- Progress Bar --- */
         .progress-container {
-            background-color: #fff;
-            padding: 30px 40px;
-            border-bottom: 1px solid #f4f4f4;
+            background-color: var(--bg-card);
+            padding: 24px 48px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .progress-container.sticky {
+            position: sticky;
+            top: 65px; /* Adjust based on header height */
+            z-index: 500;
+            box-shadow: var(--shadow-sm);
         }
 
         .progress-steps {
@@ -117,22 +126,27 @@
             justify-content: space-between;
             align-items: center;
             position: relative;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .progress-line {
             position: absolute;
-            top: 20px;
+            top: 15px;
             left: 0;
             right: 0;
-            height: 2px;
-            background-color: #f4f4f4;
+            height: 3px;
+            background-color: #f1f5f9;
             z-index: 0;
+            border-radius: 4px;
         }
 
         .progress-line-fill {
             height: 100%;
-            background-color: #0091ff;
-            transition: width 0.3s ease;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 4px;
         }
 
         .step {
@@ -141,407 +155,388 @@
             align-items: center;
             position: relative;
             z-index: 1;
-            flex: 1;
+            cursor: default;
         }
 
         .step-circle {
-            width: 40px;
-            height: 40px;
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-            background-color: #fff;
-            border: 2px solid #f4f4f4;
+            background-color: var(--bg-card);
+            border: 2px solid #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
             font-size: 14px;
-            color: #000000;
-            margin-bottom: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
             transition: all 0.3s ease;
         }
 
         .step.active .step-circle {
-            background-color: #0091ff;
-            border-color: #0091ff;
-            color: #fff;
+            border-color: var(--accent);
+            background-color: var(--bg-card);
+            color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
         }
 
         .step.completed .step-circle {
-            background-color: #062733;
-            border-color: #062733;
+            background-color: var(--accent);
+            border-color: var(--accent);
             color: #fff;
         }
 
         .step-label {
-            font-size: 13px;
-            font-weight: 500;
-            color: #000000;
-            text-align: center;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .step.active .step-label {
-            opacity: 1;
-            color: #0091ff;
-        }
+        .step.active .step-label { color: var(--accent); }
+        .step.completed .step-label { color: var(--text-main); }
 
-        .step.completed .step-label {
-            opacity: 0.8;
-        }
-
+        /* --- Content Area --- */
         .content-area {
-            padding: 40px;
+            padding: 48px;
             min-height: 400px;
         }
 
         .step-content {
             display: none;
+            animation: fadeIn 0.4s ease-out;
         }
 
-        .step-content.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
+        .step-content.active { display: block; }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
 
         .content-title {
             font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 32px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        /* --- Job Details Styling --- */
+        .job-grid {
+            display: grid;
+            gap: 32px;
+        }
+
+        .job-card-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .spec-item {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .spec-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            color: var(--text-muted);
             font-weight: 600;
-            color: #062733;
-            margin-bottom: 20px;
+            margin-bottom: 4px;
+            display: block;
         }
-
-        .job-details {
-            line-height: 1.8;
-        }
-
-        .job-section {
-            margin-bottom: 28px;
+        
+        .spec-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
         }
 
         .job-section h3 {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 600;
-            color: #062733;
-            margin-bottom: 12px;
+            color: var(--primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
         }
 
-        .job-section p {
-            font-size: 15px;
-            color: #000000;
-            margin-bottom: 10px;
-        }
+        .job-section p { color: var(--text-muted); margin-bottom: 16px; }
 
-        .job-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .job-section li {
-            font-size: 15px;
-            color: #000000;
-            padding-left: 24px;
+        .job-list { list-style: none; }
+        .job-list li {
             position: relative;
-            margin-bottom: 8px;
+            padding-left: 28px;
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 15px;
         }
-
-        .job-section li:before {
-            content: "•";
-            color: #0091ff;
-            font-weight: bold;
+        .job-list li::before {
+            content: "→";
             position: absolute;
-            left: 8px;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
         }
 
-        .form-group {
-            margin-bottom: 24px;
-        }
+        /* --- Forms --- */
+        .form-group { margin-bottom: 24px; }
 
         .form-label {
             display: block;
             font-size: 14px;
             font-weight: 500;
-            color: #062733;
+            color: var(--primary);
             margin-bottom: 8px;
         }
 
-        .required {
-            color: #0091ff;
-        }
+        .required { color: #ef4444; margin-left: 2px; }
 
-        .form-input,
-        .form-select,
-        .form-textarea {
+        .form-input, .form-select, .form-textarea {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px 16px;
             font-size: 15px;
             font-family: 'Inter', sans-serif;
-            border: 1px solid #b5b5b5;
-            border-radius: 6px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
             background-color: #fff;
-            color: #000000;
-            transition: border-color 0.3s ease;
+            color: var(--text-main);
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow-sm);
         }
 
-        .form-input:focus,
-        .form-select:focus,
-        .form-textarea:focus {
+        .form-input:hover, .form-select:hover { border-color: #cbd5e1; }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
-            border-color: #0091ff;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
-        .form-textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+        .form-textarea { min-height: 140px; resize: vertical; }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .file-upload-wrapper {
-            position: relative;
+            gap: 24px;
         }
 
         .file-upload-input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 15px;
-            font-family: 'Inter', sans-serif;
-            border: 1px dashed #f4f4f4;
-            border-radius: 6px;
-            background-color: #fff;
-            color: #000000;
-            cursor: pointer;
+            padding: 10px;
+            border: 2px dashed var(--border);
+            background-color: #f8fafc;
         }
-
+        
         .file-upload-input::file-selector-button {
             padding: 8px 16px;
-            background-color: #062733;
+            background-color: var(--primary);
             color: #fff;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
             font-weight: 500;
-            margin-right: 12px;
+            margin-right: 16px;
+            transition: background 0.2s;
         }
+        
+        .file-upload-input::file-selector-button:hover { background-color: #334155; }
 
+        /* --- Terms --- */
         .terms-content {
-            max-height: 400px;
+            height: 300px;
             overflow-y: auto;
             padding: 24px;
-            background-color: #f4f4f4;
-            border-radius: 0;
+            background-color: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 8px;
             margin-bottom: 24px;
-        }
-
-        .terms-content h4 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #062733;
-            margin-bottom: 12px;
-            margin-top: 20px;
-        }
-
-        .terms-content h4:first-child {
-            margin-top: 0;
-        }
-
-        .terms-content p {
             font-size: 14px;
-            color: #000000;
-            margin-bottom: 12px;
-            line-height: 1.7;
+            color: var(--text-muted);
         }
+        
+        .terms-content::-webkit-scrollbar { width: 8px; }
+        .terms-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .terms-content::-webkit-scrollbar-track { background: transparent; }
+
+        .terms-content h4 { color: var(--primary); margin: 20px 0 8px 0; }
+        .terms-content h4:first-child { margin-top: 0; }
 
         .checkbox-group {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            margin-bottom: 20px;
+            padding: 16px;
+            background: rgba(37, 99, 235, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(37, 99, 235, 0.1);
         }
-
+        
         .checkbox-input {
-            width: 18px;
-            height: 18px;
-            margin-top: 2px;
+            width: 20px;
+            height: 20px;
+            margin-top: 3px;
+            accent-color: var(--accent);
             cursor: pointer;
-            accent-color: #0091ff;
         }
 
-        .checkbox-label {
-            font-size: 14px;
-            color: #000000;
-            line-height: 1.6;
-            flex: 1;
-        }
-
+        /* --- Buttons --- */
         .button-group {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             gap: 16px;
-            margin-top: 32px;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
         }
 
         .btn {
-            padding: 14px 28px;
+            padding: 14px 32px;
             font-size: 15px;
-            font-weight: 500;
+            font-weight: 600;
             font-family: 'Inter', sans-serif;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-primary {
-            background-color: #0091ff;
+            background-color: var(--accent);
             color: #fff;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
         }
 
         .btn-primary:hover {
-            background-color: #0077cc;
+            background-color: var(--accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 8px -1px rgba(37, 99, 235, 0.3);
         }
 
         .btn-primary:disabled {
-            background-color: #f4f4f4;
-            color: #000000;
-            opacity: 0.5;
+            background-color: #cbd5e1;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .btn-secondary {
             background-color: #fff;
-            color: #062733;
-            border: 1px solid #f4f4f4;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
         }
 
         .btn-secondary:hover {
-            background-color: #f4f4f4;
+            border-color: #cbd5e1;
+            background-color: #f8fafc;
+            color: var(--text-main);
         }
 
-        .success-message {
-            text-align: center;
-            padding: 40px 20px;
-        }
-
+        /* --- Success State --- */
+        .success-message { text-align: center; padding: 60px 20px; }
+        
         .success-icon {
             width: 80px;
             height: 80px;
-            background-color: #0091ff;
+            background-color: #dbeafe; /* Light Blue */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
+            margin: 0 auto 32px;
+            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
-        .success-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: #fff;
+        @keyframes bounceIn {
+            0% { transform: scale(0); }
+            80% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
 
-        .success-message h2 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #062733;
-            margin-bottom: 12px;
+        .success-icon svg { width: 40px; height: 40px; fill: var(--accent); }
+        .success-message h2 { color: var(--primary); margin-bottom: 16px; }
+        .success-message p { color: var(--text-muted); max-width: 500px; margin: 0 auto 24px; }
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 60px 0 20px;
+            margin-top: auto;
         }
 
-        .success-message p {
-            font-size: 15px;
-            color: #000000;
-            opacity: 0.8;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
         }
+
+        .footer-brand h4 { font-size: 18px; color: var(--primary); margin-bottom: 16px; }
+        .footer-brand p { color: var(--text-muted); font-size: 14px; max-width: 300px; }
+
+        .footer-links h5 { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 16px; text-transform: uppercase; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--accent); }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 40px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright { color: #94a3b8; font-size: 13px; }
+        .social-icons { display: flex; gap: 16px; }
+        .social-icon { width: 20px; height: 20px; background: #e2e8f0; border-radius: 50%; }
 
         @media (max-width: 768px) {
-            .app-header {
-                padding: 24px 20px;
-            }
-
-            .app-header h1 {
-                font-size: 24px;
-            }
-
-            .progress-container {
-                padding: 20px;
-            }
-
-            .step-label {
-                font-size: 11px;
-            }
-
-            .step-circle {
-                width: 36px;
-                height: 36px;
-                font-size: 13px;
-            }
-
-            .content-area {
-                padding: 24px 20px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .button-group {
-                flex-direction: column-reverse;
-            }
-
-            .btn {
-                width: 100%;
-            }
+            .app-hero { padding: 30px; }
+            .app-hero h1 { font-size: 24px; }
+            .progress-container { padding: 20px; }
+            .content-area { padding: 24px; }
+            .form-row, .footer-content { grid-template-columns: 1fr; }
+            .step-label { display: none; }
+            .step-circle { width: 28px; height: 28px; font-size: 12px; }
+            .footer-bottom { flex-direction: column; gap: 10px; }
+            .button-group { justify-content: space-between; }
+            .btn { width: 48%; padding: 12px 16px; }
         }
     </style>
 </head>
 <body>
-    <div class="application-container">
-        <div class="app-header">
-            <h1>Backend Engineer</h1>
-            <p>Join our team and help build scalable solutions</p>
+
+    <header id="header">
+        <div class="header-content">
+            <a href="index.html">
+                <img src="thumbnails/hyperion logo (2).png" alt="Hyperion Logo" onerror="this.style.display='none'; this.parentElement.innerText='HYPERION'">
+            </a>
         </div>
+    </header>
 
-        <style>
-            .progress-container.sticky {
-                position: fixed;
-                top: 50px;
-                left: 0;
-                width: 100%;
-                z-index: 500;
-            }
-        </style>
-
-        <script>
-            const headerHeight = document.getElementById('header').offsetHeight;
-            const progressContainer = document.querySelector('.progress-container');
-
-            window.addEventListener('scroll', () => {
-                const rect = progressContainer.getBoundingClientRect();
-                if (rect.top <= headerHeight) {
-                    progressContainer.classList.add('sticky');
-                } else {
-                    progressContainer.classList.remove('sticky');
-                }
-            });
-        </script>
+    <div class="application-container">
+        <div class="app-hero">
+            <h1>Backend Engineer</h1>
+            <p>Join our Engineering Team • Remote / Hybrid</p>
+        </div>
 
         <div class="progress-container">
             <div class="progress-steps">
@@ -550,85 +545,78 @@
                 </div>
                 <div class="step active" data-step="1">
                     <div class="step-circle">1</div>
-                    <div class="step-label">Job Details</div>
+                    <div class="step-label">Role</div>
                 </div>
                 <div class="step" data-step="2">
                     <div class="step-circle">2</div>
-                    <div class="step-label">Application Form</div>
+                    <div class="step-label">Details</div>
                 </div>
                 <div class="step" data-step="3">
                     <div class="step-circle">3</div>
-                    <div class="step-label">Terms & Conditions</div>
+                    <div class="step-label">Review</div>
                 </div>
             </div>
         </div>
 
         <div class="content-area">
             <div class="step-content active" id="step1">
-                <h2 class="content-title">Backend Engineer Position</h2>
+                <h2 class="content-title">Position Overview</h2>
                 
-                <div class="job-details">
+                <div class="job-grid">
                     <div class="job-section">
-                        <h3>About the Role</h3>
-                        <p>We are seeking a talented Backend Engineer to join our engineering team. In this role, you will design, develop, and maintain robust server-side applications that power our platform. You'll work with cutting-edge technologies and collaborate with cross-functional teams to deliver high-quality solutions.</p>
+                        <p>We are seeking a talented Backend Engineer to join our core engineering team. You will design, develop, and maintain robust server-side applications that power our platform, working with modern technologies to deliver scalable solutions.</p>
                     </div>
                     
-                    <div class="job-section">
-                        <h3>Position Details</h3>
-                        <ul class="position-details">
-                            <li>Position: Senior Backend Engineer</li>
-                            <li>Department: Engineering</li>
-                            <li>Location: San Francisco, CA (Hybrid)</li>
-                            <li>Experience Level: Mid-Senior (3-7 years)</li>
-                            <li>Employment Type: Full-time</li>
-                            <li>Salary Range: $120,000 - $180,000/year</li>
-                        </ul>
+                    <div class="job-card-row">
+                        <div class="spec-item">
+                            <span class="spec-label">Experience</span>
+                            <span class="spec-value">3-7 Years (Senior)</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Location</span>
+                            <span class="spec-value">SF, CA (Hybrid)</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Salary</span>
+                            <span class="spec-value">$120k - $180k</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Stack</span>
+                            <span class="spec-value">Node.js / Python</span>
+                        </div>
                     </div>
 
-                    <div class="job-section">
-                        <h3>Key Responsibilities</h3>
-                        <ul>
-                            <li>Design and implement RESTful APIs and microservices architecture</li>
-                            <li>Optimize database queries and ensure efficient data management</li>
-                            <li>Write clean, maintainable, and well-documented code</li>
-                            <li>Collaborate with frontend developers to integrate user-facing elements</li>
-                            <li>Implement security and data protection measures</li>
-                            <li>Participate in code reviews and maintain high code quality standards</li>
-                        </ul>
-                    </div>
-
-                    <div class="job-section">
-                        <h3>Required Qualifications</h3>
-                        <ul>
-                            <li>Bachelor's degree in Computer Science or related field</li>
-                            <li>3+ years of experience in backend development</li>
-                            <li>Proficiency in Node.js, Python, or Java</li>
-                            <li>Strong understanding of database systems (SQL and NoSQL)</li>
-                            <li>Experience with cloud platforms (AWS, Azure, or GCP)</li>
-                            <li>Excellent problem-solving and communication skills</li>
-                        </ul>
-                    </div>
-
-                    <div class="job-section">
-                        <h3>What We Offer</h3>
-                        <ul>
-                            <li>Competitive salary and equity package</li>
-                            <li>Flexible work arrangements and remote options</li>
-                            <li>Professional development opportunities</li>
-                            <li>Comprehensive health and wellness benefits</li>
-                            <li>Collaborative and innovative work environment</li>
-                        </ul>
+                    <div class="form-row">
+                        <div class="job-section">
+                            <h3>Key Responsibilities</h3>
+                            <ul class="job-list">
+                                <li>Design RESTful APIs & microservices architecture</li>
+                                <li>Optimize database queries for high-volume traffic</li>
+                                <li>Write clean, maintainable, self-documenting code</li>
+                                <li>Collaborate with Frontend on integration points</li>
+                                <li>Implement OWASP security best practices</li>
+                            </ul>
+                        </div>
+                        <div class="job-section">
+                            <h3>Requirements</h3>
+                            <ul class="job-list">
+                                <li>BS in Computer Science or related field</li>
+                                <li>Proficiency in Node.js, Python, or Java</li>
+                                <li>Deep SQL and NoSQL database knowledge</li>
+                                <li>AWS/GCP/Azure cloud experience</li>
+                                <li>Strong problem-solving methodology</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
                 <div class="button-group">
-                    <div></div>
-                    <button class="btn btn-primary" onclick="nextStep()">Continue to Application</button>
+                    <button class="btn btn-primary" onclick="nextStep()">Apply Now</button>
                 </div>
             </div>
 
             <div class="step-content" id="step2">
-                <h2 class="content-title">Application Form</h2>
+                <h2 class="content-title">Candidate Information</h2>
                 
                 <form id="applicationForm">
                     <div class="form-row">
@@ -642,102 +630,93 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Email Address <span class="required">*</span></label>
-                        <input type="email" class="form-input" id="email" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email Address <span class="required">*</span></label>
+                            <input type="email" class="form-input" id="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span class="required">*</span></label>
+                            <input type="tel" class="form-input" id="phone" placeholder="+1 (555) 000-0000" required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Phone Number <span class="required">*</span></label>
-                        <input type="tel" class="form-input" id="phone" placeholder="e.g, 071 234 5678" required>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">LinkedIn URL</label>
+                            <input type="url" class="form-input" placeholder="linkedin.com/in/..." required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Portfolio / GitHub</label>
+                            <input type="url" class="form-input" placeholder="github.com/..." required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">LinkedIn Profile</label>
-                        <input type="url" class="form-input" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">X/Twitter Profile</label>
-                        <input type="url" class="form-input" id="linkedin" placeholder="https://x.com/in/yourprofile">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">GitHub Profile</label>
-                        <input type="url" class="form-input" id="linkedin" placeholder="https://yourprofile.github.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Years of Experience <span class="required">*</span></label>
-                        <select class="form-select" id="experience" required>
-                            <option value="">Select your experience</option>
-                            <option value="0-2">0-2 years</option>
-                            <option value="3-5">3-5 years</option>
-                            <option value="6-8">6-8 years</option>
-                            <option value="9+">9+ years</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Primary Programming Language <span class="required">*</span></label>
-                        <select class="form-select" id="language" required>
-                            <option value="">Select a language</option>
-                            <option value="nodejs">Node.js</option>
-                            <option value="python">Python</option>
-                            <option value="java">Java</option>
-                            <option value="golang">Go</option>
-                            <option value="ruby">Ruby</option>
-                            <option value="other">Other</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Years of Experience <span class="required">*</span></label>
+                            <select class="form-select" id="experience" required>
+                                <option value="">Select range...</option>
+                                <option value="0-2">0-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="6-8">6-8 years</option>
+                                <option value="9+">9+ years</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Primary Stack <span class="required">*</span></label>
+                            <select class="form-select" id="language" required>
+                                <option value="">Select language...</option>
+                                <option value="nodejs">Node.js</option>
+                                <option value="python">Python</option>
+                                <option value="java">Java</option>
+                                <option value="golang">Go</option>
+                                <option value="ruby">Ruby</option>
+                            </select>
+                        </div>
                     </div>
 
                     <div class="form-group">
                         <label class="form-label">Cover Letter <span class="required">*</span></label>
-                        <textarea class="form-textarea" id="coverLetter" placeholder="Tell us why you're interested in this position and what makes you a great fit..." required></textarea>
+                        <textarea class="form-textarea" id="coverLetter" placeholder="Briefly describe your relevant experience..." required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Resume/CV <span class="required">*</span></label>
+                        <label class="form-label">Resume / CV (PDF) <span class="required">*</span></label>
                         <input type="file" class="file-upload-input" id="resume" accept=".pdf,.doc,.docx" required>
                     </div>
 
                     <div class="button-group">
                         <button type="button" class="btn btn-secondary" onclick="previousStep()">Back</button>
-                        <button type="button" class="btn btn-primary" onclick="validateAndNext()">Continue to Terms</button>
+                        <button type="button" class="btn btn-primary" onclick="validateAndNext()">Review & Submit</button>
                     </div>
                 </form>
             </div>
 
             <div class="step-content" id="step3">
-                <h2 class="content-title">Terms & Conditions</h2>
+                <h2 class="content-title">Terms & Declarations</h2>
                 
                 <div class="terms-content">
-                    <h4>1. Application Process</h4>
-                    <p>By submitting this application, you acknowledge that all information provided is accurate and complete to the best of your knowledge. Any false or misleading information may result in disqualification from the hiring process or termination if discovered after employment.</p>
+                    <h4>1. Application Accuracy</h4>
+                    <p>By submitting this application, you acknowledge that all information provided is accurate and complete. Providing false information may result in disqualification.</p>
 
-                    <h4>2. Data Privacy and Protection</h4>
-                    <p>We collect and process your personal information in accordance with applicable data protection laws. Your data will be used solely for recruitment purposes and will be stored securely. We will retain your information for the duration of the recruitment process and may keep it on file for future opportunities unless you request deletion.</p>
+                    <h4>2. Data Privacy</h4>
+                    <p>We process your personal data in accordance with our Privacy Policy. Your data is used solely for recruitment purposes and stored securely on our encrypted servers.</p>
 
-                    <h4>3. Equal Opportunity Employment</h4>
-                    <p>We are an equal opportunity employer and value diversity. We do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status. All employment decisions are based on qualifications, merit, and business needs.</p>
+                    <h4>3. Equal Opportunity</h4>
+                    <p>We are an equal opportunity employer. We do not discriminate on the basis of race, religion, color, national origin, gender, sexual orientation, age, marital status, veteran status, or disability status.</p>
 
                     <h4>4. Confidentiality</h4>
-                    <p>Any information shared during the interview process, including but not limited to technical challenges, business strategies, or proprietary information, must be kept confidential and not disclosed to third parties.</p>
-
-                    <h4>5. Background Verification</h4>
-                    <p>If selected for employment, you may be required to undergo background verification, including education verification, employment history, and reference checks. Your consent for such verification is implied upon submission of this application.</p>
-
-                    <h4>6. At-Will Employment</h4>
-                    <p>Employment with our company is at-will, meaning either party may terminate the employment relationship at any time, with or without cause or notice, subject to applicable laws and regulations.</p>
-
-                    <h4>7. Communication</h4>
-                    <p>By providing your contact information, you consent to receive communications from us regarding your application status and other recruitment-related matters via email, phone, or other electronic means.</p>
+                    <p>Any proprietary information shared during the technical interview process must remain confidential.</p>
+                    
+                    <h4>5. Background Checks</h4>
+                    <p>Offers of employment are contingent upon the successful completion of a background verification check.</p>
                 </div>
 
                 <div class="checkbox-group">
                     <input type="checkbox" class="checkbox-input" id="termsAgree" required>
                     <label class="checkbox-label" for="termsAgree">
-                        I have read and agree to the terms and conditions outlined above. I confirm that all information provided in my application is true and accurate.
+                        I have read and agree to the Terms of Service and Privacy Policy. I confirm that all information provided is accurate.
                     </label>
                 </div>
 
@@ -754,17 +733,78 @@
                             <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
                         </svg>
                     </div>
-                    <h2>Application Submitted Successfully!</h2>
-                    <p>Thank you for applying to the Backend Engineer position. We have received your application and will review it carefully. You should receive a confirmation email shortly. We'll be in touch if your qualifications match our requirements.</p>
+                    <h2>Application Received</h2>
+                    <p>Thank you for applying for the Backend Engineer position. Our team will review your qualifications and contact you if there is a potential match.</p>
+                    <a href="careers.html" style="color: var(--accent); font-weight: 500; text-decoration: none;">&larr; Return to Careers</a>
                 </div>
-            <a href="careers.html"><p style="font-size: 1rem; color: #0091ff; text-decoration: underline; text-align: center;">Return to Careers</p></a>    
             </div>
         </div>
     </div>
 
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h4>Hyperion</h4>
+                <p>Building scalable solutions for the future. Join us in shaping the digital landscape.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Support</h5>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h5>Legal</h5>
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Security</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; 2024 Hyperion Inc. All rights reserved.
+            </div>
+            <div class="social-icons">
+                <div class="social-icon"></div>
+                <div class="social-icon"></div>
+                <div class="social-icon"></div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         let currentStep = 1;
 
+        // Sticky Header Logic
+        const progressContainer = document.querySelector('.progress-container');
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            const headerBottom = header.offsetHeight;
+            const containerTop = document.querySelector('.application-container').getBoundingClientRect().top + window.scrollY;
+            
+            // Add sticky class if we scroll past the start of the container
+            if (window.scrollY > (containerTop - headerBottom)) {
+                progressContainer.classList.add('sticky');
+            } else {
+                progressContainer.classList.remove('sticky');
+            }
+        });
+
+        // Step Logic
         function updateProgress() {
             const steps = document.querySelectorAll('.step');
             const progressFill = document.getElementById('progressFill');
@@ -791,7 +831,17 @@
             document.getElementById('step' + step).classList.add('active');
             currentStep = step;
             updateProgress();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Scroll to top of container smoothly
+            const container = document.querySelector('.application-container');
+            const headerOffset = 80;
+            const elementPosition = container.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
         }
 
         function nextStep() {
@@ -823,15 +873,17 @@
             const termsChecked = document.getElementById('termsAgree').checked;
             
             if (!termsChecked) {
-                alert('Please agree to the terms and conditions to proceed.');
+                alert('Please agree to the terms to proceed.');
                 return;
             }
 
+            // Hide other content, show success
             document.querySelectorAll('.step-content').forEach(content => {
                 content.classList.remove('active');
             });
             document.getElementById('success').classList.add('active');
             
+            // Complete progress bar
             const steps = document.querySelectorAll('.step');
             steps.forEach(step => {
                 step.classList.remove('active');
@@ -839,10 +891,13 @@
             });
             document.getElementById('progressFill').style.width = '100%';
             
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Initialize
         updateProgress();
     </script>
 </body>
 </html>
+
