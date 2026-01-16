@@ -1,3 +1,4 @@
+// File: header.js
 
 class CronosHeader extends HTMLElement {
     constructor() {
@@ -13,7 +14,7 @@ class CronosHeader extends HTMLElement {
     render() {
         this.shadowRoot.innerHTML = `
         <style>
-             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
             /* =============================================
                 CRONOS HEADER - UNIQUE STYLES (SHADOW DOM)
@@ -54,7 +55,7 @@ class CronosHeader extends HTMLElement {
                 background-color: var(--cronos-color-header-bg);
                 text-decoration: none;
                 border-bottom: none;
-                line-height: 1.1;
+                line-height: normal;
             }
 
             .cronos-custom-header {
@@ -911,7 +912,7 @@ class CronosHeader extends HTMLElement {
                                     <span class="cronos-menu-group-tagline">Build your custom vision</span>
                                 </span>
                             </h3>
-                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 0.9rem; font-family: 'Inter', system-ui, -apple-system, sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project
+                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project
                                 <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
                             </a></button>
                             <ul class="cronos-mega-menu-group-list">
@@ -956,7 +957,7 @@ class CronosHeader extends HTMLElement {
                                     <span class="cronos-menu-group-tagline">Power your business</span>
                                 </span>
                             </h3>
-                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', system-ui, -apple-system, sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn About IT
+                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn About IT
                                 <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
                             </a></button>
                             <ul class="cronos-mega-menu-group-list">
@@ -1001,7 +1002,7 @@ class CronosHeader extends HTMLElement {
                                     <span class="cronos-menu-group-tagline">Grow your audience</span>
                                 </span>
                             </h3>
-                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', system-ui, -apple-system, sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Marketing
+                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Marketing
                                 <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
                             </a></button>
                             <ul class="cronos-mega-menu-group-list">
@@ -1317,7 +1318,7 @@ class CronosHeader extends HTMLElement {
     }
 }
 
-// Define the custom element
-customElements.define('cronos-header', CronosHeader);
-
-
+// Safety check: only define the element if it hasn't been defined yet
+if (!customElements.get('cronos-header')) {
+    customElements.define('cronos-header', CronosHeader);
+}
