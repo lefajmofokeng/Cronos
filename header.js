@@ -907,12 +907,12 @@ class CronosHeader extends HTMLElement {
                         <div class="cronos-menu-group-card">
                             <h3>
                                 <img src="thumbnails/04 (2).png" alt="Dev Icon" class="cronos-menu-group-img-icon">
-                                <span class="cronos-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                                <span class="cronos-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
                                     Software Development
                                     <span class="cronos-menu-group-tagline">Build your custom vision</span>
                                 </span>
                             </h3>
-                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project
+                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Start Project
                                 <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
                             </a></button>
                             <ul class="cronos-mega-menu-group-list">
@@ -952,12 +952,12 @@ class CronosHeader extends HTMLElement {
                         <div class="cronos-menu-group-card">
                             <h3>
                                 <img src="thumbnails/02.png" alt="IT Icon" class="cronos-menu-group-img-icon">
-                                 <span class="cronos-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                                 <span class="cronos-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
                                     IT Infrastructure
                                     <span class="cronos-menu-group-tagline">Power your business</span>
                                 </span>
                             </h3>
-                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn About IT
+                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Learn About IT
                                 <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
                             </a></button>
                             <ul class="cronos-mega-menu-group-list">
@@ -997,12 +997,12 @@ class CronosHeader extends HTMLElement {
                         <div class="cronos-menu-group-card">
                             <h3>
                                 <img src="thumbnails/03.png" alt="Marketing Icon" class="cronos-menu-group-img-icon">
-                                <span class="cronos-menu-group-text-container" style="color: white; font-weight: 400; font-size: 14px;">
+                                <span class="cronos-menu-group-text-container" style="color: white; font-weight: 500; font-size: 14px;">
                                     Marketing & Creative Studio
                                     <span class="cronos-menu-group-tagline">Grow your audience</span>
                                 </span>
                             </h3>
-                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 450; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Marketing
+                            <button style="color: white; background-color: transparent; border: 1px solid rgba(128, 128, 128, 0.334); padding: 7px 16px; border-radius: 50px; margin-bottom: 16px; font-weight: 500; font-size: 0.9rem; font-family: 'Inter', sans-serif;"><a style="text-decoration: none; border-bottom: none; color: #fff;" href="index.html">Explore Marketing
                                 <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path fill="#ffffff" d="M5 17.59L15.59 7H9V5h10v10h-2V8.41L6.41 19L5 17.59Z"/></svg>
                             </a></button>
                             <ul class="cronos-mega-menu-group-list">
