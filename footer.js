@@ -375,7 +375,7 @@ class CronosFooter extends HTMLElement {
                             <ul>
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="careers.html">Careers</a></li>
-                                <li><a href="page.html">Partners</a></li>
+                                <li><a href="partners.html">Partners</a></li>
                                 <li><a href="affiliates.html">Affiliate</a></li>
                                 <li><a href="capital.html">Capital</a></li>
                                 <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
