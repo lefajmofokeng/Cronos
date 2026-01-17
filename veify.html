@@ -2,18 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>My Website</title>
+    
+    <script src="header.js" defer></script> 
+    <script src="footer.js" defer></script>
+</head>
+<body>
+
+    <cronos-header></cronos-header>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verify Asset - Defcon</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             /* NEW "Advanced" Palette */
-            --bg-dark: #0D0F18;
+            --bg-dark: #06080e;
             --bg-glass: rgba(255, 255, 255, 0.05);
             --border-glass: rgba(255, 255, 255, 0.1);
             --text-primary: #FFFFFF;
             --text-secondary: #a0b3d6;
-            --accent-blue: #00F0FF; /* Electric Blue/Teal */
+            --accent-blue: #fdfdfd; /* Electric Blue/Teal */
             --loading-color: #00A3B5;
 
             /* Status Colors */
@@ -23,7 +41,7 @@
             --status-red-bg: rgba(255, 77, 77, 0.1);
 
             --border-radius-card: 16px;
-            --border-radius-btn: 10px;
+            --border-radius-btn: 50px;
         }
         
         * {
@@ -35,8 +53,8 @@
         
         body {
             background-color: var(--bg-dark);
-            background: radial-gradient(circle at 10% 20%, rgba(0, 240, 255, 0.1), transparent 30%),
-                        radial-gradient(circle at 90% 80%, rgba(100, 0, 255, 0.1), transparent 30%),
+            background: radial-gradient(circle at 10% 20%, rgba(0, 106, 255, 0.1), transparent 30%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 132, 255, 0.166), transparent 30%),
                         var(--bg-dark);
             color: var(--text-primary);
             line-height: 1.6;
@@ -52,12 +70,7 @@
         }
 
         .verify-card {
-            background-color: var(--bg-glass);
-            border-radius: var(--border-radius-card);
-            border: 1px solid var(--border-glass);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            
             padding: 40px;
             width: 100%;
             max-width: 600px;
@@ -65,7 +78,7 @@
         }
 
         .verify-card h1 {
-            font-size: 28px;
+            font-size: 35px;
             font-weight: 700;
             color: var(--text-primary);
             margin-bottom: 10px;
@@ -83,7 +96,8 @@
             background-color: rgba(0, 0, 0, 0.2);
             border-radius: var(--border-radius-btn);
             margin-bottom: 30px;
-            border: 1px solid var(--border-glass);
+            padding: 1.5px;
+            border: 1px solid #fdfdfd;
         }
 
         .verify-tab {
@@ -105,7 +119,7 @@
             background-color: var(--accent-blue);
             color: var(--bg-dark);
             font-weight: 700;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+            
         }
         /* -------------------------- */
 
@@ -123,7 +137,6 @@
             color: var(--text-primary);
             font-size: 16px;
             margin-bottom: 20px;
-            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         #verify-input::placeholder {
@@ -134,7 +147,6 @@
         #verify-input:focus {
             outline: none;
             border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.2);
         }
         
         /* Default Button Style */
@@ -147,25 +159,21 @@
             padding: 12px 30px;
             border-radius: var(--border-radius-btn);
             text-decoration: none;
-            font-weight: 700;
+            font-weight: 600;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 18px;
+            letter-spacing: -0.02em;
             position: relative;
+            font-family: 'Inter', sans-serif;
         }
         
-        .btn:not(.loading):hover {
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
         /* --- Loading State Styles --- */
         .btn.loading {
             background-color: var(--loading-color);
             cursor: not-allowed;
             color: transparent; /* Hide text */
-            box-shadow: 0 0 20px rgba(0, 163, 181, 0.5);
             animation: pulse 1s infinite alternate;
         }
 
@@ -194,16 +202,13 @@
         /* -------------------------- */
 
         .btn-secondary {
-            background-color: var(--bg-glass);
-            color: var(--text-secondary);
+            background-color: #07142a;
+            color: #fdfdfd;
+            width: 100%;
+            text-align: center;
             border: 1px solid var(--border-glass);
-        }
-
-        .btn-secondary:not(.loading):hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            box-shadow: none;
-            transform: translateY(-2px);
+            padding: 15px 0;
+            font-size: 20px;
         }
         
         /* Modal Styles (remains the same) */
@@ -214,20 +219,18 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.923);
             z-index: 1000;
             align-items: center;
             justify-content: center;
         }
         
         .modal-content {
-            background-color: var(--bg-glass);
+            background-color: #fdfdfd;
             border-radius: var(--border-radius-card);
             border: 1px solid var(--border-glass);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            
             width: 90%;
             max-width: 500px;
             max-height: 90vh;
@@ -247,8 +250,8 @@
         .modal-title {
             font-size: 24px;
             font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 10px;
+            color: #1191fa;
+            margin-bottom: 20px;
         }
         
         .close-modal {
@@ -257,13 +260,9 @@
             right: -10px;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 26px;
             cursor: pointer;
-            color: var(--text-secondary);
-        }
-        
-        .close-modal:hover {
-            color: var(--text-primary);
+            color: #07142a;
         }
         
         .modal-body {
@@ -271,14 +270,15 @@
         }
 
         .modal-body p {
-            color: var(--text-secondary);
-            font-size: 16px;
+            color: #07142a;
+            font-size: 20px;
+            font-weight: 600;
             margin-bottom: 30px;
         }
 
-        .modal-body p strong {
-            color: var(--text-primary);
-            word-break: break-all;
+        .modal-body p span {
+            color: #1191fa;
+            word-break: keep-all;
         }
 
         .modal-icon {
@@ -294,13 +294,28 @@
         }
 
         .modal-icon.success {
-            background-color: var(--status-green-bg);
             color: var(--status-green-text);
         }
         
         .modal-icon.failure {
-            background-color: var(--status-red-bg);
             color: var(--status-red-text);
+        }
+
+        @media (max-width: 600px) {
+            .verify-card {
+                padding: 20px;
+            }
+
+            .verify-card h1 {
+                font-size: 28px;
+            }
+
+            .modal-content {
+                padding: 20px;
+            }
+
+             .verify-tab {
+                font-size: 11px;}
         }
         
     </style>
@@ -309,11 +324,11 @@
     
     <div class="verify-wrapper">
         <div class="verify-card">
-            <h1>Verify Official Asset</h1>
+            <h1><span style="padding-right: 15px; font-weight: 600;">Cronos</span> <span style="border-left: 2px solid #b6b6b6; color: #b6b6b6; padding-left: 20px; letter-spacing: 0.09em; text-transform: uppercase;">Verify</span></h1>
             <p>Select an asset type and enter the identifier to confirm it's officially associated with our projects.</p>
             
             <div class="verify-tabs">
-                <div class="verify-tab active" data-type="link">URL / Link</div>
+                <div class="verify-tab active" data-type="link">URL/Link</div>
                 <div class="verify-tab" data-type="email">Email Address</div>
                 <div class="verify-tab" data-type="social">Social ID</div>
             </div>
@@ -336,7 +351,7 @@
                 <h3 class="modal-title">Asset Verified</h3>
             </div>
             <div class="modal-body">
-                <p>The identifier <strong id="success-link"></strong> is an official asset. You can proceed with confidence.</p>
+                <p>The identifier <span id="success-link"></span> is an official asset. You can proceed with confidence.</p>
                 <button class="btn modal-close-btn">OK, Got It</button>
             </div>
         </div>
@@ -346,11 +361,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button class="close-modal">&times;</button>
-                <div class="modal-icon failure">!</div>
+                <div class="modal-icon failure">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 48 48"><path fill="#0091ff" d="M21.44 3.44a1.5 1.5 0 0 1 2.12 0l5 5a1.5 1.5 0 0 1 0 2.12l-5 5a1.5 1.5 0 0 1-2.12-2.12L23.877 11C15.65 11.067 9 17.757 9 26c0 8.284 6.716 15 15 15c7.779 0 14.175-5.921 14.926-13.502c.082-.825.746-1.498 1.574-1.498s1.507.674 1.438 1.5C41.176 36.74 33.436 44 24 44c-9.941 0-18-8.059-18-18c0-9.9 7.994-17.935 17.88-18l-2.44-2.44a1.5 1.5 0 0 1 0-2.12m11.12 19.12a1.5 1.5 0 0 0-2.12-2.12l-7.94 7.939l-2.94-2.94a1.5 1.5 0 0 0-2.12 2.122l4 4a1.5 1.5 0 0 0 2.12 0z"/></svg>
+                </div>
                 <h3 class="modal-title">Asset Not Found</h3>
             </div>
             <div class="modal-body">
-                <p>The identifier <strong id="failure-link"></strong> is not associated with our records. Please be cautious and do not trust this asset.</p>
+                <p>The identifier <span id="failure-link"></span> is not associated with our records. Please be cautious and do not trust this asset.</p>
                 <button class="btn btn-secondary modal-close-btn">Close</button>
             </div>
         </div>
@@ -491,5 +508,8 @@
             });
         });
     </script>
+
+
+<cronos-footer></cronos-footer>
 </body>
 </html>

@@ -379,7 +379,7 @@ class CronosFooter extends HTMLElement {
                                 <li><a href="affiliates.html">Affiliate</a></li>
                                 <li><a href="capital.html">Capital</a></li>
                                 <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-                                <li><a href="page.html">Verify</a></li>
+                                <li><a href="veify.html">Verify</a></li>
                             </ul>
                         </div>
 
