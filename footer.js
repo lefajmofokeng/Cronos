@@ -1,465 +1,250 @@
-// File: footer.js
-
 class CronosFooter extends HTMLElement {
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-    }
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
 
-    connectedCallback() {
-        this.render();
-        this.initScripts();
-    }
+  connectedCallback() {
+    this.render();
+  }
 
-    render() {
-        this.shadowRoot.innerHTML = `
-        <style>
-            /* =============================================
-               CRONOS FOOTER - ISOLATED STYLES
-               ============================================= */
-            
-            :host {
-                display: block;
-                width: 100%;
-                font-family: 'Inter', system-ui, -apple-system, sans-serif;
-                background-color: #080d1b; /* Outer background match */
-                margin: 0;
-                padding: 0;
-            }
+  render() {
+    this.shadowRoot.innerHTML = `
+      <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&display=swap');
 
-            /* Reset for isolation */
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
-
-            /* Main container for the footer */
-            .cronos-footer-container {
-                background-color: #080d1b;
-                color: #7b849b;
-                width: 100%;
-            }
-
-            .cronos-footer-wrapper {
-                max-width: 1250px;
-                margin: 0 auto;
-                padding: 0 20px; /* added safety padding */
-            }
-
-            /* Top section: logo, line, and icons */
-            .cronos-footer-top {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                gap: 1.5rem;
-                flex-wrap: wrap;
-            }
-
-            .image-logo {
-                height: 35px;
-                align-items: center;
-                align-self: center;
-                vertical-align: middle;
-                cursor: pointer;
-            }
-
-            .cronos-footer-logo span {
-                font-size: 25px;
-                font-weight: 600;
-                align-items: center;
-                align-self: center;
-                vertical-align: middle;
-                color: white;
-            }
-
-            /* The decorative line between logo and icons */
-            .cronos-footer-line {
-                flex-grow: 1;
-                height: 1.2px;
-                background-color: #303c55;
-                min-width: 50px;
-                border: none;
-                margin: 0;
-            }
-
-            /* Footer content with columns */
-            .footer-content {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 80px;
-                margin-bottom: 30px;
-                padding-top: 3.5rem;
-                width: 100%;
-            }
-
-            /* Add top padding for nested columns on desktop */
-            @media (min-width: 769px) {
-                .footer-content > div > .footer-column:not(:first-child) {
-                    padding-top: 2rem; 
-                }
-            }
-
-            .footer-column h3 {
-                color: #858992;
-                font-size: 14px;
-                font-weight: 500;
-                margin-bottom: 20px;
-                text-transform: none;
-                letter-spacing: 0.1px;
-                cursor: pointer;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-top: 0;
-            }
-
-            .footer-column h3::after {
-                content: '+';
-                font-size: 18px;
-                display: none;
-            }
-
-            .footer-column.active h3::after {
-                content: '‒';
-                font-size: 18px;
-            }
-
-            .footer-column ul {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            .footer-column ul li {
-                margin-bottom: 20px;
-            }
-
-            .footer-column ul li a {
-                color: #ffffff;
-                text-decoration: none;
-                font-size: 16px;
-                font-weight: 500;
-                min-width: fit-content;
-            }
-
-            .footer-column ul li a:hover {
-                color: #62b8fa;
-            }
-
-            /* Middle content section with paragraphs */
-            .cronos-footer-content {
-                margin-top: 2.5rem;
-                margin-bottom: 1.25rem;
-                font-size: 14px;
-                font-weight: 400;
-                line-height: 1.6;
-                color: #a0a9be;
-            }
-
-            .cronos-footer-content p {
-                margin-bottom: 1rem;
-                margin-top: 0;
-            }
-
-            .footer-columns {
-                display: flex;
-                justify-content: space-between;
-                align-items: flex-start;
-                gap: 2rem;
-            }
-
-            .footer-left {
-                flex-basis: 100%;
-            }
-
-            /* Bottom section with copyright */
-            .cronos-footer-bottom {
-                margin-top: 15px;
-                padding-top: 0;
-                margin-bottom: 2rem;
-                display: flex;
-                text-align: right;
-                align-items: center;
-                justify-content: flex-end;
-                gap: 1.5rem;
-                font-size: 0.826rem;
-                font-weight: 400;
-                color: #a0a9be;
-                flex-wrap: wrap;
-            }
-
-            .cronos-footer-bottom span {
-                flex-shrink: 0;
-            }
-
-            .footer-kv {
-                display: inline-flex;
-                align-items: center;
-                justify-content: flex-start;
-                flex-grow: 1;
-                line-height: 0.9;
-                gap: 12px;
-            }
-            .footer-kv a {
-                color: inherit;
-                text-decoration: none;
-                padding: 0;
-                font-weight: 500;
-            }
-            .footer-kv a + a {
-                padding-left: 12px;
-                border-left: 1px solid #7b849b;
-                margin-left: 1px;
-            }
-
-            /* =============================================
-               RESPONSIVE STYLES
-               ============================================= */
-            @media (max-width: 1024px) {
-                .footer-content {
-                    grid-template-columns: repeat(3, 1fr);
-                    gap: 40px;
-                }
-
-                .footer-columns {
-                    flex-direction: column;
-                }
-
-                .footer-left, .footer-right {
-                    flex-basis: 100%;
-                }
-            }
-
-            @media (max-width: 768px) {
-                .cronos-footer-container {
-                    padding: 3rem 0;
-                }
-
-                .cronos-footer-top {
-                    justify-content: center;
-                    flex-direction: column;
-                }
-                
-                .cronos-footer-line {
-                    display: none;
-                }
-                
-                .cronos-footer-bottom {
-                    justify-content: center; 
-                    text-align: center;
-                    padding: 1rem 0;
-                }
-
-                .footer-content {
-                    grid-template-columns: 1fr;
-                    gap: 0;
-                    padding-top: 2rem;
-                }
-                
-                .footer-column {
-                    border-bottom: 1px solid #303c55;
-                    padding: 15px 0;
-                }
-
-                /* Select specifically within grid to avoid conflicts */
-                .footer-content > div > .footer-column {
-                     border-bottom: 1px solid #303c55;
-                     padding: 15px 0;
-                }
-                .footer-content > div > .footer-column:last-child {
-                     border-bottom: 1px solid #303c55;
-                }
-
-                .footer-column:last-child {
-                    border-bottom: none;
-                }
-                
-                .footer-column h3 {
-                    cursor: pointer;
-                    user-select: none;
-                }
-
-                .footer-column h3::after {
-                    display: block;
-                }
-                
-                .footer-column ul {
-                    display: none;
-                    margin-top: 10px;
-                    padding-left: 10px;
-                }
-                
-                .footer-column.active ul {
-                    display: block;
-                }
-                
-                .footer-columns {
-                    flex-direction: column;
-                }
-                
-                .footer-left {
-                    flex-basis: 100%;
-                    border-top: 1px solid #303c55;
-                    padding-top: 2rem;
-                }
-                
-                /* Mobile KV Links */
-                .footer-kv {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    width: 100%;
-                    gap: 6px;
-                    padding: 8px 0;
-                    order: 1;
-                }
-                .footer-kv a + a {
-                    border-left: none;
-                    padding-left: 0;
-                    margin-left: 0;
-                }
-            }
-
-            @media (max-width: 480px) {
-                .cronos-footer-container {
-                    padding: 2rem 0;
-                }
-
-                .footer-content {
-                    grid-template-columns: 1fr;
-                    gap: 0;
-                }
-            }
-        </style>
-
-        <div style="background-color: #080d1b; margin: 0; padding: 3.5rem 0;">
-            <div class="cronos-footer-container">
-                <div class="cronos-footer-wrapper">
-                    
-                    <div class="cronos-footer-top">
-                        <div class="cronos-footer-logo">
-                            <a href="index.html">
-                                <img src="thumbnails/hyperion logo (2).png" class="image-logo" alt="Logo">
-                            </a>
-                        </div>
-                        <hr class="cronos-footer-line">
-                    </div>
-                    
-
-                    <div class="footer-content">
-                        <div>
-                            <div class="footer-column">
-                                <h3>Resources</h3>
-                                <ul>
-                                    <li><a href="page.html">Blog</a></li>
-                                    <li><a href="proof.html">Github</a></li>
-                                    <li><a href="glossary.html">Glossary</a></li>
-                                    <li><a href="market-insights.html">Market Insights</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="footer-column">
-                                <h3>Businesses</h3>
-                                <ul>
-                                    <li><a href="global.html">Global Network</a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="footer-column">
-                            <h3>Company</h3>
-                            <ul>
-                                <li><a href="about.html">About Us</a></li>
-                                <li><a href="careers.html">Careers</a></li>
-                                <li><a href="partners.html">Partners</a></li>
-                                <li><a href="affiliates.html">Affiliate</a></li>
-                                <li><a href="capital.html">Capital</a></li>
-                                <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-                                <li><a href="veify.html">Verify</a></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <div class="footer-column">
-                                <h3>Updates</h3>
-                                <ul>
-                                    <li><a href="#">X</a></li>
-                                    <li><a href="page.html">Product Updates</a></li>
-                                    <li><a href="page.html">Facebook</a></li>
-                                    <li><a href="page.html">Youtube</a></li>
-                                    <li><a href="page.html">LinkedIn</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr class="cronos-footer-line">
-
-                    <div class="cronos-footer-content">
-                        <div class="footer-columns">
-                            <div class="footer-left">
-                                <p>
-                                    We operate as a digitally native technology enterprise, delivering end-to-end IT solutions through modern digital infrastructure and streamlined methodologies. Our services are optimized for remote engagement, enabling fast and efficient support, with on-site deployment reserved only for situations where physical presence is essential or remote solutions are not technically viable.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cronos-footer-bottom">
-                        <div class="footer-kv">
-                            <a href="page.html" aria-label="Privacy Notice">Legal</a>
-                            <a href="page.html" aria-label="Status">Status</a>
-                        </div>
-                        <span id="copyright-text">Copyright &copy; Cronos. All rights reserved.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        `;
-    }
-
-    initScripts() {
-        // Set dynamic year
-        const year = new Date().getFullYear();
-        const copyrightSpan = this.shadowRoot.getElementById('copyright-text');
-        if(copyrightSpan) {
-            copyrightSpan.innerHTML = `Copyright &copy; Cronos ${year}. All rights reserved.`;
+        :host {
+          display: block;
+          width: 100%;
+          font-family: 'Inter', sans-serif;
+          /* Force sharp font rendering */
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeLegibility;
         }
 
-        // Mobile accordion functionality scoped to Shadow DOM
-        const footerColumns = this.shadowRoot.querySelectorAll('.footer-column');
+        *, *::before, *::after {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        .cf-container {
+          background-color: #04080d;
+          color: #ffffff;
+          position: relative;
+          overflow: hidden; 
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          /* Large padding-bottom defines the height of the footer */
+          padding: 60px 20px 18vw 20px; 
+        }
+
+        /* --- Content Section (Top) --- */
+        .cf-content {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          max-width: 1200px;
+          width: 100%;
+          margin: 0 auto;
+          position: relative;
+          z-index: 2; /* Sits above scrolling text */
+          gap: 40px;
+        }
+
+        /* --- Columns --- */
+        .cf-brand-col { flex: 1 1 200px; }
+        .cf-links-col { flex: 2 1 300px; display: flex; gap: 60px; }
+        .cf-social-col { flex: 1 1 150px; }
+        .cf-copyright-col { flex: 1 1 200px; text-align: right; }
+
+        /* Logo Area */
+        .cf-logo-wrapper {
+          display: flex;
+          align-items: center;
+          font-size: 24px;
+          font-weight: 700;
+          color: #fff;
+        }
         
-        footerColumns.forEach(column => {
-            const header = column.querySelector('h3');
-            if (header) {
-                header.addEventListener('click', () => {
-                    if (window.innerWidth <= 768) {
-                        // Optional: Close others when one opens (Accordion style)
-                        // footerColumns.forEach(c => {
-                        //     if (c !== column) c.classList.remove('active');
-                        // });
-                        column.classList.toggle('active');
-                    }
-                });
-            }
-        });
+        /* Image Placeholder */
+        .cf-logo-img {
+          display: block;
+          max-width: 100px; /* Adjust based on your logo aspect ratio */
+          height: auto;
+          background: transparent;
+        }
 
-        // Close accordion on resize to desktop
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                footerColumns.forEach(column => {
-                    column.classList.remove('active');
-                });
-            }
-        });
-    }
+        /* Typography */
+        .cf-heading {
+          font-size: 12px;
+          text-transform: uppercase;
+          color: #8a8f98;
+          margin-bottom: 24px; /* More space below headings */
+          font-weight: 600;
+          letter-spacing: 0.05em;
+        }
+
+        .cf-link-list { list-style: none; }
+        .cf-link-list li { margin-bottom: 16px; }
+        
+        .cf-link-list a {
+          text-decoration: none;
+          color: #ffffff; /* Pure white for max visibility */
+          font-size: 15px; /* Slightly larger for readability */
+          font-weight: 500; /* Slightly bolder */
+          /* REMOVED transitions to prevent font weakening/blurring */
+        }
+
+        .cf-link-list a:hover { 
+          text-decoration: underline; /* Simple, sharp hover state */
+          color: #ffffff;
+        }
+
+        .cf-copy-text {
+          font-size: 12px;
+          color: #8a8f98;
+          line-height: 1.6;
+        }
+
+        /* Social Icons */
+        .cf-social-icons { display: flex; gap: 16px; }
+        
+        .cf-icon-circle {
+          width: 40px; height: 40px;
+          border: 1px solid #3f444d;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          cursor: pointer;
+          color: #fff;
+          text-decoration: none;
+          background: transparent;
+          /* No Box Shadow, No Transition on transforms */
+        }
+        
+        .cf-icon-circle:hover {
+          background-color: #ffffff17;
+          border-color: #fff;
+        }
+
+        /* --- Seamless Background Scroller (Bottom) --- */
+        .cf-bg-scroller {
+          position: absolute;
+          bottom: -2.9em; 
+          left: 0;
+          width: 100%;
+          z-index: 1;
+          pointer-events: none;
+          opacity: 0.04; 
+          line-height: 1;
+          user-select: none;
+        }
+
+        .cf-track {
+          display: flex;
+          width: max-content;
+          animation: cf-scroll-left 60s linear infinite;
+        }
+
+        .cf-text-set {
+          font-size: 25vw; 
+          font-weight: 700;
+          text-transform: lowercase;
+          color: #ffffff;
+          white-space: nowrap;
+          /* Only using transform here where necessary for animation */
+          will-change: transform;
+        }
+
+        @keyframes cf-scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 992px) {
+           .cf-content { gap: 50px 30px; }
+           .cf-copyright-col { text-align: left; flex-basis: 100%; margin-top: 20px; }
+           .cf-links-col { gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+          .cf-container {
+             padding: 40px 20px 40vw 20px; 
+          }
+          .cf-content { flexDirection: column; gap: 40px; }
+          .cf-brand-col, .cf-links-col, .cf-social-col, .cf-copyright-col {
+            flex: auto; width: 100%;
+          }
+          .cf-links-col { flex-direction: column; gap: 30px; }
+          .cf-text-set { font-size: 35vw; } 
+        }
+      </style>
+
+      <footer class="cf-container">
+        
+        <div class="cf-content">
+          <div class="cf-brand-col">
+              <img class="cf-logo-img" src="thumbnails/hyperion logo (2).png" alt="Logo Placeholder" />
+          </div>
+
+          <div class="cf-links-col">
+            <div class="cf-link-group">
+              <h3 class="cf-heading">Cronos</h3>
+              <ul class="cf-link-list">
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+                <li><a href="veify.html">Verify</a></li>
+              </ul>
+            </div>
+            <div class="cf-link-group" style="padding-top: 38px;"> <ul class="cf-link-list">
+                <li><a href="#">Learn</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Cronos Labs</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="cf-social-col">
+             <h3 class="cf-heading">Social</h3>
+             <div class="cf-social-icons">
+               <a class="cf-icon-circle">
+               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1536 1504"><path fill="#e5e5e5" d="M768 0q209 0 385.5 103T1433 382.5T1536 768q0 251-146.5 451.5T1011 1497q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142q57-6 102.5-18t94-39t81-66.5t53-105T1258 728q0-119-79-206q37-91-8-204q-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27T450 331.5T365 318q-45 113-8 204q-79 87-79 206q0 85 20.5 150T351 983t80.5 67t94 39t102.5 18q-39 36-49 103q-21 10-45 15t-57 5t-65.5-21.5T356 1146q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5t9 14t13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30t69.5 7t55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5T0 768q0-209 103-385.5T382.5 103T768 0zM291 1103q3-7-7-12q-10-3-13 2q-3 7 7 12q9 6 13-2zm31 34q7-5-2-16q-10-9-16-3q-7 5 2 16q10 10 16 3zm30 45q9-7 0-19q-8-13-17-6q-9 5 0 18t17 7zm42 42q8-8-4-19q-12-12-20-3q-9 8 4 19q12 12 20 3zm57 25q3-11-13-16q-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11q-16 0-16 11q0 13 17 11q16 0 16-11zm58-10q-2-11-18-9q-16 3-14 15t18 8t14-14z"/></svg>
+               </a>
+               <a class="cf-icon-circle">
+               <svg height="18" viewBox="0 0 24 24" fill="#e5e5e5"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+               </a>
+               <a class="cf-icon-circle">
+               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 1536 1536"><path fill="#e5e5e5" d="M1024 768q0-106-75-181t-181-75t-181 75t-75 181t75 181t181 75t181-75t75-181zm138 0q0 164-115 279t-279 115t-279-115t-115-279t115-279t279-115t279 115t115 279zm108-410q0 38-27 65t-65 27t-65-27t-27-65t27-65t65-27t65 27t27 65zM768 138q-7 0-76.5-.5t-105.5 0t-96.5 3t-103 10T315 169q-50 20-88 58t-58 88q-11 29-18.5 71.5t-10 103t-3 96.5t0 105.5t.5 76.5t-.5 76.5t0 105.5t3 96.5t10 103T169 1221q20 50 58 88t88 58q29 11 71.5 18.5t103 10t96.5 3t105.5 0t76.5-.5t76.5.5t105.5 0t96.5-3t103-10t71.5-18.5q50-20 88-58t58-88q11-29 18.5-71.5t10-103t3-96.5t0-105.5t-.5-76.5t.5-76.5t0-105.5t-3-96.5t-10-103T1367 315q-20-50-58-88t-88-58q-29-11-71.5-18.5t-103-10t-96.5-3t-105.5 0t-76.5.5zm768 630q0 229-5 317q-10 208-124 322t-322 124q-88 5-317 5t-317-5q-208-10-322-124T5 1085q-5-88-5-317t5-317q10-208 124-322T451 5q88-5 317-5t317 5q208 10 322 124t124 322q5 88 5 317z"/></svg>
+               </a>
+             </div>
+          </div>
+
+          <div class="cf-copyright-col">
+             <h3 class="cf-heading" style="text-transform: none;">Copyright</h3>
+             <div class="cf-copy-text">
+               © 2025 Cronos Labs.<br>All rights reserved.
+             </div>
+          </div>
+        </div>
+
+        <div class="cf-bg-scroller" aria-hidden="true">
+          <div class="cf-track">
+            <span class="cf-text-set">
+              cronos cronos cronos cronos cronos cronos cronos&nbsp;
+            </span>
+            <span class="cf-text-set">
+              cronos cronos cronos cronos cronos cronos cronos&nbsp;
+            </span>
+          </div>
+        </div>
+      </footer>
+    `;
+  }
 }
 
-// Safety check to prevent double registration
-if (!customElements.get('cronos-footer')) {
-    customElements.define('cronos-footer', CronosFooter);
-}
+customElements.define('cronos-footer', CronosFooter);
