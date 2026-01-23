@@ -6,13 +6,13 @@
     <title>Cronos IT Solutions - Contact Form</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         /* --- MAIN FORM CSS STYLES --- */
         
         :root {
-            --crns-font-family: 'Inter', sans-serif;
+            --crns-font-family: 'Manrope', sans-serif;
             --crns-color-primary-blue: #116ae6;
             --crns-color-primary-hover: #0e5ac2;
             --crns-color-bg-dark: #051424;
@@ -36,13 +36,14 @@
             /* FIXED: Background Image logic */
             /* This sets a dark overlay on top of an image, limited to the top 380px */
             background-image: 
-                linear-gradient(to bottom, rgb(2, 72, 148), rgb(1, 7, 14)),
-                url('https://images.pexels.com/photos/593158/pexels-photo-593158.jpeg'); /* Tech Background Image */
+                linear-gradient(to bottom, rgba(0, 8, 17, 0), rgb(1, 7, 14)),
+                url('https://images.unsplash.com/photo-1637088059539-ad62cba57895?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Tech Background Image */
             background-repeat: no-repeat;
             background-size: 100% 240px; /* Width 100%, Height 380px */
             background-position: top center;
             background-attachment: scroll;
             height: auto;
+            background-clip: 'border-box';
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -79,7 +80,7 @@
 
         .crns-headline {
             font-size: 28px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--crns-color-text-dark);
             margin: 0 0 16px 0;
             letter-spacing: -0.025em;
@@ -393,7 +394,7 @@
     <div class="crns-main-wrapper">
         <div class="crns-form-container">
             
-            <div class="crns-logo-placeholder" style="border-bottom: 2px solid #d1d5db; padding-bottom: 10px;">
+            <div class="crns-logo-placeholder">
                 <a href="index.html"><img src="thumbnails/colored-logo (2).png" alt="Cronos IT Solutions" class="crns-logo-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 </a>
                 <span style="display:none; font-weight:700; font-size:20px; color:#111827;">Cronos IT Solutions</span>
