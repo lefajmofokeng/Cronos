@@ -876,9 +876,7 @@ class CronosHeader extends HTMLElement {
                             </li>
                         </ul>
                         <div class="cronos-header-action-buttons">
-                            <button class="cronos-header-secondary-btn">
-                                <a href="page.html">Log In</a>
-                            </button>
+                            
                             <button class="cronos-header-action-btn">
                                 <a href="form.html">Contact</a>
                             </button>
