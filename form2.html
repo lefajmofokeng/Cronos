@@ -1,0 +1,548 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronos IT Solutions - Contact Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- MAIN FORM CSS STYLES --- */
+        
+        .crns-main-wrapper {
+            --crns-font-family: 'Inter', sans-serif;
+            --crns-color-primary-blue: #116ae6;
+            --crns-color-bg-dark: #051424;
+            --crns-color-text-dark: #111827;
+            --crns-color-text-medium: #4b5563;
+            --crns-color-text-light: #6b7280;
+            --crns-color-border: #d1d5db;
+            --crns-color-required: #ef4444;
+            --crns-color-success-bg: #ecfdf5;
+            --crns-color-success-text: #065f46;
+            
+            font-family: var(--crns-font-family);
+            background: linear-gradient(to bottom, #003d88 0%, var(--crns-color-bg-dark) 300px, #ffffff 300px, #ffffff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 60px 20px;
+            box-sizing: border-box;
+            line-height: 1.5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .crns-main-wrapper *, .crns-main-wrapper *::before, .crns-main-wrapper *::after {
+            box-sizing: border-box;
+        }
+
+        .crns-form-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 672px;
+            padding: 37px;
+            border-radius: 4px;
+            margin-top: 120px;
+            position: relative;
+        }
+
+        .crns-logo-placeholder {
+            /* REPLACE THE URL BELOW WITH YOUR LOGO */
+            /* background-image: url('/path/to/cronos-logo.png'); */
+            background-color: var(--crns-color-bg-dark);
+            width: 160px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center left;
+            margin-bottom: 32px;
+            display: flex; align-items: center; color: white; font-weight: bold; padding-left: 10px; font-size: 14px;
+        }
+
+        .crns-headline {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--crns-color-text-dark);
+            margin: 0 0 16px 0;
+        }
+
+        .crns-intro-text {
+            font-size: 16px;
+            color: var(--crns-color-text-medium);
+            margin: 0 0 36px 0;
+        }
+
+        .crns-field-group {
+            margin-bottom: 32px;
+        }
+
+        .crns-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--crns-color-text-dark);
+            margin-bottom: 8px;
+        }
+
+        .crns-required-mark {
+            color: var(--crns-color-required);
+            margin-left: 4px;
+        }
+
+        .crns-helper-text {
+            display: block;
+            font-size: 14px;
+            color: var(--crns-color-text-light);
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .crns-input,
+        .crns-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--crns-color-border);
+            border-radius: 4px;
+            font-family: var(--crns-font-family);
+            font-size: 15px;
+            color: var(--crns-color-text-dark);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .crns-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .crns-input:focus,
+        .crns-textarea:focus {
+            outline: none;
+            border-color: var(--crns-color-primary-blue);
+            box-shadow: 0 0 0 3px rgba(17, 106, 230, 0.1);
+        }
+
+        .crns-submit-btn {
+            background-color: var(--crns-color-primary-blue);
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: var(--crns-font-family);
+            cursor: pointer;
+            transition: background-color 0.2s, opacity 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .crns-submit-btn:hover {
+            background-color: #0e5ac2;
+        }
+
+        .crns-submit-btn:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .crns-disclaimer {
+            display: block;
+            margin-top: 16px;
+            font-size: 13px;
+            color: var(--crns-color-text-light);
+        }
+        
+        .crns-report-link {
+            color: var(--crns-color-text-light);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .crns-report-link:hover {
+            color: var(--crns-color-text-dark);
+        }
+
+
+        /* Success Message Box (Hidden by default) */
+        .crns-success-message {
+            display: none;
+            background-color: var(--crns-color-success-bg);
+            color: var(--crns-color-success-text);
+            padding: 24px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .crns-success-title {
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .crns-main-wrapper {
+                padding: 30px 16px;
+                background: linear-gradient(to bottom, var(--crns-color-bg-dark) 0%, var(--crns-color-bg-dark) 200px, #f3f4f6 200px, #f3f4f6 100%);
+            }
+            .crns-form-container {
+                padding: 28px 24px;
+                margin-top: 20px;
+            }
+            .crns-headline {
+                font-size: 24px;
+            }
+        }
+
+        /* --- MODAL CSS STYLES --- */
+        .crns-modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .crns-modal-container {
+            background-color: #fff;
+            padding: 32px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 540px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            font-family: var(--crns-font-family);
+        }
+
+        .crns-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .crns-modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--crns-color-text-dark);
+            margin: 0;
+        }
+
+        .crns-close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--crns-color-text-light);
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+        .crns-close-btn:hover { color: var(--crns-color-text-dark); }
+
+        .crns-modal-body p {
+            font-size: 15px;
+            color: var(--crns-color-text-medium);
+            margin: 0 0 24px 0;
+        }
+
+        .crns-radio-group {
+            margin-bottom: 24px;
+        }
+
+        .crns-radio-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .crns-radio-option input[type="radio"] {
+            margin-right: 12px;
+            accent-color: var(--crns-color-primary-blue);
+            width: 18px;
+            height: 18px;
+        }
+
+        .crns-radio-option label {
+            font-size: 15px;
+            color: var(--crns-color-text-dark);
+            cursor: pointer;
+        }
+
+        .crns-modal-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--crns-color-border);
+            border-radius: 6px;
+            font-family: var(--crns-font-family);
+            font-size: 14px;
+            color: var(--crns-color-text-dark);
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 32px;
+        }
+        .crns-modal-textarea:focus {
+            outline: none;
+            border-color: var(--crns-color-primary-blue);
+            box-shadow: 0 0 0 2px rgba(17, 106, 230, 0.1);
+        }
+
+        .crns-modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .crns-cancel-btn {
+            background: none;
+            border: 1px solid var(--crns-color-border);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--crns-color-text-dark);
+            cursor: pointer;
+            font-family: var(--crns-font-family);
+        }
+        .crns-cancel-btn:hover { background-color: #f9fafb; }
+
+        .crns-modal-submit-btn {
+            background-color: var(--crns-color-primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--crns-font-family);
+        }
+        .crns-modal-submit-btn:hover { background-color: #0e5ac2; }
+        .crns-modal-submit-btn:disabled { background-color: #9ca3af; cursor: not-allowed;}
+
+    </style>
+</head>
+<body>
+
+    <div class="crns-main-wrapper">
+        <div class="crns-form-container">
+            
+            <div class="crns-logo-placeholder">
+                 <img src="thumbnails/hyperion logo (2).png" style="height: 40px;"/>
+            </div>
+
+            <div id="crns-form-content">
+                <h1 class="crns-headline">Cronos Contact Form</h1>
+                
+                <div class="crns-intro-text">
+                    Thank you for your interest in Cronos IT Solutions!<br><br>
+                    Please complete the contact form below in order to get in touch with our development and support teams.
+                </div>
+
+                <form id="crns-contact-form" class="crns-form-element">
+                    
+                    <input type="hidden" name="_subject" value="New Cronos IT Website Inquiry">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="crns-field-group">
+                        <label for="crns-email" class="crns-label">
+                            Your email address <span class="crns-required-mark">*</span>
+                        </label>
+                        <p class="crns-helper-text">How can we contact you?</p>
+                        <input type="email" id="crns-email" name="email" class="crns-input" required placeholder="">
+                    </div>
+
+                    <div class="crns-field-group">
+                        <label for="crns-inquiry" class="crns-label">
+                            What would you like to know about Cronos IT Solutions? <span class="crns-required-mark">*</span>
+                        </label>
+                        <p class="crns-helper-text">Please be as clear and specific as you can about your proposal or question, so that we can address it by email.</p>
+                        <textarea id="crns-inquiry" name="inquiry_details" class="crns-textarea" rows="4" required></textarea>
+                    </div>
+
+                    <div class="crns-field-group">
+                        <label for="crns-project-context" class="crns-label">
+                            What is your app / project about?
+                        </label>
+                        <p class="crns-helper-text">Please share more context information about your requirements so we can help you better.</p>
+                        <textarea id="crns-project-context" name="project_context" class="crns-textarea" rows="4"></textarea>
+                    </div>
+
+                    <div class="crns-field-group">
+                        <label for="crns-previous-contact" class="crns-label">
+                            If you have already been in touch with someone on the Cronos team, please indicate their name below.
+                        </label>
+                        <p class="crns-helper-text">This is optional.</p>
+                        <input type="text" id="crns-previous-contact" name="previous_contact_person" class="crns-input">
+                    </div>
+
+                    <div class="crns-submit-section">
+                        <button type="submit" id="crns-submit-btn" class="crns-submit-btn">Submit</button>
+                        <span class="crns-disclaimer">Do not submit passwords through this form. <a id="crns-open-report-modal" class="crns-report-link">Report malicious form</a>.</span>
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="crns-success-message" class="crns-success-message">
+                <span class="crns-success-title">Thank You!</span>
+                <p>Your message has been sent to Cronos IT Solutions. We will get back to you shortly at <span id="crns-success-email"></span>.</p>
+                <button onclick="location.reload()" style="margin-top:15px; background:none; border:none; text-decoration:underline; cursor:pointer; color:inherit;">Send another message</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="crns-report-modal" class="crns-modal-overlay">
+        <div class="crns-modal-container">
+            <div class="crns-modal-header">
+                <h2 class="crns-modal-title">Report a malicious form</h2>
+                <button class="crns-close-btn crns-modal-close">&times;</button>
+            </div>
+            <div class="crns-modal-body">
+                <p>Please briefly describe how this form is being misused. Our team will review your report as soon as possible.</p>
+                
+                <form id="crns-report-form">
+                     <input type="hidden" name="_subject" value="⚠️ MALICIOUS FORM REPORT">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="basic">
+
+                    <div class="crns-radio-group">
+                        <div class="crns-radio-option">
+                            <input type="radio" id="crns-reason-spam" name="report_reason" value="Spam, malware, or phishing" checked>
+                            <label for="crns-reason-spam">Spam, malware, or phishing</label>
+                        </div>
+                        <div class="crns-radio-option">
+                            <input type="radio" id="crns-reason-other" name="report_reason" value="Other">
+                            <label for="crns-reason-other">Other (please explain)</label>
+                        </div>
+                    </div>
+
+                    <textarea name="report_details" class="crns-modal-textarea" placeholder="Optionally, please briefly describe how this form is being misused." rows="3"></textarea>
+
+                    <div class="crns-modal-footer">
+                        <button type="button" class="crns-cancel-btn crns-modal-close">Cancel</button>
+                        <button type="submit" id="crns-report-submit-btn" class="crns-modal-submit-btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- MAIN CONTACT FORM LOGIC ---
+            const form = document.getElementById('crns-contact-form');
+            const submitBtn = document.getElementById('crns-submit-btn');
+            const formContent = document.getElementById('crns-form-content');
+            const successMessage = document.getElementById('crns-success-message');
+            const successEmailSpan = document.getElementById('crns-success-email');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const originalBtnText = submitBtn.innerText;
+                submitBtn.innerText = 'Sending...';
+                submitBtn.disabled = true;
+                const formData = new FormData(form);
+                const email = formData.get('email');
+
+                fetch("https://formsubmit.co/ajax/accesscronos@gmail.com", {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    formContent.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    successEmailSpan.innerText = email;
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    submitBtn.innerText = 'Error - Try Again';
+                    submitBtn.disabled = false;
+                    alert("There was an issue sending your message. Please try again.");
+                });
+            });
+
+
+            // --- REPORT MODAL LOGIC ---
+            const modalOverlay = document.getElementById('crns-report-modal');
+            const openModalLink = document.getElementById('crns-open-report-modal');
+            const closeModalBtns = document.querySelectorAll('.crns-modal-close');
+            const reportForm = document.getElementById('crns-report-form');
+            const reportSubmitBtn = document.getElementById('crns-report-submit-btn');
+
+            // Open Modal
+            openModalLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                modalOverlay.style.display = 'flex';
+            });
+
+            // Close Modal Functions
+            function closeModal() {
+                modalOverlay.style.display = 'none';
+            }
+
+            // Close on 'X' or 'Cancel' button click
+            closeModalBtns.forEach(btn => {
+                btn.addEventListener('click', closeModal);
+            });
+
+            // Close on clicking outside the modal content
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+
+            // Handle Report Form Submission
+            reportForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const originalText = reportSubmitBtn.innerText;
+                reportSubmitBtn.innerText = 'Sending...';
+                reportSubmitBtn.disabled = true;
+                const reportData = new FormData(reportForm);
+
+                fetch("https://formsubmit.co/ajax/accesscronos@gmail.com", {
+                    method: "POST",
+                    body: reportData
+                })
+                .then(response => {
+                    closeModal();
+                    reportForm.reset();
+                    reportSubmitBtn.innerText = originalText;
+                    reportSubmitBtn.disabled = false;
+                    alert("Thank you. Your report has been submitted successfully.");
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    reportSubmitBtn.innerText = originalText;
+                    reportSubmitBtn.disabled = false;
+                    alert("There was an issue sending your report. Please try again.");
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>

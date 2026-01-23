@@ -133,7 +133,7 @@ class CronosFooter extends HTMLElement {
         /* --- Seamless Background Scroller (Bottom) --- */
         .cf-bg-scroller {
           position: absolute;
-          bottom: -2.9em; 
+          bottom: -3.2em; 
           left: 0;
           width: 100%;
           z-index: 1;
@@ -196,15 +196,17 @@ class CronosFooter extends HTMLElement {
               <h3 class="cf-heading">Cronos</h3>
               <ul class="cf-link-list">
                 <li><a href="about.html">About Us</a></li>
+                <li><a href="veify.html">Roadmap</a></li>
                 <li><a href="careers.html">Careers</a></li>
                 <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+                <li><a href="global.html">Global Network</a></li>
                 <li><a href="veify.html">Verify</a></li>
               </ul>
             </div>
             <div class="cf-link-group" style="padding-top: 38px;"> <ul class="cf-link-list">
                 <li><a href="#">Learn</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="#">Cronos Labs</a></li>
+                <li><a href="#">Product Updates</a></li>
               </ul>
             </div>
           </div>
@@ -225,9 +227,9 @@ class CronosFooter extends HTMLElement {
           </div>
 
           <div class="cf-copyright-col">
-             <h3 class="cf-heading" style="text-transform: none;">Copyright</h3>
+             <h3 class="cf-heading" style="text-transform: none; letter-spacing: 0;">Copyright</h3>
              <div class="cf-copy-text">
-               © 2025 Cronos Labs.<br>All rights reserved.
+               © 2026 Cronos Labs.<br>All rights reserved.
              </div>
           </div>
         </div>
