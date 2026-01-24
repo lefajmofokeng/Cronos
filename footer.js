@@ -199,14 +199,14 @@ class CronosFooter extends HTMLElement {
                 <li><a href="veify.html">Roadmap</a></li>
                 <li><a href="careers.html">Careers</a></li>
                 <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
-                <li><a href="global.html">Global Network</a></li>
-                <li><a href="veify.html">Verify</a></li>
+                
               </ul>
             </div>
             <div class="cf-link-group" style="padding-top: 38px;"> <ul class="cf-link-list">
                 <li><a href="#">Learn</a></li>
                 <li><a href="#">Blog</a></li>
                 <li><a href="#">Product Updates</a></li>
+                <li><a href="veify.html">Verify</a></li>
               </ul>
             </div>
           </div>
