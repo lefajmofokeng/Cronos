@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmed - Tech Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ts-font-family: 'Inter', sans-serif;
+            --ts-color-bg-dark: #0a1235;
+            --ts-color-bg-light: #1a2f7d;
+            --ts-color-accent: #007aff;
+            --ts-color-success: #00C853;
+            --ts-color-text-white: #ffffff;
+            --ts-color-text-muted: #d1d5db;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--ts-font-family);
+            background: var(--ts-color-bg-dark);
+            background: linear-gradient(135deg, var(--ts-color-bg-dark) 0%, #0d1b4d 100%);
+            color: var(--ts-color-text-white);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 24px;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .success-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 200, 83, 0.2); /* Green glow */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px auto;
+            animation: popIn 0.5s ease-out;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0 0 12px 0;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--ts-color-text-muted);
+            margin-bottom: 24px;
+        }
+
+        .highlight-box {
+            background: rgba(0, 122, 255, 0.15); /* Blue tint */
+            border: 1px solid rgba(0, 122, 255, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .highlight-box strong {
+            display: block;
+            color: #4dabf7; /* Lighter blue */
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-box ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .highlight-box li {
+            margin-bottom: 6px;
+        }
+
+        .btn-home {
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: var(--ts-color-accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-home:hover {
+            background-color: #0062cc;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 122, 255, 0.3);
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="success-icon-wrapper">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20 6L9 17L4 12" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+
+        <h1>Payment Confirmed!</h1>
+        <p>Thank you. We have received your payment and your ticket has been prioritized.</p>
+
+        <div class="highlight-box">
+            <strong>🚀 Next Steps:</strong>
+            <ul>
+                <li>Please <b>do not close AnyDesk.</b></li>
+                <li>Watch for an incoming connection request.</li>
+                <li>A technician will connect in the next few minutes.</li>
+            </ul>
+        </div>
+
+        <a href="/" class="btn-home">Return to Homepage</a>
+    </div>
+
+</body>
+</html>

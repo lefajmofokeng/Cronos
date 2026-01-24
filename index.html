@@ -115,8 +115,6 @@
 
 
 
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -203,11 +201,13 @@
                 <path d="M7 13L10 16L17 9" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
         </div>
-        <h2 class="ts-popup-headline">Ticket Submitted!</h2>
-        <p class="ts-popup-subhead">Our team has received your request. Expect a response in less than 15 minutes.</p>
-        <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top:10px;">
-            Please keep your AnyDesk open and ensure your internet remains connected.
-        </p>
+        <h2 class="ts-popup-headline" id="ts-success-headline">Ticket Submitted!</h2>
+        <div id="ts-success-content">
+            <p class="ts-popup-subhead">Our team has received your request. Expect a response in less than 15 minutes.</p>
+            <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top:10px;">
+                Please keep your AnyDesk open and ensure your internet remains connected.
+            </p>
+        </div>
     </div>
 
 </div>
@@ -220,12 +220,10 @@
         --ts-color-bg-light: #1a2f7d;
         --ts-color-primary-btn: #007aff;
         --ts-color-primary-btn-hover: #0062cc;
-        --ts-color-pay-btn: #00C853; /* Green for payment */
+        --ts-color-pay-btn: #00C853; 
         --ts-color-pay-btn-hover: #009624;
         --ts-color-text-white: #ffffff;
         --ts-color-text-muted: #d1d5db;
-        --ts-color-input-bg: rgba(255, 255, 255, 0.1);
-        --ts-color-input-border: rgba(255, 255, 255, 0.2);
         --ts-radius-xl: 24px;
         --ts-radius-md: 12px;
         --ts-radius-pill: 50px;
@@ -249,48 +247,74 @@
         overflow: hidden;
     }
 
-    /* Warning Box Style */
-    .ts-warning-box {
-        background: transparent;
-        border-radius: 8px;
-        padding: 10px 0;
-        margin-bottom: 15px;
-        font-size: 13px;
-        color: #d1d5db;
-        line-height: 1.4;
-    }
-
     #ts-popup-widget-container *, #ts-popup-widget-container *::before, #ts-popup-widget-container *::after { box-sizing: border-box; }
 
-    .ts-popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-    .ts-popup-logo-placeholder { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .ts-popup-logo-img { width: auto; height: 32px; object-fit: contain; }
+    /* Header & General */
+    .ts-popup-header { display: flex; justify-content: flex-end; align-items: center; margin-bottom: 16px; }
     #ts-popup-close-btn { background: transparent; border: none; cursor: pointer; padding: 4px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: flex-end; transition: background 0.2s; }
     #ts-popup-close-btn:hover { background: rgba(255,255,255,0.1); }
-
     .ts-popup-headline { font-size: 22px; font-weight: 600; margin: 0 0 25px 0; line-height: 1.3; }
     .ts-popup-subhead { font-size: 15px; color: var(--ts-color-text-muted); margin: 0 0 20px 0; line-height: 1.5; }
     .ts-popup-form-intro { font-size: 14px; color: var(--ts-color-text-muted); margin-bottom: 16px; }
-    .ts-highlight-text { color: #4dabf7; font-weight: 600; }
 
+    /* Buttons */
     .ts-popup-primary-btn {
         width: 100%; padding: 12px 20px; background-color: var(--ts-color-primary-btn); color: var(--ts-color-text-white); border: none; border-radius: var(--ts-radius-pill); font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s, transform 0.1s; font-family: var(--ts-font-family);
     }
     .ts-popup-primary-btn:hover { background-color: var(--ts-color-primary-btn-hover); }
     .ts-popup-primary-btn:active { transform: scale(0.98); }
-
-    /* Paid Button Variant */
     .ts-btn-paid { background-color: var(--ts-color-pay-btn) !important; }
     .ts-btn-paid:hover { background-color: var(--ts-color-pay-btn-hover) !important; }
 
+    /* Form Inputs - UPDATED DESIGN */
     .ts-popup-input-group { margin-bottom: 12px; }
-    .ts-popup-input { width: 100%; padding: 12px 16px; border-bottom: 1px solid #a0a9be; background: transparent; color: var(--ts-color-text-white); font-size: 14px; font-family: var(--ts-font-family); border-radius: var(--ts-radius-md); border: 2px solid #6e7c9385; }
-    .ts-popup-input::placeholder { color: rgba(255, 255, 255, 0.5); }
-    .ts-popup-input:focus { outline: none; border-color: var(--ts-color-primary-btn); }
-    .ts-popup-textarea { resize: none; height: auto; }
     
+    .ts-popup-input { 
+        width: 100%; 
+        padding: 12px 0; /* Removed side padding for cleaner border-bottom look */
+        border: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Only bottom border */
+        background: transparent !important; /* Force transparency */
+        color: var(--ts-color-text-white); 
+        font-size: 14px; 
+        font-family: var(--ts-font-family); 
+        border-radius: 0; /* Remove radius */
+        transition: border-color 0.2s;
+        -webkit-appearance: none; /* Remove default styling on iOS */
+    }
+    
+    /* Remove background on autofill (Chrome/Safari) */
+    .ts-popup-input:-webkit-autofill,
+    .ts-popup-input:-webkit-autofill:hover, 
+    .ts-popup-input:-webkit-autofill:focus, 
+    .ts-popup-input:-webkit-autofill:active{
+        -webkit-text-fill-color: white !important;
+        
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .ts-popup-input::placeholder { color: rgba(255, 255, 255, 0.4); }
+    .ts-popup-input:focus { outline: none; border-bottom-color: var(--ts-color-primary-btn); }
+    .ts-popup-textarea { resize: none; height: auto; }
+
+    /* Warning & Success */
+    .ts-warning-box {
+        background: transparent; border-radius: 8px; padding: 12px 0; margin-bottom: 15px; font-size: 13px; color: #d1d5db; line-height: 1.4;
+    }
     #ts-popup-state-success { text-align: center; padding: 20px 0; }
     .ts-success-icon { margin-bottom: 16px; display: inline-block; }
+
+    /* Loader Animation for Payment Pending */
+    .ts-loader {
+        border: 3px solid rgba(255,255,255,0.1);
+        border-top: 3px solid #4dabf7;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        animation: spin 1s linear infinite;
+        margin: 10px auto;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     @media screen and (max-width: 480px) {
         #ts-popup-widget-container { width: auto; left: 16px; right: 16px; bottom: 16px; border-radius: 20px; }
@@ -313,6 +337,11 @@
         const formView = document.getElementById('ts-popup-state-form');
         const successView = document.getElementById('ts-popup-state-success');
         
+        // Success View Elements for Dynamic Updates
+        const successHeadline = document.getElementById('ts-success-headline');
+        const successContent = document.getElementById('ts-success-content');
+        const successIcon = document.querySelector('.ts-success-icon');
+
         const form = document.getElementById('ts-support-form');
         const submitBtn = document.getElementById('ts-popup-submit-btn');
         const emailInput = document.getElementById('ts-email');
@@ -326,7 +355,6 @@
         const hiddenSessionType = document.getElementById('ts-hidden-session-type');
 
         let isPaidSession = false;
-        let originalSubmitText = submitBtn.innerHTML;
 
         // --- Helper Functions ---
 
@@ -334,9 +362,8 @@
         function checkEligibility() {
             const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
             const email = emailInput.value.trim().toLowerCase();
-            const anydesk = anydeskInput.value.trim().replace(/\s/g, ''); // Remove spaces from ID
+            const anydesk = anydeskInput.value.trim().replace(/\s/g, ''); 
 
-            // Check if Email OR AnyDesk ID matches any previous record
             const found = history.some(record => 
                 (email && record.email === email) || 
                 (anydesk && record.anydesk === anydesk)
@@ -351,18 +378,13 @@
 
         // 2. Switch UI to Paid Mode
         function enablePaidMode() {
-            if(isPaidSession) return; // Prevent unnecessary repaints
+            if(isPaidSession) return;
             isPaidSession = true;
 
-            // Update Button
             submitBtn.innerHTML = 'Pay & Submit Ticket (R49)';
             submitBtn.classList.add('ts-btn-paid');
-            
-            // Show Warnings & Price
             warningBox.style.display = 'block';
             priceDisplay.style.display = 'block';
-            
-            // Update Text
             footerNote.innerText = '*Standard Rate applies for repeat sessions.';
             hiddenSubject.value = "New AnyDesk Tech Support Request (PAID - Verify Payment)";
             hiddenSessionType.value = "Paid";
@@ -373,15 +395,10 @@
             if(!isPaidSession) return;
             isPaidSession = false;
 
-            // Reset Button
             submitBtn.innerHTML = 'Submit Ticket';
             submitBtn.classList.remove('ts-btn-paid');
-            
-            // Hide Warnings & Price
             warningBox.style.display = 'none';
             priceDisplay.style.display = 'none';
-            
-            // Reset Text
             footerNote.innerText = '*First-time request is free.';
             hiddenSubject.value = "New AnyDesk Tech Support Request (FREE)";
             hiddenSessionType.value = "Free";
@@ -400,36 +417,32 @@
 
         // --- Event Listeners ---
 
-        // Real-time checking as user types
         emailInput.addEventListener('blur', checkEligibility);
         anydeskInput.addEventListener('blur', checkEligibility);
         
-        // Close Popup
         closeBtn.addEventListener('click', function() {
             container.style.display = 'none';
         });
 
-        // Expand to Form View
         ctaBtn.addEventListener('click', function() {
             initialView.style.display = 'none';
             formView.style.display = 'block';
         });
 
-        // Form Submission
+        // Form Submission Logic
         form.addEventListener('submit', function(e) {
             e.preventDefault(); 
 
-            // UX Loading State
             submitBtn.innerHTML = 'Processing...';
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.7';
 
-            // 1. If Paid Session, Open Paystack in new tab
+            // WORKFLOW STEP 1: If paid, open Paystack tab immediately
             if (isPaidSession) {
                 window.open(PAYSTACK_LINK, '_blank');
             }
 
-            // 2. Submit Data to Email (FormSubmit)
+            // WORKFLOW STEP 2: Submit ticket data to Email
             const formData = new FormData(form);
 
             fetch(form.action, {
@@ -439,12 +452,36 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // 3. Save to History (so they are tracked next time)
                     saveUserHistory(emailInput.value, anydeskInput.value);
 
-                    // 4. Show Success
+                    // WORKFLOW STEP 3: Handle UI State (Free vs Paid Pending)
                     formView.style.display = 'none';
                     successView.style.display = 'block';
+
+                    if (isPaidSession) {
+                        // PAID FLOW: Show "Awaiting Payment" state
+                        successIcon.style.display = 'none'; // Hide the green checkmark initially
+                        successHeadline.innerText = "Ticket Sent: Awaiting Payment";
+                        successContent.innerHTML = `
+                            <div style="text-align:center;">
+                                <p style="font-size: 14px; color: #d1d5db; margin-bottom:15px;">We've received your details. Please complete the R49 payment in the new window.</p>
+                                <div class="ts-loader"></div> 
+                                <p style="font-size:12px; color:#4dabf7; margin-top:10px;">Waiting for Paystack confirmation...</p>
+                                <p style="font-size:11px; color:rgba(255,255,255,0.4); margin-top:20px;">Don't close this tab until payment is complete.</p>
+                            </div>
+                        `;
+                    } else {
+                        // FREE FLOW: Show standard success
+                        successIcon.style.display = 'inline-block';
+                        successHeadline.innerText = "Ticket Submitted!";
+                        successContent.innerHTML = `
+                            <p class="ts-popup-subhead">Our team has received your request. Expect a response in less than 15 minutes.</p>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top:10px;">
+                                Please keep your AnyDesk open and ensure your internet remains connected.
+                            </p>
+                        `;
+                    }
+                    
                     form.reset(); 
                 } else {
                     alert('There was an issue submitting the ticket. Please try again.');
@@ -469,13 +506,6 @@
         }
     })();
 </script>
-
-
-
-
-
-
-
 
 
 
