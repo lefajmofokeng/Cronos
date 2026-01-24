@@ -117,22 +117,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
 
 <div id="ts-popup-widget-container" class="ts-popup-closed">
     
@@ -149,10 +136,10 @@
     </div>
 
     <div id="ts-popup-state-initial">
-        <h2 class="ts-popup-headline">Get your first remote tech support session FREE!</h2>
-        <p class="ts-popup-subhead">Submit a request. Response guaranteed in <span class="ts-highlight-text">&lt;15 minutes.</span></p>
+        <h2 class="ts-popup-headline">Get a priority remote tech support session.</h2>
+        <p class="ts-popup-subhead">First session is <span class="ts-highlight-text">Free!</span> Response guaranteed in &lt;15 mins.</p>
         <button id="ts-popup-cta-btn" class="ts-popup-primary-btn">
-            Request Tech Support
+            Request Assistance
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px;">
                 <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -161,11 +148,22 @@
     </div>
 
     <div id="ts-popup-state-form" style="display: none;">
-        <p class="ts-popup-form-intro">Please fill out details below for quick assistance.</p>
+        <p class="ts-popup-form-intro" id="ts-form-intro-text">Please fill out details below for quick assistance.</p>
         
+        <div id="ts-warning-box" style="display: none;" class="ts-warning-box">
+            <strong>Important Requirements:</strong>
+            <ul style="margin: 5px 0 0 15px; padding: 0; font-size: 12px; color: #f6f6f6;">
+                <li>Stable Internet (Ethernet preferred) required.</li>
+                <li>Session duration: Max 30 Minutes.</li>
+                <li>Ensure you are at your computer.</li>
+            </ul>
+        </div>
+
         <form id="ts-support-form" action="https://formsubmit.co/accesscronos@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="New AnyDesk Tech Support Request">
-            <input type="hidden" name="_captcha" value="false"> <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_subject" id="ts-hidden-subject" value="New AnyDesk Tech Support Request (FREE)">
+            <input type="hidden" name="_captcha" value="false"> 
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="Session Type" id="ts-hidden-session-type" value="Free">
 
             <div class="ts-popup-input-group">
                 <label for="ts-name" class="ts-visually-hidden">Name</label>
@@ -187,11 +185,16 @@
                 <textarea id="ts-issue" name="Issue Description" placeholder="Briefly describe the issue..." rows="2" class="ts-popup-input ts-popup-textarea"></textarea>
             </div>
 
+            <div id="ts-price-display" style="display:none; margin-bottom: 12px; text-align: center;">
+                <span style="font-size: 14px; color: #d1d5db;">Session Fee: </span>
+                <span style="font-size: 18px; font-weight: 700; color: #fff;">R49.00</span>
+            </div>
+
             <button type="submit" id="ts-popup-submit-btn" class="ts-popup-primary-btn">
                 Submit Ticket
             </button>
 
-            <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 10px; text-align: center;">
+            <p id="ts-footer-note" style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 10px; text-align: center;">
                 *First-time request is free. Subsequent sessions are subject to standard rates.
             </p>
         </form>
@@ -206,10 +209,12 @@
         </div>
         <h2 class="ts-popup-headline">Ticket Submitted!</h2>
         <p class="ts-popup-subhead">Our team has received your request. Expect a response in less than 15 minutes.</p>
+        <p style="font-size: 12px; color: rgba(255,255,255,0.6); margin-top:10px;">
+            Please keep your AnyDesk open and ensure your internet remains connected.
+        </p>
     </div>
 
 </div>
-
 
 <style>
     /* ================= TECH SUPPORT POPUP STYLES ================= */
@@ -217,8 +222,10 @@
         --ts-font-family: 'Inter', sans-serif;
         --ts-color-bg-dark: #0a1235;
         --ts-color-bg-light: #1a2f7d;
-        --ts-color-primary-btn: #007aff; /* Bright blue from image */
+        --ts-color-primary-btn: #007aff;
         --ts-color-primary-btn-hover: #0062cc;
+        --ts-color-pay-btn: #00C853; /* Green for payment */
+        --ts-color-pay-btn-hover: #009624;
         --ts-color-text-white: #ffffff;
         --ts-color-text-muted: #d1d5db;
         --ts-color-input-bg: rgba(255, 255, 255, 0.1);
@@ -228,12 +235,8 @@
         --ts-radius-pill: 50px;
     }
 
-    /* Utility Class to hide labels visually but keep accessible */
-    .ts-visually-hidden {
-        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
-    }
+    .ts-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
 
-    /* Main Container */
     #ts-popup-widget-container {
         box-sizing: border-box;
         font-family: var(--ts-font-family);
@@ -241,193 +244,171 @@
         bottom: 20px;
         right: 20px;
         width: 340px;
-        /* Gradient background based on image reference */
         background: linear-gradient(145deg, var(--ts-color-bg-light) 0%, var(--ts-color-bg-dark) 100%);
         color: var(--ts-color-text-white);
         border-radius: var(--ts-radius-xl);
         padding: 24px;
         box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-        z-index: 99999; /* High z-index to ensure it's on top */
+        z-index: 99999;
         transition: all 0.3s ease-in-out;
         overflow: hidden;
     }
 
-    #ts-popup-widget-container *, 
-    #ts-popup-widget-container *::before, 
-    #ts-popup-widget-container *::after {
-        box-sizing: border-box;
+    /* Warning Box Style */
+    .ts-warning-box {
+        background: rgb(5, 17, 42);
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 13px;
+        color: #d1d5db;
+        line-height: 1.4;
     }
 
-    /* Header */
-    .ts-popup-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 16px;
-    }
+    #ts-popup-widget-container *, #ts-popup-widget-container *::before, #ts-popup-widget-container *::after { box-sizing: border-box; }
 
-    .ts-popup-logo-placeholder {
-        width: 40px;
-        height: 40px;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-    
-    .ts-popup-logo-img {
-        width: auto;
-        height: 32px;
-        object-fit: contain;
-    }
+    .ts-popup-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+    .ts-popup-logo-placeholder { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .ts-popup-logo-img { width: auto; height: 32px; object-fit: contain; }
+    #ts-popup-close-btn { background: transparent; border: none; cursor: pointer; padding: 4px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+    #ts-popup-close-btn:hover { background: rgba(255,255,255,0.1); }
 
-    #ts-popup-close-btn {
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        padding: 4px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s;
-    }
+    .ts-popup-headline { font-size: 22px; font-weight: 600; margin: 0 0 8px 0; line-height: 1.3; }
+    .ts-popup-subhead { font-size: 15px; color: var(--ts-color-text-muted); margin: 0 0 20px 0; line-height: 1.5; }
+    .ts-popup-form-intro { font-size: 14px; color: var(--ts-color-text-muted); margin-bottom: 16px; }
+    .ts-highlight-text { color: #4dabf7; font-weight: 600; }
 
-    #ts-popup-close-btn:hover {
-        background: rgba(255,255,255,0.1);
-    }
-
-    /* Typography */
-    .ts-popup-headline {
-        font-size: 22px;
-        font-weight: 600;
-        margin: 0 0 8px 0;
-        line-height: 1.3;
-    }
-
-    .ts-popup-subhead {
-        font-size: 15px;
-        color: var(--ts-color-text-muted);
-        margin: 0 0 20px 0;
-        line-height: 1.5;
-    }
-    
-    .ts-popup-form-intro {
-         font-size: 14px;
-         color: var(--ts-color-text-muted);
-         margin-bottom: 16px;
-    }
-
-    .ts-highlight-text {
-        color: #4dabf7; /* Slightly lighter blue for emphasis text */
-        font-weight: 600;
-    }
-
-    /* Buttons */
     .ts-popup-primary-btn {
-        width: 100%;
-        padding: 12px 20px;
-        background-color: var(--ts-color-primary-btn);
-        color: var(--ts-color-text-white);
-        border: none;
-        border-radius: var(--ts-radius-pill);
-        font-size: 16px;
-        font-weight: 600;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.2s, transform 0.1s;
-        font-family: var(--ts-font-family);
+        width: 100%; padding: 12px 20px; background-color: var(--ts-color-primary-btn); color: var(--ts-color-text-white); border: none; border-radius: var(--ts-radius-pill); font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s, transform 0.1s; font-family: var(--ts-font-family);
     }
+    .ts-popup-primary-btn:hover { background-color: var(--ts-color-primary-btn-hover); }
+    .ts-popup-primary-btn:active { transform: scale(0.98); }
 
-    .ts-popup-primary-btn:hover {
-        background-color: var(--ts-color-primary-btn-hover);
-    }
+    /* Paid Button Variant */
+    .ts-btn-paid { background-color: var(--ts-color-pay-btn) !important; }
+    .ts-btn-paid:hover { background-color: var(--ts-color-pay-btn-hover) !important; }
+
+    .ts-popup-input-group { margin-bottom: 12px; }
+    .ts-popup-input { width: 100%; padding: 12px 16px; background: var(--ts-color-input-bg); border: none; border-radius: var(--ts-radius-md); color: var(--ts-color-text-white); font-size: 14px; font-family: var(--ts-font-family); transition: border-color 0.2s; }
+    .ts-popup-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+    .ts-popup-input:focus { outline: none; border-color: var(--ts-color-primary-btn); }
+    .ts-popup-textarea { resize: none; height: auto; }
     
-    .ts-popup-primary-btn:active {
-        transform: scale(0.98);
-    }
+    #ts-popup-state-success { text-align: center; padding: 20px 0; }
+    .ts-success-icon { margin-bottom: 16px; display: inline-block; }
 
-    /* Form Styles */
-    .ts-popup-input-group {
-        margin-bottom: 12px;
-    }
-
-    .ts-popup-input {
-        width: 100%;
-        padding: 12px 16px;
-        background: var(--ts-color-input-bg);
-        border: 2px solid var(--ts-color-input-border);
-        border-radius: var(--ts-radius-md);
-        color: var(--ts-color-text-white);
-        font-size: 14px;
-        font-family: var(--ts-font-family);
-        transition: border-color 0.2s;
-    }
-
-    /* Prevent auto-zoom on iOS devices by ensuring font size is at least 16px on mobile */
-    @media screen and (max-width: 768px) {
-        .ts-popup-input {
-            font-size: 16px; 
-        }
-    }
-
-    .ts-popup-input::placeholder {
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    .ts-popup-input:focus {
-        outline: none;
-        border-color: var(--ts-color-primary-btn);
-    }
-
-    .ts-popup-textarea {
-        resize: none;
-        height: auto;
-    }
-    
-    /* Success State Styles */
-    #ts-popup-state-success {
-        text-align: center;
-        padding: 20px 0;
-    }
-    
-    .ts-success-icon {
-        margin-bottom: 16px;
-        display: inline-block;
-    }
-
-    /* Responsiveness */
     @media screen and (max-width: 480px) {
-        #ts-popup-widget-container {
-            width: auto;
-            left: 16px;
-            right: 16px;
-            bottom: 16px;
-            border-radius: 20px;
-        }
+        #ts-popup-widget-container { width: auto; left: 16px; right: 16px; bottom: 16px; border-radius: 20px; }
     }
 </style>
 
-
 <script>
     (function() {
-        // Use an IIFE to isolate scope
+        // --- Configuration ---
+        // REPLACE THIS with your actual Paystack payment page link
+        const PAYSTACK_LINK = "https://paystack.com/pay/your-payment-page"; 
+        const STORAGE_KEY = 'ts_support_history';
+
+        // --- DOM Elements ---
         const container = document.getElementById('ts-popup-widget-container');
         const closeBtn = document.getElementById('ts-popup-close-btn');
         const ctaBtn = document.getElementById('ts-popup-cta-btn');
+        
         const initialView = document.getElementById('ts-popup-state-initial');
         const formView = document.getElementById('ts-popup-state-form');
         const successView = document.getElementById('ts-popup-state-success');
+        
         const form = document.getElementById('ts-support-form');
         const submitBtn = document.getElementById('ts-popup-submit-btn');
+        const emailInput = document.getElementById('ts-email');
+        const anydeskInput = document.getElementById('ts-anydesk');
+        
+        // Dynamic UI Elements
+        const warningBox = document.getElementById('ts-warning-box');
+        const priceDisplay = document.getElementById('ts-price-display');
+        const footerNote = document.getElementById('ts-footer-note');
+        const hiddenSubject = document.getElementById('ts-hidden-subject');
+        const hiddenSessionType = document.getElementById('ts-hidden-session-type');
+
+        let isPaidSession = false;
         let originalSubmitText = submitBtn.innerHTML;
 
+        // --- Helper Functions ---
 
-        // --- Event Handlers ---
+        // 1. Check if user exists in LocalStorage
+        function checkEligibility() {
+            const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            const email = emailInput.value.trim().toLowerCase();
+            const anydesk = anydeskInput.value.trim().replace(/\s/g, ''); // Remove spaces from ID
 
+            // Check if Email OR AnyDesk ID matches any previous record
+            const found = history.some(record => 
+                (email && record.email === email) || 
+                (anydesk && record.anydesk === anydesk)
+            );
+
+            if (found) {
+                enablePaidMode();
+            } else {
+                enableFreeMode();
+            }
+        }
+
+        // 2. Switch UI to Paid Mode
+        function enablePaidMode() {
+            if(isPaidSession) return; // Prevent unnecessary repaints
+            isPaidSession = true;
+
+            // Update Button
+            submitBtn.innerHTML = 'Pay & Submit Ticket (R49)';
+            submitBtn.classList.add('ts-btn-paid');
+            
+            // Show Warnings & Price
+            warningBox.style.display = 'block';
+            priceDisplay.style.display = 'block';
+            
+            // Update Text
+            footerNote.innerText = '*Standard Rate applies for repeat sessions.';
+            hiddenSubject.value = "New AnyDesk Tech Support Request (PAID - Verify Payment)";
+            hiddenSessionType.value = "Paid";
+        }
+
+        // 3. Switch UI to Free Mode
+        function enableFreeMode() {
+            if(!isPaidSession) return;
+            isPaidSession = false;
+
+            // Reset Button
+            submitBtn.innerHTML = 'Submit Ticket';
+            submitBtn.classList.remove('ts-btn-paid');
+            
+            // Hide Warnings & Price
+            warningBox.style.display = 'none';
+            priceDisplay.style.display = 'none';
+            
+            // Reset Text
+            footerNote.innerText = '*First-time request is free.';
+            hiddenSubject.value = "New AnyDesk Tech Support Request (FREE)";
+            hiddenSessionType.value = "Free";
+        }
+
+        // 4. Save User to History
+        function saveUserHistory(email, anydesk) {
+            const history = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            history.push({
+                email: email.trim().toLowerCase(),
+                anydesk: anydesk.trim().replace(/\s/g, ''),
+                date: new Date().toISOString()
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+        }
+
+        // --- Event Listeners ---
+
+        // Real-time checking as user types
+        emailInput.addEventListener('blur', checkEligibility);
+        anydeskInput.addEventListener('blur', checkEligibility);
+        
         // Close Popup
         closeBtn.addEventListener('click', function() {
             container.style.display = 'none';
@@ -437,53 +418,66 @@
         ctaBtn.addEventListener('click', function() {
             initialView.style.display = 'none';
             formView.style.display = 'block';
-            // Container will naturally expand due to content height
         });
 
-        // Handle Form Submission via AJAX for smoother UX
+        // Form Submission
         form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stop default redirect
+            e.preventDefault(); 
 
-            // Change button state to loading
-            submitBtn.innerHTML = 'Submitting...';
+            // UX Loading State
+            submitBtn.innerHTML = 'Processing...';
             submitBtn.disabled = true;
             submitBtn.style.opacity = '0.7';
 
+            // 1. If Paid Session, Open Paystack in new tab
+            if (isPaidSession) {
+                window.open(PAYSTACK_LINK, '_blank');
+            }
+
+            // 2. Submit Data to Email (FormSubmit)
             const formData = new FormData(form);
 
             fetch(form.action, {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             })
             .then(response => {
                 if (response.ok) {
-                    // Show success view
+                    // 3. Save to History (so they are tracked next time)
+                    saveUserHistory(emailInput.value, anydeskInput.value);
+
+                    // 4. Show Success
                     formView.style.display = 'none';
                     successView.style.display = 'block';
-                    form.reset(); // Reset form fields
+                    form.reset(); 
                 } else {
-                    // Handle errors if needed
                     alert('There was an issue submitting the ticket. Please try again.');
                     resetButtonState();
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('Something went wrong. Please check your connection.');
+                alert('Connection error. Please check your internet.');
                 resetButtonState();
             });
         });
 
         function resetButtonState() {
-            submitBtn.innerHTML = originalSubmitText;
+            if (isPaidSession) {
+                submitBtn.innerHTML = 'Pay & Submit Ticket (R49)';
+            } else {
+                submitBtn.innerHTML = 'Submit Ticket';
+            }
             submitBtn.disabled = false;
             submitBtn.style.opacity = '1';
         }
     })();
 </script>
+
+
+
+
 
 
 

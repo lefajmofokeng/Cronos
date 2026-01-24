@@ -1,0 +1,362 @@
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+<div id="ts-popup-widget-container" class="ts-popup-closed">
+    
+    <div class="ts-popup-header">
+        <div class="ts-popup-logo-placeholder">
+            <img src="thumbnails/popup.png" alt="Logo" class="ts-popup-logo-img">
+        </div>
+        <button id="ts-popup-close-btn" aria-label="Close popup">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 6L18 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="ts-popup-state-initial">
+        <h2 class="ts-popup-headline">Get your first remote tech support session FREE!</h2>
+        <p class="ts-popup-subhead">Submit a request. Response guaranteed in <span class="ts-highlight-text">&lt;15 minutes.</span></p>
+        <button id="ts-popup-cta-btn" class="ts-popup-primary-btn">
+            Request Tech Support
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-left: 8px;">
+                <path d="M5 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 5L19 12L12 19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+
+    <div id="ts-popup-state-form" style="display: none;">
+        <p class="ts-popup-form-intro">Please fill out details below for quick assistance.</p>
+        
+        <form id="ts-support-form" action="https://formsubmit.co/accesscronos@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New AnyDesk Tech Support Request">
+            <input type="hidden" name="_captcha" value="false"> <input type="hidden" name="_template" value="table">
+
+            <div class="ts-popup-input-group">
+                <label for="ts-name" class="ts-visually-hidden">Name</label>
+                <input type="text" id="ts-name" name="Name" placeholder="Your Name" required class="ts-popup-input">
+            </div>
+
+             <div class="ts-popup-input-group">
+                <label for="ts-email" class="ts-visually-hidden">Email Address</label>
+                <input type="email" id="ts-email" name="Email" placeholder="Email Address" required class="ts-popup-input">
+            </div>
+
+            <div class="ts-popup-input-group">
+                <label for="ts-anydesk" class="ts-visually-hidden">AnyDesk ID</label>
+                <input type="text" id="ts-anydesk" name="AnyDesk ID" placeholder="AnyDesk ID" required class="ts-popup-input">
+            </div>
+            
+            <div class="ts-popup-input-group">
+                <label for="ts-issue" class="ts-visually-hidden">Brief Description</label>
+                <textarea id="ts-issue" name="Issue Description" placeholder="Briefly describe the issue..." rows="2" class="ts-popup-input ts-popup-textarea"></textarea>
+            </div>
+
+            <button type="submit" id="ts-popup-submit-btn" class="ts-popup-primary-btn">
+                Submit Ticket
+            </button>
+
+            <p style="font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 10px; text-align: center;">
+                *First-time request is free. Subsequent sessions are subject to standard rates.
+            </p>
+        </form>
+    </div>
+
+    <div id="ts-popup-state-success" style="display: none;">
+        <div class="ts-success-icon">
+            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="11" stroke="#00C853" stroke-width="2"/>
+                <path d="M7 13L10 16L17 9" stroke="#00C853" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+        <h2 class="ts-popup-headline">Ticket Submitted!</h2>
+        <p class="ts-popup-subhead">Our team has received your request. Expect a response in less than 15 minutes.</p>
+    </div>
+
+</div>
+
+
+<style>
+    /* ================= TECH SUPPORT POPUP STYLES ================= */
+    :root {
+        --ts-font-family: 'Inter', sans-serif;
+        --ts-color-bg-dark: #0a1235;
+        --ts-color-bg-light: #1a2f7d;
+        --ts-color-primary-btn: #007aff; /* Bright blue from image */
+        --ts-color-primary-btn-hover: #0062cc;
+        --ts-color-text-white: #ffffff;
+        --ts-color-text-muted: #d1d5db;
+        --ts-color-input-bg: rgba(255, 255, 255, 0.1);
+        --ts-color-input-border: rgba(255, 255, 255, 0.2);
+        --ts-radius-xl: 24px;
+        --ts-radius-md: 12px;
+        --ts-radius-pill: 50px;
+    }
+
+    /* Utility Class to hide labels visually but keep accessible */
+    .ts-visually-hidden {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+    }
+
+    /* Main Container */
+    #ts-popup-widget-container {
+        box-sizing: border-box;
+        font-family: var(--ts-font-family);
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 340px;
+        /* Gradient background based on image reference */
+        background: linear-gradient(145deg, var(--ts-color-bg-light) 0%, var(--ts-color-bg-dark) 100%);
+        color: var(--ts-color-text-white);
+        border-radius: var(--ts-radius-xl);
+        padding: 24px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        z-index: 99999; /* High z-index to ensure it's on top */
+        transition: all 0.3s ease-in-out;
+        overflow: hidden;
+    }
+
+    #ts-popup-widget-container *, 
+    #ts-popup-widget-container *::before, 
+    #ts-popup-widget-container *::after {
+        box-sizing: border-box;
+    }
+
+    /* Header */
+    .ts-popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+
+    .ts-popup-logo-placeholder {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+    
+    .ts-popup-logo-img {
+        width: auto;
+        height: 32px;
+        object-fit: contain;
+    }
+
+    #ts-popup-close-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+    }
+
+    #ts-popup-close-btn:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+    /* Typography */
+    .ts-popup-headline {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0 0 8px 0;
+        line-height: 1.3;
+    }
+
+    .ts-popup-subhead {
+        font-size: 15px;
+        color: var(--ts-color-text-muted);
+        margin: 0 0 20px 0;
+        line-height: 1.5;
+    }
+    
+    .ts-popup-form-intro {
+         font-size: 14px;
+         color: var(--ts-color-text-muted);
+         margin-bottom: 16px;
+    }
+
+    .ts-highlight-text {
+        color: #4dabf7; /* Slightly lighter blue for emphasis text */
+        font-weight: 600;
+    }
+
+    /* Buttons */
+    .ts-popup-primary-btn {
+        width: 100%;
+        padding: 12px 20px;
+        background-color: var(--ts-color-primary-btn);
+        color: var(--ts-color-text-white);
+        border: none;
+        border-radius: var(--ts-radius-pill);
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.2s, transform 0.1s;
+        font-family: var(--ts-font-family);
+    }
+
+    .ts-popup-primary-btn:hover {
+        background-color: var(--ts-color-primary-btn-hover);
+    }
+    
+    .ts-popup-primary-btn:active {
+        transform: scale(0.98);
+    }
+
+    /* Form Styles */
+    .ts-popup-input-group {
+        margin-bottom: 12px;
+    }
+
+    .ts-popup-input {
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--ts-color-input-bg);
+        border: 2px solid var(--ts-color-input-border);
+        border-radius: var(--ts-radius-md);
+        color: var(--ts-color-text-white);
+        font-size: 14px;
+        font-family: var(--ts-font-family);
+        transition: border-color 0.2s;
+    }
+
+    /* Prevent auto-zoom on iOS devices by ensuring font size is at least 16px on mobile */
+    @media screen and (max-width: 768px) {
+        .ts-popup-input {
+            font-size: 16px; 
+        }
+    }
+
+    .ts-popup-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .ts-popup-input:focus {
+        outline: none;
+        border-color: var(--ts-color-primary-btn);
+    }
+
+    .ts-popup-textarea {
+        resize: none;
+        height: auto;
+    }
+    
+    /* Success State Styles */
+    #ts-popup-state-success {
+        text-align: center;
+        padding: 20px 0;
+    }
+    
+    .ts-success-icon {
+        margin-bottom: 16px;
+        display: inline-block;
+    }
+
+    /* Responsiveness */
+    @media screen and (max-width: 480px) {
+        #ts-popup-widget-container {
+            width: auto;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            border-radius: 20px;
+        }
+    }
+</style>
+
+
+<script>
+    (function() {
+        // Use an IIFE to isolate scope
+        const container = document.getElementById('ts-popup-widget-container');
+        const closeBtn = document.getElementById('ts-popup-close-btn');
+        const ctaBtn = document.getElementById('ts-popup-cta-btn');
+        const initialView = document.getElementById('ts-popup-state-initial');
+        const formView = document.getElementById('ts-popup-state-form');
+        const successView = document.getElementById('ts-popup-state-success');
+        const form = document.getElementById('ts-support-form');
+        const submitBtn = document.getElementById('ts-popup-submit-btn');
+        let originalSubmitText = submitBtn.innerHTML;
+
+
+        // --- Event Handlers ---
+
+        // Close Popup
+        closeBtn.addEventListener('click', function() {
+            container.style.display = 'none';
+        });
+
+        // Expand to Form View
+        ctaBtn.addEventListener('click', function() {
+            initialView.style.display = 'none';
+            formView.style.display = 'block';
+            // Container will naturally expand due to content height
+        });
+
+        // Handle Form Submission via AJAX for smoother UX
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stop default redirect
+
+            // Change button state to loading
+            submitBtn.innerHTML = 'Submitting...';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success view
+                    formView.style.display = 'none';
+                    successView.style.display = 'block';
+                    form.reset(); // Reset form fields
+                } else {
+                    // Handle errors if needed
+                    alert('There was an issue submitting the ticket. Please try again.');
+                    resetButtonState();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Something went wrong. Please check your connection.');
+                resetButtonState();
+            });
+        });
+
+        function resetButtonState() {
+            submitBtn.innerHTML = originalSubmitText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+        }
+    })();
+</script>
+
+
+
+
+
