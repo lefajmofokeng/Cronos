@@ -412,21 +412,16 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 <section class="defcon-premium-showcase">
   <div class="defcon-header-container-hd">
     <div class="defcon-main-heading-hd">From Concept, <br>to Code, to Market</div>
-    <div class="defcon-subheading-hd">Over <span class="highlight-cron">120+ clients</span> supported nationwide. Providing <span class="highlight-cron">24/7 monitoring</span> and real-time alerts. Achieving <span class="highlight-cron">zero security breaches</span> in managed environments</div>
+    
+    <div class="defcon-subheading-wrapper">
+      <div class="defcon-subheading-hd" id="dynamic-subheading">
+        Over <span class="highlight-cron">120+ clients</span> supported nationwide.
+      </div>
+    </div>
+
   </div>
 
   <button class="defcon-crypto-cta" onclick="window.location.href='page.html'">
@@ -463,7 +458,7 @@
   font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; 
 }
 
-/* Header Container: Ensures full width and animation works */
+/* Header Container */
 .defcon-header-container-hd {
   max-width: 800px;
   width: 100%;
@@ -471,17 +466,29 @@
   animation: defconFadeInUp 1s ease-out forwards;
 }
 
-/* Main Heading Fixes: Removed fixed 'width: 800px' for responsiveness */
+/* Main Heading */
 .defcon-main-heading-hd {
   font-size: 74px;
   font-weight: 600;
   text-transform: none;
-  max-width: 800px; /* Constrains width for readability on large screens */
+  max-width: 800px; 
   letter-spacing: -0.04em;
   line-height: 1.2;
   color: white;
   text-align: center;
-  margin: 7rem auto 3rem auto; /* Centered and set bottom margin */
+  margin: 7rem auto 3rem auto; 
+}
+
+/* --- NEW SUBHEADING STYLES --- */
+
+/* Wrapper to hold height stable during transition */
+.defcon-subheading-wrapper {
+  height: 3em; /* Fixed height to prevent layout jumping */
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Ensures text entering from top is hidden until inside */
 }
 
 .defcon-subheading-hd {
@@ -489,11 +496,28 @@
   font-weight: 600;
   color: #e0e0e0;
   text-align: center;
-  margin-bottom: 2rem;
   line-height: 1.5;
+  
+  /* Animation properties */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  transform: translateY(0);
+  opacity: 1;
 }
 
-/* CTA Button Styles - This padding is now maintained on all devices */
+/* States for the animation */
+.subheading-exit {
+  transform: translateY(30px); /* Move Down */
+  opacity: 0;
+}
+
+.subheading-enter-setup {
+  transform: translateY(-30px); /* Start at Top */
+  opacity: 0;
+  transition: none; /* Instant jump to top while invisible */
+}
+/* ----------------------------- */
+
+/* CTA Button Styles */
 .defcon-crypto-cta {
   display: inline-flex;
   align-items: center;
@@ -532,20 +556,17 @@
   transition: all 0.3s ease;
 }
 
-
 /* --- Responsive Adjustments --- */
 
-/* Laptops / Large Tablets (Max-width 1024px) */
 @media (max-width: 1024px) {
   .defcon-main-heading-hd {
-    font-size: 44px; /* Scale down for smaller screens */
+    font-size: 44px; 
   }
 }
 
-/* Tablets (Max-width 767px) */
 @media (max-width: 767px) {
   .defcon-premium-showcase {
-    min-height: 70vh; /* Reduced height on smaller devices */
+    min-height: 70vh; 
   }
   .defcon-main-heading-hd {
     font-size: 38px;
@@ -554,33 +575,32 @@
 
   .defcon-subheading-hd {
     font-size: 20px;
-    margin-bottom: 1.5rem;
+  }
+  
+  .defcon-subheading-wrapper {
+    height: auto; /* Allow auto height on mobile if text wraps */
+    min-height: 3.5em; 
   }
 }
 
-/* Mobile Devices (Max-width 480px) */
 @media (max-width: 480px) {
   .defcon-premium-showcase {
     padding: 40px 5%;
-    min-height: 100vh; /* Reduced height on small phones */
+    min-height: 100vh; 
   }
   
-  /* Heading size reduced significantly for small screens */
   .defcon-main-heading-hd {
     font-size: 30px; 
     line-height: 1.3;
     margin-bottom: 2rem;
   }
   
-  /* CTA button adjustments: Removed padding override */
   .defcon-crypto-cta {
-    /* **FIXED: Removed mobile padding override to keep original shape** */
-    font-size: 15px; /* Text size still scales down */
+    font-size: 15px; 
     margin-top: 0.5rem;
     margin-bottom: 2rem;
   }
   
-  /* Icon size is still reduced to prevent overflow */
   .defcon-crypto-icon {
     width: 30px;
     height: 30px;
@@ -596,6 +616,53 @@
   }
 }
 </style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const subheadingEl = document.getElementById('dynamic-subheading');
+    
+    // The content array based on your original text split into 3 parts
+    const messages = [
+        'Over <span class="highlight-cron">120+ clients</span> supported nationwide.',
+        'Providing <span class="highlight-cron">24/7 monitoring</span> and real-time alerts.',
+        'Achieving <span class="highlight-cron">zero security breaches</span> in managed environments.'
+    ];
+
+    let currentIndex = 0;
+
+    setInterval(() => {
+        // 1. Slide OUT (Down)
+        subheadingEl.classList.add('subheading-exit');
+
+        setTimeout(() => {
+            // 2. Update Index
+            currentIndex = (currentIndex + 1) % messages.length;
+            
+            // 3. Jump to TOP (Invisible)
+            subheadingEl.classList.add('subheading-enter-setup');
+            subheadingEl.classList.remove('subheading-exit');
+            
+            // 4. Change Text
+            subheadingEl.innerHTML = messages[currentIndex];
+
+            // 5. Slide IN (From Top to Center)
+            // Small timeout allows the browser to register the 'jump to top' before animating down
+            setTimeout(() => {
+                subheadingEl.classList.remove('subheading-enter-setup');
+            }, 50);
+
+        }, 500); // Wait for the 0.5s slide-out animation to finish
+
+    }, 4000); // Change text every 4 seconds
+});
+</script>
+
+
+
+
+
+
+
 
 
 
@@ -1948,7 +2015,7 @@
             </div>
         </div>
         <div class="cronos-cta-us">
-          <p>Have more questions? <span><a href="page.html">Contact Us</a></span></p>
+          <p>Have more questions? <span><a href="form.html">Contact Us</a></span></p>
         </div>
     </div>
 </section>
