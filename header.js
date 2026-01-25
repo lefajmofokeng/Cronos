@@ -879,6 +879,7 @@ class CronosHeader extends HTMLElement {
                             
                             <a href="form.html" class="cronos-header-action-btn">
                                 Contact Cronos
+                                <svg xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;" width="20" height="20" viewBox="0 0 24 24"><path fill="#ffffff" d="m16 8.4l-8.9 8.9q-.275.275-.7.275t-.7-.275q-.275-.275-.275-.7t.275-.7L14.6 7H7q-.425 0-.713-.288T6 6q0-.425.288-.713T7 5h10q.425 0 .713.288T18 6v10q0 .425-.288.713T17 17q-.425 0-.713-.288T16 16V8.4Z"/></svg>
                             </a>
                             <div class="cronos-qr-dropdown-trigger" id="cronos-qrDropdownTrigger">
                               <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" fill-rule="evenodd" clip-rule="evenodd"><path fill="#8fbffa" d="M2 1H1v8h2V3h6V1zm0 22H1v-8h2v6h6v2zM23 1v8h-2V3h-6V1zm0 21v1h-8v-2h6v-6h2z"/><path fill="#2859c5" d="M5 10v1h6V5H5zm4-1H7V7h2zm4 1v1h6V5h-6zm4-1h-2V7h2zM5 19v-6h6v6zm2-2h2v-2H7zm6 .5V19h6v-2h-4v-4h-2zm4-4.5v2h2v-2z"/></g></svg>
