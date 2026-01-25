@@ -41,7 +41,7 @@ class CronosFooter extends HTMLElement {
           --c-bg-main: #080d1b; 
           --c-text-head: #858992; 
           --c-text-body: #ffffff;
-          --c-accent: #98c0ff; 
+          --c-accent: #84bbff #0073d2; 
           /* For crisp fonts on dark background */
           -webkit-font-smoothing: antialiased;
           text-rendering: optimizeLegibility;
@@ -126,6 +126,7 @@ class CronosFooter extends HTMLElement {
           .top-section {
             grid-template-columns: 1fr;
             gap: 0; /* Tighten gap for accordion look */
+            padding: 0 -20px;
           }
 
           .col-brand { padding-bottom: 40px; }
@@ -181,29 +182,32 @@ class CronosFooter extends HTMLElement {
           <div class="col-links">
             <h3 class="footer-heading">Resources</h3>
             <ul class="link-list">
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Learn</a></li>
-              <li><a href="#">Product News</a></li>
-              <li><a href="#">Glossary</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="blog.html">Blog</a></li>
+              <li><a href="learn.html">Learn</a></li>
+              <li><a href="glossary.html">Glossary</a></li>
+              <li><a href="bot.html">Cronos Bot</a></li>
+              <li><a href="glossary.html">Grypto Market Updates</a></li>
             </ul>
           </div>
 
           <div class="col-links">
             <h3 class="footer-heading">Company</h3>
             <ul class="link-list">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Roadmap</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Licenses & Registrations</a></li>
-              <li><a href="#">Verify</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <li><a href="roadmap">Roadmap</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
+              <li><a href="capital.html">Capital</a></li>
+              <li><a href="capital.html">Security</a></li>
+              <li><a href="veify.html">Verify</a></li>
             </ul>
           </div>
 
           <div class="col-links">
-            <h3 class="footer-heading">Social</h3>
+            <h3 class="footer-heading">Updates</h3>
             <ul class="link-list">
               <li><a href="#">X</a></li>
+              <li><a href="#">Product News</a></li>
               <li><a href="#">Facebook</a></li>
               <li><a href="#">YouTube</a></li>
               <li><a href="#">Instagram</a></li>
@@ -213,7 +217,7 @@ class CronosFooter extends HTMLElement {
 
         <div class="bottom-section">
           <div class="copyright-line">
-            Copyright @ Cronos 2026. All rights reserved.
+            Copyright © Cronos 2026. All rights reserved.
           </div>
           <p class="legal-text">
             Cronos operates as a strictly digital-first service provider to ensure rapid deployment and global scalability. Field technicians are dispatched exclusively in instances where remote assistance protocols have been exhausted and physical intervention is deemed critical to resolution.
