@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronos IT Portal</title>
     <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Anton&family=BBH+Bartle&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Caprasimo&family=Devonshire&family=Freckle+Face&family=Fruktur:ital@0;1&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Gorditas:wght@400;700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kavoon&family=Londrina+Sketch&family=Manrope:wght@200..800&family=Mogra&family=Patua+One&family=Piedra&family=Protest+Riot&family=Rubik+Beastly&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Glitch&family=Rubik+Maze&family=Rubik+Scribble&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Satisfy&display=swap');
+
         /* 1. FULL SCREEN LOCK & BACKGROUND */
         body, html { 
             margin: 0; 
@@ -18,7 +21,7 @@
             /* Premium Background Image */
             background: url('https://images.unsplash.com/photo-1721041879210-c2580ae0a8ed?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
             background-size: cover;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter Tight', sans-serif;
         }
 
         /* Dark Overlay for readability */
@@ -249,15 +252,22 @@
             render() {
                 this.shadowRoot.innerHTML = `
                 <style>
-                    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+                    
+                @import url('https://fonts.googleapis.com/css2?family=Anton&family=BBH+Bartle&family=Big+Shoulders:opsz,wght@10..72,100..900&family=Caprasimo&family=Devonshire&family=Freckle+Face&family=Fruktur:ital@0;1&family=Google+Sans+Flex:opsz,wght@6..144,1..1000&family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Gorditas:wght@400;700&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kavoon&family=Londrina+Sketch&family=Manrope:wght@200..800&family=Mogra&family=Patua+One&family=Piedra&family=Protest+Riot&family=Rubik+Beastly&family=Rubik+Dirt&family=Rubik+Distressed&family=Rubik+Glitch&family=Rubik+Maze&family=Rubik+Scribble&family=Rubik+Vinyl&family=Rubik+Wet+Paint&family=Satisfy&display=swap');
+
 
                     :host {
                         display: block;
                         width: 100%;
                         height: 100%;
-                        font-family: 'Inter', sans-serif;
+                        font-family: 'Inter Tight', sans-serif;
                         color: white;
                     }
+
+                    * {
+                        font-family: 'Inter Tight', sans-serif;
+                    }
+
                     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
                     button { background: none; border: none; font-family: inherit; cursor: pointer; padding: 0; }
 
@@ -271,9 +281,9 @@
                     .c-header-logo { color: white; display: flex; align-items: center; font-weight: bold; font-size: 20px;}
                     .c-btn-download {
                         display: flex; align-items: center; gap: 8px;
-                        background-color: transparent; border: 2px solid rgba(255, 255, 255, 0.3);
+                        background-color: transparent; border: 2px solid #1199ff;
                         color: white; padding: 10px 16px; border-radius: 30px;
-                        font-weight: 600; font-size: 14px; transition: all 0.2s ease;
+                        font-weight: 600; font-size: 14px; transition: all 0.2s ease; font-family: 'Inter', sans-serif;
                     }
                     .c-btn-download:hover { background-color: rgba(255,255,255,0.1); border-color: white; }
 
@@ -287,7 +297,7 @@
                     .c-widget-card {
                         background-color: #fff;
                         width: 100%; max-width: 400px; height: 550px;
-                        border-radius: 24px; overflow: hidden;
+                        border-radius: 15px; overflow: hidden;
                         position: relative; display: flex; flex-direction: column;
                         transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                     }
@@ -326,12 +336,12 @@
                     .c-search-icon-wrapper { position: absolute; left: 16px; pointer-events: none; transition: opacity 0.3s; }
                     .c-search-input {
                         width: 100%; padding: 10px 16px 10px 48px;
-                        border-radius: 50px; border: none;
-                        font-family: 'Inter', sans-serif; font-size: 16px; color: #111827; font-weight: 400;
+                        border-radius: 8px; border: none;
+                        font-family: 'Inter Tight', sans-serif; font-size: 16px; color: #111827; font-weight: 300;
                         outline: none; transition: all 0.3s;
                     }
-                    .c-search-input:focus { box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-                    .c-search-input::placeholder { color: #9ca3af; }
+                    
+                    .c-search-input::placeholder { color: #9ca3af; font-weight: 500;}
                     
                     .c-send-btn {
                         position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
@@ -351,7 +361,7 @@
                     /* --- Body --- */
                     .c-card-body {
                         background-color: #fff; flex-grow: 1;
-                        padding: 50px 24px 24px 24px; overflow-y: auto;
+                        padding: 40px 24px 24px 24px; overflow-y: auto;
                         position: relative; transition: padding 0.4s ease;
                     }
 
@@ -359,7 +369,7 @@
                     .c-faq-title { font-size: 18px; font-weight: 600; color: #111827; margin-bottom: 10px; }
                     .c-faq-list { list-style: none; }
                     .c-faq-item { border-bottom: 1px solid #e5e7eb; }
-                    .c-faq-link { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 12px 0; text-align: left; color: #374151; font-size: 15px; }
+                    .c-faq-link { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 12px 0; text-align: left; font-weight: 600; color: #374151; font-size: 15px; }
                     .c-faq-link:hover { color: #000; }
                     .c-answer-title { font-size: 20px; font-weight: 700; color: #111827; margin-bottom: 16px; }
                     .c-answer-content { font-size: 16px; line-height: 1.6; color: #4b5563; }
@@ -407,7 +417,7 @@
                     .chat-mode .c-card-header-top { display: none; }
                     .chat-mode .c-greeting { display: none; }
                     .chat-mode .c-close-chat { opacity: 1; pointer-events: auto; }
-                    
+
                     /* Move Search Bar to Bottom */
                     .chat-mode .c-search-container { top: auto; bottom: 24px; }
                     .chat-mode .c-search-input { padding-left: 20px; border: 1px solid #e5e7eb; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
@@ -442,11 +452,10 @@
                         <div class="c-card-header">
                             <button class="c-close-chat">${icons.close}</button>
                             <div class="c-card-header-top">
-                                <div class="c-card-icon">${icons.logoIconOnly}</div>
-                                <div class="c-card-icon">${icons.globe}</div>
+                                <div class="c-card-icon"><img src="thumbnails/hyperion logo (2).png" style="height: 30px;"/></div>
                             </div>
                             <h1 class="c-greeting">
-                                Hi <span class="c-wave">👋</span><br>
+                                Hi, <br>
                                 How can we help?
                             </h1>
                         </div>
@@ -454,7 +463,7 @@
                         <div class="c-search-container">
                             <div class="c-search-wrapper">
                                 <div class="c-search-icon-wrapper">${icons.search}</div>
-                                <input type="text" class="c-search-input" placeholder="Ask anything about Cronos IT...">
+                                <input type="text" class="c-search-input" placeholder="Type your query here...">
                                 <button class="c-send-btn">${icons.send}</button>
                             </div>
                             <span class="c-legal-text">
@@ -471,5 +480,183 @@
 
         customElements.define('cronos-it-portal', CronosItPortal);
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Preloader HTML -->
+<!-- Add this at the top of your body (right after opening <body> tag) -->
+<div class="preloader">
+  <div class="preloader-logo">
+    <div class="logo-pulse"></div>
+    <img src="thumbnails/hyperion logo (2).png" alt="Defcon Logo" class="preloader-logo-img">
+    <div class="preloader-progress">
+      <div class="preloader-progress-bar"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Preloader Styles */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #080d1b;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.preloader.loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-logo {
+  position: relative;
+  text-align: center;
+  max-width: 200px;
+}
+
+.preloader-logo-img {
+  width: 120px;
+  height: auto;
+  position: relative;
+  z-index: 2;
+  animation: logoFloat 3s ease-in-out infinite;
+}
+
+.logo-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  z-index: 1;
+  animation: pulse 2s ease-out infinite;
+}
+
+.preloader-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 30px;
+  overflow: hidden;
+}
+
+.preloader-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #0091ff, #00c6ff);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes logoFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Add this to your existing media queries */
+@media (max-width: 768px) {
+  .preloader-logo {
+    max-width: 150px;
+  }
+  .preloader-logo-img {
+    width: 100px;
+  }
+  .logo-pulse {
+    width: 120px;
+    height: 120px;
+  }
+}
+</style>
+
+<script>
+// Add this to your existing JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+  const preloader = document.querySelector('.preloader');
+  const progressBar = document.querySelector('.preloader-progress-bar');
+  
+  // Simulate loading progress (replace with real loading logic)
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.random() * 50; // Simulate random progress
+    if (progress >= 100) {
+      progress = 100;
+      clearInterval(interval);
+      setTimeout(() => {
+        preloader.classList.add('loaded');
+        // Remove preloader from DOM after animation completes
+        setTimeout(() => {
+          preloader.remove();
+        }, 600);
+      }, 500);
+    }
+    progressBar.style.width = progress + '%';
+  }, 200);
+
+  // For actual implementation, you would:
+  // 1. Listen to window.load event instead of simulating
+  // 2. Track actual resource loading progress
+  // 3. Remove preloader when everything is loaded
+  
+  // Real implementation would look more like:
+  /*
+  window.addEventListener('load', function() {
+    preloader.classList.add('loaded');
+    setTimeout(() => {
+      preloader.remove();
+    }, 600);
+  });
+  */
+});
+</script>
+
 </body>
 </html>
