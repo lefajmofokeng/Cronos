@@ -35,9 +35,12 @@ class CronosFooter extends HTMLElement {
   render() {
     this.shadowRoot.innerHTML = `
       <style>
+
+       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
         :host {
           display: block;
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
           --c-bg-main: #080d1b; 
           --c-text-head: #858992; 
           --c-text-body: #ffffff;
@@ -198,7 +201,7 @@ class CronosFooter extends HTMLElement {
               <li><a href="careers.html">Careers</a></li>
               <li><a href="licenses-and-registrations.html">Licenses & Registrations</a></li>
               <li><a href="capital.html">Capital</a></li>
-              <li><a href="capital.html">Security</a></li>
+              <li><a href="security.html">Security</a></li>
               <li><a href="veify.html">Verify</a></li>
             </ul>
           </div>
